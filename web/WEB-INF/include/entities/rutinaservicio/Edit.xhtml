@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="RutinaservicioEditDlg" widgetVar="RutinaservicioEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditRutinaservicioTitle}" closeOnEscape="true">
+
+            <h:form id="RutinaservicioEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{rutinaservicioController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditRutinaservicioLabel_idRutinaServicios}" for="idRutinaServicios" />
+                        <h:outputText id="idRutinaServicios" value="#{rutinaservicioController.selected.idRutinaServicios}" />
+
+                        <p:outputLabel value="#{myBundle.EditRutinaservicioLabel_idRutinas}" for="idRutinas" />
+                        <p:selectOneMenu id="idRutinas" value="#{rutinaservicioController.selected.idRutinas}" required="true" requiredMessage="#{myBundle.EditRutinaservicioRequiredMessage_idRutinas}" converter="rutinaConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{rutinaController.items}"
+                                           var="idRutinasItem"
+                                           itemValue="#{idRutinasItem}"
+                                           itemLabel="#{idRutinasItem.idRutinas.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditRutinaservicioLabel_idServicios}" for="idServicios" />
+                        <p:selectOneMenu id="idServicios" value="#{rutinaservicioController.selected.idServicios}" required="true" requiredMessage="#{myBundle.EditRutinaservicioRequiredMessage_idServicios}" converter="servicioConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{servicioController.items}"
+                                           var="idServiciosItem"
+                                           itemValue="#{idServiciosItem}"
+                                           itemLabel="#{idServiciosItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{rutinaservicioController.save}" value="#{myBundle.Save}" update="display,:RutinaservicioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('RutinaservicioEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('RutinaservicioEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

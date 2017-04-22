@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pst="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <ui:include src="/WEB-INF/template/head.xhtml"/>
+    </h:head>
+    <h:body class="login-img3-body">
+
+        <div class="container">
+
+            <h:form class="login-form" prependId="false">        
+                <div style="background-color: #990000">
+                    <h:messages globalOnly="true" showSummary="true" showDetail="true"/>
+                </div>
+                <div class="login-wrap">
+                    <p class="login-img"><i class="icon_lock_alt"></i></p>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon_profile"></i></span>
+                        <h:inputText id="txtDocumento" class="form-control" pst:placeholder="Documento" pst:autofocus="true"  value="#{sessionController.documento}"/>
+                        <h:message for="txtDocumento" />
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                        <h:inputSecret class="form-control" pst:placeholder="Clave" value="#{sessionController.clave}"/>
+                    </div>
+                    <label class="checkbox">
+                        <input type="checkbox" value="remember-me"/> Remember me
+                        <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
+                    </label>
+                    <h:commandButton class="btn btn-primary btn-lg btn-block" value="Login" action="#{sessionController.action()}" />
+                    <button class="btn btn-info btn-lg btn-block" type="submit">Signup</button>
+                </div>
+            </h:form>
+            <div class="text-right">
+                <div class="credits">
+                    <!-- 
+                        All the links in the footer should remain intact. 
+                        You can delete the links only if you purchased the pro version.
+                        Licensing information: https://bootstrapmade.com/license/
+                        Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
+                    -->
+                    <a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/">Business Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+        </div>
+
+
+    </h:body>
+</html>
+

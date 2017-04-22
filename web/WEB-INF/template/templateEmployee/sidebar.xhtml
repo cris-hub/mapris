@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <nav class="menu  ">
+        <div id="usuario" class="container-fluid target ">
+            <div class="row bg-color-primary-0">
+                <div class="row">
+                    <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1">
+                        <nav class="navbar navbar-fixed-top bg-color-primary-4 " id="sidebar-wrapper" role="navigation">
+                            <ul class="nav sidebar-nav">
+                                <li class="sidebar-brand   ">
+
+                                    <center><i><h2 class="  " style="color:white; ">Maternity club</h2></i></center>
+
+                                </li>
+                                <!-- SIDEBAR USERPIC -->
+                                <div class="profile-userpic">
+                                    
+                                    <h:graphicImage library="img" name="avatar1_small.jpg" class="img-responsive" style = "height: 70px;width: 70px; margin-top:20px; "/>
+                                    <!--<img src="img/anonimo.jpg" class="img-responsive" style="height:70px;width:70px;margin-top:20px;"   alt="">-->
+                                </div>
+                                <!-- END SIDEBAR USERPIC -->
+                                <!-- SIDEBAR USER TITLE -->
+                                <div class="profile-usertitle">
+                                    <div class="profile-usertitle-name">
+                                        <span class="username">#{sessionController.usuarioSesion.nombre} #{sessionController.usuarioSesion.apellidos}</span>
+                                    </div>
+                                    <div class="profile-usertitle-job">
+                                        #{sessionController.usuarioSesion.personalmedico.perfilProfesional}
+                                    </div>
+                                </div>
+                                <!-- END SIDEBAR USER TITLE -->
+                                <!-- SIDEBAR BUTTONS -->
+                                <div class="profile-userbuttons">
+                                    <button type="button" class="btn-theme btn-sm">Notificaiones</button>
+                                </div>
+                                <!-- END SIDEBAR BUTTONS -->
+                                <li class="dropdown ">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span> Area</a>
+                                    <ul class="dropdown-menu " role="menu">
+                                        <li class="dropdown-header" style="color:white;"><center> Los planes cuentan con: </center></li>
+                                        <li><a href="#">Medica</a></li>
+                                        <li><a href="#">Acondicionamiento Fisico</a></li>
+                                        <li><a href="#">Spa</a></li>
+                                        <li><a href="#">Capacitacion</a></li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a  type="button"  class="s-btn-home" href="#{request.contextPath}/Home.xhtml" >
+                                        <div class="">  <span class="fa fa-home" aria-hidden="true"></span> Home</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  type="button"  class="s-btn-foro" href="#{request.contextPath}/app/appemployee/foro.xhtml" >
+                                        <div class="">  <span class="fa fa-rss" aria-hidden="true"></span> Foro </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  type="button" id="s-btn-galeria" class="" href="#{request.contextPath}/Home.xhtml#geleria">
+                                        <div class="h">  <span class="fa fa-picture-o" aria-hidden="true"></span> Galeria </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  type="button" id="s-btn-perfil" class="" href="#{request.contextPath}/app/appemployee/perfil.xhtml" data-toggle="tab">
+                                        <div class=""> <span class="fa fa-user" aria-hidden="true"></span>  Perfil </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  type="button" id="s-btn-programas" class="" href="#{request.contextPath}/app/appemployee/programas.xhtml" data-toggle="tab">
+                                        <div class="">  <span class="fa fa-heart" aria-hidden="true"></span> Programas </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  type="button" id="s-btn-agenda" class="" href="#{request.contextPath}/app/appemployee/agenda.xhtml" >
+                                        <div class=""> <span class="fa fa-calendar" aria-hidden="true"></span> Agenda  </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  type="button" id="s-btn-usuarios" title="Control de usuarios" class=" sh" href="#{request.contextPath}  /app/appemployee/usuarios.xhtml" >
+                                        <div class="">  <span class="fa fa-users" aria-hidden="true"></span> Usuarios </div>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </nav>
+
+                    </div>
+
+                    <div class=" col-xs-5 col-sm-5 col-md-4  letraslogos">
+                        <a  class=" navbar-brand pull-left " href="#{request.contextPath}/app/appemployee/index.xhtml"> 
+                            <div class="letraslogos" ><span class="hidden-xs hidden-sm"> Maternity club </span> 
+                                <h:graphicImage library="img"  name="logowhite.png" id="logo"  class="logo animated zoomIn col-xs-2 col-xs-offset-0 hidden-sm  col-md-3  col-lg-2 col-md-offset-0 col-lg- col-lg-offset-0"/>
+                                <!--                                <img id="logo"class="logo animated zoomIn col-xs-2 col-xs-offset-0 hidden-sm  col-md-2 col-md-offset-0 col-lg-2 col-md-offset-0 col-lg- col-lg-offset-0 " alt="brand" src="img/logo%20color%20empre.png"> -->
+                            </div>
+                        </a>
+                    </div>
+                    <div style="padding-top:5px;" class="col-md-6 hidden-xs col-sm-6 col-lg-6 ">
+
+                        <div style="padding:0;" class="pull-right">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a style="padding: 0; margin-top: 6px;" data-toggle="dropdown"  class="btn dropdown-toggle person " href="#">
+                                        <span class="profile-ava">
+                                            <img alt="" src="#{request.contextPath}/resources/img/avatar1_small.jpg"/>
+                                        </span>
+                                        <span class="username">#{sessionController.usuarioSesion.nombre} #{sessionController.usuarioSesion.apellidos}</span>
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu extended logout">
+                                        <div class="log-arrow-up"></div>
+                                        <li class="eborder-top">
+                                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_profile"></i> My Profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_mail_alt"></i> My Inbox</a>
+                                        </li>
+                                        <li>
+                                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_clock_alt"></i> Timeline</a>
+                                        </li>
+                                        <li>
+                                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_chat_alt"></i> Chats</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_key_alt"></i> Documentation</a>
+                                        </li>
+                                        <li>
+                                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_key_alt"></i> Documentation</a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li class="pull-right">
+                                            <h:form>
+                                                <h:commandLink action="#{sessionController.cerrarSesion()}" ><i class="icon_key_alt"></i> Cerrar sesión</h:commandLink>
+                                            </h:form>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+                                
+                                
+                                
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></nav>
+</html>
+

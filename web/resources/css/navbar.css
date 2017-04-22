@@ -1,0 +1,35 @@
+/*Navbar*/
+#logo{
+    height: 35px;
+    margin-top: 3px;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-delay: 0.5s;
+    -webkit-animation-iteration-count: 1;
+}
+#user{
+        display: inline-block;
+         height: 30px;
+     width: 32px;
+     margin-bottom: 3px;
+     margin-right: 6px;
+     
+ }
+.letraslogos{
+     
+    
+    color: white;
+    padding: 2px;
+    margin: 0px;
+    font-size: 40px;
+    
+       -webkit-animation-duration: 3s;
+    -webkit-animation-delay: 0.1s;
+    -webkit-animation-iteration-count: 1;
+
+}
+.navbar-brand{
+    padding: 0;
+        line-height: 41px;
+}
+
+/*Navbar*/

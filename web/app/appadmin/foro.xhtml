@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/WEB-INF/template/templateAdmin/template.xhtml">
+
+        <ui:define name="body">
+            <f:event type="preRenderView" listener="#{sessionController.validarSesion()}"/>
+            <div class="container-iner">
+                <div style="margin-bottom:70px;"  class="row active" id="tab5">
+                    <div class="row">
+                        <br/>
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="widget-area no-padding blank"> 
+                                <div class="panel-primary">
+                                    <div class="panel-heading">
+                                        <center><p>Inpirate ¡Todo se ha por ellas!</p></center>
+                                    </div>
+                                    <div class="status-upload">
+                                        <div class="panel-body">
+                                            <form>
+                                                <textarea placeholder="Que quieres decirle al mundo?" ></textarea>
+                                                <ul>
+                                                    <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>
+                                                    <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
+                                                    <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
+                                                    <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
+                                                </ul>
+                                                <button type="submit" class="btn btn-success green" id="compartir"><i class="fa fa-share"></i> Compartir</button>
+                                            </form>
+                                        </div>
+                                        <!-- Status Upload  -->
+                                    </div><!-- Widget Area -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <center><h4>Aqui traemos todo lo que publicas</h4></center>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+
+                    </div>
+                    <div class=" col-md-10 col-md-offset-1 ">
+
+                        <div class="[ panel panel-primary ] panel-google-plus">
+                            <div class="dropdown">
+                                <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                                </span>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">eliminar</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">editar</a></li>
+
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Compartir</a></li>
+                                </ul>
+                            </div>
+                            <div class="panel-google-plus-tags">
+                                <ul>
+                                    <li>#Posnatal</li>
+
+                                </ul>
+                            </div>
+                            <div class="panel-heading">
+                                <img class="[ img-circle pull-left ]" src="img/user.jpg" width="50" height="50" alt="Mouse0270"/>
+                                <h3>Robert McIntosh</h3>
+                                <h5><span>Compartido</span> - <span>Junio 27, 2014</span> </h5>
+                            </div>
+                            <div class="panel-body">
+                                <p>sentirse mejor. En un momento en que usted se pregunta si es posible que ese cuerpo tan extraño sea suyo, el ejercicio puede aumentar su sensación de control y el nivel de energía. No sólo la hará sentirse mejor al liberar endorfinas (sustancias químicas que produce el cerebro), sino que le permitirá lo siguiente:
+
+                                    aliviar los dolores de espalda y mejorar su postura al fortalecer y tonificar los músculos de la espalda, los glúteos y los muslos
+
+                                    reducir la constipación al acelerar el movimiento intestinal
+
+                                    prevenir el deterioro de las articulaciones (que tienden a aflojarse durante el embarazo a causa de los cambios hormonales) al activar el líquido sinovial que actúa como lubricante
+
+                                    ayudarla a dormir mejor al aliviar el estrés y la ansiedad que la hacen estar inquieta durante la noche
+                                    verse mejor. El ejercicio aumenta el flujo sanguíneo hacia la piel, otorgándole un aspecto más fresco y saludable.</p>
+                            </div>
+                            <div class="panel-footer">
+                                <button type="button" class="[ btn btn-default ]">+1</button>
+                                <button type="button" class="[ btn btn-default ]">
+                                    <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                                </button>
+                                <div class="input-placeholder">Agregar comentario</div>
+                            </div>
+                            <div class="panel-google-plus-comment">
+                                <img class="img-circle" src="img/user.jpg" alt="User Image" />
+                                <div class="panel-google-plus-textarea">
+                                    <textarea rows="4"></textarea>
+                                    <button type="submit" class="[ btn btn-success disabled ]">Publicar comentario</button>
+                                    <button type="reset" class="[ btn btn-default ]">Cancelar</button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div  class=" col-md-10 col-md-offset-1">
+                        <div class="[ panel panel-primary ] panel-google-plus">
+                            <div class="dropdown">
+                                <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                                </span>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">eliminar</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">editar</a></li>
+
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Compartir</a></li>
+                                </ul>
+                            </div>
+                            <div class="panel-google-plus-tags">
+                                <ul>
+                                    <li>#Prenatal</li>
+                                </ul>
+                            </div>
+                            <div class="panel-heading">
+                                <img class="[ img-circle pull-left ]" src="img/user.jpg" alt="Mouse0270" width="50" height="50"/>
+                                <h3>Robert McIntosh</h3>
+                                <h5><span>Publicado </span> - <span>Jun 25, 2014</span> </h5>
+                            </div>
+                            <div class="panel-body">
+                                <p>Si quieres saber mas hacerca de tu estado no dudes en preguntar <a href="../home/index.html#contactanos">Preguntar</a></p>
+                                <a class="panel-google-plus-image" href="">
+                                    <img src="img/concejos.jpg" alt=""/>
+                                </a>
+                            </div>
+                            <div class="panel-footer">
+                                <button type="button" class="[ btn btn-default ]">+1</button>
+                                <button type="button" class="[ btn btn-default ]">
+                                    <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                                </button>
+                                <div class="input-placeholder">Añadir comentario</div>
+                            </div>
+                            <div class="panel-google-plus-comment">
+                                <img class="img-circle" src="img/user.jpg" alt="User Image" />
+                                <div class="panel-google-plus-textarea">
+                                    <textarea rows="4"></textarea>
+                                    <button type="submit" class="[ btn btn-success disabled ]">Comentar</button>
+                                    <button type="reset" class="[ btn btn-default ]">Cancel</button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ui:define>
+
+
+
+    </ui:composition>
+
+</html>
+

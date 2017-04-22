@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- menu 2 navbar -->
+
+
+    <div class="card">
+        <div class="toggle" title="Registrarme!"></div>
+        <h1 class="title">Registrate !
+            <div class="close"></div>
+        </h1>
+
+        <h:form prependId="false" >
+            <p:growl  id="mensaje" autoUpdate="false" severity="info,error" showSummary="false" showDetail="true"/>
+            <br/>
+            <p:fieldset legend="Datos Cuenta" id="txtRegistro" >
+
+                <div id="camposUsuario">
+                    <div class="form-group">
+                        <p:outputLabel for="txtNombre" value="Nombres"/>
+                        <p:inputText  id="txtNombre" value="#{registroController.usuario.nombre}" required="true" requiredMessage="El nombre es requerido"/>
+                        <p:message for="txtNombre"/>
+                    </div>
+
+                    <div class="form-group">
+                        <p:outputLabel for="txtApellido" value="Apellidos"/>
+                        <p:inputText id="txtApellido" value="#{registroController.usuario.apellidos}" required="true" requiredMessage="El apellido es requerido"/>
+                        <p:message for="txtApellido"/>
+                    </div>
+
+                    <div class="form-group">
+                        <p:outputLabel for="txtDocumentoRegistro" value="Documento de identidad"/>
+                        <p:inputText id="txtDocumentoRegistro" value="#{registroController.usuario.cedula}" required="true" requiredMessage="El numero de documento es requerido"/>
+                        <p:message for="txtDocumentoRegistro"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <p:outputLabel for="txtFecha" value="Fecha de nacimiento"/>
+                        <p:calendar id="txtFecha"  locale="es" value="#{registroController.usuario.fechaNaci}" required="true" requiredMessage="indique la fecha de nacimiento"/>
+                        <p:message for="txtFecha"/>
+                    </div>
+                </div>
+                
+                <div  id="camposCuenta">
+                    
+                    
+                    <div class="form-group">
+                        <p:outputLabel for="txtEmailRegistro" value="Correo electrónico"/>
+                        <p:inputText id="txtEmailRegistro" value="#{registroController.usuario.email}" required="true" requiredMessage="El correo electronico es requerido para el registro"/>
+                        <p:message for="txtEmailRegistro"/>
+                    </div>
+                    <div class="form-group">
+                        <p:outputLabel for="txtDireccionRegistro" value="Dirección"/>
+                        <p:inputText id="txtDireccionRegistro" value="#{registroController.usuario.dirreccion}" required="true" requiredMessage="La dirección es requerida para el registro"/>
+                        <p:message for="txtDireccionRegistro"/>
+                    </div>
+                    <div class="form-group">
+                        <p:outputLabel for="txtTelefonoRegistro" value="Telefono"/>
+                        <p:inputText id="txtTelefonoRegistro" value="#{registroController.usuario.telefono}" required="true" requiredMessage="El telefono es requerido para el registro"/>
+                        <p:message for="txtTelefonoRegistro"/>
+                    </div>
+                   
+                    
+<!--                    <div class="form-group">
+                    <p:outputLabel for="cuentaRol" value="Rol "/>
+                    <p:selectOneMenu id="cuentaRol" value="#{registroController.usuario.roles}">
+                        <f:selectItem itemValue="a" itemLabel="Administrador"/>
+                        <f:selectItem itemValue="b" itemLabel="Cliente"/>
+                        <f:selectItem itemValue="c" itemLabel="Personal Medico"/>
+                    </p:selectOneMenu>
+                    <p:message for="cuentaRol"/>
+                    </div>-->
+
+
+                    <div class="form-group">
+
+                        <p:outputLabel for="txtclave1" value="Clave"/>
+                        <p:password id="txtclave1" class="input-group" value="#{registroController.usuario.clave}" 
+                                    feedback="true" inline="true"
+                                    weakLabel="Debil" goodLabel="Buena" strongLabel="Fuerte" 
+                                    validatorMessage="Las claves no coinciden" required="true" requiredMessage="campo necesario"
+                                    match="txtclave2"  promptLabel="Ingrese la clave"/>
+                        <p:message for="txtclave1"/>
+                        <p:outputLabel for="txtclave2" value="Repetir Clave"/>
+                        <p:password id="txtclave2" required="true" requiredMessage="campo necesario"/>
+                        <p:message for="txtclave2"/>
+
+                    </div>
+                </div>
+
+            </p:fieldset>
+            <br/><br/>
+            <div class="form-group">
+                <p:commandButton class=" btn btn-success  btn-block " value="Registrar" action="#{registroController.registrar()}" icon="fa fa-register" update="txtRegistro,mensaje"/>
+                <p:link class="btn btn-primary  btn-block" value="Ingresar"  outcome="/login.xhtml" />
+            </div>
+
+
+
+        </h:form>
+
+
+    </div>
+</html>
+

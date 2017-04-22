@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <title>Maternity Club</title>
+        
+        
+        <link rel="shorcut icon" href="#{request.contextPath}/resources/img/logos/FavIcon.png"/><!--Favicon Maternity club-->
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
+        <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'/>
+        <link rel='stylesheet ' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'/>
+
+        
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/csslogin/style.css"/>
+        
+        <h:outputStylesheet library="css" name="csslogin/RegisterValidation.css"/>
+
+        <!--Bootstrap Css-->
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/frameworks/bootstrap/css/bootstrap.min.css"/>
+        <link href="#{request.contextPath}/resources/css/fuente.css" rel="stylesheet" type="text/css"/>
+        <!--Datepilker-->
+        <h:outputStylesheet library="css" name="csslogin/datepicker.min.css"/>
+        <h:outputStylesheet library="css" name="csslogin/datepicker3.min.css"/>
+
+        <!-- FormValidation CSS file -->
+        <h:outputStylesheet library="css" name="csslogin/formValidation.css"/>
+        <h:outputStylesheet library="awesome" name="css/font-awesome.css"/>
+
+
+        <!--scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.3.0/zxcvbn.js"></script>
+        <h:outputScript library="js" name="jslogin/jquery-2.2.3.min.js"/><!--Alertas -->
+        <h:outputScript library="js" name="jslogin/datepicker.min.js"/><!--Alertas -->
+        <h:outputScript library="frameworks" name="bootstrap/js/bootstrap.min.js"/><!--js de bootstrap-->
+        <h:outputScript library="js" name="jslogin/index.js"/><!--Alertas -->
+        
+        <h:outputScript library="js" name="jslogin/formValidation.min.js"/><!--Alertas -->
+        
+        <h:outputScript library="js" name="jslogin/bootstrapValidation.min.js"/><!--Alertas -->
+       
+        <h:outputScript library="js" name="jslogin/ValidacionLogin.js"/><!--Alertas -->
+        <h:outputScript library="js" name="jslogin/ValidacionRegister.js"/><!--Alertas -->
+        <h:outputScript library="js" name="jslogin/Ingresar.js"/><!--Alertas -->
+        <h:outputScript library="js" name="jslogin/ingresarP.js"/><!--Alertas -->
+        <h:outputScript library="js" name="spanishLocale.js"/><!--Alertas -->
+        <!--scripts -->   
+
+    </h:head>
+    <h:body>
+    <!-- Mixins-->
+    <!-- Pen Title-->
+    <div class=" col-md-3" style="background-color: #fff; border-radius: 0px 20px 20px 0px; box-shadow:  5px 5px 5px 5px #fff;">
+        <div class="pull-left col-md-1" style="background-color:#ed2553;"></div>
+        <h1 style="font-family: Handlee-Regular; color: #ed2553;" align="center">Maternity Club</h1> <h6 align="center"><span style="align-content: center; color: #ed2553;">Club &amp; Spa</span></h6> 
+    </div>
+    
+    <div class="container">
+     <div class=""></div>
+     
+     <ui:include src="/WEB-INF/template/templatelogin/ingresar.xhtml"/>
+     
+         
+        
+
+    </div>
+
+    <!-- CodePen--><a id="codepen" href="#{request.contextPath}/Home.xhtml" title="Follow me!"><i class="fa fa-home fa-2x"></i></a>
+    </h:body>
+</html>
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DatoclinicoCreateDlg" widgetVar="DatoclinicoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateDatoclinicoTitle}" closeOnEscape="true">
+
+            <h:form id="DatoclinicoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{datoclinicoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateDatoclinicoLabel_rh}" for="rh" />
+                        <p:inputText id="rh" value="#{datoclinicoController.selected.rh}" title="#{myBundle.CreateDatoclinicoTitle_rh}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateDatoclinicoLabel_datosPosparto}" for="datosPosparto" />
+                        <p:inputText id="datosPosparto" value="#{datoclinicoController.selected.datosPosparto}" title="#{myBundle.CreateDatoclinicoTitle_datosPosparto}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateDatoclinicoLabel_datosPrenatales}" for="datosPrenatales" />
+                        <p:inputText id="datosPrenatales" value="#{datoclinicoController.selected.datosPrenatales}" title="#{myBundle.CreateDatoclinicoTitle_datosPrenatales}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateDatoclinicoLabel_clientes}" for="clientes" />
+                        <p:selectOneMenu id="clientes" value="#{datoclinicoController.selected.clientes}" required="true" requiredMessage="#{myBundle.CreateDatoclinicoRequiredMessage_clientes}" converter="usuarioConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.items}"
+                                           var="clientesItem"
+                                           itemValue="#{clientesItem}"
+                                           itemLabel="#{clientesItem.cedula.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{datoclinicoController.saveNew}" value="#{myBundle.Save}" update="display,:DatoclinicoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DatoclinicoCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('DatoclinicoCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

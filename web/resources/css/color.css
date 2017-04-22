@@ -1,0 +1,79 @@
+.bg-color-primary-0 { 
+    background: #9C27B0;
+
+
+ }    /*NAV top*/
+.bg-color-primary-1 { background-color: #FF4081; }
+.bg-color-primary-2 { background-color: #A93864; }
+.bg-color-primary-3 { background-color: #700730; }
+.bg-color-primary-4 { 
+ background: #9C27B0;
+}/*SIDEBAR*/
+
+
+
+
+.color-primary-0 { color: #8F1E4A; }    Main Primary color
+.color-primary-1 { color: #CA628A; }
+.color-primary-2 { color: #A93864; }
+.color-primary-3 { color: #700730; }
+.color-primary-4 { color: #4B001D; }
+.bg-color-primary-5{
+	  background: white;
+      color: #4c5767;
+        margin: 0 auto;
+        border: none;
+        
+        font-size: 20px;
+    
+
+
+
+
+
+        border-radius: 50%;
+            height: 35px;
+    font-size: 20px;}
+
+
+
+
+
+    
+        
+
+
+.bg-color-primary-5:hover{
+	color: #4c5767;
+     border-bottom: solid purple ;
+        margin: 0 auto;
+        
+        
+        font-size: 20px;
+        
+        border-radius: 50%;
+            height: 35px;
+    font-size: 20px;
+	     
+        transform: translateY(1px);
+        
+     
+        
+}
+
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InscripcionViewDlg" widgetVar="InscripcionViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewInscripcionTitle}" closeOnEscape="true">
+
+            <h:form id="InscripcionViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{inscripcionController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewInscripcionLabel_idInscripciones}"/>
+                        <h:outputText value="#{inscripcionController.selected.idInscripciones}" title="#{myBundle.ViewInscripcionTitle_idInscripciones}"/>
+
+                        <h:outputText value="#{myBundle.ViewInscripcionLabel_fechaInicio}"/>
+                        <h:outputText value="#{inscripcionController.selected.fechaInicio}" title="#{myBundle.ViewInscripcionTitle_fechaInicio}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewInscripcionLabel_fechaFin}"/>
+                        <h:outputText value="#{inscripcionController.selected.fechaFin}" title="#{myBundle.ViewInscripcionTitle_fechaFin}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewInscripcionLabel_valor}"/>
+                        <h:outputText value="#{inscripcionController.selected.valor}" title="#{myBundle.ViewInscripcionTitle_valor}"/>
+
+                        <h:outputText value="#{myBundle.ViewInscripcionLabel_idPrograma}"/>
+                        <h:outputText value="#{inscripcionController.selected.idPrograma.idProgramas}"/>
+
+                        <h:outputText value="#{myBundle.ViewInscripcionLabel_idCliente}"/>
+                        <h:outputText value="#{inscripcionController.selected.idCliente.usuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('InscripcionViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

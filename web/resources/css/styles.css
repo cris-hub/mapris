@@ -1,0 +1,158 @@
+
+/* USER PROFILE PAGE */
+.container{
+    width: 100%;
+    height: 200px;
+
+
+
+}
+ .card {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: rgba(214, 224, 226, 0.2);
+    -webkit-border-top-left-radius:5px;
+    -moz-border-top-left-radius:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-top-right-radius:5px;
+    border-top-right-radius:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+}
+.card.hovercard .card-background {
+    height: 200px;
+}
+.card-background img {
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+}
+.card.hovercard .useravatar {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .useravatar img {
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(177, 60, 188, 0.5);
+}
+.card.hovercard .card-info { /*NOMBRE DE LA PERSONA*/
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    right: 0;
+
+}
+.card.hovercard .card-info .card-title {
+    padding:0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: #262626;
+    /*background-color: rgba(255, 255, 255, 0.1);*/
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.card.hovercard .card-info {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+.card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+    
+
+
+
+}
+.btn-pref .btn {
+    -webkit-border-radius:0 !important;
+    
+}
+
+.btn-group-justified>.btn-group .btn{
+
+        background: #ea4c88;
+        margin: 0 auto;
+        border: none;
+        text-shadow: 1px 2px 1px #be3e6e;
+        font-size: 20px;
+        color: white;
+        border-radius: 15px;
+        box-shadow: 0 20px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.btn-group-justified>.btn-group .btn:hover{
+        background: #f571a3;
+        transform: translateY(1px);
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+     
+}
+
+.well{
+    min-height: 700px;
+}
+
+/*COLUMNA IZQ */
+.list-group-item:first-child{
+
+    background-color: #28B0B2;
+    color: #f5fffa;
+    font-size: 18px;
+    text-shadow: 1px 1px 1px #be3e6e;
+}
+
+.list-group-item {
+    background-color: #DBD2DE;
+    border: none;
+    color: mintcream;
+    
+}
+
+.panel-body {
+    padding: 15px;
+    background-color: #DBD2DE;
+    }
+
+    .panel-default>.panel-heading {
+    color: #f5fffa;
+    background-color: #28B0B2;
+    text-shadow: 1px 1px 1px #be3e6e;
+    border-color: #ddd;
+    font-size: 20px;
+    border: none;
+    box-shadow: 0 20px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+.thumbnail>img, .thumbnail a>img {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    height: 270px;
+    }

@@ -1,0 +1,30 @@
+/* USER PROFILE PAGE */
+body{
+ background-color: white;
+       
+ }
+
+
+
+
+
+
+#calentar{
+    margin-top: 20px; 
+}
+
+
+
+
+.fc-head {
+    background: #aaf;
+}
+.fc-view-container{
+    background: white;
+}
+
+
+.fc-day{
+    background-color: beige;
+    
+}

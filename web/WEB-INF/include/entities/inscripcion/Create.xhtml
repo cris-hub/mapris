@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InscripcionCreateDlg" widgetVar="InscripcionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateInscripcionTitle}" closeOnEscape="true">
+
+            <h:form id="InscripcionCreateForm">
+
+                <h:panelGroup id="display" rendered="#{inscripcionController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateInscripcionLabel_idInscripciones}" for="idInscripciones" />
+                        <p:inputText id="idInscripciones" value="#{inscripcionController.selected.idInscripciones}" title="#{myBundle.CreateInscripcionTitle_idInscripciones}" required="true" requiredMessage="#{myBundle.CreateInscripcionRequiredMessage_idInscripciones}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateInscripcionLabel_fechaInicio}" for="fechaInicio" />
+                        <p:calendar id="fechaInicio" pattern="MM/dd/yyyy" value="#{inscripcionController.selected.fechaInicio}" title="#{myBundle.CreateInscripcionTitle_fechaInicio}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateInscripcionLabel_fechaFin}" for="fechaFin" />
+                        <p:calendar id="fechaFin" pattern="MM/dd/yyyy" value="#{inscripcionController.selected.fechaFin}" title="#{myBundle.CreateInscripcionTitle_fechaFin}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateInscripcionLabel_valor}" for="valor" />
+                        <p:inputText id="valor" value="#{inscripcionController.selected.valor}" title="#{myBundle.CreateInscripcionTitle_valor}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateInscripcionLabel_idPrograma}" for="idPrograma" />
+                        <p:selectOneMenu id="idPrograma" value="#{inscripcionController.selected.idPrograma}" required="true" requiredMessage="#{myBundle.CreateInscripcionRequiredMessage_idPrograma}" converter="programaConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{programaController.items}"
+                                           var="idProgramaItem"
+                                           itemValue="#{idProgramaItem}"
+                                           itemLabel="#{idProgramaItem.idProgramas.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateInscripcionLabel_idCliente}" for="idCliente" />
+                        <p:selectOneMenu id="idCliente" value="#{inscripcionController.selected.idCliente}" required="true" requiredMessage="#{myBundle.CreateInscripcionRequiredMessage_idCliente}" converter="clienteConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clienteController.items}"
+                                           var="idClienteItem"
+                                           itemValue="#{idClienteItem}"
+                                           itemLabel="#{idClienteItem.usuario.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{inscripcionController.saveNew}" value="#{myBundle.Save}" update="display,:InscripcionListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('InscripcionCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('InscripcionCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

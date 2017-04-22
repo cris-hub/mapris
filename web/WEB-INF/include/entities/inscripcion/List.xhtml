@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="InscripcionListForm">
+
+        <p:panel header="#{myBundle.ListInscripcionTitle}">
+            <p:contextMenu id="InscripcionDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('InscripcionListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('InscripcionListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('InscripcionListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('InscripcionListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.InscripcionMenuItem_idPrograma}" icon="ui-icon-search"  actionListener="#{inscripcionController.prepareIdPrograma}" update=":ProgramaViewForm" oncomplete="PF('ProgramaViewDialog').show()" disabled="#{empty inscripcionController.selected.idPrograma}"/>  
+                <p:menuitem value="#{myBundle.InscripcionMenuItem_idCliente}" icon="ui-icon-search"  actionListener="#{inscripcionController.prepareIdCliente}" update=":ClienteViewForm" oncomplete="PF('ClienteViewDialog').show()" disabled="#{empty inscripcionController.selected.idCliente}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{inscripcionController.items}"
+                         lazy="false"
+                         rowKey="#{item.idInscripciones}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{inscripcionController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{inscripcionController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idInscripciones}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:InscripcionDataTableContextMenu" listener="#{inscripcionController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:InscripcionDataTableContextMenu" listener="#{inscripcionController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{inscripcionController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('InscripcionListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idInscripciones}" filterBy="#{item.idInscripciones}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListInscripcionTitle_idInscripciones}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idInscripciones}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.fechaInicio}" filterBy="#{item.fechaInicio}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListInscripcionTitle_fechaInicio}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.fechaFin}" filterBy="#{item.fechaFin}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListInscripcionTitle_fechaFin}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.valor}" filterBy="#{item.valor}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListInscripcionTitle_valor}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.valor}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idPrograma.idProgramas}" filterBy="#{item.idPrograma.idProgramas}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListInscripcionTitle_idPrograma}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idPrograma.idProgramas}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idCliente.usuario}" filterBy="#{item.idCliente.usuario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListInscripcionTitle_idCliente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCliente.usuario}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{inscripcionController.prepareCreate}" update=":InscripcionCreateForm" oncomplete="PF('InscripcionCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":InscripcionViewForm" oncomplete="PF('InscripcionViewDialog').show()" disabled="#{empty inscripcionController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":InscripcionEditForm" oncomplete="PF('InscripcionEditDialog').show()" disabled="#{empty inscripcionController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{inscripcionController.delete}" update=":growl,datalist" disabled="#{empty inscripcionController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

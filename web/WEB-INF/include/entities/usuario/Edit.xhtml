@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UsuarioEditDlg" widgetVar="UsuarioEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditUsuarioTitle}" closeOnEscape="true">
+
+            <h:form id="UsuarioEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{usuarioController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditUsuarioLabel_cedula}" for="cedula" />
+                        <h:outputText id="cedula" value="#{usuarioController.selected.cedula}" />
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{usuarioController.selected.nombre}" title="#{myBundle.EditUsuarioTitle_nombre}" required="true" requiredMessage="#{myBundle.EditUsuarioRequiredMessage_nombre}"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{usuarioController.selected.apellidos}" title="#{myBundle.EditUsuarioTitle_apellidos}" required="true" requiredMessage="#{myBundle.EditUsuarioRequiredMessage_apellidos}"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{usuarioController.selected.email}" title="#{myBundle.EditUsuarioTitle_email}"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{usuarioController.selected.telefono}" title="#{myBundle.EditUsuarioTitle_telefono}"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_clave}" for="clave" />
+                        <p:inputText id="clave" value="#{usuarioController.selected.clave}" title="#{myBundle.EditUsuarioTitle_clave}" required="true" requiredMessage="#{myBundle.EditUsuarioRequiredMessage_clave}"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_dirreccion}" for="dirreccion" />
+                        <p:inputText id="dirreccion" value="#{usuarioController.selected.dirreccion}" title="#{myBundle.EditUsuarioTitle_dirreccion}"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_fechaNaci}" for="fechaNaci" />
+                        <p:calendar id="fechaNaci" pattern="MM/dd/yyyy" value="#{usuarioController.selected.fechaNaci}" title="#{myBundle.EditUsuarioTitle_fechaNaci}" required="true" requiredMessage="#{myBundle.EditUsuarioRequiredMessage_fechaNaci}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_imagen}" for="imagen" />
+                        <p:inputTextarea rows="4" cols="30" id="imagen" value="#{usuarioController.selected.imagen}" title="#{myBundle.EditUsuarioTitle_imagen}" />
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_roles}" for="roles" />
+                        <p:selectManyMenu id="roles" value="#{usuarioController.selected.roles}"  converter="rolConverter">
+                            <f:selectItems value="#{rolController.items}"
+                                           var="rolesItem"
+                                           itemValue="#{rolesItem}"
+                                           itemLabel="#{rolesItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectManyMenu>
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_personalmedico}" for="personalmedico" />
+                        <p:selectOneMenu id="personalmedico" value="#{usuarioController.selected.personalmedico}"  converter="personalmedicoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personalmedicoController.items}"
+                                           var="personalmedicoItem"
+                                           itemValue="#{personalmedicoItem}"
+                                           itemLabel="#{personalmedicoItem.usuario.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_clientes}" for="clientes" />
+                        <p:selectOneMenu id="clientes" value="#{usuarioController.selected.clientes}"  converter="clienteConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clienteController.items}"
+                                           var="clientesItem"
+                                           itemValue="#{clientesItem}"
+                                           itemLabel="#{clientesItem.usuario.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioController.save}" value="#{myBundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UsuarioEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('UsuarioEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

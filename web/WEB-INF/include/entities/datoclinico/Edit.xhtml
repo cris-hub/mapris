@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DatoclinicoEditDlg" widgetVar="DatoclinicoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditDatoclinicoTitle}" closeOnEscape="true">
+
+            <h:form id="DatoclinicoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{datoclinicoController.selected != null}">
+
+                        <p:outputLabel value="#{myBundle.EditDatoclinicoLabel_rh}" for="rh" />
+                        <p:inputText id="rh" value="#{datoclinicoController.selected.rh}" title="#{myBundle.EditDatoclinicoTitle_rh}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDatoclinicoLabel_datosPosparto}" for="datosPosparto" />
+                        <p:inputText id="datosPosparto" value="#{datoclinicoController.selected.datosPosparto}" title="#{myBundle.EditDatoclinicoTitle_datosPosparto}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDatoclinicoLabel_datosPrenatales}" for="datosPrenatales" />
+                        <p:inputText id="datosPrenatales" value="#{datoclinicoController.selected.datosPrenatales}" title="#{myBundle.EditDatoclinicoTitle_datosPrenatales}"/>
+
+
+                        <h:outputLabel value="#{myBundle.EditDatoclinicoLabel_clientes}" for="clientes" />
+                        <h:outputText id="clientes" value="#{datoclinicoController.selected.clientes}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{datoclinicoController.save}" value="#{myBundle.Save}" update="display,:DatoclinicoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DatoclinicoEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('DatoclinicoEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <ui:include src="/WEB-INF/include/head.xhtml"/>
+
+        <h:outputStylesheet library="css" name="pfcrud.css"/>
+        <h:outputScript library="scripts" name="pfcrud.js"/>
+    </h:head>
+
+    <h:body onload="myFunction()" style="margin:0;">
+        <div id="loader"></div>
+        <p:growl id="growl" life="3000"/>
+        <div style="" id="myDiv" class="animate-bottom">
+            <div id="wrapper">
+
+                <div class=" overlay hidden-lg hidden-md"></div>
+                <nav>
+                    <ui:include src="/WEB-INF/include/sidebar.xhtml"/>
+                    <ui:include src="/WEB-INF/include/menuhamburguesa.xhtml"/>
+                    <ui:include src="/WEB-INF/include/nav.xhtml"/>
+                </nav >
+                <p:layout  >
+                    
+
+                    
+
+                    <p:layoutUnit style="margin-top: 100px; " position="center">
+                        <ui:insert name="body"/>
+                    </p:layoutUnit>
+                </p:layout>
+
+
+
+
+                <ui:include src="/WEB-INF/template/templateEmployee/tools.xhtml"/>
+            </div>
+        </div>
+        <ui:include src="/WEB-INF/include/scrips.xhtml"/>
+    </h:body>
+
+</html>

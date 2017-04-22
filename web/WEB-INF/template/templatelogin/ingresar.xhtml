@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- menu 2 navbar -->
+
+
+    <div class="card">
+
+        <h1 class="title">Ingresar</h1>
+
+        <!--    Div Usuarios-->
+        <h:form id="loginUsuario" prependId="false">
+            <div style="background-color: #990000;color:white;">
+                <p:growl  globalOnly="true" showSummary="true" showDetail="true"/>
+            </div>
+            <div id="usuario" class="form-action show">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon_profile"></i></span>
+                        <h:inputText id="txtDocumento" class="form-control" pst:placeholder="Documento" pst:autofocus="true"  value="#{sessionController.documento}"/>
+                        <p:message for="txtDocumento" />
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                        <h:inputSecret class="form-control" pst:placeholder="Clave" value="#{sessionController.clave}"/>
+                    </div>
+
+                </div>
+
+                <div class="button-container">
+                    <label class="checkbox">
+                        <input type="checkbox" value="remember-me"/>¿Quieres recordar tu cuenta?
+                   </label>
+                    <p:commandButton value="¡Entrar!" action="#{sessionController.action()}" />
+
+
+                </div>
+
+                <div class="button-container">
+                    <div class="form-group">
+                        <br/><br/>
+                        <p:link class="btn btn-primary  btn-block " value="¿Quieres registrarte?"  outcome="/registrar.xhtml" />
+                    </div>
+                    <div class="footer"><a href="#">Olvidaste tu Contraseña?</a></div>
+                   
+                </div>
+            </div>
+
+            <!-- Fin Div Usuario -->
+        </h:form>
+    </div>
+</html>
+

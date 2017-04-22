@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PermisoEditDlg" widgetVar="PermisoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditPermisoTitle}" closeOnEscape="true">
+
+            <h:form id="PermisoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{permisoController.selected != null}">
+
+                        <p:outputLabel value="#{myBundle.EditPermisoLabel_tipo}" for="tipo" />
+                        <p:inputText id="tipo" value="#{permisoController.selected.tipo}" title="#{myBundle.EditPermisoTitle_tipo}" required="true" requiredMessage="#{myBundle.EditPermisoRequiredMessage_tipo}"/>
+
+
+                        <h:outputLabel value="#{myBundle.EditPermisoLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{permisoController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditPermisoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{permisoController.selected.nombre}" title="#{myBundle.EditPermisoTitle_nombre}" required="true" requiredMessage="#{myBundle.EditPermisoRequiredMessage_nombre}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPermisoLabel_url}" for="url" />
+                        <p:inputText id="url" value="#{permisoController.selected.url}" title="#{myBundle.EditPermisoTitle_url}" required="true" requiredMessage="#{myBundle.EditPermisoRequiredMessage_url}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPermisoLabel_icon}" for="icon" />
+                        <p:inputText id="icon" value="#{permisoController.selected.icon}" title="#{myBundle.EditPermisoTitle_icon}" required="true" requiredMessage="#{myBundle.EditPermisoRequiredMessage_icon}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPermisoLabel_permisoPadre}" for="permisoPadre" />
+                        <p:selectOneMenu id="permisoPadre" value="#{permisoController.selected.permisoPadre}"  converter="permisoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{permisoController.items}"
+                                           var="permisoPadreItem"
+                                           itemValue="#{permisoPadreItem}"
+                                           itemLabel="#{permisoPadreItem.id.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{permisoController.save}" value="#{myBundle.Save}" update="display,:PermisoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PermisoEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PermisoEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
