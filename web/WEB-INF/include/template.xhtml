@@ -7,7 +7,7 @@
 
     <h:head>
         <title><ui:insert name="title">Default Title</ui:insert></title>
-        <ui:include src="/WEB-INF/include/head.xhtml"/>
+        <ui:include src="/WEB-INF/template/head.xhtml"/>
 
         <h:outputStylesheet library="css" name="pfcrud.css"/>
         <h:outputScript library="scripts" name="pfcrud.js"/>
@@ -21,9 +21,9 @@
 
                 <div class=" overlay hidden-lg hidden-md"></div>
                 <nav>
-                    <ui:include src="/WEB-INF/include/sidebar.xhtml"/>
-                    <ui:include src="/WEB-INF/include/menuhamburguesa.xhtml"/>
-                    <ui:include src="/WEB-INF/include/nav.xhtml"/>
+                    <ui:include src="/WEB-INF/template/sidebar.xhtml"/>
+                    <ui:include src="/WEB-INF/template/menuhamburguesa.xhtml"/>
+                    <ui:include src="/WEB-INF/template/nav.xhtml"/>
                 </nav >
                 <p:layout  >
                     
@@ -38,10 +38,10 @@
 
 
 
-                <ui:include src="/WEB-INF/template/templateEmployee/tools.xhtml"/>
+                <ui:include src="/WEB-INF/template/tools.xhtml"/>
             </div>
         </div>
-        <ui:include src="/WEB-INF/include/scrips.xhtml"/>
+        <ui:include src="/WEB-INF/template/scrips.xhtml"/>
     </h:body>
 
 </html>
