@@ -1,14 +1,12 @@
-
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <ui:composition template="/WEB-INF/template/templateAdmin/template.xhtml">
-        
-        <ui:define name="body">
-<f:event type="preRenderView" listener="#{sessionController.validarSesion()}"/>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+
             <div class="row">
                 <!-- Page Header -->
 
@@ -26,12 +24,8 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-md-3 col-lg-3 " align="center">
-                                            <h:form>
-                                                <p:growl showDetail="true"/>
-                                                <p:fileUpload value="" mode="simple"/>
-                                              
-                                            </h:form>
+                                        <div class="col-md-3 col-lg-3 " align="center"> <img style="margin:10px;" alt="User Pic" width="150" height="150" src="img/anonimo.jpg" class="img-circle img-responsive"/>
+                                            <a href="" class="btn btn-success" data-toggle="modal" data-target="#miModal">Cambiar foto</a>
                                         </div>
 
                                         <div class=" col-md-9 col-lg-9 ">
@@ -246,7 +240,7 @@
                 </div>
 
             </div> 
-        </ui:define>
+        
 
     </ui:composition> 
 

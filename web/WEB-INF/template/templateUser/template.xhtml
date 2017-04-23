@@ -7,7 +7,7 @@
         <title><ui:insert name="titulo"></ui:insert></title>
 
 
-        <ui:include src="/WEB-INF/template/templateUser/head.xhtml"/>
+        <ui:include src="/WEB-INF/template/head.xhtml"/>
 
     </h:head>
     <h:body onload="myFunction()" style="margin:0;">
@@ -19,23 +19,21 @@
 
                 <div class=" overlay hidden-lg hidden-md"></div>
                 <nav>
-                    <ui:include src="/WEB-INF/template/templateUser/sidebar.xhtml"/>
-                    <ui:include src="/WEB-INF/template/templateUser/menuhamburguesa.xhtml"/>
-                    <ui:include src="/WEB-INF/template/templateUser/nav.xhtml"/>
+                    <ui:include src="/WEB-INF/template/sidebar.xhtml"/>
+                    <ui:include src="/WEB-INF/template/menuhamburguesa.xhtml"/>
+                    <ui:include src="/WEB-INF/template/nav.xhtml"/>
                 </nav>
 
 
                 
-                    <h1>
-                        <center> <ui:insert name="title">Default Title</ui:insert></center>
-                    </h1>
+                    
                 <div class="container">
                         <ui:insert name="body">Default Body</ui:insert>
                 </div>
 
 
                 
-                <ui:include src="/WEB-INF/template/templateUser/tools.xhtml"/>
+                <ui:include src="/WEB-INF/template/tools.xhtml"/>
             </div>
         </div>
 
@@ -47,7 +45,7 @@
 
 
 
-        <ui:include src="/WEB-INF/template/templateUser/scrips.xhtml" />
+        <ui:include src="/WEB-INF/template/scrips.xhtml" />
     </h:body>
 </html>
 
