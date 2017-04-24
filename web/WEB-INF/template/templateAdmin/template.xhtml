@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title><ui:insert name="titulo"></ui:insert></title>
 
@@ -11,7 +12,7 @@
 
     </h:head>
     <h:body onload="myFunction()" style="margin:0;">
-
+        <f:event type="preRenderView" listener="#{sessionController.validarSesion()}"/>
         <div id="loader"></div>
 
         <div style="" id="myDiv" class="animate-bottom">

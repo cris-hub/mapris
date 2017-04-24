@@ -107,35 +107,35 @@ public class PermisoController extends AbstractController<Permiso> {
 
 //                    variable del permiso en comun
                 permisoRol = role;
-if (p.getTipo().equals("S") && permisoRol.getId().equals(us.getRoles().get(0).getId())) {
-                DefaultSubMenu firstSubmenu = new DefaultSubMenu(p.getNombre());
+                if (p.getTipo().equals("S") && permisoRol.getId().equals(us.getRoles().get(0).getId())) {
+                    DefaultSubMenu firstSubmenu = new DefaultSubMenu(p.getNombre());
+                    firstSubmenu.setStyle("color=red;");
 
-                for (Permiso i : lista) {
-                    Permiso subpermiso = i.getPermisoPadre();
-                    if (subpermiso != null) {
-                        if (subpermiso.getId() == p.getId()) {
+                    for (Permiso i : lista) {
+                        Permiso subpermiso = i.getPermisoPadre();
+                        if (subpermiso != null) {
+                            if (subpermiso.getId() == p.getId()) {
 
-                            DefaultMenuItem item = new DefaultMenuItem(i.getNombre(), i.getIcon(), i.getUrl());
-                            firstSubmenu.addElement(item);
+                                DefaultMenuItem item = new DefaultMenuItem(i.getNombre(), i.getIcon(), i.getUrl());
+                                firstSubmenu.addElement(item);
+
+                            }
 
                         }
 
                     }
 
-                }
+                    model.addElement(firstSubmenu);
+                } else {
+                    if (p.getPermisoPadre() == null && permisoRol.getId().equals(us.getRoles().get(0).getId())) {
+                        DefaultMenuItem item = new DefaultMenuItem(p.getNombre());
+                        model.addElement(item);
 
-                model.addElement(firstSubmenu);
-            } else {
-                if (p.getPermisoPadre() == null && permisoRol.getId().equals(us.getRoles().get(0).getId())) {
-                    DefaultMenuItem item = new DefaultMenuItem(p.getNombre());
-                    model.addElement(item);
+                    }
 
                 }
-    
-            }
             }
 
-            
         }
 
     }
