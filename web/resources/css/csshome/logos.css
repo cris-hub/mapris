@@ -1,0 +1,35 @@
+#imagen{
+
+    height: 40px;
+    width: 40px;
+    padding-bottom:2px;
+
+}#centerpage{
+
+    font-size: 50px;
+}
+#logo {
+
+    align-content: center;
+    height: 200px;
+    width: 200px;    
+
+    background-size:  240px;
+    padding: 0;
+    text-align: center;
+    display: inline-block;
+    background-position: center;
+
+    margin-top: 110px;
+
+}
+#letraslogos{
+
+
+    color: #fff;
+    font-size: 30px;
+
+    padding: 0 0 0 0 ;
+    margin: 0px 10px 100px 100px;
+
+}

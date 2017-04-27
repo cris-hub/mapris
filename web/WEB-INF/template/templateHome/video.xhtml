@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <div id="full-video">
+        <!--Video Section-->
+        <section class="content-section video-section">
+            <div class="row">
+                <div class="col-md-12"></div>
+
+                <video id="video_background" preload="auto" quality="large" autoplay="true" muted="true" loop="" poster="#{request.contextPath}/resources/img/05.jpg">
+                    <source src="#{request.contextPath}/resources/videos/video.mp4" type="video/mp4"></source>
+                    <source src="//Video.ogg" type="video/ogg"></source>
+                    <source src="//Video.webm" type="video/webm"> </source>
+                </video>
+            </div>
+
+            <div class="pattern-overlay">
+
+                <ui:include src="/WEB-INF/templates/templatehome/header.xhtml"/>
+
+            </div>
+        </section>
+
+    </div> 
+
+</html>
