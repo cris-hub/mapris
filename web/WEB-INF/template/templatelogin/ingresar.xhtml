@@ -10,7 +10,7 @@
 
     <div class="card">
 
-        <h1 class="title">Ingresar</h1>
+        <h1 class="title">#{login.titleIngresar}</h1>
 
         <!--    Div Usuarios-->
         <h:form id="loginUsuario" prependId="false">
@@ -21,7 +21,7 @@
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="icon_profile"></i></span>
-                        <h:inputText id="txtDocumento" class="form-control" pst:placeholder="Documento" pst:autofocus="true"  value="#{sessionController.documento}"/>
+                        <h:inputText id="txtDocumento" class="form-control" pst:placeholder="#{login.placeholderDocumento}" pst:autofocus="true"  value="#{sessionController.documento}"/>
                         <p:message for="txtDocumento" />
                     </div>
 
@@ -29,16 +29,16 @@
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                        <h:inputSecret class="form-control" pst:placeholder="Clave" value="#{sessionController.clave}"/>
+                        <h:inputSecret class="form-control" pst:placeholder="#{login.placeholderPassword}" value="#{sessionController.clave}"/>
                     </div>
 
                 </div>
 
                 <div class="button-container">
                     <label class="checkbox">
-                        <input type="checkbox" value="remember-me"/>¿Quieres recordar tu cuenta?
+                        <input type="checkbox" value=""/>#{login.valueCheckboxRecordarme}
                    </label>
-                    <p:commandButton value="¡Entrar!" action="#{sessionController.action()}" />
+                    <p:commandButton value="#{login.valueingresar}" action="#{sessionController.action()}" />
 
 
                 </div>
@@ -46,9 +46,9 @@
                 <div class="button-container">
                     <div class="form-group">
                         <br/><br/>
-                        <p:link class="btn btn-primary  btn-block " value="¿Quieres registrarte?"  outcome="/registrar.xhtml" />
+                        <p:link class="btn btn-primary  btn-block " value="#{login.buttonRegistrar}"  outcome="/registrar.xhtml" />
                     </div>
-                    <div class="footer"><a href="#">Olvidaste tu Contraseña?</a></div>
+                    <div class="footer"><a href="#" value="h">#{login.valueForgotPassword}</a></div>
                    
                 </div>
             </div>
