@@ -7,11 +7,12 @@
                         <a  class=" navbar-brand pull-left " href="#{request.contextPath}/app/appemployee/index.xhtml"> 
                             <div class="letraslogos" ><span class="hidden-xs hidden-sm"> Maternity club </span> 
                                 <h:graphicImage library="img"  name="logowhite.png" id="logo"  class="logo animated zoomIn col-xs-2 col-xs-offset-0 hidden-sm  col-md-3  col-lg-2 col-md-offset-0 col-lg- col-lg-offset-0"/>
-                                <!--                                <img id="logo"class="logo animated zoomIn col-xs-2 col-xs-offset-0 hidden-sm  col-md-2 col-md-offset-0 col-lg-2 col-md-offset-0 col-lg- col-lg-offset-0 " alt="brand" src="img/logo%20color%20empre.png"> -->
-                            </div>
+                                                         </div>
                         </a>
                     </div>
-                    <div style="padding-top:5px;" class="col-md-6 hidden-xs col-sm-6 col-lg-6 ">
+   
+         
+                    <div style="padding-top:5px; right:40px;" class="col-md-6 hidden-xs col-sm-6 col-lg-6  ">
 
                         <div style="padding:0;" class="pull-right">
                             <ul class="nav navbar-nav navbar-right">
@@ -44,12 +45,8 @@
                                         <li>
                                             <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_key_alt"></i> Documentation</a>
                                         </li>
-                                        <li role="separator" class="divider"></li>
-                                        <li class="pull-right">
-                                            <h:form>
-                                                <h:commandLink action="#{sessionController.cerrarSesion()}" ><i class="icon_key_alt"></i> Cerrar sesión</h:commandLink>
-                                            </h:form>
-                                        </li>
+                                     
+                                        
                                     </ul>
                                 </li>
                                 
@@ -60,6 +57,14 @@
 
                         </div>
                     </div>
+    
+ 
+    <div class="col-md-1 col-sm-1 col-lg-1 " style="padding-top:10px; right:30px;">
+        <h:form>
+            <h:commandLink action="#{sessionController.cerrarSesion()}" ><input type="checkbox" checked="true" data-toggle="toggle" data-size="small" data-onstyle="danger" data-offstyle="info" data-style="ios" data-on="Cerrar Sesión" data-off="Adios"/></h:commandLink>
+
+        </h:form>
+    </div>
     
 </html>
 
