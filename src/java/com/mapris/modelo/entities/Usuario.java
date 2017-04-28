@@ -5,10 +5,7 @@
  */
 package com.mapris.modelo.entities;
 
-import java.io.InputStream;
 import java.io.Serializable;
-import java.sql.Blob;
-import java.util.List;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -28,6 +25,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -45,27 +44,39 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @NotNull(message = "Este campo es obligatorio")
+    @Size
+    
     @Column(name = "cedula")
     private Long cedula;
+    @Size(min = 1, max = 11, message = "Este campo debe estar entre 1 y 11 carácteres")
     @Basic(optional = false)
+    
+    
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
+    
     @Column(name = "apellidos")
     private String apellidos;
+    
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
+    
     @Column(name = "clave")
     private String clave;
+    
     @Column(name = "telefono")
     private Integer telefono;
+    
     @Column(name = "dirreccion")
     private String dirreccion;
     @Lob()
     @Column(name = "imegen_perfil")
     private String imagen;
     @Basic(optional = false)
+    
     @Column(name = "fechaNaci")
     @Temporal(TemporalType.DATE)
     private Date fechaNaci;

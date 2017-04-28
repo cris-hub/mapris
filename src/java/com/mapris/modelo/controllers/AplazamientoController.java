@@ -1,13 +1,13 @@
 package com.mapris.modelo.controllers;
 
 import com.mapris.modelo.entities.Aplazamiento;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
 @Named(value = "aplazamientoController")
-@ViewScoped
+@RequestScoped
 public class AplazamientoController extends AbstractController<Aplazamiento> {
 
     @Inject
