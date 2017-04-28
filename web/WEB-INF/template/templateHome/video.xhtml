@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-12"></div>
 
-                <video id="video_background" preload="auto" quality="large" autoplay="true" muted="true"  poster="#{request.contextPath}/resources/img/05.jpg">
+                <video id="video_background"  quality="large"  autoplay="true" muted="true"  poster="#{request.contextPath}/resources/img/05.jpg">
                     <source src="#{request.contextPath}/resources/resourcehome/video/video-1491371678.mp4" type="video/mp4"></source>
                     <source src="//Video.ogg" type="video/ogg"></source>
                     <source src="//Video.webm" type="video/webm"> </source>
@@ -19,13 +19,14 @@
             
             
             <script>
-                
-                $("#video_background")
-            </script>>            
+             $(document).ready(function(){
+                $("") 
+             });
+            </script>           
 
             <div class="pattern-overlay">
 
-                <ui:include src="/WEB-INF/template/templateHome/header.xhtml"/>
+                <ui:include src="/WEB-INF/template/templateHome/navbar.xhtml"/>
 
             </div>
         </section>

@@ -313,3 +313,6 @@ a:hover{
 
 
 
+.navbar-nav>li>a.btn{
+    padding: 0;
+}
