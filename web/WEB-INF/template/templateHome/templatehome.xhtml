@@ -6,35 +6,7 @@
 
     <h:head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Maternity Club | Gym y Spa</title>
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-        <meta name="description" content="CLUB MATERNITY"/>
-        <meta name="author" content="NICOLAS ALBARRACIN"/>
-        <link rel="shorcut icon" href="#{request.contextPath}/resources/img/logos/favicon.png"/><!--Favicon Maternity club-->
-
-        <link href="#{request.contextPath}/resources/frameworks/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/frameworks/bootstrap/css/bootstrap.min.css"/>
-        <h:outputStylesheet library="css" name="estilos.css"/><!--Framework sweetalert ooooooooooooooooooo--> 
-        <h:outputStylesheet library="css" name="csshome/video.css"/><!--ooooooooooooooooooo--> 
-        <h:outputStylesheet library="css" name="btn.css"/><!--css para bonotes MCS-->
-        <h:outputStylesheet library="css" name="fuente.css"/><!--Framework sweetalert-->
-        <h:outputStylesheet library="css" name="default.css"/><!--OOOOOOOOOOOOOOOOOOOOO-->
-        <h:outputStylesheet library="css" name="csshome/social-icon.css"/><!--OOOOOOOOOOOOOOOOOOOOO-->
-        <h:outputStylesheet library="css" name="csshome/foro-home.css"/><!--OOOOOOOOOOOOOOOOOOOOO-->
-        <h:outputStylesheet library="css" name="csshome/logos.css"/><!--ooooooooooooooooooo--> 
-        <h:outputStylesheet library="css" name="carousel.css"/><!--Carousel css MCSOOOOOOOOOOOOO-->
-        <h:outputStylesheet library="css" name="programas.css"/><!--Carousel css MCS 000000000000-->
-
-
-        <!--scripts -->
-
-
-        <h:outputScript library="js" name="jquery-2.2.3.min.js"/>
-        <h:outputScript library="frameworks" name="bootstrap/js/bootstrap.min.js"/><!--framework-->
-        <h:outputScript library="js" name="jshome/video.js"/>
-        <h:outputScript library="js" name="jshome/nav.js"/>
-
+        <ui:include src="/WEB-INF/template/templateHome/head.xhtml"/>
 
 
         <!--scripts -->
@@ -59,7 +31,7 @@
             </section>   
         </div>                  
 
-
+        <ui:include src="/WEB-INF/template/templateHome/scripts.xhtml"/>
     </h:body>
 
 </html>
