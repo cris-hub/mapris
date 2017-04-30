@@ -30,6 +30,11 @@
             <var>msjRegister</var>
         </resource-bundle>
         
+        <resource-bundle>
+            <base-name>com.mapris.languages.Home</base-name>
+            <var>msjHome</var>
+        </resource-bundle>
+        
         <navigation-handler>org.primefaces.mobile.application.MobileNavigationHandler</navigation-handler>
     </application>
 </faces-config>

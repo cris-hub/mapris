@@ -111,12 +111,12 @@ $(document).ready(function() {
   $(function(){
     jQuery(document).ready(function() {
     $('#banner').backstretch([
-       "images/banner-bg-01.jpg", 
-       "images/banner-bg-02.jpg",
-       "images/banner-bg-03.jpg",
+       "resources/img/maternity-club-spa-gym-taller-para-padres-min.png", 
+       "resources/img/maternity-club-spa-gym-baby-rumba-min.png",
+       "resources/img/spcool.jpg"
         ],  {duration: 3000, fade: 900});
     });
-  })
+  });
 
 
    

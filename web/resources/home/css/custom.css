@@ -42,7 +42,7 @@ body {
     width: 100%;
     z-index: 1200;}
 
-.loader-bg{background: #171717}
+.loader-bg{background-color:#fff;}
 
 .loader-inner {
     display: table-cell;
@@ -306,7 +306,7 @@ background: linear-gradient(120deg, #7b4397 , #dc2430); /* W3C, IE 10+/ Edge, Fi
 
 /*-------------- Video section  --------------*/
 #video-sec {
-  background: url('../images/video-bg.jpg') 50% 0 repeat-y fixed;
+    height:500px;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
