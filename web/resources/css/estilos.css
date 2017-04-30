@@ -3,7 +3,7 @@
 }
 html {
     overflow-x: hidden; /* Prevent scroll on narrow devices */
-    
+
 }
 
 
@@ -14,38 +14,51 @@ html {
 
 .navbar-brand {
     font-size: 24px;
-    
-    
+
+
 }
 
 .navbar-container {
     padding: 10px 0 0px 0;
-    
-    
+
+
 }
 
 .navbar.navbar-fixed-top.fixed-theme {
-    background-color: #9C27B0;
-    
-    border-bottom: solid 1px white;
+    background-color: #e2007a;
+    border: none;
     height: 40px;
-    padding-top: 3px;
+    padding-top: 2px;
     -webkit-box-shadow: 0px 0px 16px 0px rgba(84,32,102,1);
--moz-box-shadow: 0px 0px 16px 0px rgba(84,32,102,1);
-box-shadow: 0px 0px 16px 0px rgba(84,32,102,1);
+    -moz-box-shadow: 0px 0px 16px 0px rgba(84,32,102,1);
+    box-shadow: 0px 0px 16px 0px rgba(84,32,102,1);
+
+}
+
+.navbar.navbar-fixed-top.fixed-theme .btn-login {
+   
+    color: #e2007a;
+    background: #fff;
+    border-radius: 12px;
     
 }
 
+.navbar.navbar-fixed-top.fixed-theme .btn-login:hover {
+   
+    color: #e2007a;
+    background: #fff;
+    border-radius: 12px;
+    
+}
 
 .navbar-brand.fixed-theme {
     font-size: 20px;
-    
+
 }
 
 .navbar-container.fixed-theme {
     padding: 0;
-    
-    
+
 }
 
 .navbar-brand.fixed-theme,
@@ -55,58 +68,45 @@ box-shadow: 0px 0px 16px 0px rgba(84,32,102,1);
 .navbar-container{
     transition: 0.8s;
     -webkit-transition:  0.8s;
-    
-    
+
 }
-
-
-
 
 .nav>li>a{
-        color: #efe;
-
-  
+    color: #fff;
     width: 100px;
     height: 45px;
-    padding: 0;margin:0;
-    
+    padding: 0;
+    margin:0px 5px;
+
 }
 .nav>li>a:hover{
-      color: #8F1E4A;
-    background: white;
-    border-radius: 4px;
-    border-top:none;
-    border-bottom: 2px solid #8F1E4A; 
+    color: #e2007a;
+    background: #fff;
+    border-radius: 6px;
+    
 }
 
 #navbar {
     float: right;
     overflow: hidden;
-   height: auto;
+    height: auto;
     width: auto;
-    
+
 }
 
 .navbar-nav>li>.dropdown-menu {
     background-color: white;
     color:#8F1E4A;
-    
+
 }
-
-
 
 .dropdown-menu{
     overflow: auto;
-    
 }
 
 .navbar-header{
     padding: 0px;
 }
-
-    
-  
-
 
 #programas,
 #prenatal,
@@ -119,42 +119,32 @@ box-shadow: 0px 0px 16px 0px rgba(84,32,102,1);
     padding-top: 50px;
 }
 
-
-
-
-
-
-
-
 body{
-     
-      overflow-x: hidden;
-        overflow-y: visible;
+
+    overflow-x: hidden;
+    overflow-y: visible;
     background: #ebeff1;
-font-family: Handlee-Regular;
+    font-family: Handlee-Regular;
 
 }
 ::-webkit-scrollbar {
-      width: 9px;
+    width: 9px;
 }
 ::-webkit-scrollbar-track {
-      background-color: transparent;
-    
+    background-color: transparent;
+
 } 
 ::-webkit-scrollbar-thumb {
-      background-color: #E1BEE7;
+    background-color: #E1BEE7;
     border-radius: 5px;
     border: 1px solid #E1BEE7;
 } ::-webkit-scrollbar-button {
-      background-color: #7B1FA2;
+    background-color: #7B1FA2;
     height: 5px;
     border-radius: 2px 0 0 2px; 
 }
 ::-webkit-scrollbar-corner {
-      background-color: red;
-}
-.dropdown-menu{
-    
+    background-color: red;
 }
 
 
