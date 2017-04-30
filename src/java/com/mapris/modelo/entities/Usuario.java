@@ -45,11 +45,9 @@ public class Usuario implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull(message = "Este campo es obligatorio")
-    @Size
-    
     @Column(name = "cedula")
     private Long cedula;
-    @Size(min = 1, max = 11, message = "Este campo debe estar entre 1 y 11 carácteres")
+    
     @Basic(optional = false)
     
     

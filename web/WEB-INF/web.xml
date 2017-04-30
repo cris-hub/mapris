@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
-            http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1">
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
@@ -22,13 +17,64 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-   
+    <welcome-file-list>
+        <welcome-file>home.xhtml</welcome-file>
+    </welcome-file-list>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    <welcome-file-list>
-        <welcome-file>home.xhtml</welcome-file>
-    </welcome-file-list>
+<!--    <security-constraint>
+        <display-name>paginas de administracion</display-name>
+        <web-resource-collection>
+            <web-resource-name>paginas de administracion</web-resource-name>
+            <description/>
+            <url-pattern>/app/appadmin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>1</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>paginas clientes</display-name>
+        <web-resource-collection>
+            <web-resource-name>paginas clientes</web-resource-name>
+            <description/>
+            <url-pattern>/app/appuser/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>2</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>paginas empleados</display-name>
+        <web-resource-collection>
+            <web-resource-name>paginas empleados</web-resource-name>
+            <description/>
+            <url-pattern>/app/employee/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>3</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>maprisRealm</realm-name>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>1</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>3</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>2</role-name>
+    </security-role>-->
 </web-app>

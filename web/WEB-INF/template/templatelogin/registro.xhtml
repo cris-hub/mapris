@@ -4,16 +4,39 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <!-- menu 2 navbar -->
 
 
     <div class="card">
-        <div class="toggle" title="Registrarme!"></div>
-        <h1 class="title">Registrate !
-            <div class="close"></div>
-        </h1>
+        
+       <div class="row">
+            <div class="col-md-8">
+                <h1 class="title">#{msjLogin.titleIngresar}</h1>
+            </div>
+            <div class="col-md-4">
+                <b:form>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                            #{msjApp.idioma} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-left">
+                            <c:forEach items="#{languageController.supportLanguages}" var="l" >
+                                <li>
+                                    <h:commandLink  value="#{msjApp[l.displayLanguage]}" action="#{languageController.cambiarIdioma(l)}">
+                                        <img src="#{request.contextPath}/resources/img/languages/#{l.language}.png" width="25px" alt="#{msjApp[l.displayLanguage]}"/>
+                                    </h:commandLink>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+
+                </b:form>
+            </div>
+        </div>
 
         <h:form prependId="false" >
             <p:growl  id="mensaje" autoUpdate="false" severity="info,error" showSummary="false" showDetail="true"/>
@@ -22,8 +45,8 @@
 
                 <div id="camposUsuario">
                     <div class="form-group">
-                        <p:outputLabel for="txtNombre" value="Nombres"/>
-                        <p:inputText  id="txtNombre" value="#{registroController.usuario.nombre}" required="true" requiredMessage="El nombre es requerido"/>
+                        <p:outputLabel for="txtNombre" value="#{register.labelNombre}"/>
+                        <p:inputText placeholder="ingresa tu nombre" id="txtNombre" value="#{registroController.usuario.nombre}" required="true" requiredMessage="El nombre es requerido"/>
                         <p:message for="txtNombre"/>
                     </div>
 
@@ -66,7 +89,7 @@
                     </div>
                    
                     
-<!--                    <div class="form-group">
+                    <div class="form-group">
                     <p:outputLabel for="cuentaRol" value="Rol "/>
                     <p:selectOneMenu id="cuentaRol" value="#{registroController.usuario.roles}">
                         <f:selectItem itemValue="a" itemLabel="Administrador"/>
@@ -74,7 +97,7 @@
                         <f:selectItem itemValue="c" itemLabel="Personal Medico"/>
                     </p:selectOneMenu>
                     <p:message for="cuentaRol"/>
-                    </div>-->
+                    </div>
 
 
                     <div class="form-group">

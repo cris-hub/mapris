@@ -3,56 +3,84 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui">
-
-    <!-- menu 2 navbar -->
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      
+      >
 
 
     <div class="card">
 
-        <h1 class="title">#{login.titleIngresar}</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="title">#{msjLogin.titleIngresar}</h1>
+            </div>
+            <div class="col-md-4">
+                <b:form>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                            #{msjApp.idioma} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-left">
+                            <c:forEach items="#{languageController.supportLanguages}" var="l" >
+                                <li>
+                                    <h:commandLink  value="#{msjApp[l.displayLanguage]}" action="#{languageController.cambiarIdioma(l)}">
+                                        <img src="#{request.contextPath}/resources/img/languages/#{l.language}.png" width="25px" alt="#{msjApp[l.displayLanguage]}"/>
+                                    </h:commandLink>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+
+                </b:form>
+            </div>
+        </div>
 
         <!--    Div Usuarios-->
-        <h:form id="loginUsuario" prependId="false">
-            <div style="background-color: #990000;color:white;">
-                <p:growl  globalOnly="true" showSummary="true" showDetail="true"/>
-            </div>
-            <div id="usuario" class="form-action show">
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="icon_profile"></i></span>
-                        <h:inputText id="txtDocumento" class="form-control" pst:placeholder="#{login.placeholderDocumento}" pst:autofocus="true"  value="#{sessionController.documento}"/>
-                        <p:message for="txtDocumento" />
-                    </div>
+        <h:form id="loginUsuario" prependId="false" >
 
+            <form method="POST" action="j_security_check">
+                <div style="background-color: #990000;color:white;">
+                    <p:growl  globalOnly="true" showSummary="true" showDetail="true"/>
                 </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                        <h:inputSecret class="form-control" pst:placeholder="#{login.placeholderPassword}" value="#{sessionController.clave}"/>
-                    </div>
-
-                </div>
-
-                <div class="button-container">
-                    <label class="checkbox">
-                        <input type="checkbox" value=""/>#{login.valueCheckboxRecordarme}
-                   </label>
-                    <p:commandButton value="#{login.valueingresar}" action="#{sessionController.action()}" />
-
-
-                </div>
-
-                <div class="button-container">
+                <div id="usuario" class="form-action show">
                     <div class="form-group">
-                        <br/><br/>
-                        <p:link class="btn btn-primary  btn-block " value="#{login.buttonRegistrar}"  outcome="/registrar.xhtml" />
-                    </div>
-                    <div class="footer"><a href="#" value="h">#{login.valueForgotPassword}</a></div>
-                   
-                </div>
-            </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon_profile"></i></span>
+                            <h:inputText id="j_username" 
+                                         class="form-control" pst:placeholder="#{msjLogin.placeholderDocumento}" pst:autofocus="true"  value="#{sessionController.documento}"/>
+                            <p:message for="j_username" />
+                        </div>
 
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                            <h:inputSecret id="j_password" class="form-control" pst:placeholder="#{msjLogin.placeholderPassword}" value="#{sessionController.clave}"/>
+                        </div>
+
+                    </div>
+
+                    <div class="button-container">
+                        <label class="checkbox" data-toggle="tooltip" data-placement="left" title="Coffee">
+                            <input type="checkbox"  value=""/>#{msjLogin.valueCheckboxRecordarme}
+                        </label>
+                        <p:commandButton type="submit"   value="#{msjLogin.valueingresar}" action="#{sessionController.action()}" />
+
+
+                    </div>
+
+                    <div class="button-container">
+                        <div class="form-group">
+                            <br/><br/>
+                            <p:link class="btn btn-primary  btn-block " value="#{msjLogin.buttonRegistrar}"  outcome="/registrar.xhtml" />
+                        </div>
+                        <div class="footer"><a href="#" value="h">#{msjLogin.valueForgotPassword}</a></div>
+
+                    </div>
+                </div>
+            </form>
             <!-- Fin Div Usuario -->
         </h:form>
     </div>

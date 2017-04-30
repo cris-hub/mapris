@@ -66,6 +66,15 @@ public class SessionController implements Serializable {
         this.rol = rol;
     }
 
+    public UsuarioFacade getUfl() {
+        return ufl;
+    }
+
+    public void setUfl(UsuarioFacade ufl) {
+        this.ufl = ufl;
+    }
+//    
+
     public String action() {
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
