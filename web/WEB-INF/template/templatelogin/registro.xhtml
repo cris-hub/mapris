@@ -41,30 +41,30 @@
         <h:form prependId="false" >
             <p:growl  id="mensaje" autoUpdate="false" severity="info,error" showSummary="false" showDetail="true"/>
             <br/>
-            <p:fieldset legend="Datos Cuenta" id="txtRegistro" >
+            <p:fieldset legend="#{msjRegister.legendDatosCuenta}" id="txtRegistro" >
 
                 <div id="camposUsuario">
                     <div class="form-group">
-                        <p:outputLabel for="txtNombre" value="#{register.labelNombre}"/>
-                        <p:inputText placeholder="ingresa tu nombre" id="txtNombre" value="#{registroController.usuario.nombre}" required="true" requiredMessage="El nombre es requerido"/>
+                        <p:outputLabel for="txtNombre" value="#{msjRegister.labelNombre}"/>
+                        <p:inputText placeholder="#{msjRegister.placeholderNombre}" id="txtNombre" value="#{registroController.usuario.nombre}" required="true" requiredMessage="El nombre es requerido"/>
                         <p:message for="txtNombre"/>
                     </div>
 
                     <div class="form-group">
-                        <p:outputLabel for="txtApellido" value="Apellidos"/>
-                        <p:inputText id="txtApellido" value="#{registroController.usuario.apellidos}" required="true" requiredMessage="El apellido es requerido"/>
+                        <p:outputLabel for="txtApellido" value="#{msjRegister.labelApellido}"/>
+                        <p:inputText id="txtApellido" placeholder="#{msjRegister.placeholderApellido}" value="#{registroController.usuario.apellidos}" required="true" requiredMessage="El apellido es requerido"/>
                         <p:message for="txtApellido"/>
                     </div>
 
                     <div class="form-group">
-                        <p:outputLabel for="txtDocumentoRegistro" value="Documento de identidad"/>
-                        <p:inputText id="txtDocumentoRegistro" value="#{registroController.usuario.cedula}" required="true" requiredMessage="El numero de documento es requerido"/>
+                        <p:outputLabel for="txtDocumentoRegistro" value="#{msjRegister.labelDocumentoIdentidad}"/>
+                        <p:inputText id="txtDocumentoRegistro" placeholder="#{msjRegister.placeholderDocumento}" value="#{registroController.usuario.cedula}" required="true" requiredMessage="El numero de documento es requerido"/>
                         <p:message for="txtDocumentoRegistro"/>
                     </div>
                     
                     <div class="form-group">
-                        <p:outputLabel for="txtFecha" value="Fecha de nacimiento"/>
-                        <p:calendar id="txtFecha"  locale="es" value="#{registroController.usuario.fechaNaci}" required="true" requiredMessage="indique la fecha de nacimiento"/>
+                        <p:outputLabel for="txtFecha" value="#{msjRegister.labelFechaNacimiento}"/>
+                        <p:calendar id="txtFecha" placeholder="#{msjRegister.placeholderFechaNaci}" locale="#{l.language}" value="#{registroController.usuario.fechaNaci}" required="true" requiredMessage="indique la fecha de nacimiento"/>
                         <p:message for="txtFecha"/>
                     </div>
                 </div>
@@ -73,44 +73,35 @@
                     
                     
                     <div class="form-group">
-                        <p:outputLabel for="txtEmailRegistro" value="Correo electrónico"/>
-                        <p:inputText id="txtEmailRegistro" value="#{registroController.usuario.email}" required="true" requiredMessage="El correo electronico es requerido para el registro"/>
+                        <p:outputLabel for="txtEmailRegistro" value="#{msjRegister.labelCorreoElectronico}"/>
+                        <p:inputText id="txtEmailRegistro" placeholder="#{msjRegister.placeholderCorreo}" value="#{registroController.usuario.email}" required="true" requiredMessage="El correo electronico es requerido para el registro"/>
                         <p:message for="txtEmailRegistro"/>
                     </div>
                     <div class="form-group">
-                        <p:outputLabel for="txtDireccionRegistro" value="Dirección"/>
-                        <p:inputText id="txtDireccionRegistro" value="#{registroController.usuario.dirreccion}" required="true" requiredMessage="La dirección es requerida para el registro"/>
+                        <p:outputLabel for="txtDireccionRegistro" value="#{msjRegister.labelDireccion}"/>
+                        <p:inputText id="txtDireccionRegistro" placeholder="#{msjRegister.placeholderDireccion}" value="#{registroController.usuario.dirreccion}" required="true" requiredMessage="La dirección es requerida para el registro"/>
                         <p:message for="txtDireccionRegistro"/>
                     </div>
                     <div class="form-group">
-                        <p:outputLabel for="txtTelefonoRegistro" value="Telefono"/>
-                        <p:inputText id="txtTelefonoRegistro" value="#{registroController.usuario.telefono}" required="true" requiredMessage="El telefono es requerido para el registro"/>
+                        <p:outputLabel for="txtTelefonoRegistro" value="#{msjRegister.lapelTelefono}"/>
+                        <p:inputText id="txtTelefonoRegistro"  placeholder="#{msjRegister.placeholderReptelefono}" value="#{registroController.usuario.telefono}" required="true" requiredMessage="El telefono es requerido para el registro"/>
                         <p:message for="txtTelefonoRegistro"/>
                     </div>
                    
-                    
-                    <div class="form-group">
-                    <p:outputLabel for="cuentaRol" value="Rol "/>
-                    <p:selectOneMenu id="cuentaRol" value="#{registroController.usuario.roles}">
-                        <f:selectItem itemValue="a" itemLabel="Administrador"/>
-                        <f:selectItem itemValue="b" itemLabel="Cliente"/>
-                        <f:selectItem itemValue="c" itemLabel="Personal Medico"/>
-                    </p:selectOneMenu>
-                    <p:message for="cuentaRol"/>
-                    </div>
 
 
                     <div class="form-group">
 
-                        <p:outputLabel for="txtclave1" value="Clave"/>
+                        <p:outputLabel for="txtclave1" value="#{msjRegister.labelContraseña}"/>
                         <p:password id="txtclave1" class="input-group" value="#{registroController.usuario.clave}" 
                                     feedback="true" inline="true"
                                     weakLabel="Debil" goodLabel="Buena" strongLabel="Fuerte" 
                                     validatorMessage="Las claves no coinciden" required="true" requiredMessage="campo necesario"
                                     match="txtclave2"  promptLabel="Ingrese la clave"/>
                         <p:message for="txtclave1"/>
-                        <p:outputLabel for="txtclave2" value="Repetir Clave"/>
-                        <p:password id="txtclave2" required="true" requiredMessage="campo necesario"/>
+                        <p:outputLabel for="txtclave2" value="#{msjRegister.labalRepContraseña}"/>
+                        <p:password id="txtclave2" 
+                                    required="true" requiredMessage="campo necesario"/>
                         <p:message for="txtclave2"/>
 
                     </div>
@@ -119,8 +110,8 @@
             </p:fieldset>
             <br/><br/>
             <div class="form-group">
-                <p:commandButton class=" btn btn-success  btn-block " value="Registrar" action="#{registroController.registrar()}" icon="fa fa-register" update="txtRegistro,mensaje"/>
-                <p:link class="btn btn-primary  btn-block" value="Ingresar"  outcome="/login.xhtml" />
+                <p:commandButton class=" btn btn-success  btn-block " value="#{msjRegister.btnRegistrar}" action="#{registroController.registrar()}" icon="fa fa-register" update="txtRegistro,mensaje"/>
+                <p:link class="btn btn-primary  btn-block" value="#{msjRegister.btnLogin}"  outcome="/login.xhtml" />
             </div>
 
 
