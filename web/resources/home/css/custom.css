@@ -278,7 +278,7 @@ background: linear-gradient(120deg, #7b4397 , #dc2430); /* W3C, IE 10+/ Edge, Fi
 }
 #todo .feature-icon {
   
-  width: 85px;
+  width: 200px;
   height: 85px;
   top: 0;
   margin: 0 auto 30px;
@@ -723,3 +723,4 @@ footer .love-text{
   footer {text-align: center;}
 
 }
+
