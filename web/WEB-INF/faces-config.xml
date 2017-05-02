@@ -35,6 +35,10 @@
             <var>msjHome</var>
         </resource-bundle>
         
+        <resource-bundle>
+            <base-name>com.mapris.languages.Nav</base-name>
+            <var>msjModuloAdmin</var>
+        </resource-bundle>
         <navigation-handler>org.primefaces.mobile.application.MobileNavigationHandler</navigation-handler>
     </application>
 </faces-config>
