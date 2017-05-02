@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
 
         <link rel="shorcut icon" href="#{request.contextPath}/resources/img/logos/favicon.png"/>
@@ -61,7 +62,20 @@
                         <li><a href="#video-sec">#{msjHome.navVideo}</a></li>
                         <li><a href="#hotels">#{msjHome.navLocalizanos}</a></li>
                         <li><a href="#contact-sec">#{msjHome.navContactenos}</a></li>
-                        <li><a href="#{request.contextPath}/login.xhtml">#{msjHome.navlogin}</a></li>
+                        <li class="btn-login"><a  href="#{request.contextPath}/login.xhtml">#{msjHome.navlogin}</a></li>
+
+                        <!-- Boton de Idioma  -->
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Idioma <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <c:forEach items="#{languageController.supportLanguages}" var="l" >
+                                    <li>
+                                        <h:commandLink  value="#{msjApp[l.displayLanguage]}" action="#{languageController.cambiarIdioma(l)}">
+                                            <img src="#{request.contextPath}/resources/img/languages/#{l.language}.png" width="25px" alt="#{msjApp[l.displayLanguage]}"/>
+                                        </h:commandLink>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </li>
 
 
                     </ul>
@@ -380,8 +394,8 @@
                                 <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 text-center">
                                     <div class="wow fadeInUp section-title" data-wow-delay="1s">
                                         <h2><small>Lunes a Viernes: 9:00 am - 8:00 pm | Sábados: 8:00 am - 2:00 pm | Celular: +57 321 208 7282 | Teléfono: +57 (1) 756 8264 / 256 6367
-Dirección: Calle 108 # 14B - 20 | Bogotá D.C. - Colombia
-Todos los derechos reservados Maternity Spa S.A.S</small></h2>
+                                                Dirección: Calle 108 # 14B - 20 | Bogotá D.C. - Colombia
+                                                Todos los derechos reservados Maternity Spa S.A.S</small></h2>
                                     </div>
                                 </div>
                             </div>
