@@ -111,9 +111,9 @@ $(document).ready(function() {
   $(function(){
     jQuery(document).ready(function() {
     $('#banner').backstretch([
-       "resources/img/maternity-club-spa-gym-taller-para-padres-min.png", 
-       "resources/img/maternity-club-spa-gym-baby-rumba-min.png",
-       "resources/img/spcool.jpg"
+       "resources/img/club bebe.jpg", 
+       "resources/img/esferodinamia.jpg",
+       "resources/img/gym.jpg"
         ],  {duration: 3000, fade: 900});
     });
   });
