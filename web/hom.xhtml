@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui">
     <h:head>
 
         <link rel="shorcut icon" href="#{request.contextPath}/resources/img/logos/favicon.png"/>
@@ -54,32 +55,33 @@
                     </button>
                     <a class="navbar-brand" href="#">#{msjHome.navValue}</a>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#banner">#{msjHome.navHome}</a></li>
-                        <li><a href="#todo">#{msjHome.navProgramas}</a></li>
-                        <li><a href="#video-sec">#{msjHome.navVideo}</a></li>
-                        <li><a href="#hotels">#{msjHome.navLocalizanos}</a></li>
-                        <li><a href="#contact-sec">#{msjHome.navContactenos}</a></li>
-                        <li class="btn-login"><a  href="#{request.contextPath}/login.xhtml">#{msjHome.navlogin}</a></li>
-
-                        <!-- Boton de Idioma  -->
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Idioma <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <c:forEach items="#{languageController.supportLanguages}" var="l" >
-                                    <li>
-                                        <h:commandLink  value="#{msjApp[l.displayLanguage]}" action="#{languageController.cambiarIdioma(l)}">
-                                            <img src="#{request.contextPath}/resources/img/languages/#{l.language}.png" width="25px" alt="#{msjApp[l.displayLanguage]}"/>
-                                        </h:commandLink>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </li>
+                <b:form>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#banner">#{msjHome.navHome}</a></li>
+                            <li><a href="#todo">#{msjHome.navProgramas}</a></li>
+                            <li><a href="#video-sec">#{msjHome.navVideo}</a></li>
+                            <li><a href="#hotels">#{msjHome.navLocalizanos}</a></li>
+                            <li><a href="#contact-sec">#{msjHome.navContactenos}</a></li>
 
 
-                    </ul>
-                </div><!--/.nav-collapse -->
+                            <!-- Boton de Idioma  -->
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">  #{msjApp.idioma} <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-left">
+                                    <c:forEach items="#{languageController.supportLanguages}" var="l" >
+                                        <li>
+                                            <h:commandLink  style="color:black;" value="#{msjApp[l.displayLanguage]}" action="#{languageController.cambiarIdioma(l)}">
+                                                <img src="#{request.contextPath}/resources/img/languages/#{l.language}.png" width="25px" alt="#{msjApp[l.displayLanguage]}"/>
+                                            </h:commandLink>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </li>
+                            <li class="btn-login"><a  href="#{request.contextPath}/login.xhtml">#{msjHome.navlogin}</a></li>
+
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </b:form>
             </div>
         </nav>
 
