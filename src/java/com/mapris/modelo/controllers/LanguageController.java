@@ -11,18 +11,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 
 /**
  *
  * @author Ismael
  */
 @Named(value = "languageController")
-@RequestScoped
+@ViewScoped
 public class LanguageController implements Serializable{
 
     private Locale languageSelected;
