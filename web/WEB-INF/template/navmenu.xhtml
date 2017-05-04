@@ -2,63 +2,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    
+
     <div class=" col-xs-5 col-sm-5 col-md-4  letraslogos">
-                        <a  class=" navbar-brand pull-left " href="#{request.contextPath}"> 
-                            <div class="letraslogos" ><span class="hidden-xs hidden-sm"> #{msjModuloAdmin.txtLabel}</span> 
-                                <h:graphicImage library="img"  name="/logos/logowhite.png" id="logo"  class="logo animated zoomIn col-xs-2 col-xs-offset-0 hidden-sm  col-md-3  col-lg-2 col-md-offset-0 col-lg- col-lg-offset-0"/>
-                                                         </div>
-                        </a>
-                    </div>
-   
-         
-                    <div style="padding-top:5px; right:40px;" class="col-md-6 hidden-xs col-sm-6 col-lg-6  ">
+        <a  class=" navbar-brand pull-left " href="#{request.contextPath}"> 
+            <div class="letraslogos" ><span class="hidden-xs hidden-sm"> #{msjModuloAdmin.txtLabel}</span> 
+                <h:graphicImage library="img"  name="/logos/logowhite.png" id="logo"  class="logo animated zoomIn col-xs-2 col-xs-offset-0 hidden-sm  col-md-3  col-lg-2 col-md-offset-0 col-lg- col-lg-offset-0"/>
+            </div>
+        </a>
+    </div>
 
-                        <div style="padding:0;" class="pull-right">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a style="padding: 0; margin-top: 6px;" data-toggle="dropdown"  class="btn dropdown-toggle person " href="#">
-                                        <span class="profile-ava">
-                                            <img alt="" src="#{request.contextPath}/resources/img/avatar1_small.jpg"/>
-                                        </span>
-                                        <span class="username">#{sessionController.usuarioSesion.nombre} #{sessionController.usuarioSesion.apellidos}</span>
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu extended logout">
-                                        <div class="log-arrow-up"></div>
-                                        <li class="eborder-top">
-                                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml" ><i class="icon_profile"></i>#{msjModuloAdmin.dropperfil}</a>
-                                        </li>
-                                        <li>
-                                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_mail_alt"></i> #{msjModuloAdmin.dropemail}</a>
-                                        </li>
-                                        <li>
-                                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_clock_alt"></i> #{msjModuloAdmin.drophorario}</a>
-                                        </li>
-                                        <li>
-                                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_chat_alt"></i> #{msjModuloAdmin.dropforo}</a>
-                                        </li>
 
-                                        
-                                        
-                                    </ul>
-                                </li>
-                                
-                                
-                                
-                                
-                            </ul>
+    <div style="padding-top:5px; right:40px;" class="col-md-6 hidden-xs col-sm-6 col-lg-6  ">
 
-                        </div>
-                    </div>
-    
- 
+        <div style="padding:0;" class="pull-right">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a style="padding: 0; margin-top: 6px;" data-toggle="dropdown"  class="btn dropdown-toggle person " href="#">
+                        <span class="profile-ava">
+                            <img alt="" src="#{request.contextPath}/resources/img/avatar1_small.jpg"/>
+                        </span>
+                        <span class="username">#{sessionController.usuarioSesion.nombre} #{sessionController.usuarioSesion.apellidos}</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <div class="log-arrow-up"></div>
+                        <li class="eborder-top">
+                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml" ><i class="icon_profile"></i>#{msjModuloAdmin.dropperfil}</a>
+                        </li>
+                        <li>
+                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_mail_alt"></i> #{msjModuloAdmin.dropemail}</a>
+                        </li>
+                        <li>
+                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_clock_alt"></i> #{msjModuloAdmin.drophorario}</a>
+                        </li>
+                        <li>
+                            <a href="#{request.contextPath}  /app/appemployee/perfil.xhtml"><i class="icon_chat_alt"></i> #{msjModuloAdmin.dropforo}</a>
+                        </li>
+
+
+
+                    </ul>
+                </li>
+
+
+
+
+            </ul>
+
+        </div>
+    </div>
+
+
     <div class="col-md-1 col-sm-1 col-lg-1 " style="padding-top:10px; right:30px;">
         <h:form>
             <h:commandLink action="#{sessionController.cerrarSesion()}" ><input type="checkbox" checked="true" data-toggle="toggle" data-size="small" data-onstyle="danger" data-offstyle="info" data-style="ios" data-on="#{msjModuloAdmin.dataon}" data-off="#{msjModuloAdmin.dataoff}"/></h:commandLink>
 
         </h:form>
     </div>
-    
+
 </html>
 
