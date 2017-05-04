@@ -11,7 +11,7 @@
         </locale-config>
         
         <resource-bundle>
-            <base-name>com.mapris.languages.MyBundle</base-name>
+            <base-name>/MyBundle</base-name>
             <var>myBundle</var>
         </resource-bundle>
         
