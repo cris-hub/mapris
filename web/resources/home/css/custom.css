@@ -14,6 +14,16 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
 }
+#logo{
+
+    position: absolute;
+    width: 5%; 
+
+}
+
+#main-logo{
+    width: 70%;
+}
 .loaders {
     width: 100%;
     box-sizing: border-box;
@@ -241,7 +251,7 @@ section {
     border:2px solid #fff;
     color: #fff;
     background: transparent; 
-   
+
 }
 
 .top-bar .navbar-nav .btn-login > .active > a, .top-bar .navbar-nav .btn-login > .active > a:focus, .top-bar .navbar-nav .btn-login > .active > a:hover, .top-bar .navbar-nav .btn-login a:hover, .top-bar .navbar-nav .btn-login a:focus{
@@ -539,7 +549,7 @@ section {
     overflow: hidden;
 } 
 
-.fluid-img {
+.fluid-img { 
     width: 100%;
     display: block;
 }
@@ -709,6 +719,7 @@ footer .love-text{
         background: -webkit-linear-gradient(120deg, #7b4397 , #dc2430); /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(120deg, #7b4397 , #dc2430); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
+
 }
 
 @media (max-width: 650px) {
