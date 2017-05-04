@@ -43,6 +43,14 @@
             <base-name>com.mapris.languages.foro</base-name>
             <var>msjForo</var>
         </resource-bundle>
+          <resource-bundle>
+            <base-name>com.mapris.languages.perfil</base-name>
+            <var>msjPerfil</var>
+        </resource-bundle>
+         <resource-bundle>
+            <base-name>com.mapris.languages.modals</base-name>
+            <var>msjModals</var>
+        </resource-bundle>
         <navigation-handler>org.primefaces.mobile.application.MobileNavigationHandler</navigation-handler>
     </application>
 </faces-config>
