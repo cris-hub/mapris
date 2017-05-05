@@ -36,7 +36,7 @@
 
 
 
-
+<!--
         <form id="signinForm">
             <div class="form-group">
                 <input type="text" class="form-control" name="username" placeholder="Username" />
@@ -46,9 +46,9 @@
                 <input type="password" class="form-control" name="password" placeholder="Password" />
             </div>
 
-            <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+             Do NOT use name="submit" or id="submit" for the Submit button 
             <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
+        </form>-->
 
         <script>
             $(document).ready(function () {
@@ -88,45 +88,76 @@
             });
         </script>
 
-        <h:form  prependId="false">
-            <form method="POST" id="logIn" action="j_security_check">
+        <h:form  id="login" prependId="false">
+            
                 <div style="background-color: #990000;color:white;">
-                    <p:growl  globalOnly="true" showSummary="true" showDetail="true"/>
+                    <h:messages  globalOnly="true" showSummary="true" showDetail="true"/>
                 </div>
-                <div id="usuario" class="form-action show">
+                
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icon_profile"></i></span>
-                            <h:inputText id="j_username" pst:name="j_username" class="form-control" pst:placeholder="#{msjLogin.placeholderDocumento}" pst:autofocus="true"  value="#{sessionController.documento}"/>
-                            <p:message for="j_username" />
+                            <h:inputText id="username" class="form-control" pst:placeholder="#{msjLogin.placeholderDocumento}" pst:autofocus="true"  value="#{sessionController.documento}"/>
+                            <h:message for="username" />
                         </div>
 
                     </div>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                            <h:inputSecret id="j_password" pst:name="j_password" class="form-control" pst:placeholder="#{msjLogin.placeholderPassword}" value="#{sessionController.clave}"/>
-                            <p:message for="j_password" />
+                            <h:inputSecret id="password"  class="form-control" pst:placeholder="#{msjLogin.placeholderPassword}" value="#{sessionController.clave}"/>
+                            <h:message for="password" />
                         </div>
 
                     </div>
 
                     <div class="form-group">
                         <div class="">
-                            <p:commandButton class="btn btn-primary  btn-block"  type="submit"   value="#{msjLogin.valueingresar}" action="#{sessionController.action()}" />
-                        </div>
-                        <br/>
-                        <div class="">
-                            <p:link class="btn btn-primary  btn-block " value="#{msjLogin.buttonRegistrar}"  outcome="/registrar.xhtml" />
-                            <div class="footer"><a href="#" value="h">#{msjLogin.valueForgotPassword}</a></div>
+                            <p:commandButton class="btn btn-primary  btn-block"  type="submit"   value="#{msjLogin.valueingresar}"  action="#{sessionController.action()}" />
                         </div>
                     </div>
-                </div>
-            </form>
+                
+            
             <!-- Fin Div Usuario -->
         </h:form>
 
-
+<script>
+            $(document).ready(function () {
+                $('#login').formValidation({
+                    framework: 'bootstrap',
+                    icon: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        username: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The username is required'
+                                },
+                                stringLength: {
+                                    min: 4,
+                                    max: 30,
+                                    message: 'The username must be more than 6 and less than 30 characters long'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z0-9_]+$/,
+                                    message: 'The username can only consist of alphabetical, number and underscore'
+                                }
+                            }
+                        },
+                        password: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The password is required'
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
 
     </div>
 </html>
