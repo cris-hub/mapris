@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:b="http://bootsfaces.net/ui">
-    <div class="card">
+    <div class="card pull-right  " style="margin-top: 5%;">
         <div class="row">
             <div class="col-md-8">
                 <h1 class="title">#{msjLogin.titleIngresar}</h1>
@@ -33,95 +33,41 @@
             </div>
         </div>
 
+        <h:form   id="login" prependId="false">
 
-
-
-<!--
-        <form id="signinForm">
-            <div class="form-group">
-                <input type="text" class="form-control" name="username" placeholder="Username" />
+            <div style="background-color: #990000;color:white;">
+                <h:messages  globalOnly="true" showSummary="true" showDetail="true"/>
             </div>
 
             <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="Password" />
-            </div>
-
-             Do NOT use name="submit" or id="submit" for the Submit button 
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>-->
-
-        <script>
-            $(document).ready(function () {
-                $('#signinForm').formValidation({
-                    framework: 'bootstrap',
-                    icon: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
-                    fields: {
-                        username: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The username is required'
-                                },
-                                stringLength: {
-                                    min: 6,
-                                    max: 30,
-                                    message: 'The username must be more than 6 and less than 30 characters long'
-                                },
-                                regexp: {
-                                    regexp: /^[a-zA-Z0-9_]+$/,
-                                    message: 'The username can only consist of alphabetical, number and underscore'
-                                }
-                            }
-                        },
-                        password: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The password is required'
-                                }
-                            }
-                        }
-                    }
-                });
-            });
-        </script>
-
-        <h:form  id="login" prependId="false">
-            
-                <div style="background-color: #990000;color:white;">
-                    <h:messages  globalOnly="true" showSummary="true" showDetail="true"/>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_profile"></i></span>
+                    <h:inputText id="username" class="form-control" pst:placeholder="#{msjLogin.placeholderDocumento}" pst:autofocus="true"  value="#{sessionController.documento}"/>
+                    <h:message for="username" />
                 </div>
-                
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="icon_profile"></i></span>
-                            <h:inputText id="username" class="form-control" pst:placeholder="#{msjLogin.placeholderDocumento}" pst:autofocus="true"  value="#{sessionController.documento}"/>
-                            <h:message for="username" />
-                        </div>
 
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                            <h:inputSecret id="password"  class="form-control" pst:placeholder="#{msjLogin.placeholderPassword}" value="#{sessionController.clave}"/>
-                            <h:message for="password" />
-                        </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                    <h:inputSecret id="password"  class="form-control" pst:placeholder="#{msjLogin.placeholderPassword}" value="#{sessionController.clave}"/>
+                    <h:message for="password" />
+                </div>
 
-                    </div>
+            </div>
 
-                    <div class="form-group">
-                        <div class="">
-                            <p:commandButton class="btn btn-primary  btn-block"  type="submit"   value="#{msjLogin.valueingresar}"  action="#{sessionController.action()}" />
-                        </div>
-                    </div>
-                
-            
+            <div class="form-group">
+                <p:commandButton class="btn btn-primary  btn-block"  type="submit"   value="#{msjLogin.valueingresar}"  action="#{sessionController.action()}" />
+                <br/>
+                <br/>
+                <h:link class="btn btn-primary  btn-block" outcome="/registrar.xhtml" value="#{msjLogin.buttonRegistrar}" />
+            </div>
+
+
             <!-- Fin Div Usuario -->
         </h:form>
 
-<script>
+        <script>
             $(document).ready(function () {
                 $('#login').formValidation({
                     framework: 'bootstrap',

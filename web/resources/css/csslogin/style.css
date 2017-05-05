@@ -1,20 +1,4 @@
 body {
-/*    background-image:url("../../img/imglogin/morado-oscuro.jpg");
-    background-size: contain;
-    color: #666666;
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    font-size: 14px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;*/
-
-/*background: #7b4397;  fallback for old browsers 
-    background: -webkit-linear-gradient(120deg, #7b4397 , #dc2430);  Chrome 10-25, Safari 5.1-6 
-    background: linear-gradient(120deg, #7b4397 , #dc2430);  W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
-    opacity: 0.8;      
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100vh;*/
 }
 
 
@@ -28,9 +12,9 @@ body {
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center;
+
     text-align: center;
-    height: 100vh;
+    height: 100%;
     overflow: auto;
     position: relative;
 }
@@ -41,10 +25,9 @@ body {
     background: -webkit-linear-gradient(120deg, #7b4397 , #dc2430); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(120deg, #7b4397 , #dc2430); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     opacity: 0.8;      
-    position: absolute;
-    top: 0;
-    width: 100%;
     
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -119,7 +102,7 @@ body {
 /* Container */
 
 .container {
-    position: relative;
+
     max-width: 460px;
     width: 100%;
     margin: 0 auto 100px;
@@ -202,7 +185,9 @@ body {
 /* Card */
 
 .card {
-    position: relative;
+
+
+
     background: #ffffff;
     border-radius: 5px;
     padding: 60px 0 40px 0;
