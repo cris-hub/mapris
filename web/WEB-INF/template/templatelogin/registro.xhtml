@@ -11,7 +11,7 @@
     <!-- menu 2 navbar -->
 
 
-    <div class="card">
+    <div class="card" style="margin-top: 5%;width: 600px;" >
         
        <div class="row">
             <div class="col-md-8">
@@ -72,21 +72,21 @@
                 <div  id="camposCuenta">
                     
                     
-                    <div class="form-group">
+<!--                    <div class="form-group">
                         <p:outputLabel for="txtEmailRegistro" value="#{msjRegister.labelCorreoElectronico}"/>
                         <p:inputText id="txtEmailRegistro" placeholder="#{msjRegister.placeholderCorreo}" value="#{registroController.usuario.email}" required="true" requiredMessage="El correo electronico es requerido para el registro"/>
                         <p:message for="txtEmailRegistro"/>
-                    </div>
-                    <div class="form-group">
+                    </div>-->
+<!--                    <div class="form-group">
                         <p:outputLabel for="txtDireccionRegistro" value="#{msjRegister.labelDireccion}"/>
                         <p:inputText id="txtDireccionRegistro" placeholder="#{msjRegister.placeholderDireccion}" value="#{registroController.usuario.dirreccion}" required="true" requiredMessage="La dirección es requerida para el registro"/>
                         <p:message for="txtDireccionRegistro"/>
-                    </div>
-                    <div class="form-group">
+                    </div>-->
+<!--                    <div class="form-group">
                         <p:outputLabel for="txtTelefonoRegistro" value="#{msjRegister.lapelTelefono}"/>
-                        <p:inputText id="txtTelefonoRegistro"  placeholder="#{msjRegister.placeholderReptelefono}" value="#{registroController.usuario.telefono}" required="true" requiredMessage="El telefono es requerido para el registro"/>
+                        <p:inputText id="txtTelefonoRegistro"  placeholder="#{msjRegister.placeholderTelefono}" value="#{registroController.usuario.telefono}" required="true" requiredMessage="El telefono es requerido para el registro"/>
                         <p:message for="txtTelefonoRegistro"/>
-                    </div>
+                    </div>-->
                    
 
 
@@ -110,7 +110,7 @@
             </p:fieldset>
             <br/><br/>
             <div class="form-group">
-                <p:commandButton class=" btn btn-success  btn-block " value="#{msjRegister.btnRegistrar}" action="#{registroController.registrar()}" icon="fa fa-register" update="txtRegistro,mensaje"/>
+                <p:commandButton class=" btn btn-success  btn-block " value="#{msjRegister.btnRegistrar}" action="#{registroController.registrar()}" icon="fa fa-register" update="txtRegistro"/>
                 <p:link class="btn btn-primary  btn-block" value="#{msjRegister.btnLogin}"  outcome="/login.xhtml" />
             </div>
 

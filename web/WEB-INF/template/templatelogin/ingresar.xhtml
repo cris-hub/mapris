@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:b="http://bootsfaces.net/ui">
-    <div class="card pull-right  " style="margin-top: 5%;">
+    <div class="card   " style="margin-top: 5%;">
         <div class="row">
             <div class="col-md-8">
                 <h1 class="title">#{msjLogin.titleIngresar}</h1>
@@ -80,23 +80,23 @@
                         username: {
                             validators: {
                                 notEmpty: {
-                                    message: 'The username is required'
+                                    message: '#{msjValidacionLogin.nombreUsuarioRequerido}'
                                 },
                                 stringLength: {
-                                    min: 4,
-                                    max: 30,
-                                    message: 'The username must be more than 6 and less than 30 characters long'
+                                    min: '#{msjValidacionLogin.valorMinimo}',
+                                    max: '#{msjValidacionLogin.valorMax}',
+                                    message: '#{msjValidacionLogin.minYMaxCaracteres}'
                                 },
                                 regexp: {
                                     regexp: /^[a-zA-Z0-9_]+$/,
-                                    message: 'The username can only consist of alphabetical, number and underscore'
+                                    message: '#{msjValidacionLogin.soloLetrarNumeros}'
                                 }
                             }
                         },
                         password: {
                             validators: {
                                 notEmpty: {
-                                    message: 'The password is required'
+                                    message: '#{msjValidacionLogin.contraseñaRequerida}'
                                 }
                             }
                         }
