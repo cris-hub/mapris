@@ -386,7 +386,7 @@ transform: rotate(180deg) scale(0.924) skew(-1deg) translate(0px);
 
 .open>.dropdown-menu{
     overflow-y: visible;
-  background-color: #7B1FA2;
+  
     -webkit-box-shadow: -1px 3px 18px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: -1px 3px 18px 0px rgba(0,0,0,0.75);
 box-shadow: -1px 3px 18px 0px rgba(0,0,0,0.75);
