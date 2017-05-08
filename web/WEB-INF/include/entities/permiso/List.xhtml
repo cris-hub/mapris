@@ -101,6 +101,29 @@
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
+                  <h3>Export Page Data Only</h3>
+            <!--            <h:commandLink>
+                            <p:graphicImage library="img" name="export/excel.png" />
+                            <p:dataExporter type="xls" target="datalist" fileName="cars" />
+                        </h:commandLink>-->
+
+            <!--            <h:commandLink>
+                            <p:graphicImage library="img" name="export/pdf.png" />
+                            <p:dataExporter type="pdf" target="datalist" fileName="cars"  />
+                        </h:commandLink>-->
+
+            <h:commandLink>
+                <p:graphicImage library="img" name="export/csv.png" />
+                <p:dataExporter type="csv" target="datalist" fileName="cars" pageOnly="true" />
+            </h:commandLink>
+
+            <h:commandLink>
+                <p:graphicImage library="img" name="export/xml.png" />
+                <p:dataExporter type="xml" target="datalist" fileName="cars" pageOnly="true" />
+            </h:commandLink>
+            
+            
+            
         </p:panel>
         <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
     </h:form>

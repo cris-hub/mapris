@@ -5,7 +5,7 @@
       xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui"
+      
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <!-- menu 2 navbar -->
@@ -18,7 +18,7 @@
                 <h1 class="title">#{msjLogin.titleIngresar}</h1>
             </div>
             <div class="col-md-4">
-                <b:form>
+                <h:form>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                             #{msjApp.idioma} <span class="caret"></span>
@@ -34,13 +34,13 @@
                         </ul>
                     </div>
 
-                </b:form>
+                </h:form>
             </div>
         </div>
 
         <h:form prependId="false" >
             <p:growl  id="mensaje" autoUpdate="false" severity="info,error" showSummary="false" showDetail="true"/>
-            <br/>
+            
             <p:fieldset legend="#{msjRegister.legendDatosCuenta}" id="txtRegistro" >
 
                 <div id="camposUsuario">
@@ -110,7 +110,7 @@
             </p:fieldset>
             <br/><br/>
             <div class="form-group">
-                <p:commandButton class=" btn btn-success  btn-block " value="#{msjRegister.btnRegistrar}" action="#{registroController.registrar()}" icon="fa fa-register" update="txtRegistro"/>
+                <p:commandButton class=" btn btn-success  btn-block " value="#{msjRegister.btnRegistrar}" action="#{registroController.registrar()}"  update="txtRegistro"/>
                 <p:link class="btn btn-primary  btn-block" value="#{msjRegister.btnLogin}"  outcome="/login.xhtml" />
             </div>
 
