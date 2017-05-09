@@ -56,7 +56,7 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     
     @Column(name = "apellidos")
-    private String apellidos;
+        private String apellidos;
     
     @Column(name = "email")
     private String email;
