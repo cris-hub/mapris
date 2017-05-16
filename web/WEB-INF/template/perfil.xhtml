@@ -9,114 +9,114 @@
         <h:outputStylesheet library="css" name="perfilcss.css"/>
     </ui:define>
 
-            <div class="container">
-      <div class="row">
-    
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-   
-   
-          <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">#{msjPerfil.labelinfo}</h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                  <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="#{request.contextPath}#{sessionController.usuarioSesion.imagen}" class="img-circle img-responsive"/> </div>
-                
-              <div class=" col-md-9 col-lg-9 "> 
-                  <table class="table table-user-information">
-                    <tbody>
-                      <tr>
-                          <td>#{msjPerfil.labelcargo}</td>
-                          <td>#{sessionController.usuarioSesion.roles}</td>
-                      </tr>
-                      <tr>
-                          <td>#{msjPerfil.labelnombre}</td>
-                          <td style="text-transform: uppercase;">#{sessionController.usuarioSesion.nombre} #{sessionController.usuarioSesion.apellidos}</td>
-                      </tr>
-                      <tr>
-                          <td>#{msjPerfil.labelcedula}</td>
-                          <td>#{sessionController.usuarioSesion.cedula}</td>
-                      </tr>
-                      
-                         <tr>
-                          
-                      <tr>
-                          <td>#{msjPerfil.labelcorreo}</td>
-                          <td><a href="#{sessionController.usuarioSesion.email}">#{sessionController.usuarioSesion.email}</a></td>
-                      </tr>
-                             <td>#{msjPerfil.labeltele}</td>
-                             <td>#{sessionController.usuarioSesion.telefono}
-                        </td>
-                           
-                      </tr>
-                     
-                    </tbody>
-                  </table>
-                  
-                </div>
-              </div>
-            </div>
-            <div class="panel-heading">
-                <h3 class="panel-title">#{msjPerfil.labelinfop}</h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-              
-              
-                <div class=" col-md-9 col-lg-9 "> 
-                  <table class="table table-user-information">
-                    <tbody>
-                      <tr>
-                          <td>#{msjPerfil.labeldirec}</td>
-                          <td>#{sessionController.usuarioSesion.dirreccion}</td>
-                      </tr>
-                      <tr>
-                          <td>#{msjPerfil.labelfecha}</td>
-                          <td>#{sessionController.usuarioSesion.fechaNaci}</td>
-                      </tr>
-                      
-                     
-                    </tbody>
-                  </table>
-                  
-                    <a href="#" class="btn btn-primary">#{msjPerfil.butonmodi}</a>
-                  </div>
-              </div>
-            </div>
-             <div class="panel-heading">
-                 <h3 class="panel-title">#{msjPerfil.labelcontrac}</h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-               
-                <div class=" col-md-9 col-lg-9 "> 
-                  <table class="table table-user-information">
-                    <tbody>
-                      <tr>
-                          <td>#{msjPerfil.labelcontra}</td>
-                          <td>#{sessionController.usuarioSesion.clave}</td>
-                      </tr>
-                    
-                     
-                    </tbody>
-                  </table>
-                  
-                    <a href="#" class="btn btn-primary">#{msjPerfil.butoncam}</a>
-                  </div>
-              </div>
-            </div>
-            
-            
-          </div>
-        </div>
-      </div>
-    </div>
-            <!--End Page Header -->
-            <!-- modal para editar perfil -->
-           
-            <!--Modales Fin-->
-            
-        
+    <div class="container">
+        <div class="row">
 
-    </ui:composition> 
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">#{msjPerfil.labelinfo}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="#{request.contextPath}#{sessionController.usuarioSesion.imagen}" class="img-circle img-responsive"/> </div>
+
+                            <div class=" col-md-9 col-lg-9 "> 
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>#{msjPerfil.labelcargo}</td>
+                                            <td>#{sessionController.usuarioSesion.roles}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#{msjPerfil.labelnombre}</td>
+                                            <td style="text-transform: uppercase;">#{sessionController.usuarioSesion.nombre} #{sessionController.usuarioSesion.apellidos}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#{msjPerfil.labelcedula}</td>
+                                            <td>#{sessionController.usuarioSesion.cedula}</td>
+                                        </tr>
+
+                                        <tr>
+
+                                            <tr>
+                                                <td>#{msjPerfil.labelcorreo}</td>
+                                                <td><a href="#{sessionController.usuarioSesion.email}">#{sessionController.usuarioSesion.email}</a></td>
+                                            </tr>
+                                            <td>#{msjPerfil.labeltele}</td>
+                                            <td>#{sessionController.usuarioSesion.telefono}
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-heading">
+                        <h3 class="panel-title">#{msjPerfil.labelinfop}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+
+
+                            <div class=" col-md-9 col-lg-9 "> 
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>#{msjPerfil.labeldirec}</td>
+                                            <td>#{sessionController.usuarioSesion.dirreccion}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#{msjPerfil.labelfecha}</td>
+                                            <td>#{sessionController.usuarioSesion.fechaNaci}</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                                <a href="#" class="btn btn-primary">#{msjPerfil.butonmodi}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-heading">
+                        <h3 class="panel-title">#{msjPerfil.labelcontrac}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+
+                            <div class=" col-md-9 col-lg-9 "> 
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>#{msjPerfil.labelcontra}</td>
+                                            <td>#{sessionController.usuarioSesion.clave}</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                                <a href="#" class="btn btn-primary">#{msjPerfil.butoncam}</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Page Header -->
+    <!-- modal para editar perfil -->
+
+    <!--Modales Fin-->
+
+
+
+</ui:composition> 

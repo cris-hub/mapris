@@ -3,30 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <link rel="shorcut icon" href="#{request.contextPath}/resources/img/logos/favicon.png"/>
 
-    
-    <h:outputStylesheet library="frameworks" name="bootstrap/css/bootstrap.css" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+
     <h:outputStylesheet library="frameworks" name="font-awesome/css/font-awesome.css"/>
-    <h:outputStylesheet library="css" name="animate.css" />
-    <h:outputStylesheet library="css" name="bootstrap-toggle.min.css" />
-    <h:outputStylesheet library="css" name="btn.css" />
-    <h:outputStylesheet library="css" name="sidebar.css" />
-    <h:outputStylesheet library="css" name="navbar.css" />
-    <h:outputStylesheet library="css" name="color.css" />
-    <h:outputStylesheet library="css" name="publicar.css" />
-    <h:outputStylesheet library="css" name="editar.css" />
-    <h:outputStylesheet library="css" name="newnav.css" />
-    <h:outputStylesheet library="css" name="usuarioscard.css" />
-    <h:outputStylesheet library="css" name="line-icons.css" />
-    <ui:insert name="head">
-    
-    </ui:insert>
-    
-    
-    <link rel="stylesheet" href="#{request.contextPath}/resources/css/fuente.css"/>
-    
-    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/formValidation.min.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/cssinterfaz/simple-line-icons.css"/>
+    <h:outputStylesheet library="frameworks" name="bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/cssinterfaz/bootstrap-switch.min.css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
 
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/cssinterfaz/components.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/cssinterfaz/plugins.css"/>
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/cssinterfaz/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/cssinterfaz/default.css" id="style_color" />
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/cssinterfaz/custom.css"/>
+
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shorcut icon" href="#{request.contextPath}/resources/img/logos/favicon.png"/>
 </html>
 
