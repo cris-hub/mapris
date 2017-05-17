@@ -11,42 +11,27 @@
         <ui:include src="/WEB-INF/template/head.xhtml"/>
 
     </h:head>
-    <h:body onload="myFunction()" style="margin:0;">
-        <f:event type="preRenderView" listener="#{sessionController.validarSesion()}"/>
-        <div id="loader"></div>
+    <h:body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
 
-        <div style="" id="myDiv" class="animate-bottom">
-            <div id="wrapper">
+        <ui:include src="/WEB-INF/template/newnavbar.xhtml" />
 
-                <div class=" overlay hidden-lg hidden-md"></div>
-                <nav>
-                    <ui:include src="/WEB-INF/template/menu.xhtml"/>
-                    <ui:include src="/WEB-INF/template/menuhamburguesa.xhtml"/>
-                    <ui:include src="/WEB-INF/template/nav.xhtml"/>
-                </nav>
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
 
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
 
-
-
-                <div class="container">
-                    <ui:insert name="body">Default Body</ui:insert>
-                </div>
-
-
-
-                <ui:include src="/WEB-INF/template/tools.xhtml"/>
-            </div>
+            <ui:include src="/WEB-INF/template/newsidebar.xhtml" />
+            <ui:include src="/WEB-INF/template/foro.xhtml" />
+            
         </div>
-
-
-
-
-
-
-
+        <!-- END CONTAINER -->
+        <ui:include src="/WEB-INF/template/newfooter.xhtml" />
 
 
         <ui:include src="/WEB-INF/template/scrips.xhtml" />
+
     </h:body>
 </html>
 
