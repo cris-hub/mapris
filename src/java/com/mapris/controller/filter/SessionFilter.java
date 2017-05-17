@@ -6,7 +6,7 @@
 package com.mapris.controller.filter;
 
 
-import com.mapris.controller.login.SessionController;
+import com.mapris.login.controller.SessionController;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.Filter;
@@ -63,10 +63,10 @@ public class SessionFilter implements Filter {
                     rs.sendRedirect(rq.getContextPath() +"/app/index.xhtml");
                 }
             } else{
-                rs.sendRedirect(rq.getContextPath() +"/index.xhtml");
+                rs.sendRedirect(rq.getContextPath() +"/login.xhtml");
             }
         }else{
-            rs.sendRedirect(rq.getContextPath() +"/index.xhtml");
+            rs.sendRedirect(rq.getContextPath() +"/login.xhtml");
         }
     }
 

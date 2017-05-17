@@ -26,6 +26,10 @@
                     <file>${reference.com_mapris_util.dist}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
+                <library dirs="100">
+                    <file>${reference.com_mapris_modelo.dist}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
@@ -37,6 +41,14 @@
         </data>
         <libraries xmlns="http://www.netbeans.org/ns/cdnjs-libraries/1"/>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
+            <reference>
+                <foreign-project>com_mapris_modelo</foreign-project>
+                <artifact-type>jar</artifact-type>
+                <script>build.xml</script>
+                <target>dist</target>
+                <clean-target>clean</clean-target>
+                <id>dist</id>
+            </reference>
             <reference>
                 <foreign-project>com_mapris_util</foreign-project>
                 <artifact-type>jar</artifact-type>

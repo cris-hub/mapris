@@ -6,9 +6,10 @@
 package com.mapris.controller.rules;
 
 
-import com.mapris.modelo.entities.Rol;
-import com.mapris.modelo.entities.Usuario;
-import com.mapris.modelo.facade.UsuarioFacade;
+import com.mapris.modelo.dao.UsuarioFacadeLocal;
+import com.mapris.modelo.entitie.Rol;
+import com.mapris.modelo.entitie.Usuario;
+
 import com.mapris.util.MessageUtil;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -21,26 +22,26 @@ import javax.ejb.Stateless;
 public class SessionRule {
 
     @EJB
-    private UsuarioFacade ufl;
+    private UsuarioFacadeLocal ufl;
 
     public Usuario iniciar(Long documento, String clave) {
         Usuario u = null;
         if (documento != null && documento > 0
                 && clave != null && clave.length() > 0) {
             u = ufl.login(documento, clave);
-//            if (u != null) {
-//                if (u.getEstado() == 2) {
-//                    u = null;
-//                    MessageUtil.enviarMensajeErrorGlobal(
-//                            "Usuario bloqueado",
-//                            "Contacte al administrador par que solucione el incoveniente.");
-//
-//                }
-//            } else {
-//                MessageUtil.enviarMensajeErrorGlobal(
-//                        "Datos incorrectos",
-//                        "Documento y/o clave invalidos");
-//            }
+            if (u != null) {
+                if (u.getEstado() == 2) {
+                    u = null;
+                    MessageUtil.enviarMensajeErrorGlobal(
+                            "Usuario bloqueado",
+                            "Contacte al administrador par que solucione el incoveniente.");
+
+                }
+            } else {
+                MessageUtil.enviarMensajeErrorGlobal(
+                        "Datos incorrectos",
+                        "Documento y/o clave invalidos");
+            }
         } else {
             MessageUtil.enviarMensajeErrorGlobal(
                     "Datos obligatorios",

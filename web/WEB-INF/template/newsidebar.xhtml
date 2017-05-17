@@ -26,7 +26,7 @@
                     <c:if test="#{empty p.permisoPadre}">
                         <li class="nav-item start">
                             <a class="nav-link nav-toggle" href="javascript:;">
-                                <i class="fa #{p.icon}"></i>
+                                <i class="#{p.icon}"></i>
                                 <span class="title"> #{p.nombre}</span>
                                 <span class="arrow"></span>
                             </a>
@@ -35,7 +35,7 @@
                                     <c:forEach items="#{sessionController.rolSeleccionado.permisos}" var="op">
                                         <c:if test="#{(sp.id eq op.id)}">
                                             <li class="nav-item start ">
-                                                <h:link class="nav-link" outcome="/#{sp.url}">
+                                                <h:link class="nav-link" outcome="#{sp.url}">
                                                      <i class="icon-bulb"></i>
                                                     <span class="title"> #{sp.nombre}</span>
                                                     <span class="badge badge-success">1</span>
