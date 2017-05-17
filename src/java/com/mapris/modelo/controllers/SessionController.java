@@ -138,8 +138,7 @@ public class SessionController implements Serializable {
 
             }
         } catch (IOException ex) {
-            Logger.getLogger(SessionController.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SessionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
