@@ -25,7 +25,7 @@ import javax.faces.context.FacesContext;
  *
  * @author ismael
  */
-@Named(value = "sessionController")
+@Named(value = "onController")
 @SessionScoped
 public class SessionController implements Serializable {
 
