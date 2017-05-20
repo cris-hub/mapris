@@ -417,13 +417,15 @@
 
         <!--Contact section -->
         <section id="contact-sec" class=" content">
+            <h:form prependId="false">
+                
             <div class="overlay"></div>
             <div class="container form-block">
                 <div class="row">
                     <div class="col-lg-12 text-center"><h2>#{msjHome.contactLabel}<small>#{msjHome.contactText}</small></h2></div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
                         <span class="input input-hoshi">
-                            <input class="input_field input_field-hoshi" type="text" id="input-4" />
+                            <h:inputText class="input_field input_field-hoshi" id="input-4" value="#{controllerEmail.nombresyAp}"/>
                             <label class="input_label input_label-hoshi input_label-hoshi-color-1" for="input-4">
                                 <span class="input_label-content input_label-content-hoshi">#{msjHome.contactName}</span>
                             </label>
@@ -431,7 +433,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
                         <span class="input input-hoshi">
-                            <input class="input_field input_field-hoshi" type="text" id="input-4" />
+                            <h:inputText class="input_field input_field-hoshi"  id="input-3"  value="#{controllerEmail.telefono}" />
                             <label class="input_label input_label-hoshi input_label-hoshi-color-1" for="input-4">
                                 <span class="input_label-content input_label-content-hoshi">#{msjHome.contactTel}</span>
                             </label>
@@ -439,7 +441,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
                         <span class="input input-hoshi">
-                            <input class="input_field input_field-hoshi" type="text" id="input-4" />
+                            <h:inputText class="input_field input_field-hoshi"  id="input-2" value="#{controllerEmail.email}" />
                             <label class="input_label input_label-hoshi input_label-hoshi-color-1" for="input-4">
                                 <span class="input_label-content input_label-content-hoshi">#{msjHome.contactEmail}</span>
                             </label>
@@ -455,13 +457,17 @@
                         <span class="t-area input-hoshi">
 
 
-                            <textarea style="color: white; border-color: #bf2b55;" id="textarea" class=" input_field-hoshi" rows="1"></textarea>
+                            <h:inputTextarea style="color: white; border-color: #bf2b55;" id="textarea" class=" input_field-hoshi" rows="1" value="#{controllerEmail.mensaje}"/>
                         </span>
-                        <a href="#" class="btn btn-capsul btn-transparent-white">#{msjHome.contactBtn}</a>
+                        <h:commandButton class="btn btn-capsul btn-transparent-white" type="submit"
+                                         action="#{controllerEmail.enviarMensaje()}" value="#{msjHome.contactBtn}">
+                       
+                        </h:commandButton>
                     </div>
 
                 </div>
             </div>
+            </h:form>
         </section>
 
         <!-- Footer section -->
