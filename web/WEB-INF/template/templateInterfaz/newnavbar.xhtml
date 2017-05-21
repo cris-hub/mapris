@@ -374,8 +374,9 @@
                                 <img alt="" src="#{request.contextPath}/resources/img/avatar1_small.jpg"/> </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
-                                    <a href="page_user_profile_1.html">
-                                        <i class="icon-user"></i> My Profile </a>
+                                    
+                                        <h:link outcome="#{request.contextPath}/WEB-INF/template/user_perfil_miPerfil.xhtml"/> 
+                                        <i class="icon-user"></i> #{msjPerfil.txtperfil} 
                                 </li>
                                 <li>
                                     <a href="app_calendar.html">

@@ -6,12 +6,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title><ui:insert name="titulo"> asigne un titulo</ui:insert></title>
-        <ui:include src="/WEB-INF/template/head.xhtml"/>
+        <ui:include src="/WEB-INF/template/templateInterfaz/head.xhtml"/>
     </h:head>
 
     <h:body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
 
-        <ui:include src="/WEB-INF/template/newnavbar.xhtml" />
+        <ui:include src="/WEB-INF/template/templateInterfaz/newnavbar.xhtml" />
 
         <!-- BEGIN HEADER & CONTENT DIVIDER -->
         <div class="clearfix"> </div>
@@ -20,16 +20,14 @@
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
 
-            <ui:include src="/WEB-INF/template/newsidebar.xhtml" />
-            <ui:include src="/WEB-INF/template/newpage-header.xhtml" />
+            <ui:include src="/WEB-INF/template/templateInterfaz/newsidebar.xhtml" />
+            <ui:include src="/WEB-INF/template/templateInterfaz/newpage-header.xhtml" />
           
             
         </div>
         <!-- END CONTAINER -->
-        <ui:include src="/WEB-INF/template/newfooter.xhtml" />
-
-
-        <ui:include src="/WEB-INF/template/scrips.xhtml" />
+        <ui:include src="/WEB-INF/template/templateInterfaz/newfooter.xhtml" />
+        <ui:include src="/WEB-INF/template/templateInterfaz/scrips.xhtml" />
 
     </h:body>
 </html>
