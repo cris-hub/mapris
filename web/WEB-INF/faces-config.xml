@@ -19,7 +19,8 @@
             <base-name>com.mapris.languages.Login</base-name>
             <var>msjLogin</var>
         </resource-bundle>
-          <resource-bundle>
+        
+        <resource-bundle>
             <base-name>com.mapris.languages.validacion.LoginValidation</base-name>
             <var>msjValidacionLogin</var>
         </resource-bundle>
@@ -43,18 +44,30 @@
             <base-name>com.mapris.languages.nav</base-name>
             <var>msjModuloAdmin</var>
         </resource-bundle>
+        
         <resource-bundle>
             <base-name>com.mapris.languages.foro</base-name>
             <var>msjForo</var>
         </resource-bundle>
-          <resource-bundle>
+        
+        <resource-bundle>
             <base-name>com.mapris.languages.perfil</base-name>
             <var>msjPerfil</var>
         </resource-bundle>
-         <resource-bundle>
+        
+        <resource-bundle>
             <base-name>com.mapris.languages.modals</base-name>
             <var>msjModals</var>
         </resource-bundle>
+        
+        <context-param>
+            <param-name>javax.faces.FACELETS_DECORATORS</param-name>
+            <param-value>
+                net.bootsfaces.decorator.BootsFacesTagDecorator
+            </param-value>
+        </context-param>
+        
         <navigation-handler>org.primefaces.mobile.application.MobileNavigationHandler</navigation-handler>
+        
     </application>
 </faces-config>

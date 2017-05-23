@@ -25,56 +25,5 @@
             30
         </session-timeout>
     </session-config>
-<!--    <security-constraint>
-        <display-name>paginas de administracion</display-name>
-        <web-resource-collection>
-            <web-resource-name>paginas de administracion</web-resource-name>
-            <description/>
-            <url-pattern>/app/appadmin/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>1</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-        <display-name>paginas clientes</display-name>
-        <web-resource-collection>
-            <web-resource-name>paginas clientes</web-resource-name>
-            <description/>
-            <url-pattern>/app/appuser/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>2</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-        <display-name>paginas empleados</display-name>
-        <web-resource-collection>
-            <web-resource-name>paginas empleados</web-resource-name>
-            <description/>
-            <url-pattern>/app/employee/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>3</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <login-config>
-        <auth-method>BASIC</auth-method>
-        <realm-name>maprisRealm</realm-name>
-    </login-config>
-    <security-role>
-        <description/>
-        <role-name>1</role-name>
-    </security-role>
-    <security-role>
-        <description/>
-        <role-name>3</role-name>
-    </security-role>
-    <security-role>
-        <description/>
-        <role-name>2</role-name>
-    </security-role>-->
+
 </web-app>

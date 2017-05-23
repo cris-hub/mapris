@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+
+
+    <div class="row" >
+        <div class="col-sm-12">
+            <section class="panel">
+                <header>
+                    Usuarios del sistema
+                </header>
+                <b:message for="form-data-table-usuarios" show-summary="true" showDetail="true"/>
+                <b:form id="form-data-table-usuarios" prependId="false">
+                    <b:dataTable value="#{listarUsuaariosController.usuarios}" var="usuario">
+                        <b:dataTableColumn label="cedula" value="#{usuario.cedula}" />
+                        <b:dataTableColumn label="nombres" value="#{usuario.nombre}" />
+                        <b:dataTableColumn label="apellidos" value="#{usuario.apellidos}" />
+                        <b:dataTableColumn label="roles" >
+                            <ui:repeat value="#{usuario.roles}"  var="roles">
+                                <h:outputText value="#{roles.nombre}"/><br/>
+                            </ui:repeat>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="Opciones">
+                            <b:commandButton look="success" value="" icon-awesome="eye" />
+                            <b:commandButton look="primary" value="" icon-awesome="pencil" />
+                            <b:commandButton look="danger" value=""
+                                             iconAwesome="trash" tooltip="Eliminar"
+                                             onclick="$('.modalPseudoClass').modal();">
+<!--                                <f:ajax event="click" render=":message-modal-confim"
+                                        listener=""/>-->
+                            </b:commandButton>
+                            <b:commandButton look="default" value="" iconAwesome="" />
+                        </b:dataTableColumn>
+
+                    </b:dataTable>
+                </b:form>
+
+            </section>
+        </div>
+
+    </div>
+
+
+
+</html>
+

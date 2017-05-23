@@ -2,14 +2,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template/templateUser/template.xhtml"
                 xmlns:b="http://bootsfaces.net/ui"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:define name="titulo">#{sessionController.usuario.nombre}</ui:define>
     <ui:define name="body">
 
-                  <b:messages show-detail="true" show-summary="true" globalOnly="true"/>
-                  
+        
+            <b:messages show-detail="true" show-summary="true" globalOnly="true"/>
+
+        
+
+            <ui:include src="/WEB-INF/template/listausuarios.xhtml"/>
 
 
     </ui:define>
