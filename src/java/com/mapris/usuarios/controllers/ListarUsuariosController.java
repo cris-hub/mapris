@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mapris.controllers;
+package com.mapris.usuarios.controllers;
 
 import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.UsuarioFacadeLocal;
@@ -14,6 +14,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+
+
 import javax.inject.Inject;
 import javax.inject.Named;
 

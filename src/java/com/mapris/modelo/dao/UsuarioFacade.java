@@ -6,6 +6,7 @@
 package com.mapris.modelo.dao;
 
 import com.mapris.modelo.entitie.Usuario;
+import java.util.ArrayList;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,7 +30,9 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
-
+    
+    
+    
     @Override
     public Usuario login(Long documento, String clave) {
         try {

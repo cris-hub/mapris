@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mapris.controllers;
+package com.mapris.agenda.controllers;
 
 /**
  *
  * @author SMEGS
  */
-
-
-public class EditarUsuario {
+public class VerClienteController {
     
 }
