@@ -4,7 +4,8 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
      
 
     <!-- BEGIN HEADER -->
@@ -14,11 +15,9 @@
         <div class="page-header-inner ">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
-                <a href="#{request.contextPath}/hom.xhtml">
-<!--                <img src="#{request.contextPath}/resources/img/logos/logowhite.png" class="img-responsive" />-->
-                </a> 
                 <div class="menu-toggler sidebar-toggler">
                     <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+                
                 </div>
             </div>
             <!-- END LOGO -->
@@ -30,35 +29,19 @@
             <div class="page-actions">
                 <div class="btn-group">
                     <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <span class="hidden-sm hidden-xs">Actions&nbsp;</span>
-                        <i class="fa fa-angle-down"></i>
+                        <span>Cambiar idioma</span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="javascript:;">
-                                <i class="icon-docs"></i> New Post </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="icon-tag"></i> New Comment </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="icon-share"></i> Share </a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="icon-flag"></i> Comments
-                                <span class="badge badge-success">4</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="icon-users"></i> Feedbacks
-                                <span class="badge badge-danger">2</span>
-                            </a>
-                        </li>
+                       <h:form>
+                            
+                        <c:forEach items="#{sessionController.supportLanguages}" var="l" >
+                                    <li>
+                                        <h:commandLink  value="#{msjApp[l.displayLanguage]}" action="#{sessionController.cambiarIdioma(l)}">
+                                            <img src="#{request.contextPath}/resources/img/languages/#{l.language}.png" width="25px" alt="#{msjApp[l.displayLanguage]}"/>
+                                        </h:commandLink>
+                                    </li>
+                             </c:forEach>
+                        </h:form>
                     </ul>
                 </div>
             </div>
@@ -373,7 +356,7 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <span class="username username-hide-on-mobile"> #{sessionController.usuario.nombre} #{sessionController.usuario.apellidos} </span>
                                 <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                <img class="img-circle" alt="" src="#{request.contextPath}/resources/img/avatar1_small.jpg"/> </a>
+                                <img alt="" src="#{request.contextPath}/resources/img/avatar1_small.jpg"/> </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     
