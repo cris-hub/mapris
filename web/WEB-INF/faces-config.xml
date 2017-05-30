@@ -60,12 +60,12 @@
             <var>msjModals</var>
         </resource-bundle>
         
-        <context-param>
+<!--        <context-param>
             <param-name>javax.faces.FACELETS_DECORATORS</param-name>
             <param-value>
                 net.bootsfaces.decorator.BootsFacesTagDecorator
             </param-value>
-        </context-param>
+        </context-param>-->
         
         <navigation-handler>org.primefaces.mobile.application.MobileNavigationHandler</navigation-handler>
         

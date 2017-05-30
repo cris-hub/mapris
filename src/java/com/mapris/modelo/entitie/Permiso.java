@@ -56,9 +56,7 @@ public class Permiso implements Serializable {
     private String icon;
     
     
-    @Basic(optional = false)
-    @Column(name ="tipo")
-    private String tipo;
+
     
     @JoinColumn(name = "permisos_padre", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -98,25 +96,6 @@ public class Permiso implements Serializable {
         this.roles = roles;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public Permiso(Integer id, String nombre, String url, String icon, String tipo, Permiso permisoPadre, List<Permiso> subPermisos, List<Rol> roles) {
-        this.id = id;
-        this.nombre = nombre;
-        this.url = url;
-        this.icon = icon;
-        this.tipo = tipo;
-        this.permisoPadre = permisoPadre;
-        this.subPermisos = subPermisos;
-        this.roles = roles;
-    }
-    
 
     public Integer getId() {
         return id;

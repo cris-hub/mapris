@@ -22,7 +22,7 @@ import javax.inject.Named;
  */
 @Named(value = "registroController")
 @RequestScoped
-public class RegistrarUsuario {
+public class RegistrarUsuarioController {
     
     @EJB
     private UsuarioFacadeLocal usuarioFacadeLocal;
@@ -32,7 +32,7 @@ public class RegistrarUsuario {
     
     private Usuario nuevoUsuario;
 
-    public RegistrarUsuario() {
+    public RegistrarUsuarioController() {
     }
     
     
