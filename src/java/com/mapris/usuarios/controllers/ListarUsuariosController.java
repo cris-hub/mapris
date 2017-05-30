@@ -53,18 +53,19 @@ public class ListarUsuariosController implements Serializable{
         usuarios = usuarioFacadeLocal.findAll();
     }
     
-    private void eliminarUsuario(){
+    public void eliminarUsuario(){
         Usuario uS = sessionController.getUsuario();
-        System.out.println("El usuario que inicio Sesion es : " + uS.getNombre());
-        System.out.println("Voy a elimnar a :  " + usuarioSeleccionado.getNombre() );
-        if (uS.getCedula().longValue() != usuarioSeleccionado.getCedula()) {
+        System.out.println("El usuario que inicio sesión es: " + uS.getNombre());
+        System.out.println("Voy a eliminar el usuario: " + usuarioSeleccionado.getApellidos());
+        if(uS.getCedula().intValue() != usuarioSeleccionado.getCedula()){
             usuarioFacadeLocal.remove(usuarioSeleccionado);
             recargarUsuarios();
-        }else{
-            MessageUtil.enviarMensajeError(null, "Error al eliminar", "No puede elimniarse usted mismo");
+        } else{
+            MessageUtil.enviarMensajeError(null, "Error al eliminar", "No puede elimarse usted mismo");
         }
-        
     }
+        
+    
     
     
 

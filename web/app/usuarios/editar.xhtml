@@ -39,9 +39,10 @@
                                              >
                                 <f:selectItems value="#{rolContoller.roles}" var="r" itemLabel="#{r.nombre}"/>
                             </h:selectManyCheckbox>
+                             <br/>
                         </b:panelGrid>
                         <h:link styleClass="btn btn-primary" outcome="/app/usuarios/listar.xhtml" value="Volver"/>
-                        <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{modificarController.actulaizarDatos()}"/>
+                        <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarUsuarioController.actualizarDatos()}"/>
                     </b:form>
                 </section>
             </div>
