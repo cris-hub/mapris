@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-05-2017 a las 19:30:09
+-- Tiempo de generación: 30-05-2017 a las 06:08:01
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -143,20 +143,21 @@ CREATE TABLE `permisos` (
   `nombre` varchar(45) DEFAULT NULL,
   `url` text,
   `icon` varchar(45) DEFAULT NULL,
-  `permisos_padre` int(11) DEFAULT NULL,
-  `tipo` enum('S','I') NOT NULL
+  `permisos_padre` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `permisos`
 --
 
-INSERT INTO `permisos` (`id`, `nombre`, `url`, `icon`, `permisos_padre`, `tipo`) VALUES
-(1, 'Perfil', '', 'fa fa-user', NULL, 'S'),
-(2, 'Programas', '', 'fa fa-heart', NULL, 'S'),
-(3, 'Agenda', '', 'fa fa-admin', NULL, 'S'),
-(4, 'Usuarios', '', 'fa fa-users', NULL, 'S'),
-(5, 'crud', '', 'fa fa-list', NULL, 'S');
+INSERT INTO `permisos` (`id`, `nombre`, `url`, `icon`, `permisos_padre`) VALUES
+(1, 'Perfil', '', 'fa fa-user', NULL),
+(2, 'Programas', '', 'fa fa-heart', NULL),
+(3, 'Agenda', '', 'fa fa-calendar', NULL),
+(4, 'Usuarios', '', 'fa fa-users', NULL),
+(5, 'crud', '', 'fa fa-list', NULL),
+(42, 'usuarios', '/app/usuarios/listar.xhtml', 'fa fa-list-ul', 4),
+(44, 'Registrar usuario', '/app/usuarios/nuevo.xhtml', 'fa fa-plus', 4);
 
 -- --------------------------------------------------------
 
@@ -181,7 +182,9 @@ INSERT INTO `permisosroles` (`permisos_id`, `roles_idRoles`) VALUES
 (3, 1),
 (4, 1),
 (5, 1),
-(5, 3);
+(5, 3),
+(42, 1),
+(44, 1);
 
 -- --------------------------------------------------------
 
@@ -366,9 +369,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`cedula`, `nombre`, `apellidos`, `email`, `telefono`, `dirreccion`, `fechaNaci`, `clave`, `imegen_perfil`, `estado`) VALUES
-(1111, 'maria', 'lorenzo', 'lorek09@gmail.com', 345425, 'dia 15 -43 ', '1987-04-11', '1111', NULL, 0),
-(2222, 'ana ', 'peña', 'ana@peña', 367213, 'cll 112', '1991-03-04', '2222', NULL, 0),
-(3333, 'Matilde Rocio', 'Peña Cañaveral', 'mt@gmail.com', 3456788, 'Cll 54 # 34 - 12 ', '1990-01-01', '3333', NULL, 0);
+(1111, 'maria', 'lorenzo', 'lorek09@gmail.com', 345425, 'dia 15 -43 ', '1987-04-11', '1111', NULL, 1),
+(2222, 'ana ', 'peña', 'ana@peña', 367213, 'cll 112', '1991-03-04', '2222', NULL, 2),
+(3333, 'Matilde Rocio', 'Peña Cañaveral', 'mt@gmail.com', 3456788, 'Cll 54 # 34 - 12 ', '1990-01-01', '3333', NULL, 2);
 
 --
 -- Índices para tablas volcadas
