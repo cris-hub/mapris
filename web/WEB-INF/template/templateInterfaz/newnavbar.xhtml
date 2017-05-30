@@ -14,9 +14,11 @@
         <div class="page-header-inner ">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
+                <a href="#{request.contextPath}/hom.xhtml">
+<!--                <img src="#{request.contextPath}/resources/img/logos/logowhite.png" class="img-responsive" />-->
+                </a> 
                 <div class="menu-toggler sidebar-toggler">
                     <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
-                
                 </div>
             </div>
             <!-- END LOGO -->
@@ -371,7 +373,7 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <span class="username username-hide-on-mobile"> #{sessionController.usuario.nombre} #{sessionController.usuario.apellidos} </span>
                                 <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                <img alt="" src="#{request.contextPath}/resources/img/avatar1_small.jpg"/> </a>
+                                <img class="img-circle" alt="" src="#{request.contextPath}/resources/img/avatar1_small.jpg"/> </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     
