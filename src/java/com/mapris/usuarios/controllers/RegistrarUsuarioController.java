@@ -51,7 +51,7 @@ public class RegistrarUsuarioController {
     
     public void registrar(){
         if (nuevoUsuario != null) {
-            nuevoUsuario.setRoles(new ArrayList<Rol>());
+            nuevoUsuario.setRoles(new ArrayList<>());
             nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
             nuevoUsuario.setEstado(2);
             usuarioFacadeLocal.create(nuevoUsuario);

@@ -81,6 +81,10 @@ public class ListarUsuariosController implements Serializable{
         return usuarios;
     }
 
+    public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
+        this.usuarioSeleccionado = usuarioSeleccionado;
+    }
+
 
     public Usuario getUsuarioSeleccionado() {
         return usuarioSeleccionado;

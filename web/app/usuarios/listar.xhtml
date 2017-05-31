@@ -44,7 +44,7 @@
                                                  iconAwesome="trash" tooltip="Eliminar"
                                                  onclick="$('.modalPseudoClass').modal();">
                                     <f:ajax event="click" render=":message-modal-confirm"
-                                            listener="#{listarUsuaariosController.setUsuarioFacadeLocal(user)}"/>
+                                            listener="#{listarUsuaariosController.setUsuarioSeleccionado(user)}"/>
                                 </b:commandButton>
                                 <b:commandButton look="default" value="" iconAwesome="#{editarUsuarioController.getIconUsuarioBloqueo(user)}" action="#{editarUsuarioController.cambioDeEstado(user)}"/>
                             </b:dataTableColumn>

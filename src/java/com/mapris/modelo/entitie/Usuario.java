@@ -19,14 +19,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
+
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -49,14 +49,14 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    
+
     @Basic(optional = false)
     @Column(name = "apellidos")
     private String apellidos;
-
+    @Lob
     @Column(name = "email")
     private String email;
-    
+
     @Basic(optional = false)
     @Column(name = "clave")
     private String clave;
@@ -66,8 +66,8 @@ public class Usuario implements Serializable {
 
     @Column(name = "dirreccion")
     private String dirreccion;
-    
-    @Lob()
+
+    @Lob
     @Column(name = "imegen_perfil")
     private String imagen;
 
@@ -78,7 +78,7 @@ public class Usuario implements Serializable {
     @Column(name = "fechaNaci")
     @Temporal(TemporalType.DATE)
     private Date fechaNaci;
-
+    
     @JoinTable(name = "rolesusuarios",
             joinColumns = @JoinColumn(name = "idUsuarios", referencedColumnName = "cedula"),
             inverseJoinColumns = @JoinColumn(name = "idRoles", referencedColumnName = "idRoles"))
@@ -92,6 +92,25 @@ public class Usuario implements Serializable {
     private Cliente clientes;
 
     public Usuario() {
+    }
+
+    public Usuario(Long cedula, String nombre, String apellidos, String email, String clave, Date fechaNaci, List<Rol> roles) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.clave = clave;
+        this.fechaNaci = fechaNaci;
+        this.roles = roles;
+    }
+
+    public Usuario(Long cedula, String nombre, String apellidos, String email, Date fechaNaci, List<Rol> roles) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.fechaNaci = fechaNaci;
+        this.roles = roles;
     }
 
     public Usuario(Long cedula, String nombre, String apellidos, String email, String clave, Integer telefono, String dirreccion, String imagen, Date fechaNaci, List<Rol> roles, Personalmedico personalmedico, Cliente clientes) {
@@ -186,6 +205,15 @@ public class Usuario implements Serializable {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public Usuario(Long cedula, String nombre, String apellidos, String email, String clave, List<Rol> roles) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.clave = clave;
+        this.roles = roles;
     }
 
     public String getEmail() {

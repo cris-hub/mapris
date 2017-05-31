@@ -18,32 +18,27 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Modificar datos del usuario
+                        Registrar Usuario
                     </header>
                     <b:messages globalOnly="true" showSummary="true" show-detail="true"/>
                     <b:message for="form-registro" showSummary="true" show-detail="true"/>
                     <b:form id="form-registro" prependId="false">
-                        <b:panelGrid colSm="12" columns="4">
-                            <h:outputText value="TD"/>
-                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
-                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
-                            </b:selectOneMenu>
+                        <b:panelGrid colSm="12" columns="2">
+
+
                             <h:outputText value="Documento"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.documento}" required="true"/>
-                            <h:outputText value="Primer nombre"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.primerNombre}" rendered="true"/>
-                            <h:outputText value="Segundo nombre"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.segundoNombre}"/>
-                            <h:outputText value="Primer apellido"/>
-                            <b:inputText id="txtPrimerApellido" value="#{registroController.nuevoUsuario.primerApellido}" rendered="true">
-                                <div style="position: absolute; right: 30px;">
-                                <b:message for="txtPrimerApellido" show-summary="true"/>
-                                </div>
-                            </b:inputText>
-                            <h:outputText value="Segundo apellido"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.segundoApellido}"/>
+                            <b:inputText value="#{registroController.nuevoUsuario.cedula}" required="true"/>
+                            <h:outputText value="nombres"/>
+                            <b:inputText value="#{registroController.nuevoUsuario.nombre}" rendered="true"/>
+                            <h:outputText value="apellidos"/>
+                            <b:inputText value="#{registroController.nuevoUsuario.apellidos}"/>
                             <h:outputText value="Correo"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.correo}" required="true"/>
+                            <b:inputText value="#{registroController.nuevoUsuario.email}" required="true"/>
+                            <h:outputText value="fecha nacimiento"/>
+                            <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}" required="true"/>
+                            
+
+
                             <h:outputText value="Clave"/>
                             <b:inputSecret value="#{registroController.nuevoUsuario.clave}" required="true"/>
                         </b:panelGrid>
