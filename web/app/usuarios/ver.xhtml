@@ -22,7 +22,7 @@
 
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><h:outputText value="#{verUsuarioControoller.usuario.nombre}"/></h3>
+                            <h3 class="panel-title"><h:outputText value="#{verUsuarioControoller.usuario.primerNombre} #{verUsuarioControoller.usuario.primerApellido}"/></h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -57,18 +57,10 @@
                         
                                                 </td>
                                                 <td>
-                                                    <h:outputText value="#{verUsuarioControoller.usuario.nombre}"/>
+                                                    <h:outputText value="#{verUsuarioControoller.usuario.primerNombre} #{verUsuarioControoller.usuario.primerApellido}"/>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="apellido"/>
-                        
-                                                </td>
-                                                <td>
-                                                    <h:outputText value="#{verUsuarioControoller.usuario.apellidos}"/>
-                                                </td>
-                                            </tr>
+                                            
                                             <tr>
                                                 <td>
                                                     <h:outputText value="Correo"/>

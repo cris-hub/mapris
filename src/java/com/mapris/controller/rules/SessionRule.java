@@ -30,7 +30,7 @@ public class SessionRule {
                 && clave != null && clave.length() > 0) {
             u = ufl.login(documento, clave);
             if (u != null) {
-                if (u.getEstado() == 2) {
+                if (u.getEstado().getNombre().equals("2")) {
                     u = null;
                     MessageUtil.enviarMensajeErrorGlobal(
                             "Usuario bloqueado",

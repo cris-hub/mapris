@@ -34,18 +34,23 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 public class Rutinaservicio implements Serializable {
 
+   
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdRutinaServicios")
     private Integer idRutinaServicios;
+    
     @JoinColumn(name = "idRutinas", referencedColumnName = "idRutinas")
     @ManyToOne(optional = false)
     private Rutina idRutinas;
+    
     @JoinColumn(name = "idServicios", referencedColumnName = "idServicio")
     @ManyToOne(optional = false)
     private Servicio idServicios;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutinaserviciosidServicios")
     private List<Programa> programas;
 
@@ -119,6 +124,10 @@ public class Rutinaservicio implements Serializable {
     @Override
     public String toString() {
         return "Rutinaservicio{" + "idRutinaServicios=" + idRutinaServicios + '}';
+    }
+
+    public Rutinaservicio(Integer idRutinaServicios) {
+        this.idRutinaServicios = idRutinaServicios;
     }
 
     

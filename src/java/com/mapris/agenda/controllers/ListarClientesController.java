@@ -56,8 +56,8 @@ public class ListarClientesController implements Serializable{
     
     private void eliminarUsuario(){
         Usuario uS = sessionController.getUsuario(); //Usuario que inicio session
-        System.out.println("El usuario que inicio Sesion es : " + uS.getNombre());
-        System.out.println("Voy a elimnar a :  " + clienteSeleccionado.getUsuario().getNombre());
+        System.out.println("El usuario que inicio Sesion es : " + uS.getPrimerNombre());
+        System.out.println("Voy a elimnar a :  " + clienteSeleccionado.getUsuario().getPrimerNombre());
         if (uS.getCedula().longValue() != clienteSeleccionado.getUsuario().getCedula()) {
             cfl.remove(clienteSeleccionado);
             recargarClientes();

@@ -28,10 +28,14 @@
 
                             <h:outputText value="Documento"/>
                             <b:inputText value="#{registroController.nuevoUsuario.cedula}" required="true"/>
-                            <h:outputText value="nombres"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.nombre}" rendered="true"/>
-                            <h:outputText value="apellidos"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.apellidos}"/>
+                            <h:outputText value="primer nombre"/>
+                            <b:inputText value="#{registroController.nuevoUsuario.primerNombre}" rendered="true"/>
+                            <h:outputText value="segundo nombre"/>
+                            <b:inputText value="#{registroController.nuevoUsuario.segundoNombre}" rendered="true"/>
+                            <h:outputText value="apellido paterno"/>
+                            <b:inputText value="#{registroController.nuevoUsuario.primerApellido}"/>
+                            <h:outputText value="apellido materno"/>
+                            <b:inputText value="#{registroController.nuevoUsuario.segundoApellido}"/>
                             <h:outputText value="Correo"/>
                             <b:inputText value="#{registroController.nuevoUsuario.email}" required="true"/>
                             <h:outputText value="fecha nacimiento"/>

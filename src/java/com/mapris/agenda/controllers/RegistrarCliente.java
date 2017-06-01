@@ -54,7 +54,7 @@ public class RegistrarCliente {
         if (nuevoCliente != null) {
             nuevoCliente.getUsuario().setRoles(new ArrayList<Rol>());
             nuevoCliente.getUsuario().getRoles().add(rolFacedaLocal.find(2));
-            nuevoCliente.getUsuario().setEstado(2);
+            nuevoCliente.getUsuario().getEstado().setNombre("2");
             cfl.create(nuevoCliente);
             MessageUtil.enviarMensajeInformacion("form-registro", "Registro satisfactorio del cliente", "");
             init();
