@@ -14,10 +14,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -30,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 public class Rutina implements Serializable {
 
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -40,6 +44,13 @@ public class Rutina implements Serializable {
     private String nombre;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRutinas")
     private List<Rutinaservicio> rutinas;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "descripcion")
+    private String descripcion;
 
     public Rutina() {
     }
@@ -102,6 +113,14 @@ public class Rutina implements Serializable {
     @Override
     public String toString() {
         return "Rutina{" + "idRutinas=" + idRutinas + '}';
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
   

@@ -22,6 +22,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -34,25 +35,30 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 public class Cliente implements Serializable {
 
+
+
     private static final long serialVersionUID = 1L;
+    @Id
+    @JoinColumn(name = "idClientes", referencedColumnName = "cedula")
+    @OneToOne(optional = false,fetch =  FetchType.EAGER,cascade = CascadeType.ALL)
+    private Usuario usuario;
 
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private List<Inscripcion> inscripciones;
     
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "clientes")
     private Datoclinico datoclinico;
+    
     @OneToMany(mappedBy = "idcliente",cascade = CascadeType.ALL)
     private List<Aplazamiento> aplazamientos;
+    
     @JoinColumn(name = "idEmpresa", referencedColumnName = "idEmpresa")
     @ManyToOne(optional = false ,cascade = CascadeType.ALL)
     private Empresa idEmpresa;
-    @Id
-    @JoinColumn(name = "idClientes", referencedColumnName = "cedula")
-    @OneToOne(optional = false,fetch =  FetchType.EAGER,cascade = CascadeType.ALL)
-    private Usuario usuario;
 
     public Cliente() {
     }
@@ -144,6 +150,7 @@ public class Cliente implements Serializable {
         return "Cliente{" + "usuario=" + usuario + '}';
     }
 
+ 
   
 
 

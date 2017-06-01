@@ -9,7 +9,7 @@ import com.mapris.modelo.dao.ClienteFacadeLocal;
 import com.mapris.modelo.dao.RolFacadeLocal;
 import com.mapris.modelo.entitie.Cliente;
 import com.mapris.modelo.entitie.Rol;
-import com.mapris.modelo.entitie.Usuario;
+
 import com.mapris.util.MessageUtil;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
@@ -50,19 +50,19 @@ public class RegistrarCliente {
         this.nuevoCliente = nuevoUsuario;
     }
     
-    public void registrar(){
-        if (nuevoCliente != null) {
-            nuevoCliente.getUsuario().setRoles(new ArrayList<Rol>());
-            nuevoCliente.getUsuario().getRoles().add(rolFacedaLocal.find(2));
-            nuevoCliente.getUsuario().setEstado(2);
-            cfl.create(nuevoCliente);
-            MessageUtil.enviarMensajeInformacion("form-registro", "Registro satisfactorio del cliente", "");
-            init();
-        } else{
-            MessageUtil.enviarMensajeError("form-regitro", "no se han diligenciado los campos del cliente ", "");
-        }
-    }
-    
+//    public void registrar(){
+//        if (nuevoCliente != null) {
+//            nuevoCliente.getUsuario().setRoles(new ArrayList<Rol>());
+//            nuevoCliente.getUsuario().getRoles().add(rolFacedaLocal.find(2));
+//            nuevoCliente.getUsuario().setEstado(2);
+//            cfl.create(nuevoCliente);
+//            MessageUtil.enviarMensajeInformacion("form-registro", "Registro satisfactorio del cliente", "");
+//            init();
+//        } else{
+//            MessageUtil.enviarMensajeError("form-regitro", "no se han diligenciado los campos del cliente ", "");
+//        }
+//    }
+//    
     
     
     

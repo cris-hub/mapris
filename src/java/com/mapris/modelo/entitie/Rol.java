@@ -36,24 +36,29 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 public class Rol implements Serializable {
 
+    
+
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "idRoles")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
+    
     @Basic(optional = true)
     @Column(name = "descripcion")
     private String descripcion;
+    
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "roles")
     private List<Usuario> usuarios;
+    
 
     @JoinTable(name = "permisosroles",
             joinColumns = @JoinColumn(name = "roles_idRoles", referencedColumnName = "idRoles"),
-            inverseJoinColumns = @JoinColumn(name = "permisos_id", referencedColumnName = "id")
-    )
+            inverseJoinColumns = @JoinColumn(name = "permisos_id", referencedColumnName = "id"))
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Permiso> permisos;
 
@@ -138,6 +143,7 @@ public class Rol implements Serializable {
         return "Rol{" + "id=" + id + '}';
     }
 
+   
  
     
 }

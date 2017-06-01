@@ -16,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -27,18 +28,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Datoclinico implements Serializable {
 
+  
+
     private static final long serialVersionUID = 1L;
     
-    @Column(name = "rh")
-    private String rh;
-    @Column(name = "datosPosparto")
-    private Integer datosPosparto;
-    @Column(name = "datosPrenatales")
-    private Integer datosPrenatales;
     @Id
     @JoinColumn(name = "idCliente", referencedColumnName = "idClientes")
     @OneToOne(optional = false)
     private Cliente clientes;
+    
+    @Column(name = "rh")
+    private String rh;
+    
+    @Column(name = "datosPosparto")
+    private Integer datosPosparto;
+    
+    @Column(name = "datosPrenatales")
+    private Integer datosPrenatales;
+    
+    
 
     public Datoclinico() {
     }
@@ -112,6 +120,7 @@ public class Datoclinico implements Serializable {
         return "Datoclinico{" + "clientes=" + clientes + '}';
     }
 
+ 
    
     
     

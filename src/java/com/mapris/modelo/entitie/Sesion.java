@@ -39,9 +39,11 @@ public class Sesion implements Serializable {
     @Basic(optional = false)
     @Column(name = "idSesiones")
     private Integer idSesiones;
+    
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
+    
     @Column(name = "hora")
     @Temporal(TemporalType.TIME)
     private Date hora;

@@ -7,9 +7,9 @@ package com.mapris.agenda.controllers;
 
 import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.ClienteFacadeLocal;
-import com.mapris.modelo.dao.UsuarioFacadeLocal;
+
 import com.mapris.modelo.entitie.Cliente;
-import static com.mapris.modelo.entitie.Rol_.usuarios;
+
 import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
@@ -54,19 +54,19 @@ public class ListarClientesController implements Serializable{
         clientes =  cfl.findAll();
     }
     
-    private void eliminarUsuario(){
-        Usuario uS = sessionController.getUsuario(); //Usuario que inicio session
-        System.out.println("El usuario que inicio Sesion es : " + uS.getNombre());
-        System.out.println("Voy a elimnar a :  " + clienteSeleccionado.getUsuario().getNombre());
-        if (uS.getCedula().longValue() != clienteSeleccionado.getUsuario().getCedula()) {
-            cfl.remove(clienteSeleccionado);
-            recargarClientes();
-        }else{
-            MessageUtil.enviarMensajeError(null, "Error al eliminar el cliente", "No puede elimniarse usted mismo");
-        }
-        
-    }
-    
+//    private void eliminarUsuario(){
+//        Usuario uS = sessionController.getUsuario(); //Usuario que inicio session
+//        System.out.println("El usuario que inicio Sesion es : " + uS.getNombre());
+//        System.out.println("Voy a elimnar a :  " + clienteSeleccionado.getUsuario().getNombre());
+//        if (uS.getCedula().longValue() != clienteSeleccionado.getUsuario().getCedula()) {
+//            cfl.remove(clienteSeleccionado);
+//            recargarClientes();
+//        }else{
+//            MessageUtil.enviarMensajeError(null, "Error al eliminar el cliente", "No puede elimniarse usted mismo");
+//        }
+//        
+//    }
+//    
     
 
    

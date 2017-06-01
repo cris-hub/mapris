@@ -54,10 +54,10 @@ public class EditarUsuarioController implements Serializable {
     
         public void cambioDeEstado(Usuario u){
         try {
-            if (u.getEstado() == 1) {
-                u.setEstado(2);
+            if (u.getEstado().getNombre().equals("1")) {
+                u.getEstado().setNombre("2");
             } else {
-                u.setEstado(1);
+                u.getEstado().setNombre("1");
             }
             ufl.edit(u);
             MessageUtil.enviarMensajeInformacion("form-data-table-usuarios", "Actualización", "Se ha cambiado el estado del usuario.");
@@ -70,7 +70,7 @@ public class EditarUsuarioController implements Serializable {
     }
     
     public String getIconUsuarioBloqueo(Usuario u){
-        return (u.getEstado() == 1) ? "unlock": "lock";
+        return (u.getEstado().getNombre().equals("1")) ? "unlock": "lock";
     }
 
 }

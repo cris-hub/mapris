@@ -36,11 +36,14 @@ public class Servicio implements Serializable {
     @Basic(optional = false)
     @Column(name = "idServicio")
     private Integer idServicio;
+    
     @Column(name = "nombre")
     private String nombre;
+    
     @Lob
     @Column(name = "descripcion")
     private String descripcion;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idServicios")
     private List<Rutinaservicio> rutinasServicios;
 

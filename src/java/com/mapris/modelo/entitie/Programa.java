@@ -40,16 +40,21 @@ public class Programa implements Serializable {
     @Basic(optional = false)
     @Column(name = "idProgramas")
     private Integer idProgramas;
+    
     @Column(name = "fechaInicio")
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
+    
     @OneToMany(mappedBy = "idPrograma")
     private List<Sesion> sesiones;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPrograma")
     private List<Inscripcion> inscripciones;
+    
     @JoinColumn(name = "idRutinaServicios", referencedColumnName = "idServicios")
     @ManyToOne(optional = false)
     private Rutinaservicio rutinaserviciosidServicios;
+    
 
     public Programa() {
     }

@@ -53,7 +53,7 @@ public class RegistrarUsuarioController {
         if (nuevoUsuario != null) {
             nuevoUsuario.setRoles(new ArrayList<>());
             nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
-            nuevoUsuario.setEstado(2);
+            nuevoUsuario.getEstado().setNombre("2");
             usuarioFacadeLocal.create(nuevoUsuario);
             MessageUtil.enviarMensajeInformacion("form-registro", "Registro satisfactorio", "");
             init();

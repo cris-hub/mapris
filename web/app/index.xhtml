@@ -7,7 +7,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     
     
-    <ui:define name="titulo">#{sessionController.usuario.nombre}</ui:define>
+    <ui:define name="titulo">#{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </ui:define>
     <ui:define name="contenido">
 
         <b:messages show-detail="true" show-summary="true" globalOnly="true"/>

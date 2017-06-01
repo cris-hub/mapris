@@ -13,7 +13,11 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -35,24 +39,33 @@ public class Empresa implements Serializable {
     @Basic(optional = false)
     @Column(name = "idEmpresa")
     private Long idEmpresa;
+    
+    @JoinTable(name = "empresa_has_telefonos", joinColumns = {
+        @JoinColumn(name = "empresa_idEmpresa", referencedColumnName = "idEmpresa")}, inverseJoinColumns = {
+        @JoinColumn(name = "telefonos_id_telefono", referencedColumnName = "id_telefono")})
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Telefono> telefonos;
+    
+    @ManyToMany(mappedBy = "empresas", fetch = FetchType.LAZY)
+    private List<Direccion> direcciones;
+    
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @Column(name = "direccion")
-    private String direccion;
-    @Column(name = "telefono")
-    private Integer telefono;
+    
+    
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpresa")
     private List<Cliente> clientes;
 
     public Empresa() {
     }
 
-    public Empresa(Long idEmpresa, String nombre, String direccion, Integer telefono, List<Cliente> clientes) {
+    public Empresa(Long idEmpresa, String nombre, List<Cliente> clientes) {
         this.idEmpresa = idEmpresa;
         this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
+        
+        
         this.clientes = clientes;
     }
 
@@ -72,21 +85,6 @@ public class Empresa implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public Integer getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(Integer telefono) {
-        this.telefono = telefono;
-    }
 
     public List<Cliente> getClientes() {
         return clientes;
@@ -124,6 +122,24 @@ public class Empresa implements Serializable {
     @Override
     public String toString() {
         return "Empresa{" + "idEmpresa=" + idEmpresa + '}';
+    }
+
+    @XmlTransient
+    public List<Telefono> getTelefonos() {
+        return telefonos;
+    }
+
+    public void setTelefonos(List<Telefono> telefonos) {
+        this.telefonos = telefonos;
+    }
+
+    @XmlTransient
+    public List<Direccion> getDirecciones() {
+        return direcciones;
+    }
+
+    public void setDirecciones(List<Direccion> direcciones) {
+        this.direcciones = direcciones;
     }
 
  

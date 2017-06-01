@@ -19,8 +19,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,6 +30,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -45,136 +48,153 @@ public class Usuario implements Serializable {
     @NotNull(message = "Este campo es obligatorio")
     @Column(name = "cedula")
     private Long cedula;
-
-    @Basic(optional = false)
-    @Column(name = "nombre")
-    private String nombre;
-
-    @Basic(optional = false)
-    @Column(name = "apellidos")
-    private String apellidos;
-    @Lob
-    @Column(name = "email")
-    private String email;
-
+    
     @Basic(optional = false)
     @Column(name = "clave")
     private String clave;
 
-    @Column(name = "telefono")
-    private Integer telefono;
+    @Basic(optional = false)
+    @Column(name = "primer_nombre")
+    private String primerNombre;
 
-    @Column(name = "dirreccion")
-    private String dirreccion;
+    @Basic(optional = true)
+    @Column(name = "segundo_nombre")
+    private String segundoNombre;
 
+    @Basic(optional = false)
+    @Column(name = "primer_apellido")
+    private String primerApellido;
+
+    @Basic(optional = true)
+    @Column(name = "segundo_apellido")
+    private String segundoApellido;
+    
     @Lob
     @Column(name = "imegen_perfil")
-    private String imagen;
+    private byte[] imegenPerfil;
 
-    @Column(name = "estado")
-    private Integer estado;
+    
 
     @Basic(optional = false)
     @Column(name = "fechaNaci")
     @Temporal(TemporalType.DATE)
     private Date fechaNaci;
     
+    
+    @JoinColumn(name = "id_estados", referencedColumnName = "id_estados", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Estado estado;
+    
+    
+    @ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
+    private List<Telefono> telefonos;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY)
+    private List<UsuarioDireccion> direcciones;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
+    private List<Correo> correos;
+
     @JoinTable(name = "rolesusuarios",
             joinColumns = @JoinColumn(name = "idUsuarios", referencedColumnName = "cedula"),
             inverseJoinColumns = @JoinColumn(name = "idRoles", referencedColumnName = "idRoles"))
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Rol> roles;
 
+    
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Personalmedico personalmedico;
 
+    
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Cliente clientes;
 
+    //Contructores para la entidad
     public Usuario() {
     }
 
-    public Usuario(Long cedula, String nombre, String apellidos, String email, String clave, Date fechaNaci, List<Rol> roles) {
+    public Usuario(Long cedula, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, byte[] imegenPerfil, String clave, Date fechaNaci, Estado estado, List<Telefono> telefonos, List<UsuarioDireccion> direcciones, List<Correo> correos, List<Rol> roles, Personalmedico personalmedico, Cliente clientes) {
         this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email;
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+        this.imegenPerfil = imegenPerfil;
         this.clave = clave;
         this.fechaNaci = fechaNaci;
-        this.roles = roles;
-    }
-
-    public Usuario(Long cedula, String nombre, String apellidos, String email, Date fechaNaci, List<Rol> roles) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.fechaNaci = fechaNaci;
-        this.roles = roles;
-    }
-
-    public Usuario(Long cedula, String nombre, String apellidos, String email, String clave, Integer telefono, String dirreccion, String imagen, Date fechaNaci, List<Rol> roles, Personalmedico personalmedico, Cliente clientes) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.clave = clave;
-        this.telefono = telefono;
-        this.dirreccion = dirreccion;
-        this.imagen = imagen;
-        this.fechaNaci = fechaNaci;
-        this.roles = roles;
-        this.personalmedico = personalmedico;
-        this.clientes = clientes;
-    }
-
-    public Usuario(Long cedula, String nombre, String apellidos, Date fechaNaci, List<Rol> roles, Personalmedico personalmedico, Cliente clientes) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.fechaNaci = fechaNaci;
-        this.roles = roles;
-        this.personalmedico = personalmedico;
-        this.clientes = clientes;
-    }
-
-    public Usuario(Long cedula, String nombre, String apellidos, String clave, Date fechaNaci) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.clave = clave;
-        this.fechaNaci = fechaNaci;
-    }
-
-    public Usuario(Long cedula, String nombre, String apellidos, String email, Integer telefono, String dirreccion, Date fechaNaci, List<Rol> roles, Personalmedico personalmedico, Cliente clientes) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.telefono = telefono;
-        this.dirreccion = dirreccion;
-        this.fechaNaci = fechaNaci;
-        this.roles = roles;
-        this.personalmedico = personalmedico;
-        this.clientes = clientes;
-    }
-
-    public Usuario(Long cedula, String nombre, String apellidos, String email, String clave, Integer telefono, String dirreccion, String imagen, Integer estado, Date fechaNaci, List<Rol> roles, Personalmedico personalmedico, Cliente clientes) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.clave = clave;
-        this.telefono = telefono;
-        this.dirreccion = dirreccion;
-        this.imagen = imagen;
         this.estado = estado;
+        this.telefonos = telefonos;
+        this.direcciones = direcciones;
+        this.correos = correos;
+        this.roles = roles;
+        this.personalmedico = personalmedico;
+        this.clientes = clientes;
+    }
+    
+    
+    
+
+    public Usuario(Long cedula, String primerNombre, String primerApellido, String clave, Date fechaNaci) {
+        this.cedula = cedula;
+        this.primerNombre = primerNombre;
+        this.primerApellido = primerApellido;
+        this.clave = clave;
+
+        this.fechaNaci = fechaNaci;
+    }
+
+    public Usuario(Long cedula, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String clave, Date fechaNaci, List<Rol> roles, Personalmedico personalmedico, Cliente clientes) {
+        this.cedula = cedula;
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+        this.clave = clave;
+
         this.fechaNaci = fechaNaci;
         this.roles = roles;
         this.personalmedico = personalmedico;
         this.clientes = clientes;
     }
 
+    
+    
+    //Getteers And Setters para los atributos de la entidad
+    public String getSegundoNombre() {
+        return segundoNombre;
+    }
+
+    public void setSegundoNombre(String segundoNombre) {
+        this.segundoNombre = segundoNombre;
+    }
+
+    public String getPrimerApellido() {
+        return primerApellido;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public String getSegundoApellido() {
+        return segundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    
+    
+    
     public Long getCedula() {
         return cedula;
     }
@@ -183,49 +203,12 @@ public class Usuario implements Serializable {
         this.cedula = cedula;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getPrimerNombre() {
+        return primerNombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public Usuario(Long cedula, String nombre, String apellidos, String email, String clave, List<Rol> roles) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.clave = clave;
-        this.roles = roles;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getTelefono() {
-        return telefono;
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
     }
 
     public String getClave() {
@@ -236,32 +219,12 @@ public class Usuario implements Serializable {
         this.clave = clave;
     }
 
-    public void setTelefono(Integer telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getDirreccion() {
-        return dirreccion;
-    }
-
-    public void setDirreccion(String dirreccion) {
-        this.dirreccion = dirreccion;
-    }
-
     public Date getFechaNaci() {
         return fechaNaci;
     }
 
     public void setFechaNaci(Date fechaNaci) {
         this.fechaNaci = fechaNaci;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
     }
 
     public List<Rol> getRoles() {
@@ -288,6 +251,7 @@ public class Usuario implements Serializable {
         this.clientes = clientes;
     }
 
+    //Hashcode para y equals para la entidad
     @Override
     public int hashCode() {
         int hash = 7;
@@ -313,9 +277,47 @@ public class Usuario implements Serializable {
         return true;
     }
 
+    // toString para la entidad
     @Override
     public String toString() {
         return "Usuario{" + "cedula=" + cedula + '}';
+    }
+
+    public byte[] getImegenPerfil() {
+        return imegenPerfil;
+    }
+
+    public void setImegenPerfil(byte[] imegenPerfil) {
+        this.imegenPerfil = imegenPerfil;
+    }
+
+    @XmlTransient
+    public List<Correo> getCorreos() {
+        return correos;
+    }
+
+    public void setCorreos(List<Correo> correos) {
+        this.correos = correos;
+    }
+
+    
+
+    @XmlTransient
+    public List<Telefono> getTelefonos() {
+        return telefonos;
+    }
+
+    public void setTelefonos(List<Telefono> telefonos) {
+        this.telefonos = telefonos;
+    }
+
+    @XmlTransient
+    public List<UsuarioDireccion> getDirecciones() {
+        return direcciones;
+    }
+
+    public void setDirecciones(List<UsuarioDireccion> direcciones) {
+        this.direcciones = direcciones;
     }
 
 }

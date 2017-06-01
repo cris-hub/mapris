@@ -183,6 +183,7 @@ public class Permiso implements Serializable {
         return "Permiso{" + "id=" + id + '}';
     }
 
+   
   
     
 
