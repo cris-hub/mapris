@@ -106,19 +106,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e05573', end
       .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li a,
       .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu .dropdown-menu-list > li a {
         color: #EFEFEF;
-        border-bottom: 1px solid #D05365 !important; }
+        border-bottom: 1px solid #C54557 !important; }
         .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li a > i,
         .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu .dropdown-menu-list > li a > i {
-          color: #FFFFFF; }
+          color: #bcc0cf; }
         .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li a:hover,
         .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu .dropdown-menu-list > li a:hover {
-          background: rgba(210, 90, 108, 0.38); }
+          background: rgba(238, 79, 103, 0.51); }
       .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li a {
         border-bottom: 0 !important; }
       .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li.divider {
-        background: #CE4056; }
+        background: #646b89; }
     .page-header.navbar .top-menu .navbar-nav > li.dropdown-notification.dropdown-dark .dropdown-menu .dropdown-menu-list > li > a .time {
-      background: #CE4E61; }
+      background: #4c5169; }
     .page-header.navbar .top-menu .navbar-nav > li.dropdown-notification.dropdown-dark .dropdown-menu .dropdown-menu-list > li > a:hover .time {
       background: rgba(238, 67, 93, 0.51); }
   .page-header.navbar .search-form {
@@ -188,18 +188,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e05573', end
     .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a,
     .page-sidebar .page-sidebar-menu > li:hover > a,
     .page-sidebar .page-sidebar-menu > li.open > a {
-      background: rgb(241, 111, 131);
-      color: #fff; }
+      background: #f2f6f9;
+      color: #5b9bd1; }
       .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a > i, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a > i,
       .page-sidebar .page-sidebar-menu > li:hover > a > i,
       .page-sidebar .page-sidebar-menu > li.open > a > i {
-        color: #fff; }
+        color: #5b9bd1; }
       .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a > .arrow:before, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a > .arrow.open:before, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a > .arrow:before, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a > .arrow.open:before,
       .page-sidebar .page-sidebar-menu > li:hover > a > .arrow:before,
       .page-sidebar .page-sidebar-menu > li:hover > a > .arrow.open:before,
       .page-sidebar .page-sidebar-menu > li.open > a > .arrow:before,
       .page-sidebar .page-sidebar-menu > li.open > a > .arrow.open:before {
-        color: #fff; }
+        color: #67a2d4; }
     .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a,
     .page-sidebar .page-sidebar-menu > li.active > a,
     .page-sidebar .page-sidebar-menu > li.active.open > a {
@@ -227,11 +227,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e05573', end
     .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li > a > .arrow:before, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li > a > .arrow.open:before,
     .page-sidebar .page-sidebar-menu li > a > .arrow:before,
     .page-sidebar .page-sidebar-menu li > a > .arrow.open:before {
-      color: #F74B65; }
+      color: #b1c4d2; }
     .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li:hover > a > .arrow:before, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li:hover > a > .arrow.open:before,
     .page-sidebar .page-sidebar-menu li:hover > a > .arrow:before,
     .page-sidebar .page-sidebar-menu li:hover > a > .arrow.open:before {
-      color: #fff; }
+      color: #67a2d4; }
     .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li.active > a > .arrow:before, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li.active > a > .arrow.open:before,
     .page-sidebar .page-sidebar-menu li.active > a > .arrow:before,
     .page-sidebar .page-sidebar-menu li.active > a > .arrow.open:before {

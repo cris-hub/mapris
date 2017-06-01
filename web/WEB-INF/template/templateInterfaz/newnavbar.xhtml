@@ -356,11 +356,11 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <span class="username username-hide-on-mobile"> #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </span>
                                 <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                <img alt="" src="#{request.contextPath}/resources/img/avatar1_small.jpg" class="img-circle"/> </a>
+                                <img alt="" src="#{request.contextPath}/resources/img/avatar1_small.jpg"/> </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     
-<!--                                    <h:link outcome="#{request.contextPath}/app/usuarios/perfil_cambiardatos.xhtml"/> -->
+<!--                                        <h:link outcome="#{request.contextPath}/WEB-INF/template/user_perfil_miPerfil.xhtml"/> -->
                                         <i class="icon-user"></i> #{msjPerfil.txtperfil}    
                                 </li>
                                 <li>
@@ -396,7 +396,7 @@
                         <div class="col-md-1 col-sm-1 col-lg-1 " style="padding-top:20px;">
                             <h:form>
                                 <h:commandLink action="#{sessionController.cerrarSesion()}" >
-                                    <input type="checkbox" checked="true" data-toggle="toggle" data-style="ios" data-size="small" data-onstyle="danger" data-offstyle="info"  data-on="#{msjModuloAdmin.dataon}"  data-off="#{msjModuloAdmin.dataoff}"/></h:commandLink>
+                                    <input type="checkbox" checked="true" data-toggle="toggle" data-style="ios" data-size="small" data-onstyle="danger" data-offstyle="info"  data-on="#{msjModuloAdmin.dataon}" data-off="#{msjModuloAdmin.dataoff}"/></h:commandLink>
 
                             </h:form>
                         </div>
