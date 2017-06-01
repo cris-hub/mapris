@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:b="http://bootsfaces.net/ui">
     <div class="card   " style="margin-top: 5%;">
@@ -13,12 +14,14 @@
             </div>
 
             <div class="col-md-4">
-                <b:form>
+
+                <h:form>
 
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                             #{msjApp.idioma} <span class="caret"></span>
                         </button>
+
                         <ul class="dropdown-menu dropdown-menu-left">
                             <c:forEach items="#{sessionController.supportLanguages}" var="l" >
                                 <li>
@@ -30,20 +33,20 @@
                         </ul>
                     </div>
 
-                </b:form>
+                </h:form>
             </div>
         </div>
 
-
-        <h:form   id="login" prependId="false">
-
-            <div>
+<div>
                 <b:messages  showSummary="true" showDetail="true"  globalOnly="true"/>
             </div>
+        <h:form   id="login" prependId="false">
+            
+
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icon_profile"></i></span>
-                    <b:inputText id="username" class="form-control" pst:placeholder="#{msjLogin.placeholderDocumento}" pst:autofocus="true"  value="#{sessionController.documento}"/>
+                    <h:inputText id="username" class="form-control" pst:placeholder="#{msjLogin.placeholderDocumento}" pst:autofocus="true"  value="#{sessionController.documento}"/>
                     <h:message for="username" />
                 </div>
 
@@ -51,7 +54,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                    <b:inputSecret id="password"  class="form-control" pst:placeholder="#{msjLogin.placeholderPassword}" value="#{sessionController.clave}"/>
+                    <h:inputSecret id="password"  class="form-control" pst:placeholder="#{msjLogin.placeholderPassword}" value="#{sessionController.clave}"/>
                     <h:message for="password" />
                 </div>
 

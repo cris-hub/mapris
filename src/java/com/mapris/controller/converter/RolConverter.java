@@ -16,7 +16,7 @@ import javax.faces.convert.FacesConverter;
 
 /**
  *
- * @author Ismael
+ * @author KoLach0
  */
 @FacesConverter(forClass = Rol.class, value = "rolConverter")
 public class RolConverter implements Converter{
