@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/WEB-INF/template/template.xhtml"
+<ui:composition 
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
-                >
+                template="/WEB-INF/template/templateUser/template.xhtml">
 
-    <ui:define name="titulo">#{sessionController.usuario.nombre}</ui:define>
-    <ui:define name="contenido">
+    <ui:define name="titulo">#{sessionController.usuario.primerNombre}</ui:define>
+    <ui:define name="content">
         <div class="col-md-12">
             <!-- BEGIN PROFILE SIDEBAR -->
             <div class="profile-sidebar">
@@ -22,7 +22,7 @@
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
-                        <div class="profile-usertitle-name"> #{sessionController.usuario.nombre} #{sessionController.usuario.apellidos} </div>
+                        <div class="profile-usertitle-name"> #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </div>
                         <div class="profile-usertitle-job"> #{sessionController.rolSeleccionado.nombre} </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
@@ -122,22 +122,22 @@
                                         <h:form role="form" >
                                             <div class="form-group">
                                                 <label class="control-label">#{msjPerfil.labelnombre}</label>
-                                                <h:inputText  pst:placeholder="#{sessionController.usuario.nombre}" value="#{sessionController.usuario.nombre}" class="form-control" /> </div>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.primerNombre}" class="form-control" /> </div>
                                             <div class="form-group">
                                                 <label class="control-label">#{msjPerfil.labelapellido}</label>
-                                                <h:inputText  pst:placeholder="#{sessionController.usuario.apellidos}" value="#{sessionController.usuario.apellidos}" class="form-control" /> </div>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.primerApellido}"  class="form-control" /> </div>
                                             <div class="form-group">
                                                 <label class="control-label">#{msjPerfil.labeltele}</label>
-                                                <h:inputText  pst:placeholder="#{sessionController.usuario.telefono}" value="#{sessionController.usuario.telefono}" class="form-control" /> </div>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.telefonos}"  class="form-control" /> </div>
                                             <div class="form-group">
                                                 <label class="control-label">#{msjPerfil.labelcorreo}</label>
-                                                    <h:inputText  pst:placeholder="#{sessionController.usuario.email}" value="#{sessionController.usuario.email}" class="form-control" /> </div>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.correos}"  class="form-control" /> </div>
                                             <div class="form-group">
                                                 <label class="control-label">#{msjPerfil.labeldirec}</label>
-                                                <h:inputText  pst:placeholder="#{sessionController.usuario.dirreccion}" value="#{sessionController.usuario.dirreccion}" class="form-control" /> </div>
+                                                <h:inputText   pst:placeholder="#{sessionController.usuario.direcciones}"  class="form-control" /> </div>
                                             <div class="form-group">
                                                 <label class="control-label">#{msjPerfil.labelfecha}</label>
-                                                <h:inputText pst:type="date"  pst:placeholder="#{sessionController.usuario.fechaNaci}" class="form-control" /> </div>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.fechaNaci}"  class="form-control true" /> </div>
                                             <div class="form-group">
                                                 <label class="control-label">Acerca</label>
                                                 <textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
