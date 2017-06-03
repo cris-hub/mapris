@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition 
+<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
-                template="/WEB-INF/template/templateUser/template.xhtml">
+                xmlns:pst="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:define name="titulo">#{sessionController.usuario.primerNombre}</ui:define>
-    <ui:define name="content">
+    <ui:define name="pagetitle">
+        <div class="page-head">
+            <div class="page-title">
+                <h1> Perfil - Cambiar Datos
+                    <small>Mis datos personales</small>
+                </h1>
+            </div>
+        </div>
+    </ui:define>
+    
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a href="index.html">Mi perfil</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span class="active">Cambiar datos</span>
+                </li>
+            </ul>
+ 
+    </ui:define>
+
+    <ui:define name="contenido">
         <div class="col-md-12">
             <!-- BEGIN PROFILE SIDEBAR -->
             <div class="profile-sidebar">
@@ -17,7 +40,7 @@
                 <div class="portlet light profile-sidebar-portlet bordered">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="#{request.contextPath}/resources/img/photo3.jpg" class="img-responsive" alt=""/>
+                        <img src="#{request.contextPath}/resources/img/avatars/photo3.jpg" class="img-responsive" alt=""/>
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->

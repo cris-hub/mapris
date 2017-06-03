@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+            
+            <div class="container-iner">
+                <div style="margin-bottom:70px;"  class="row active" id="tab5">
+                    <div class="row">
+                        <br/>
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="widget-area no-padding blank"> 
+                                <div class="panel-primary">
+                                    <div class="panel-heading">
+                                        <center><p>#{msjForo.labelforo}</p></center>
+                                    </div>
+                                    <div class="status-upload">
+                                        <div class="panel-body">
+                                            <form>
+                                                <textarea placeholder="#{msjForo.labeltextarea}" ></textarea>
+                                                <ul>
+                                                    <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="#{msjForo.butonaudio}"><i class="fa fa-music"></i></a></li>
+                                                    <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="#{msjForo.butonvideo}"><i class="fa fa-video-camera"></i></a></li>
+                                                    <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="#{msjForo.butonrecord}"><i class="fa fa-microphone"></i></a></li>
+                                                    <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="#{msjForo.butonimagen}"><i class="fa fa-picture-o"></i></a></li>
+                                                </ul>
+                                                <button type="submit" class="btn btn-success green" id="compartir"><i class="fa fa-share"></i> #{msjForo.botoncompa}</button>
+                                            </form>
+                                        </div>
+                                        <!-- Status Upload  -->
+                                    </div><!-- Widget Area -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        
+
+
+
+    </ui:composition>
+
+
+

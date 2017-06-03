@@ -9,13 +9,17 @@
     <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->
         <div class="page-content">
-            <ui:include src="/WEB-INF/template/templateInterfaz/pagetitle.xhtml"/>
-            <ui:include src="/WEB-INF/template/templateInterfaz/breadcrumb.xhtml"/>
+
+            <ui:insert name="pagetitle"/>
+            <ui:insert name="breadcrumb"/>
+           
 
             <!-- BEGIN PAGE BASE CONTENT -->
             <div class="row">
                 
-                        <ui:insert name="content"/>
+                <ui:insert name="contenido">
+                    
+                </ui:insert>
                    
             </div>
             <!-- END PAGE BASE CONTENT -->
