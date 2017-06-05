@@ -16,57 +16,61 @@
             </div>
         </div>
     </ui:define>
-    
+
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="index.html">Mi perfil</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <span class="active">Cambiar datos</span>
-                </li>
-            </ul>
- 
+            <li>
+                <a href="index.html">Mi perfil</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Cambiar datos</span>
+            </li>
+        </ul>
+
     </ui:define>
     <ui:define name="contenido">
-        <div class="row">
-            <div class="col-sm-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Modificar datos del usuario
-                    </header>
-                    <b:messages showSummary="true" show-detail="true"/>
-                    <b:message for="form-editar" showSummary="true" show-detail="true"/>
-                    <b:form id="form-editar" prependId="false">
-                        <b:panelGrid colSm="12" columns="2">
-                            <h:outputText value="Documento"/>
-                            <b:inputText value="#{editarUsuarioController.usuarioSelecionado.cedula}" />
-                            <h:outputText value=" nombres"/>
-                            <b:inputText value="#{editarUsuarioController.usuarioSelecionado.primerNombre}"/>
-                            <h:outputText value=" apellidos"/>
-                            <b:inputText value="#{editarUsuarioController.usuarioSelecionado.primerApellido}"/>
-                            <h:outputText value="Correo"/>
-                            <b:inputText value="#{editarUsuarioController.usuarioSelecionado.email}"/>
-                            <h:outputText value="Fecha Nacimiento"/>
-                            <b:datepicker  value="#{editarUsuarioController.usuarioSelecionado.fechaNaci}"  />
-                            
-                            <h:outputText value="clave"/>
-                            <b:inputText value="#{editarUsuarioController.usuarioSelecionado.clave}"/>
 
-                            <h:outputText value="Roles del usuario"/>
-                            <h:selectManyCheckbox value="#{editarUsuarioController.usuarioSelecionado.roles}" class="form-control"
-                                                  >
-                                <f:selectItems value="#{rolContoller.roles}" var="r" itemLabel="#{r.nombre}"/>
-                            </h:selectManyCheckbox>
-                            <br/>
-                        </b:panelGrid>
-                        <h:link styleClass="btn btn-primary" outcome="/app/usuarios/listar.xhtml" value="Volver"/>
-                        <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarUsuarioController.actualizarDatos()}"/>
-                    </b:form>
-                </section>
+        <div class="col-sm-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase">Editar Usuario</span>
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+                <b:messages showSummary="true" show-detail="true"/>
+                <b:message for="form-editar" showSummary="true" show-detail="true"/>
+                <b:form id="form-editar" prependId="false">
+                    <b:panelGrid colSm="12" columns="2">
+                        <h:outputText value="Documento"/>
+                        <b:inputText value="#{editarUsuarioController.usuarioSelecionado.cedula}" />
+                        <h:outputText value=" nombres"/>
+                        <b:inputText value="#{editarUsuarioController.usuarioSelecionado.primerNombre}"/>
+                        <h:outputText value=" apellidos"/>
+                        <b:inputText value="#{editarUsuarioController.usuarioSelecionado.primerApellido}"/>
+                        <h:outputText value="Correo"/>
+                        <b:inputText value="#{editarUsuarioController.usuarioSelecionado.correos}"/>
+                        <h:outputText value="Fecha Nacimiento"/>
+                        <b:datepicker  value="#{editarUsuarioController.usuarioSelecionado.fechaNaci}"  />
+
+                        <h:outputText value="clave"/>
+                        <b:inputText value="#{editarUsuarioController.usuarioSelecionado.clave}"/>
+
+                        <h:outputText value="Roles del usuario"/>
+                        <h:selectManyCheckbox value="#{editarUsuarioController.usuarioSelecionado.roles}" class="form-control"
+                                              >
+                            <f:selectItems value="#{rolContoller.roles}" var="r" itemLabel="#{r.nombre}"/>
+                        </h:selectManyCheckbox>
+                        <br/>
+                    </b:panelGrid>
+                    <h:link styleClass="btn btn-primary" outcome="/app/usuarios/listar.xhtml" value="Volver"/>
+                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarUsuarioController.actualizarDatos()}"/>
+                </b:form>
             </div>
-        </div><!--/.row-->
+        </div>
+
 
 
     </ui:define>
