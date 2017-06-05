@@ -42,7 +42,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
             q.setParameter("clv", clave);
             return q.getSingleResult();
         } catch (Exception e) {
-            System.out.println("no paso");
+            System.out.println("El usuario no ingreso a la sesión");
             e.printStackTrace();
             return null;
         }
