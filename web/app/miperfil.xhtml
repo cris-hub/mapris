@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
+ <ui:define name="titulo">#{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </ui:define>
+    <ui:define name="pagetitle">
+        <div class="page-head">
+            <div class="page-title">
+                <h1> Mi Perfil
+                    <small>Mis metas</small>
+                </h1>
+            </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="index.html">Inicio</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Mi Perfil</span>
+            </li>
+        </ul>
+
+    </ui:define>    
+    
+    
+ <ui:define name="contenido">
     <div class="col-md-12">
         <!-- BEGIN PROFILE SIDEBAR -->
         <div class="profile-sidebar">
@@ -13,12 +40,12 @@
             <div class="portlet light profile-sidebar-portlet bordered">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    <img src="#{request.contextPath}/resources/img/photo3.jpg" class="img-responsive" alt=""/> </div>
+                    <img src="#{request.contextPath}/resources/img/avatars/photo3.jpg" class="img-responsive" alt=""/> </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
-                    <div class="profile-usertitle-name"> #{sessionController.usuario.primerNombre} #{sessionController.usuario.apellidos}</div>
-                    <div class="profile-usertitle-job"> Developer </div>
+                    <div class="profile-usertitle-name"> #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido}</div>
+                    <div class="profile-usertitle-job"> #{sessionController.rolSeleccionado.nombre} </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->
@@ -35,8 +62,8 @@
                                 <i class="icon-home"></i> Overvieffw </a>
                         </li>
                         <li>
-                            <a href="page_user_profile_1_account.html">
-                                <i class="icon-settings"></i> Account Settings </a>
+                            <a href="#{request.contextPath}/app/cambiardatos.xhtml">
+                                <i class="icon-settings"></i> #{msjPerfil.butonconfigcuenta} </a>
                         </li>
                         <li>
                             <a href="page_user_profile_1_help.html">
@@ -1383,5 +1410,5 @@
         </div>
         <!-- END PROFILE CONTENT -->
     </div>
-
+</ui:define>
 </ui:composition> 

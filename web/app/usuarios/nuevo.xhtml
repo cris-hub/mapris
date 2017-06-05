@@ -6,8 +6,9 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:b="http://bootsfaces.net/ui">
- 
+
     <ui:define name="titulo">#{sessionController.usuario.primerNombre}</ui:define>
     <ui:define name="pagetitle">
         <div class="page-head">
@@ -18,58 +19,62 @@
             </div>
         </div>
     </ui:define>
-    
+
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="index.html">Mi perfil</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <span class="active">Nuevo</span>
-                </li>
-            </ul>
+            <li>
+                <a href="index.html">Mi perfil</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Nuevo</span>
+            </li>
+        </ul>
     </ui:define>
-    
+
     <ui:define name="contenido">
-        <div class="row">
-            <div class="col-sm-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Registrar Usuario
-                    </header>
-                    <b:messages globalOnly="true" showSummary="true" show-detail="true"/>
-                    <b:message for="form-registro" showSummary="true" show-detail="true"/>
-                    <b:form id="form-registro" prependId="false">
-                        <b:panelGrid colSm="12" columns="2">
+
+        <div class="col-sm-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase">Nuevo Usuario</span>
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+                <b:messages globalOnly="true" showSummary="true" show-detail="true"/>
+                <b:message for="form-registro" showSummary="true" show-detail="true"/>
+                <b:form id="form-registro" prependId="false">
+                    <b:panelGrid colSm="12" columns="2">
 
 
-                            <h:outputText value="Documento"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.cedula}" required="true"/>
-                            <h:outputText value="primer nombre"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.primerNombre}" rendered="true"/>
-                            <h:outputText value="segundo nombre"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.segundoNombre}" rendered="true"/>
-                            <h:outputText value="apellido paterno"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.primerApellido}"/>
-                            <h:outputText value="apellido materno"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.segundoApellido}"/>
-                            <h:outputText value="Correo"/>
-                            <b:inputText value="#{registroController.nuevoUsuario.email}" required="true"/>
-                            <h:outputText value="fecha nacimiento"/>
-                            <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}" required="true"/>
-                            
+                        <h:outputText value="Documento"/>
+                        <b:inputText name="documento" id="documento" pst:data-mask="0000000000"  value="#{registroController.nuevoUsuario.cedula}" required="true"/>
+                        <h:outputText value="primer nombre"/>
+                        <b:inputText value="#{registroController.nuevoUsuario.primerNombre}" rendered="true"/>
+                        <h:outputText value="segundo nombre"/>
+                        <b:inputText value="#{registroController.nuevoUsuario.segundoNombre}" rendered="true"/>
+                        <h:outputText value="apellido paterno"/>
+                        <b:inputText value="#{registroController.nuevoUsuario.primerApellido}"/>
+                        <h:outputText value="apellido materno"/>
+                        <b:inputText value="#{registroController.nuevoUsuario.segundoApellido}"/>
+                        <h:outputText value="Correo"/>
+                        <b:inputText value="#{registroController.nuevoUsuario.correos}" required="true"/>
+                        <h:outputText value="fecha nacimiento"/>
+                        <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}" required="true"/>
 
 
-                            <h:outputText value="Clave"/>
-                            <b:inputSecret value="#{registroController.nuevoUsuario.clave}" required="true"/>
-                        </b:panelGrid>
-                        <h:link styleClass="btn btn-primary" outcome="/app/usuarios/listar.xhtml" value="Volver"/>
-                        <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{registroController.registrar()}"/>
-                    </b:form>
-                </section>
+
+                        <h:outputText value="Clave"/>
+                        <b:inputSecret value="#{registroController.nuevoUsuario.clave}" required="true"/>
+                    </b:panelGrid>
+                    <h:link styleClass="btn btn-primary" outcome="/app/usuarios/listar.xhtml" value="Volver"/>
+                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{registroController.registrar()}"/>
+                </b:form>
             </div>
-        </div><!--/.row-->
+        </div>
+
 
 
     </ui:define>
