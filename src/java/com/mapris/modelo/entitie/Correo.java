@@ -43,7 +43,7 @@ public class Correo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idCorreo")
+    @Column(name = "id_Correo")
     private Integer idCorreo;
     
     @Basic(optional = false)
@@ -52,15 +52,11 @@ public class Correo implements Serializable {
     @Column(name = "correo")
     private String correo;
     
-    @JoinColumn(name = "idUsuario", referencedColumnName = "cedula")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", referencedColumnName = "cedula")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Usuario idUsuario;
 
-    @JoinTable(name = "usuarios_has_correos", joinColumns = {
-        @JoinColumn(name = "correos_id_correo", referencedColumnName = "id_correo")}, inverseJoinColumns = {
-        @JoinColumn(name = "usuarios_cedula", referencedColumnName = "cedula")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Usuario> usuarios;
+
     
     public Correo() {
     }
@@ -98,6 +94,13 @@ public class Correo implements Serializable {
         this.idUsuario = idUsuario;
     }
 
+    public Correo(Integer idCorreo, String correo, Usuario idUsuario) {
+        this.idCorreo = idCorreo;
+        this.correo = correo;
+        this.idUsuario = idUsuario;
+    }
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -121,17 +124,11 @@ public class Correo implements Serializable {
     @Override
     public String toString() {
         return "com.mapris.modelo.entitie.Correo[ idCorreo=" + idCorreo + " ]";
+        
     }
 
 
-    @XmlTransient
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
 
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
 
     
 }

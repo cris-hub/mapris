@@ -58,7 +58,7 @@ public class RegistrarUsuarioController {
             MessageUtil.enviarMensajeInformacion("form-registro", "Registro satisfactorio", "");
             init();
         } else{
-            MessageUtil.enviarMensajeError("form-regitro", "no se han dioligenciado los campos ", "");
+            MessageUtil.enviarMensajeError("form-registro", "no se han dioligenciado los campos ", "");
         }
     }
     

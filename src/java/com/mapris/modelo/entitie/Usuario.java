@@ -75,7 +75,7 @@ public class Usuario implements Serializable {
 
     
 
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "fechaNaci")
     @Temporal(TemporalType.DATE)
     private Date fechaNaci;
@@ -89,12 +89,15 @@ public class Usuario implements Serializable {
     @ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
     private List<Telefono> telefonos;
     
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<UsuarioDireccion> direcciones;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.EAGER)
     private List<Correo> correos;
 
+    
     @JoinTable(name = "rolesusuarios",
             joinColumns = @JoinColumn(name = "idUsuarios", referencedColumnName = "cedula"),
             inverseJoinColumns = @JoinColumn(name = "idRoles", referencedColumnName = "idRoles"))
