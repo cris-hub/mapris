@@ -1,17 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/WEB-INF/template/templateUser/template.xhtml"
-                xmlns:b="http://bootsfaces.net/ui"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
-    
-    
+<ui:composition  template="/WEB-INF/template/templateInterfaz.xhtml"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 xmlns:b="http://bootsfaces.net/ui"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
     <ui:define name="titulo">#{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </ui:define>
+    <ui:define name="pagetitle">
+        <div class="page-head">
+            <div class="page-title">
+                <h1> Poner nombre
+                    <small>Poner nombre</small>
+                </h1>
+            </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="index.html">Mi perfil</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Poner nombre</span>
+            </li>
+        </ul>
+
+    </ui:define>
+
     <ui:define name="contenido">
 
-                  <b:messages show-detail="true" show-summary="true" globalOnly="true"/>
-                  
+        
+
 
 
     </ui:define>

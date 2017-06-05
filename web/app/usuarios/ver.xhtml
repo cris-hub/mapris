@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/WEB-INF/template/templateUser/template.xhtml"
+<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -10,10 +10,22 @@
     <ui:define name="title">
         <title>Usuario</title>
     </ui:define>
-    <ui:define name="titlePage">
-        Usuario
+
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Ver</span>
+            </li>
+        </ul>
+
     </ui:define>
-    <ui:define name="content">
+
+
+    <ui:define name="contenido">
         <div class="container">
             <div class="row">
 
@@ -65,16 +77,8 @@
                                                     <h:outputText value="correos"/>
 
                                                 </td>
-                                                <td>
-                                                    <b:dataTable page-length="2" page-length-menu="[2,4,6,8]" searching="false" select="true" >
-                                                        <b:dataTableColumn  label="correos" >
-                                                            <c:forEach items="#{verUsuarioControoller.usuario.correos}" var="r2">
-                                                                <h:outputText value="#{r2.correo}"/><br/>
-                                                            </c:forEach>>
-                                                        </b:dataTableColumn>
-                                                    </b:dataTable>
-                                                    <h:outputText value="#{verUsuarioControoller.usuario.estado.nombre}" style="color:blue;"/>
 
+                                                <td>
                                                 </td>
                                             </tr>
 

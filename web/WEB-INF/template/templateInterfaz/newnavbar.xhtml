@@ -178,7 +178,7 @@
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="#{request.contextPath}/resources/img/avatar1_small.jpg" class="img-circle" alt=""/></span>
+                                                    <img src="#{request.contextPath}/resources/img/avatars/avatar1_small.jpg" class="img-circle" alt=""/></span>
 
                                                 <span class="subject">
                                                     <span class="from"> Lisa Wong </span>
@@ -190,7 +190,7 @@
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="#{request.contextPath}/resources/img/avatar1_small.jpg" class="img-circle" alt=""/></span>
+                                                    <img src="#{request.contextPath}/resources/img/avatars/avatar1_small.jpg" class="img-circle" alt=""/></span>
                                                 <span class="subject">
                                                     <span class="from"> Richard Doe </span>
                                                     <span class="time">16 mins </span>
@@ -201,7 +201,7 @@
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="#{request.contextPath}/resources/img/avatar1_small.jpg" class="img-circle" alt=""/></span>
+                                                    <img src="#{request.contextPath}/resources/img/avatars/avatar1_small.jpg" class="img-circle" alt=""/></span>
                                                 <span class="subject">
                                                     <span class="from"> Bob Nilson </span>
                                                     <span class="time">2 hrs </span>
@@ -212,7 +212,7 @@
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="#{request.contextPath}/resources/img/avatar1_small.jpg" class="img-circle" alt=""/></span>
+                                                    <img src="#{request.contextPath}/resources/img/avatars/avatar1_small.jpg" class="img-circle" alt=""/></span>
                                                 <span class="subject">
                                                     <span class="from"> Lisa Wong </span>
                                                     <span class="time">40 mins </span>
@@ -223,7 +223,7 @@
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="#{request.contextPath}/resources/img/avatar1_small.jpg" class="img-circle" alt=""/></span>
+                                                    <img src="#{request.contextPath}/resources/img/avatars/avatar1_small.jpg" class="img-circle" alt=""/></span>
                                                 <span class="subject">
                                                     <span class="from"> Richard Doe </span>
                                                     <span class="time">46 mins </span>
@@ -356,12 +356,13 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <span class="username username-hide-on-mobile"> #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </span>
                                 <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                <img alt="" src="#{request.contextPath}/resources/img/avatar1_small.jpg"/> </a>
+                                <img class="img-circle" alt="" src="#{request.contextPath}/resources/img/avatars/avatar1_small.jpg"/> </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     
 <!--                                        <h:link outcome="#{request.contextPath}/WEB-INF/template/user_perfil_miPerfil.xhtml"/> -->
-                                        <i class="icon-user"></i> #{msjPerfil.txtperfil}    
+                                    <a href="#{request.contextPath}/app/miperfil.xhtml">
+                                        <i class="icon-user"></i> #{msjPerfil.txtperfil}  </a>  
                                 </li>
                                 <li>
                                     <a href="app_calendar.html">

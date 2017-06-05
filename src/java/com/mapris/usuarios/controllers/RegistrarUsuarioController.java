@@ -7,7 +7,6 @@ package com.mapris.usuarios.controllers;
 
 import com.mapris.modelo.dao.RolFacadeLocal;
 import com.mapris.modelo.dao.UsuarioFacadeLocal;
-import com.mapris.modelo.entitie.Rol;
 import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
 import java.util.ArrayList;
