@@ -48,7 +48,7 @@ public class Usuario implements Serializable {
     @NotNull(message = "Este campo es obligatorio")
     @Column(name = "cedula")
     private Long cedula;
-    
+
     @Basic(optional = false)
     @Column(name = "clave")
     private String clave;
@@ -68,47 +68,38 @@ public class Usuario implements Serializable {
     @Basic(optional = true)
     @Column(name = "segundo_apellido")
     private String segundoApellido;
-    
+
     @Lob
     @Column(name = "imegen_perfil")
     private byte[] imegenPerfil;
-
-    
 
     @Basic(optional = true)
     @Column(name = "fechaNaci")
     @Temporal(TemporalType.DATE)
     private Date fechaNaci;
-    
-    
+
     @JoinColumn(name = "id_estados", referencedColumnName = "id_estados", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Estado estado;
-    
-    
+
     @ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
     private List<Telefono> telefonos;
-    
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<UsuarioDireccion> direcciones;
 
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private List<Correo> correos;
 
-    
     @JoinTable(name = "rolesusuarios",
             joinColumns = @JoinColumn(name = "idUsuarios", referencedColumnName = "cedula"),
             inverseJoinColumns = @JoinColumn(name = "idRoles", referencedColumnName = "idRoles"))
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Rol> roles;
 
-    
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Personalmedico personalmedico;
 
-    
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Cliente clientes;
 
@@ -133,9 +124,6 @@ public class Usuario implements Serializable {
         this.personalmedico = personalmedico;
         this.clientes = clientes;
     }
-    
-    
-    
 
     public Usuario(Long cedula, String primerNombre, String primerApellido, String clave, Date fechaNaci) {
         this.cedula = cedula;
@@ -160,8 +148,6 @@ public class Usuario implements Serializable {
         this.clientes = clientes;
     }
 
-    
-    
     //Getteers And Setters para los atributos de la entidad
     public String getSegundoNombre() {
         return segundoNombre;
@@ -195,9 +181,6 @@ public class Usuario implements Serializable {
         this.estado = estado;
     }
 
-    
-    
-    
     public Long getCedula() {
         return cedula;
     }
@@ -280,12 +263,6 @@ public class Usuario implements Serializable {
         return true;
     }
 
-    // toString para la entidad
-    @Override
-    public String toString() {
-        return "Usuario{" + "cedula=" + cedula + '}';
-    }
-
     public byte[] getImegenPerfil() {
         return imegenPerfil;
     }
@@ -302,8 +279,6 @@ public class Usuario implements Serializable {
     public void setCorreos(List<Correo> correos) {
         this.correos = correos;
     }
-
-    
 
     @XmlTransient
     public List<Telefono> getTelefonos() {
@@ -323,4 +298,9 @@ public class Usuario implements Serializable {
         this.direcciones = direcciones;
     }
 
+    // toString para la entidad
+    @Override
+    public String toString() {
+        return "Usuario{" + "cedula=" + cedula + '}';
+    }
 }
