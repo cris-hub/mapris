@@ -20,11 +20,11 @@ import javax.faces.convert.FacesConverter;
  * @author KoLach0
  */
 @FacesConverter(forClass = Rol.class, value = "correoConverter")
-public class CorreoControlller implements Converter{
+public class CorreoConverter implements Converter{
     
     private CorreoFacadeLocal tdfl;
 
-    public CorreoControlller() {
+    public CorreoConverter() {
         tdfl = CDI.current().select(CorreoFacadeLocal.class).get();
     }
     

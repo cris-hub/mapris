@@ -39,14 +39,14 @@ public class Personalmedico implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @JoinColumn(name = "idPersonalMedico", referencedColumnName = "cedula")
-    @OneToOne(optional = false,fetch =  FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToOne(optional = true,fetch =  FetchType.EAGER,cascade = CascadeType.ALL)
     private Usuario usuario;
 
-    @Basic(optional = false)
+    
     @Column(name = "perfilProfesional")
     private String perfilProfesional;
     
-    @Basic(optional = false)
+    
     @Column(name = "cargo")
     private String cargo;
     

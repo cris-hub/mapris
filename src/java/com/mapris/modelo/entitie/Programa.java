@@ -51,7 +51,7 @@ public class Programa implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPrograma")
     private List<Inscripcion> inscripciones;
     
-    @JoinColumn(name = "idRutinaServicios", referencedColumnName = "idServicios")
+    @JoinColumn(name = "idRutinaServicios", referencedColumnName = "idRutinaServicios")
     @ManyToOne(optional = false)
     private Rutinaservicio rutinaserviciosidServicios;
     

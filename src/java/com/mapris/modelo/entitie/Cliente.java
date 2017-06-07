@@ -40,10 +40,10 @@ public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @JoinColumn(name = "idClientes", referencedColumnName = "cedula")
-    @OneToOne(optional = false,fetch =  FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToOne(optional = true,fetch =  FetchType.EAGER,cascade = CascadeType.ALL)
     private Usuario usuario;
 
-    @Basic(optional = false)
+    
     @Column(name = "estado")
     private String estado;
     
@@ -57,7 +57,7 @@ public class Cliente implements Serializable {
     private List<Aplazamiento> aplazamientos;
     
     @JoinColumn(name = "idEmpresa", referencedColumnName = "idEmpresa")
-    @ManyToOne(optional = false ,cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Empresa idEmpresa;
 
     public Cliente() {

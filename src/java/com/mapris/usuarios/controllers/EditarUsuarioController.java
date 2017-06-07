@@ -6,6 +6,7 @@
 package com.mapris.usuarios.controllers;
 
 import com.mapris.modelo.dao.UsuarioFacadeLocal;
+import com.mapris.modelo.entitie.Correo;
 import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
@@ -23,7 +24,7 @@ public class EditarUsuarioController implements Serializable {
 
     @EJB
     private UsuarioFacadeLocal ufl;
-
+    
     private Usuario usuarioSelecionado;
 
     public EditarUsuarioController() {
@@ -56,6 +57,10 @@ public class EditarUsuarioController implements Serializable {
         try {
             if (u.getEstado().getNombre().equals("1")) {
                 u.getEstado().setNombre("2");
+                u.setCorreos(usuarioSelecionado.getCorreos());
+                u.setDirecciones(usuarioSelecionado.getDirecciones());
+                u.setTelefonos(usuarioSelecionado.getTelefonos());
+                u.setClientes(usuarioSelecionado.getClientes());
             } else {
                 u.getEstado().setNombre("1");
             }
