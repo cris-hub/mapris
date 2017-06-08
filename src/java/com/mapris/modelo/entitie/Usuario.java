@@ -9,11 +9,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.enterprise.inject.Default;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -45,6 +48,7 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull(message = "Este campo es obligatorio")
     @Column(name = "cedula")
     private Long cedula;
@@ -108,6 +112,15 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
+    public Usuario(Long cedula, String clave, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido) {
+        this.cedula = cedula;
+        this.clave = clave;
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+    }
+
     public Usuario(Long cedula, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String clave, Date fechaNaci, Estado estado, List<Telefono> telefonos, List<UsuarioDireccion> direcciones, List<Correo> correos, List<Rol> roles, Personalmedico personalmedico, Cliente clientes) {
         this.cedula = cedula;
         this.primerNombre = primerNombre;
@@ -148,6 +161,7 @@ public class Usuario implements Serializable {
         this.personalmedico = personalmedico;
         this.clientes = clientes;
     }
+    
 
     //Getteers And Setters para los atributos de la entidad
     public String getSegundoNombre() {

@@ -69,6 +69,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1234242341,1,'prenatal');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,13 +81,13 @@ DROP TABLE IF EXISTS `correos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `correos` (
-  `id_correo` int(11) NOT NULL,
+  `id_correo` int(11) NOT NULL AUTO_INCREMENT,
   `correo` varchar(45) NOT NULL,
   `id_usuario` bigint(20) NOT NULL,
   PRIMARY KEY (`id_correo`),
   KEY `fk_usuarios_correos` (`id_usuario`),
   CONSTRAINT `fk_usuarios_correos` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`cedula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +96,7 @@ CREATE TABLE `correos` (
 
 LOCK TABLES `correos` WRITE;
 /*!40000 ALTER TABLE `correos` DISABLE KEYS */;
+INSERT INTO `correos` VALUES (1,'rdconsuegra@misena.edu.co',1031174466);
 /*!40000 ALTER TABLE `correos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,6 +201,7 @@ CREATE TABLE `empresa` (
 
 LOCK TABLES `empresa` WRITE;
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
+INSERT INTO `empresa` VALUES (1,'Colpatria'),(2,'Porvenir'),(3,'Bancolombia');
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +299,7 @@ CREATE TABLE `localidades` (
   `id_localidad` int(11) NOT NULL AUTO_INCREMENT,
   `localidad` varchar(30) NOT NULL,
   PRIMARY KEY (`id_localidad`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -305,6 +308,7 @@ CREATE TABLE `localidades` (
 
 LOCK TABLES `localidades` WRITE;
 /*!40000 ALTER TABLE `localidades` DISABLE KEYS */;
+INSERT INTO `localidades` VALUES (1,'USAQUÉN'),(2,'CHAPINERO'),(3,'SANTA FE'),(4,'SAN CRISTÖBAL'),(5,'USME'),(6,'TUNJUELIO'),(7,'BOSA'),(8,'KENNEDY'),(9,'FONTIBÖN'),(10,'ENGATIVÄ'),(11,'SUBA'),(12,'BARRIOS UNIDOS'),(13,'LOS MÄRTIRES'),(14,'ANTONIO NARIÑO'),(15,'PUENTE ARANDA'),(16,'LA CANDELARIA'),(17,'RAFAEL URIBE URIBE'),(18,'CIUDAD BOLÏVAR'),(19,'SUMAPAZ');
 /*!40000 ALTER TABLE `localidades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -387,6 +391,7 @@ CREATE TABLE `personalmedico` (
 
 LOCK TABLES `personalmedico` WRITE;
 /*!40000 ALTER TABLE `personalmedico` DISABLE KEYS */;
+INSERT INTO `personalmedico` VALUES (1031174466,'Entrenadora Fisica','Rutinas Prenatales');
 /*!40000 ALTER TABLE `personalmedico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -468,28 +473,6 @@ LOCK TABLES `rolesusuarios` WRITE;
 INSERT INTO `rolesusuarios` VALUES (1,1031174466);
 /*!40000 ALTER TABLE `rolesusuarios` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `mapris`.`tg_roles_usuarios_after_update` AFTER UPDATE ON `rolesusuarios` FOR EACH ROW
-BEGIN
-INSERT INTO tg_roles_usuarios_after_update
-(fecha,Hora,actualiza_id,actualizo_id,id_rol,anterior_usuario,anterior_rol) 
-VALUES
- (current_date(),current_time(),current_user(),new.idUsuarios,new.idRoles,old.idUsuarios,old.idRoles);
-
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `rutinas`
@@ -628,6 +611,30 @@ LOCK TABLES `telefonos` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tg_registro_usuarios`
+--
+
+DROP TABLE IF EXISTS `tg_registro_usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tg_registro_usuarios` (
+  `fecha_registro` date DEFAULT NULL,
+  `hora_registro` time DEFAULT NULL,
+  `id_nuevo_usuario` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tg_registro_usuarios`
+--
+
+LOCK TABLES `tg_registro_usuarios` WRITE;
+/*!40000 ALTER TABLE `tg_registro_usuarios` DISABLE KEYS */;
+INSERT INTO `tg_registro_usuarios` VALUES ('2017-06-02','13:33:07',1234242341),('2017-06-07','18:11:56',441242134);
+/*!40000 ALTER TABLE `tg_registro_usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tg_roles_usuarios_after_update`
 --
 
@@ -711,15 +718,15 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios` (
-  `cedula` bigint(20) NOT NULL COMMENT 'Este campo almacena la cedula de todos los usuarios',
+  `cedula` bigint(20) NOT NULL DEFAULT '0' COMMENT 'Este campo almacena la cedula de todos los usuarios',
   `primer_nombre` varchar(20) NOT NULL COMMENT 'Este campo almacena el nombre de cada usuario',
   `segundo_nombre` varchar(20) DEFAULT NULL COMMENT 'Este campo almacena el apellido de cada usuario',
   `primer_apellido` varchar(20) NOT NULL,
   `segundo_apellido` varchar(20) DEFAULT NULL,
-  `fechaNaci` date NOT NULL COMMENT 'Este campo almacena la fecha de nacimineto de cada usuario',
+  `fechaNaci` date DEFAULT NULL COMMENT 'Este campo almacena la fecha de nacimineto de cada usuario',
   `clave` varchar(200) NOT NULL,
   `imegen_perfil` blob,
-  `id_estados` int(11) NOT NULL DEFAULT '3',
+  `id_estados` int(11) DEFAULT '3',
   PRIMARY KEY (`cedula`),
   KEY `fk_usuarios_estados_idx` (`id_estados`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_estados`) REFERENCES `estados` (`id_estados`)
@@ -732,7 +739,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1031174466,'Maria','Lina','Gomez','Carvajal','1997-07-01','1031174466',NULL,1);
+INSERT INTO `usuarios` VALUES (0,'fdsfsa','sfsafd','sdfdsafs','safsdf','2016-04-11','rrtgzfgdarw',NULL,3),(1031174466,'Maria','Lina','Gomez','Carvajal','1997-07-01','1031174466',NULL,1),(1234242341,'Lina','Maria','Riqulmen','Parodia','1993-06-19','1234242341',NULL,2);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -801,4 +808,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-02 12:05:06
+-- Dump completed on 2017-06-07 23:32:48

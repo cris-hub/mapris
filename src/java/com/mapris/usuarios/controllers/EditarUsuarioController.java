@@ -57,10 +57,7 @@ public class EditarUsuarioController implements Serializable {
         try {
             if (u.getEstado().getNombre().equals("1")) {
                 u.getEstado().setNombre("2");
-                u.setCorreos(usuarioSelecionado.getCorreos());
-                u.setDirecciones(usuarioSelecionado.getDirecciones());
-                u.setTelefonos(usuarioSelecionado.getTelefonos());
-                u.setClientes(usuarioSelecionado.getClientes());
+                
             } else {
                 u.getEstado().setNombre("1");
             }

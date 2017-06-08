@@ -5,8 +5,10 @@
  */
 package com.mapris.usuarios.controllers;
 
+import com.mapris.modelo.dao.EstadoFacadeLocal;
 import com.mapris.modelo.dao.RolFacadeLocal;
 import com.mapris.modelo.dao.UsuarioFacadeLocal;
+
 import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
 import java.util.ArrayList;
@@ -22,21 +24,20 @@ import javax.inject.Named;
 @Named(value = "registroController")
 @RequestScoped
 public class RegistrarUsuarioController {
-    
+
     @EJB
     private UsuarioFacadeLocal usuarioFacadeLocal;
-    
+
     @EJB
     private RolFacadeLocal rolFacedaLocal;
-    
+
     private Usuario nuevoUsuario;
 
     public RegistrarUsuarioController() {
     }
-    
-    
+
     @PostConstruct
-    public void  init(){
+    public void init() {
         nuevoUsuario = new Usuario();
     }
 
@@ -47,26 +48,21 @@ public class RegistrarUsuarioController {
     public void setNuevoUsuario(Usuario nuevoUsuario) {
         this.nuevoUsuario = nuevoUsuario;
     }
-    
-    public void registrar(){
+
+    public void registrar() {
         if (nuevoUsuario != null) {
-            nuevoUsuario.setRoles(new ArrayList<>());
-            nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
-            nuevoUsuario.getEstado().setNombre("2");
-            nuevoUsuario.getCorreos().add(nuevoUsuario.getCorreos().get(0));
-            usuarioFacadeLocal.create(nuevoUsuario);
-            MessageUtil.enviarMensajeInformacion("form-registro", "Registro satisfactorio", "");
-            init();
-        } else{
+            try {
+                
+
+                usuarioFacadeLocal.create(nuevoUsuario);
+                MessageUtil.enviarMensajeInformacion("form-registro", "Registro satisfactorio", "");
+                init();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
             MessageUtil.enviarMensajeError("form-registro", "no se han dioligenciado los campos ", "");
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
 }

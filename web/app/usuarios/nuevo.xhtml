@@ -42,7 +42,7 @@
 
 
                     <h:outputText value="Documento"/>
-                    <b:inputText name="documento" id="documento" pst:data-mask="0000000000"  value="#{registroController.nuevoUsuario.cedula}" required="true"/>
+                    <b:inputText name="document" value="#{registroController.nuevoUsuario.cedula}" required="true"/>
                     <h:outputText value="primer nombre"/>
                     <b:inputText value="#{registroController.nuevoUsuario.primerNombre}" rendered="true"/>
                     <h:outputText value="segundo nombre"/>
@@ -51,10 +51,10 @@
                     <b:inputText value="#{registroController.nuevoUsuario.primerApellido}"/>
                     <h:outputText value="apellido materno"/>
                     <b:inputText value="#{registroController.nuevoUsuario.segundoApellido}"/>
-                    <h:outputText value="Correo"/>
-                    <b:inputText value="#{registroController.nuevoUsuario.correos}" required="true"/>
+                    
+                    
                     <h:outputText value="fecha nacimiento"/>
-                    <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}" required="true"/>
+                    <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}"  required="true"/>
 
 
 
