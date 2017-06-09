@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
+ *  
  * @author SMEGS
  */
 @Entity
@@ -48,7 +48,7 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull(message = "Este campo es obligatorio")
     @Column(name = "cedula")
     private Long cedula;
@@ -102,10 +102,10 @@ public class Usuario implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Rol> roles;
 
-    @OneToOne( cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToOne(  mappedBy = "usuario",cascade = CascadeType.MERGE)
     private Personalmedico personalmedico;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToOne( mappedBy = "usuario")
     private Cliente clientes;
 
     //Contructores para la entidad

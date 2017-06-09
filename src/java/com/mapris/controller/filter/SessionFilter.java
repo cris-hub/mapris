@@ -60,6 +60,7 @@ public class SessionFilter implements Filter {
                 if(sc.tienePermiso(url)){
                     chain.doFilter(request, response);
                 } else{
+                    
                     rs.sendRedirect(rq.getContextPath() +"/app/index.xhtml");
                 }
             } else{

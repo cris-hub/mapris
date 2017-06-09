@@ -42,7 +42,7 @@ public class Personalmedico implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JoinColumn(name = "idPersonalMedico", referencedColumnName = "cedula")
-    @OneToOne(optional = true,fetch =  FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToOne(optional = true,fetch =  FetchType.EAGER)
     private Usuario usuario;
 
     

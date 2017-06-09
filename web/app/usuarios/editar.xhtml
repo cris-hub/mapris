@@ -54,9 +54,9 @@
                         <b:inputText value="#{editarUsuarioController.usuarioSelecionado.clave}"/>
 
                         <h:outputText value="Roles del usuario"/>
-                        <h:selectManyCheckbox value="#{editarUsuarioController.usuarioSelecionado.roles}" class="form-control"
+                        <h:selectManyCheckbox value="#{editarUsuarioController.usuarioSelecionado.roles}" converter="rolConverter" class="form-control"
                                               >
-                            <f:selectItems value="#{rolContoller.roles}" var="r" itemLabel="#{r.nombre}"/>
+                            <f:selectItems value="#{rolContoller.roles}"  var="r" itemLabel="#{r.nombre}"/>
                         </h:selectManyCheckbox>
                         <br/>
                     </b:panelGrid>

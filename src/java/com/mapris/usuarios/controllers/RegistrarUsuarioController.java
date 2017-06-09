@@ -8,6 +8,7 @@ package com.mapris.usuarios.controllers;
 import com.mapris.modelo.dao.EstadoFacadeLocal;
 import com.mapris.modelo.dao.RolFacadeLocal;
 import com.mapris.modelo.dao.UsuarioFacadeLocal;
+import com.mapris.modelo.entitie.Rol;
 
 import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
@@ -30,6 +31,8 @@ public class RegistrarUsuarioController {
 
     @EJB
     private RolFacadeLocal rolFacedaLocal;
+    @EJB
+    private EstadoFacadeLocal estadoFacadeLocal;
 
     private Usuario nuevoUsuario;
 
@@ -52,8 +55,9 @@ public class RegistrarUsuarioController {
     public void registrar() {
         if (nuevoUsuario != null) {
             try {
-                
-
+                nuevoUsuario.setRoles(new ArrayList<Rol>());
+                nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
+                nuevoUsuario.setEstado(estadoFacadeLocal.find(2));
                 usuarioFacadeLocal.create(nuevoUsuario);
                 MessageUtil.enviarMensajeInformacion("form-registro", "Registro satisfactorio", "");
                 init();
