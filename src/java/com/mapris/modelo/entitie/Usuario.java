@@ -99,7 +99,7 @@ public class Usuario implements Serializable {
     @JoinTable(name = "rolesusuarios",
             joinColumns = @JoinColumn(name = "idUsuarios", referencedColumnName = "cedula"),
             inverseJoinColumns = @JoinColumn(name = "idRoles", referencedColumnName = "idRoles"))
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Rol> roles;
 
     @OneToOne(  mappedBy = "usuario",cascade = CascadeType.MERGE)
