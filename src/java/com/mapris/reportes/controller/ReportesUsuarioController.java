@@ -49,15 +49,17 @@ Integer resultado;
     }
 
     public void setResultado(Integer resultado) {
+        em.refresh(resultado);
         this.resultado = resultado;
     }
     
     public void recargarResultados(){
+     em.getEntityManagerFactory().getCache().evictAll();
      this.resultado = ufl.count();
     }
     
     public Integer getNumeroUsuarios(){
-        em.refresh(resultado);
+        
        return this.resultado;
     
     }

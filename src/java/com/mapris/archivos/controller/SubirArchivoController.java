@@ -5,6 +5,7 @@
  */
 package com.mapris.archivos.controller;
 
+import com.mapris.login.controller.SessionController;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
@@ -30,6 +32,8 @@ import javax.servlet.http.Part;
 @Named(value = "subirArchivoController")
 @ViewScoped
 public class SubirArchivoController implements Serializable {
+    @Inject
+    private SessionController sc;
 
     private Part filePart;
 

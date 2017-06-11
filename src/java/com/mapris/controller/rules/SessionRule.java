@@ -30,12 +30,19 @@ public class SessionRule {
                 && clave != null && clave.length() > 0) {
             u = ufl.login(documento, clave);
             if (u != null) {
-                if (u.getEstado().getNombre().equals("2")) {
+                if (u.getEstado().getIdEstados() == 2) {
                     u = null;
                     MessageUtil.enviarMensajeErrorGlobal(
                             "Usuario bloqueado",
                             "Contacte al administrador par que solucione el incoveniente.");
 
+                }else if (u.getEstado().getIdEstados()==3) {
+                    
+                    u = null;
+                    MessageUtil.enviarMensajeErrorGlobal(
+                            "Usuario sin rol asignado",
+                            "Debe esperar 24 horas para hacer efectivo el acceso al sistema de información");
+                    
                 }
             } else {
                 MessageUtil.enviarMensajeErrorGlobal(
