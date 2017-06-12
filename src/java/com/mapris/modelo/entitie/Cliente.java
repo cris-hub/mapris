@@ -28,10 +28,6 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author SMEGS
- */
 @Entity
 @Table(name = "clientes")
 @XmlRootElement

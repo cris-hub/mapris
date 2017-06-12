@@ -156,14 +156,7 @@ public class SessionController implements Serializable {
             }
         }
         return false;
-    }
-
-    
-    
-  
-    
-  
-    
+     }
     
     @PreDestroy
     public void perDestroy(){
