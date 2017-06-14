@@ -5,7 +5,7 @@
  */
 package com.mapris.modelo.dao;
 
-import com.mapris.modelo.entitie.TipoTelefono;
+import com.mapris.modelo.entitie.Salon;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author SMEGS
  */
 @Local
-public interface TipoTelefonoFacadeLocal {
+public interface SalonFacadeLocal {
 
-    void create(TipoTelefono tipoTelefono);
+    void create(Salon salon);
 
-    void edit(TipoTelefono tipoTelefono);
+    void edit(Salon salon);
 
-    void remove(TipoTelefono tipoTelefono);
+    void remove(Salon salon);
 
-    TipoTelefono find(Object id);
+    Salon find(Object id);
 
-    List<TipoTelefono> findAll();
+    List<Salon> findAll();
 
-    List<TipoTelefono> findRange(int[] range);
+    List<Salon> findRange(int[] range);
 
     int count();
     

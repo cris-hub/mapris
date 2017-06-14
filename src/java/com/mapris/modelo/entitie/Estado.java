@@ -6,6 +6,7 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,11 +14,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -26,33 +29,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "estados")
 @XmlRootElement
-
+@NamedQueries({
+    @NamedQuery(name = "Estado.findAll", query = "SELECT e FROM Estado e")
+    , @NamedQuery(name = "Estado.findByIdEstados", query = "SELECT e FROM Estado e WHERE e.idEstados = :idEstados")
+    , @NamedQuery(name = "Estado.findByNombre", query = "SELECT e FROM Estado e WHERE e.nombre = :nombre")
+    , @NamedQuery(name = "Estado.findByDescripccion", query = "SELECT e FROM Estado e WHERE e.descripccion = :descripccion")})
 public class Estado implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_estados")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
     private Integer idEstados;
-    
     @Size(max = 45)
     @Column(name = "nombre")
     private String nombre;
-    
     @Size(max = 45)
     @Column(name = "descripccion")
     private String descripccion;
-    
-    
+    @OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
+    private List<Usuario> usuarios;
 
     public Estado() {
-    
     }
-
-    
-    
 
     public Estado(Integer idEstados) {
         this.idEstados = idEstados;
@@ -80,6 +80,15 @@ public class Estado implements Serializable {
 
     public void setDescripccion(String descripccion) {
         this.descripccion = descripccion;
+    }
+
+    @XmlTransient
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
     @Override

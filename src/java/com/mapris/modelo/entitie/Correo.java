@@ -6,7 +6,6 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,7 +21,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,31 +29,27 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "correos")
 @XmlRootElement
-
+@NamedQueries({
+    @NamedQuery(name = "Correo.findAll", query = "SELECT c FROM Correo c")
+    , @NamedQuery(name = "Correo.findByIdCorreo", query = "SELECT c FROM Correo c WHERE c.idCorreo = :idCorreo")
+    , @NamedQuery(name = "Correo.findByCorreo", query = "SELECT c FROM Correo c WHERE c.correo = :correo")})
 public class Correo implements Serializable {
-
-
-    
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_Correo")
+    @Column(name = "id_correo")
     private Integer idCorreo;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "correo")
     private String correo;
-    
     @JoinColumn(name = "id_usuario", referencedColumnName = "cedula")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario idUsuario;
 
-
-    
     public Correo() {
     }
 
@@ -94,13 +86,6 @@ public class Correo implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Correo(Integer idCorreo, String correo, Usuario idUsuario) {
-        this.idCorreo = idCorreo;
-        this.correo = correo;
-        this.idUsuario = idUsuario;
-    }
-    
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -124,11 +109,6 @@ public class Correo implements Serializable {
     @Override
     public String toString() {
         return "com.mapris.modelo.entitie.Correo[ idCorreo=" + idCorreo + " ]";
-        
     }
-
-
-
-
     
 }

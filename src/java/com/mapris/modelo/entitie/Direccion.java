@@ -17,6 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -31,7 +33,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "direcciones")
 @XmlRootElement
-
+@NamedQueries({
+    @NamedQuery(name = "Direccion.findAll", query = "SELECT d FROM Direccion d")
+    , @NamedQuery(name = "Direccion.findByIddirecciones", query = "SELECT d FROM Direccion d WHERE d.iddirecciones = :iddirecciones")
+    , @NamedQuery(name = "Direccion.findByAvenida", query = "SELECT d FROM Direccion d WHERE d.avenida = :avenida")
+    , @NamedQuery(name = "Direccion.findByCalle", query = "SELECT d FROM Direccion d WHERE d.calle = :calle")
+    , @NamedQuery(name = "Direccion.findByCarrera", query = "SELECT d FROM Direccion d WHERE d.carrera = :carrera")})
 public class Direccion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,31 +47,27 @@ public class Direccion implements Serializable {
     @NotNull
     @Column(name = "iddirecciones")
     private Integer iddirecciones;
-
-    @JoinColumn(name = "id_localidad", referencedColumnName = "id_localidad", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Localidad idLocalidad;
-
     @Size(max = 45)
     @Column(name = "avenida")
     private String avenida;
-
     @Size(max = 45)
     @Column(name = "calle")
     private String calle;
-
     @Size(max = 45)
     @Column(name = "carrera")
     private String carrera;
-
+    
     @JoinTable(name = "direcciones_has_empresa", joinColumns = {
         @JoinColumn(name = "direcciones_iddirecciones", referencedColumnName = "iddirecciones")}, inverseJoinColumns = {
         @JoinColumn(name = "empresa_idEmpresa", referencedColumnName = "idEmpresa")})
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Empresa> empresas;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "direccion", fetch = FetchType.LAZY)
-    private List<UsuarioDireccion> direcciones;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "direccionesIddirecciones", fetch = FetchType.LAZY)
+    private List<UsuarioDireccione> direccionesUsuarios;
+    @JoinColumn(name = "id_localidad", referencedColumnName = "id_localidad")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Localidad idLocalidad;
 
     public Direccion() {
     }
@@ -85,7 +88,6 @@ public class Direccion implements Serializable {
         return avenida;
     }
 
-    
     public void setAvenida(String avenida) {
         this.avenida = avenida;
     }
@@ -98,16 +100,6 @@ public class Direccion implements Serializable {
         this.calle = calle;
     }
 
-    public Localidad getIdLocalidad() {
-        return idLocalidad;
-    }
-
-    public void setIdLocalidad(Localidad idLocalidad) {
-        this.idLocalidad = idLocalidad;
-    }
- 
-    
-     
     public String getCarrera() {
         return carrera;
     }
@@ -126,12 +118,20 @@ public class Direccion implements Serializable {
     }
 
     @XmlTransient
-    public List<UsuarioDireccion> getDirecciones() {
-        return direcciones;
+    public List<UsuarioDireccione> getDireccionesUsuarios() {
+        return direccionesUsuarios;
     }
 
-    public void setDirecciones(List<UsuarioDireccion> direcciones) {
-        this.direcciones = direcciones;
+    public void setDireccionesUsuarios(List<UsuarioDireccione> direccionesUsuarios) {
+        this.direccionesUsuarios = direccionesUsuarios;
+    }
+
+    public Localidad getIdLocalidad() {
+        return idLocalidad;
+    }
+
+    public void setIdLocalidad(Localidad idLocalidad) {
+        this.idLocalidad = idLocalidad;
     }
 
     @Override
@@ -158,5 +158,5 @@ public class Direccion implements Serializable {
     public String toString() {
         return "com.mapris.modelo.entitie.Direccion[ iddirecciones=" + iddirecciones + " ]";
     }
-
+    
 }

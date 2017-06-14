@@ -5,11 +5,11 @@
  */
 package com.mapris.modelo.entitie;
 
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -32,7 +32,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "telefonos")
 @XmlRootElement
-
+@NamedQueries({
+    @NamedQuery(name = "Telefono.findAll", query = "SELECT t FROM Telefono t")
+    
+    , @NamedQuery(name = "Telefono.findByNumero", query = "SELECT t FROM Telefono t WHERE t.numero = :numero")
+    
+})
 public class Telefono implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,22 +46,17 @@ public class Telefono implements Serializable {
     @NotNull
     @Column(name = "id_telefono")
     private int idTelefono;
-    
-    
     @Size(max = 15)
     @Column(name = "numero")
     private String numero;
-    
     @ManyToMany(mappedBy = "telefonos", fetch = FetchType.LAZY)
     private List<Empresa> empresas;
-    
     @JoinTable(name = "usuarios_has_telefonos", joinColumns = {
         @JoinColumn(name = "telefonos_id_telefono", referencedColumnName = "id_telefono")}, inverseJoinColumns = {
         @JoinColumn(name = "usuarios_cedula", referencedColumnName = "cedula")})
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Usuario> usuarios;
-    
-    
+
     @JoinColumn(name = "tipo_telefono_idtipo_telefono", referencedColumnName = "idtipo_telefono", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TipoTelefono tipoTelefono;
@@ -64,15 +64,8 @@ public class Telefono implements Serializable {
     public Telefono() {
     }
 
-    public Telefono(int idTelefono, String numero, List<Empresa> empresas, List<Usuario> usuarios, TipoTelefono tipoTelefono) {
-        this.idTelefono = idTelefono;
-        this.numero = numero;
-        this.empresas = empresas;
-        this.usuarios = usuarios;
-        this.tipoTelefono = tipoTelefono;
-    }
-    
-    
+   
+
     public String getNumero() {
         return numero;
     }
@@ -81,13 +74,6 @@ public class Telefono implements Serializable {
         this.numero = numero;
     }
 
-    public int getIdTelefono() {
-        return idTelefono;
-    }
-
-    public void setIdTelefono(int idTelefono) {
-        this.idTelefono = idTelefono;
-    }
     @XmlTransient
     public List<Empresa> getEmpresas() {
         return empresas;
@@ -114,10 +100,18 @@ public class Telefono implements Serializable {
         this.tipoTelefono = tipoTelefono;
     }
 
+    public int getIdTelefono() {
+        return idTelefono;
+    }
+
+    public void setIdTelefono(int idTelefono) {
+        this.idTelefono = idTelefono;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 29 * hash + this.idTelefono;
+        hash = 47 * hash + this.idTelefono;
         return hash;
     }
 
@@ -144,6 +138,6 @@ public class Telefono implements Serializable {
         return "Telefono{" + "idTelefono=" + idTelefono + '}';
     }
 
-    
-   
+ 
+
 }

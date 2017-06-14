@@ -6,10 +6,10 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -26,36 +27,44 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "datosclinicos")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Datoclinico.findAll", query = "SELECT d FROM Datoclinico d")
+    , @NamedQuery(name = "Datoclinico.findByIdCliente", query = "SELECT d FROM Datoclinico d WHERE d.idCliente = :idCliente")
+    , @NamedQuery(name = "Datoclinico.findByRh", query = "SELECT d FROM Datoclinico d WHERE d.rh = :rh")
+    , @NamedQuery(name = "Datoclinico.findByDatosPosparto", query = "SELECT d FROM Datoclinico d WHERE d.datosPosparto = :datosPosparto")
+    , @NamedQuery(name = "Datoclinico.findByDatosPrenatales", query = "SELECT d FROM Datoclinico d WHERE d.datosPrenatales = :datosPrenatales")})
 public class Datoclinico implements Serializable {
 
-  
-
     private static final long serialVersionUID = 1L;
-    
     @Id
-    @JoinColumn(name = "idCliente", referencedColumnName = "idClientes")
-    @OneToOne(optional = false)
-    private Cliente clientes;
-    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "idCliente")
+    private Long idCliente;
+    @Size(max = 2)
     @Column(name = "rh")
     private String rh;
-    
     @Column(name = "datosPosparto")
     private Integer datosPosparto;
-    
     @Column(name = "datosPrenatales")
     private Integer datosPrenatales;
-    
-    
+    @JoinColumn(name = "idCliente", referencedColumnName = "idClientes", insertable = false, updatable = false)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    private Cliente cliente;
 
     public Datoclinico() {
     }
 
-    public Datoclinico(String rh, Integer datosPosparto, Integer datosPrenatales, Cliente clientes) {
-        this.rh = rh;
-        this.datosPosparto = datosPosparto;
-        this.datosPrenatales = datosPrenatales;
-        this.clientes = clientes;
+    public Datoclinico(Long idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getRh() {
@@ -82,34 +91,29 @@ public class Datoclinico implements Serializable {
         this.datosPrenatales = datosPrenatales;
     }
 
-    public Usuario getClientes() {
-        return clientes.getUsuario();
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setClientes(Cliente clientes) {
-        this.clientes = clientes;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.clientes);
+        int hash = 0;
+        hash += (idCliente != null ? idCliente.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Datoclinico)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Datoclinico other = (Datoclinico) obj;
-        if (!Objects.equals(this.clientes, other.clientes)) {
+        Datoclinico other = (Datoclinico) object;
+        if ((this.idCliente == null && other.idCliente != null) || (this.idCliente != null && !this.idCliente.equals(other.idCliente))) {
             return false;
         }
         return true;
@@ -117,12 +121,7 @@ public class Datoclinico implements Serializable {
 
     @Override
     public String toString() {
-        return "Datoclinico{" + "clientes=" + clientes + '}';
+        return "com.mapris.modelo.entitie.Datoclinico[ idCliente=" + idCliente + " ]";
     }
-
- 
-   
-    
-    
     
 }

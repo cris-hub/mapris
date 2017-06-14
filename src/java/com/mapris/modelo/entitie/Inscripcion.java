@@ -7,19 +7,24 @@ package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,54 +33,43 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "inscripciones")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Inscripcion.findAll", query = "SELECT i FROM Inscripcion i")
+    , @NamedQuery(name = "Inscripcion.findByIdInscripciones", query = "SELECT i FROM Inscripcion i WHERE i.idInscripciones = :idInscripciones")
+    , @NamedQuery(name = "Inscripcion.findByFechaInicio", query = "SELECT i FROM Inscripcion i WHERE i.fechaInicio = :fechaInicio")
+    , @NamedQuery(name = "Inscripcion.findByValor", query = "SELECT i FROM Inscripcion i WHERE i.valor = :valor")
+    , @NamedQuery(name = "Inscripcion.findByNumeroSesiones", query = "SELECT i FROM Inscripcion i WHERE i.numeroSesiones = :numeroSesiones")})
 public class Inscripcion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @NotNull
     @Column(name = "idInscripciones")
     private Integer idInscripciones;
-    
     
     @Column(name = "fechaInicio")
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     
-    
-    @Column(name = "fechaFin")
-    @Temporal(TemporalType.DATE)
-    private Date fechaFin;
-    
     @Column(name = "valor")
     private Integer valor;
-    
-    @JoinColumn(name = "idPrograma", referencedColumnName = "idProgramas")
-    @ManyToOne(optional = false)
-    private Programa idPrograma;
-    
-    
+    @Column(name = "numero_sesiones")
+    private Integer numeroSesiones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "inscripcionesidInscripciones", fetch = FetchType.LAZY)
+    private List<Sesion> sesiones;
     @JoinColumn(name = "idCliente", referencedColumnName = "idClientes")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Cliente idCliente;
+    @JoinColumn(name = "id_servicio", referencedColumnName = "idServicio")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Servicio idServicio;
 
     public Inscripcion() {
     }
 
-    
-    public Inscripcion(Integer idInscripciones, Date fechaInicio, Date fechaFin, Integer valor, Programa idPrograma, Cliente idCliente) {
+    public Inscripcion(Integer idInscripciones) {
         this.idInscripciones = idInscripciones;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.valor = valor;
-        this.idPrograma = idPrograma;
-        this.idCliente = idCliente;
-    }
-
-    public Inscripcion(Integer idInscripciones, Integer valor, Programa idPrograma, Cliente idCliente) {
-        this.idInscripciones = idInscripciones;
-        this.valor = valor;
-        this.idPrograma = idPrograma;
-        this.idCliente = idCliente;
     }
 
     public Integer getIdInscripciones() {
@@ -94,14 +88,6 @@ public class Inscripcion implements Serializable {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
     public Integer getValor() {
         return valor;
     }
@@ -110,12 +96,21 @@ public class Inscripcion implements Serializable {
         this.valor = valor;
     }
 
-    public Programa getIdPrograma() {
-        return idPrograma;
+    public Integer getNumeroSesiones() {
+        return numeroSesiones;
     }
 
-    public void setIdPrograma(Programa idPrograma) {
-        this.idPrograma = idPrograma;
+    public void setNumeroSesiones(Integer numeroSesiones) {
+        this.numeroSesiones = numeroSesiones;
+    }
+
+    @XmlTransient
+    public List<Sesion> getSesiones() {
+        return sesiones;
+    }
+
+    public void setSesiones(List<Sesion> sesiones) {
+        this.sesiones = sesiones;
     }
 
     public Cliente getIdCliente() {
@@ -126,26 +121,29 @@ public class Inscripcion implements Serializable {
         this.idCliente = idCliente;
     }
 
+    public Servicio getIdServicio() {
+        return idServicio;
+    }
+
+    public void setIdServicio(Servicio idServicio) {
+        this.idServicio = idServicio;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 11 * hash + Objects.hashCode(this.idInscripciones);
+        int hash = 0;
+        hash += (idInscripciones != null ? idInscripciones.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Inscripcion)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Inscripcion other = (Inscripcion) obj;
-        if (!Objects.equals(this.idInscripciones, other.idInscripciones)) {
+        Inscripcion other = (Inscripcion) object;
+        if ((this.idInscripciones == null && other.idInscripciones != null) || (this.idInscripciones != null && !this.idInscripciones.equals(other.idInscripciones))) {
             return false;
         }
         return true;
@@ -153,12 +151,7 @@ public class Inscripcion implements Serializable {
 
     @Override
     public String toString() {
-        return "Inscripcion{" + "idCliente=" + idCliente + '}';
+        return "com.mapris.modelo.entitie.Inscripcion[ idInscripciones=" + idInscripciones + " ]";
     }
-
-  
-
-    
-    
     
 }

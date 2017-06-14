@@ -7,12 +7,10 @@ package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -30,52 +29,82 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "sesiones")
 @XmlRootElement
-
+@NamedQueries({
+    @NamedQuery(name = "Sesion.findAll", query = "SELECT s FROM Sesion s")
+    , @NamedQuery(name = "Sesion.findByHora", query = "SELECT s FROM Sesion s WHERE s.hora = :hora")
+    , @NamedQuery(name = "Sesion.findByEstado", query = "SELECT s FROM Sesion s WHERE s.estado = :estado")})
 public class Sesion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idSesiones")
-    private Integer idSesiones;
+    private int idSesiones;
     
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
+
     
     @Column(name = "hora")
     @Temporal(TemporalType.TIME)
     private Date hora;
     
-    @Column(name = "numeroSesiones")
-    private Integer numeroSesiones;
+    @Column(name = "estado")
+    private Short estado;
     
     @JoinColumn(name = "idPersonalMedico", referencedColumnName = "idPersonalMedico")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Personalmedico idPersonalMedico;
     
-    @JoinColumn(name = "idPrograma", referencedColumnName = "idProgramas")
-    @ManyToOne
-    private Programa idPrograma;
+    @JoinColumn(name = "inscripciones_idInscripciones", referencedColumnName = "idInscripciones")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Inscripcion inscripcionesidInscripciones;
 
     public Sesion() {
     }
 
-    public Sesion(Integer idSesiones, Date fecha, Date hora, Integer numeroSesiones, Personalmedico idPersonalMedico, Programa idPrograma) {
-        this.idSesiones = idSesiones;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.numeroSesiones = numeroSesiones;
-        this.idPersonalMedico = idPersonalMedico;
-        this.idPrograma = idPrograma;
+ 
+
+    public Date getHora() {
+        return hora;
     }
 
-    public Integer getIdSesiones() {
+    public void setHora(Date hora) {
+        this.hora = hora;
+    }
+
+    public Short getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Short estado) {
+        this.estado = estado;
+    }
+
+    public Personalmedico getIdPersonalMedico() {
+        return idPersonalMedico;
+    }
+
+    public void setIdPersonalMedico(Personalmedico idPersonalMedico) {
+        this.idPersonalMedico = idPersonalMedico;
+    }
+
+    public Inscripcion getInscripcionesidInscripciones() {
+        return inscripcionesidInscripciones;
+    }
+
+    public void setInscripcionesidInscripciones(Inscripcion inscripcionesidInscripciones) {
+        this.inscripcionesidInscripciones = inscripcionesidInscripciones;
+    }
+
+    public int getIdSesiones() {
         return idSesiones;
     }
 
-    public void setIdSesiones(Integer idSesiones) {
+    public void setIdSesiones(int idSesiones) {
         this.idSesiones = idSesiones;
     }
 
@@ -87,42 +116,10 @@ public class Sesion implements Serializable {
         this.fecha = fecha;
     }
 
-    public Date getHora() {
-        return hora;
-    }
-
-    public void setHora(Date hora) {
-        this.hora = hora;
-    }
-
-    public Integer getNumeroSesiones() {
-        return numeroSesiones;
-    }
-
-    public void setNumeroSesiones(Integer numeroSesiones) {
-        this.numeroSesiones = numeroSesiones;
-    }
-
-    public Personalmedico getIdPersonalMedico() {
-        return idPersonalMedico;
-    }
-
-    public void setIdPersonalMedico(Personalmedico idPersonalMedico) {
-        this.idPersonalMedico = idPersonalMedico;
-    }
-
-    public Programa getIdPrograma() {
-        return idPrograma;
-    }
-
-    public void setIdPrograma(Programa idPrograma) {
-        this.idPrograma = idPrograma;
-    }
-
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 47 * hash + Objects.hashCode(this.idSesiones);
+        hash = 83 * hash + this.idSesiones;
         return hash;
     }
 
@@ -138,7 +135,7 @@ public class Sesion implements Serializable {
             return false;
         }
         final Sesion other = (Sesion) obj;
-        if (!Objects.equals(this.idSesiones, other.idSesiones)) {
+        if (this.idSesiones != other.idSesiones) {
             return false;
         }
         return true;
@@ -149,7 +146,6 @@ public class Sesion implements Serializable {
         return "Sesion{" + "idSesiones=" + idSesiones + '}';
     }
 
-   
-
   
+    
 }

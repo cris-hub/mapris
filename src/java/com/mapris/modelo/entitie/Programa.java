@@ -7,22 +7,18 @@ package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -33,100 +29,70 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "programas")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Programa.findAll", query = "SELECT p FROM Programa p")
+    , @NamedQuery(name = "Programa.findByIdprograma", query = "SELECT p FROM Programa p WHERE p.idprograma = :idprograma")})
 public class Programa implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "idProgramas")
-    private Integer idProgramas;
-    
-    @Column(name = "fechaInicio")
-    @Temporal(TemporalType.DATE)
-    private Date fechaInicio;
-    
-    @OneToMany(mappedBy = "idPrograma")
-    private List<Sesion> sesiones;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPrograma")
-    private List<Inscripcion> inscripciones;
-    
-    @JoinColumn(name = "idRutinaServicios", referencedColumnName = "idRutinaServicios")
-    @ManyToOne(optional = false)
-    private Rutinaservicio rutinaserviciosidServicios;
-    
+    @NotNull
+    @Column(name = "idprograma")
+    private Integer idprograma;
+    @ManyToMany(mappedBy = "programas", fetch = FetchType.LAZY)
+    private List<Actividad> Actividades;
+    @JoinColumn(name = "idprograma", referencedColumnName = "idServicio", insertable = false, updatable = false)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    private Servicio servicio;
 
     public Programa() {
     }
 
-    public Programa(Integer idProgramas, Date fechaInicio, List<Sesion> sesiones, List<Inscripcion> inscripciones, Rutinaservicio rutinaserviciosidServicios) {
-        this.idProgramas = idProgramas;
-        this.fechaInicio = fechaInicio;
-        this.sesiones = sesiones;
-        this.inscripciones = inscripciones;
-        this.rutinaserviciosidServicios = rutinaserviciosidServicios;
+    public Programa(Integer idprograma) {
+        this.idprograma = idprograma;
     }
 
-    public Integer getIdProgramas() {
-        return idProgramas;
+    public Integer getIdprograma() {
+        return idprograma;
     }
 
-    public void setIdProgramas(Integer idProgramas) {
-        this.idProgramas = idProgramas;
+    public void setIdprograma(Integer idprograma) {
+        this.idprograma = idprograma;
     }
 
-    public Date getFechaInicio() {
-        return fechaInicio;
+    @XmlTransient
+    public List<Actividad> getActividades() {
+        return Actividades;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setActividades(List<Actividad> Actividades) {
+        this.Actividades = Actividades;
     }
 
-    public List<Sesion> getSesiones() {
-        return sesiones;
+    public Servicio getServicio() {
+        return servicio;
     }
 
-    public void setSesiones(List<Sesion> sesiones) {
-        this.sesiones = sesiones;
-    }
-
-    public List<Inscripcion> getInscripciones() {
-        return inscripciones;
-    }
-
-    public void setInscripciones(List<Inscripcion> inscripciones) {
-        this.inscripciones = inscripciones;
-    }
-
-    public Rutinaservicio getRutinaserviciosidServicios() {
-        return rutinaserviciosidServicios;
-    }
-
-    public void setRutinaserviciosidServicios(Rutinaservicio rutinaserviciosidServicios) {
-        this.rutinaserviciosidServicios = rutinaserviciosidServicios;
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.idProgramas);
+        int hash = 0;
+        hash += (idprograma != null ? idprograma.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Programa)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Programa other = (Programa) obj;
-        if (!Objects.equals(this.idProgramas, other.idProgramas)) {
+        Programa other = (Programa) object;
+        if ((this.idprograma == null && other.idprograma != null) || (this.idprograma != null && !this.idprograma.equals(other.idprograma))) {
             return false;
         }
         return true;
@@ -134,9 +100,7 @@ public class Programa implements Serializable {
 
     @Override
     public String toString() {
-        return "Programa{" + "idProgramas=" + idProgramas + '}';
+        return "com.mapris.modelo.entitie.Programa[ idprograma=" + idprograma + " ]";
     }
-
-   
-   
+    
 }

@@ -7,14 +7,10 @@ package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.List;
-import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -25,6 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -35,67 +33,46 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "permisos")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Permiso.findAll", query = "SELECT p FROM Permiso p")
+    , @NamedQuery(name = "Permiso.findById", query = "SELECT p FROM Permiso p WHERE p.id = :id")
+    , @NamedQuery(name = "Permiso.findByNombre", query = "SELECT p FROM Permiso p WHERE p.nombre = :nombre")
+    , @NamedQuery(name = "Permiso.findByIcon", query = "SELECT p FROM Permiso p WHERE p.icon = :icon")})
 public class Permiso implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
     @Basic(optional = false)
+    @NotNull
+    @Column(name = "id")
+    private Integer id;
+    @Size(max = 45)
     @Column(name = "nombre")
     private String nombre;
-    
-    @Basic(optional = false)
+    @Lob
+    @Size(max = 65535)
     @Column(name = "url")
     private String url;
-    
-    @Basic(optional = false)
+    @Size(max = 45)
     @Column(name = "icon")
     private String icon;
-    
-    
-
-    
+    @JoinTable(name = "permisosroles", joinColumns = {
+        @JoinColumn(name = "permisos_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "roles_idRoles", referencedColumnName = "idRoles")})
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Rol> roles;
+    @OneToMany(mappedBy = "permisosPadre", fetch = FetchType.LAZY)
+    private List<Permiso> subPermisos;
     @JoinColumn(name = "permisos_padre", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Permiso permisoPadre;
-    
-    @OneToMany(mappedBy = "permisoPadre",fetch = FetchType.LAZY)
-    private List<Permiso> subPermisos;
-    
-    @ManyToMany(mappedBy = "permisos")
-    private List<Rol> roles;
+    private Permiso permisosPadre;
 
     public Permiso() {
     }
 
-    public Permiso(Integer id, String nombre, String url, String icon, Permiso permisoPadre, List<Permiso> subPermisos, List<Rol> roles) {
+    public Permiso(Integer id) {
         this.id = id;
-        this.nombre = nombre;
-        this.url = url;
-        this.icon = icon;
-        this.permisoPadre = permisoPadre;
-        this.subPermisos = subPermisos;
-        this.roles = roles;
     }
-
-    public Permiso(Integer id, String nombre, String url, String icon) {
-        this.id = id;
-        this.nombre = nombre;
-        this.url = url;
-        this.icon = icon;
-    }
-
-    public Permiso(Integer id, String nombre, String url, String icon, List<Rol> roles) {
-        this.id = id;
-        this.nombre = nombre;
-        this.url = url;
-        this.icon = icon;
-        this.roles = roles;
-    }
-
 
     public Integer getId() {
         return id;
@@ -129,22 +106,7 @@ public class Permiso implements Serializable {
         this.icon = icon;
     }
 
-    public Permiso getPermisoPadre() {
-        return permisoPadre;
-    }
-
-    public void setPermisoPadre(Permiso permisoPadre) {
-        this.permisoPadre = permisoPadre;
-    }
-
-    public List<Permiso> getSubPermisos() {
-        return subPermisos;
-    }
-
-    public void setSubPermisos(List<Permiso> subPermisos) {
-        this.subPermisos = subPermisos;
-    }
-
+    @XmlTransient
     public List<Rol> getRoles() {
         return roles;
     }
@@ -153,26 +115,38 @@ public class Permiso implements Serializable {
         this.roles = roles;
     }
 
+    @XmlTransient
+    public List<Permiso> getSubPermisos() {
+        return subPermisos;
+    }
+
+    public void setSubPermisos(List<Permiso> subPermisos) {
+        this.subPermisos = subPermisos;
+    }
+
+    public Permiso getPermisosPadre() {
+        return permisosPadre;
+    }
+
+    public void setPermisosPadre(Permiso permisosPadre) {
+        this.permisosPadre = permisosPadre;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.id);
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Permiso)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Permiso other = (Permiso) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        Permiso other = (Permiso) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -180,12 +154,7 @@ public class Permiso implements Serializable {
 
     @Override
     public String toString() {
-        return "Permiso{" + "id=" + id + '}';
+        return "com.mapris.modelo.entitie.Permiso[ id=" + id + " ]";
     }
-
-   
-  
     
-
-   
 }

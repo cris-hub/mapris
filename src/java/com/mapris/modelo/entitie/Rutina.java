@@ -7,12 +7,11 @@ package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.List;
-import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -31,42 +30,49 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "rutinas")
 @XmlRootElement
-public class Rutina implements Serializable {
 
+public class Rutina implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @NotNull
     @Column(name = "idRutinas")
-    private Integer idRutinas;
+    private Integer idRutina;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRutinas")
-    private List<Rutinaservicio> rutinas;
-    
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRutinas", fetch = FetchType.LAZY)
+    private List<Actividad> actividades;
 
     public Rutina() {
     }
 
-    public Rutina(Integer idRutinas, String nombre, List<Rutinaservicio> rutinas) {
-        this.idRutinas = idRutinas;
+    public Rutina(Integer idRutinas) {
+        this.idRutina = idRutinas;
+    }
+
+    public Rutina(Integer idRutinas, String nombre, String descripcion) {
+        this.idRutina = idRutinas;
         this.nombre = nombre;
-        this.rutinas = rutinas;
+        this.descripcion = descripcion;
     }
 
-    public Integer getIdRutinas() {
-        return idRutinas;
+    public Integer getIdRutina() {
+        return idRutina;
     }
 
-    public void setIdRutinas(Integer idRutinas) {
-        this.idRutinas = idRutinas;
+    public void setIdRutina(Integer idRutina) {
+        this.idRutina = idRutina;
     }
 
     public String getNombre() {
@@ -77,44 +83,6 @@ public class Rutina implements Serializable {
         this.nombre = nombre;
     }
 
-    public List<Rutinaservicio> getRutinas() {
-        return rutinas;
-    }
-
-    public void setRutinas(List<Rutinaservicio> rutinas) {
-        this.rutinas = rutinas;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 23 * hash + Objects.hashCode(this.idRutinas);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Rutina other = (Rutina) obj;
-        if (!Objects.equals(this.idRutinas, other.idRutinas)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Rutina{" + "idRutinas=" + idRutinas + '}';
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
@@ -123,8 +91,40 @@ public class Rutina implements Serializable {
         this.descripcion = descripcion;
     }
 
-  
-
    
+
+    @XmlTransient
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(List<Actividad> actividades) {
+        this.actividades = actividades;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idRutina != null ? idRutina.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Rutina)) {
+            return false;
+        }
+        Rutina other = (Rutina) object;
+        if ((this.idRutina == null && other.idRutina != null) || (this.idRutina != null && !this.idRutina.equals(other.idRutina))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.mapris.modelo.entitie.Rutina[ idRutinas=" + idRutina + " ]";
+    }
     
 }

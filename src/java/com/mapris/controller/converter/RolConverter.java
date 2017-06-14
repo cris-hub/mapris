@@ -39,7 +39,7 @@ public class RolConverter implements Converter{
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         if(value != null && value instanceof Rol){
             Rol td = (Rol) value;
-            return td.getId().toString();
+            return td.getIdRol().toString();
         }
         return null;
     }

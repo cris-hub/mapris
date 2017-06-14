@@ -6,16 +6,21 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -24,7 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "tipo_aplazamiento")
 @XmlRootElement
-
+@NamedQueries({
+    @NamedQuery(name = "TipoAplazamiento.findAll", query = "SELECT t FROM TipoAplazamiento t")
+    , @NamedQuery(name = "TipoAplazamiento.findByIdTipo", query = "SELECT t FROM TipoAplazamiento t WHERE t.idTipo = :idTipo")
+    , @NamedQuery(name = "TipoAplazamiento.findByTipo", query = "SELECT t FROM TipoAplazamiento t WHERE t.tipo = :tipo")})
 public class TipoAplazamiento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,10 +41,11 @@ public class TipoAplazamiento implements Serializable {
     @NotNull
     @Column(name = "id_tipo")
     private Integer idTipo;
-    
     @Size(max = 45)
     @Column(name = "tipo")
     private String tipo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoAplazamiento", fetch = FetchType.LAZY)
+    private List<Aplazamiento> aplazamientos;
 
     public TipoAplazamiento() {
     }
@@ -59,6 +68,15 @@ public class TipoAplazamiento implements Serializable {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    @XmlTransient
+    public List<Aplazamiento> getAplazamientos() {
+        return aplazamientos;
+    }
+
+    public void setAplazamientos(List<Aplazamiento> aplazamientos) {
+        this.aplazamientos = aplazamientos;
     }
 
     @Override

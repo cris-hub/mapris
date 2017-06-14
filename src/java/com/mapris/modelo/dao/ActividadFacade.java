@@ -5,7 +5,7 @@
  */
 package com.mapris.modelo.dao;
 
-import com.mapris.modelo.entitie.Rutinaservicio;
+import com.mapris.modelo.entitie.Actividad;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author SMEGS
  */
 @Stateless
-public class RutinaservicioFacade extends AbstractFacade<Rutinaservicio> implements RutinaservicioFacadeLocal {
+public class ActividadFacade extends AbstractFacade<Actividad> implements ActividadFacadeLocal {
 
     @PersistenceContext(unitName = "maprisPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class RutinaservicioFacade extends AbstractFacade<Rutinaservicio> impleme
         return em;
     }
 
-    public RutinaservicioFacade() {
-        super(Rutinaservicio.class);
+    public ActividadFacade() {
+        super(Actividad.class);
     }
     
 }

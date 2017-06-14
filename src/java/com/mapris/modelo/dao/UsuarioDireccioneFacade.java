@@ -5,7 +5,7 @@
  */
 package com.mapris.modelo.dao;
 
-import com.mapris.modelo.entitie.UsuarioDireccion;
+import com.mapris.modelo.entitie.UsuarioDireccione;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author SMEGS
  */
 @Stateless
-public class UsuarioDireccionFacade extends AbstractFacade<UsuarioDireccion> implements UsuarioDireccionFacadeLocal {
+public class UsuarioDireccioneFacade extends AbstractFacade<UsuarioDireccione> implements UsuarioDireccioneFacadeLocal {
 
     @PersistenceContext(unitName = "maprisPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class UsuarioDireccionFacade extends AbstractFacade<UsuarioDireccion> imp
         return em;
     }
 
-    public UsuarioDireccionFacade() {
-        super(UsuarioDireccion.class);
+    public UsuarioDireccioneFacade() {
+        super(UsuarioDireccione.class);
     }
     
 }

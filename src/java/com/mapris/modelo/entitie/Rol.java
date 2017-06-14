@@ -7,15 +7,10 @@ package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.List;
-import java.util.Objects;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -24,6 +19,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -34,50 +31,54 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "roles")
 @XmlRootElement
-public class Rol implements Serializable {
-
+@NamedQueries({
+    @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")
     
+    , @NamedQuery(name = "Rol.findByNombre", query = "SELECT r FROM Rol r WHERE r.nombre = :nombre")
+})
+public class Rol implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "idRoles")
-    private Integer id;
-    
     @Basic(optional = false)
+    @NotNull
+    @Column(name = "idRoles")
+    private Integer idRol;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "nombre")
     private String nombre;
-    
-    @Basic(optional = true)
+    @Lob
+    @Size(max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
-    
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "roles")
+    @JoinTable(name = "rolesusuarios", joinColumns = {
+        @JoinColumn(name = "idRoles", referencedColumnName = "idRoles")}, inverseJoinColumns = {
+        @JoinColumn(name = "idUsuarios", referencedColumnName = "cedula")})
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Usuario> usuarios;
-    
-
-    @JoinTable(name = "permisosroles",
-            joinColumns = @JoinColumn(name = "roles_idRoles", referencedColumnName = "idRoles"),
-            inverseJoinColumns = @JoinColumn(name = "permisos_id", referencedColumnName = "id"))
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private List<Permiso> permisos;
 
     public Rol() {
     }
 
-    public Rol(Integer id, String nombre, String descripcion, List<Usuario> usuarios, List<Permiso> permisos) {
-        this.id = id;
+    public Rol(Integer idRoles) {
+        this.idRol = idRoles;
+    }
+
+    public Rol(Integer idRoles, String nombre) {
+        this.idRol = idRoles;
         this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.usuarios = usuarios;
-        this.permisos = permisos;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdRol() {
+        return idRol;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdRol(Integer idRol) {
+        this.idRol = idRol;
     }
 
     public String getNombre() {
@@ -96,6 +97,7 @@ public class Rol implements Serializable {
         this.descripcion = descripcion;
     }
 
+    @XmlTransient
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -104,6 +106,7 @@ public class Rol implements Serializable {
         this.usuarios = usuarios;
     }
 
+    @XmlTransient
     public List<Permiso> getPermisos() {
         return permisos;
     }
@@ -114,24 +117,19 @@ public class Rol implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.id);
+        int hash = 0;
+        hash += (idRol != null ? idRol.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Rol)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Rol other = (Rol) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        Rol other = (Rol) object;
+        if ((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol))) {
             return false;
         }
         return true;
@@ -139,10 +137,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "Rol{" + "id=" + id + '}';
+        return "com.mapris.modelo.entitie.Rol[ idRoles=" + idRol + " ]";
     }
-
-   
- 
     
 }

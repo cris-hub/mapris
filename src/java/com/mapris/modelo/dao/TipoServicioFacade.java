@@ -5,7 +5,7 @@
  */
 package com.mapris.modelo.dao;
 
-import com.mapris.modelo.entitie.Correo;
+import com.mapris.modelo.entitie.TipoServicio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author SMEGS
  */
 @Stateless
-public class CorreoFacade extends AbstractFacade<Correo> implements CorreoFacadeLocal {
+public class TipoServicioFacade extends AbstractFacade<TipoServicio> implements TipoServicioFacadeLocal {
 
     @PersistenceContext(unitName = "maprisPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class CorreoFacade extends AbstractFacade<Correo> implements CorreoFacade
         return em;
     }
 
-    public CorreoFacade() {
-        super(Correo.class);
+    public TipoServicioFacade() {
+        super(TipoServicio.class);
     }
     
 }

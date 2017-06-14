@@ -15,6 +15,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface CorreoFacadeLocal {
+
     void create(Correo correo);
 
     void edit(Correo correo);
@@ -28,6 +29,5 @@ public interface CorreoFacadeLocal {
     List<Correo> findRange(int[] range);
 
     int count();
-
     
 }
