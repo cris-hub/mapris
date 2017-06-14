@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-06-2017 a las 07:19:50
+-- Tiempo de generación: 14-06-2017 a las 22:27:02
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -43,6 +43,17 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `actividades`
+--
+
+CREATE TABLE `actividades` (
+  `idadtividad` int(11) NOT NULL,
+  `idRutinas` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `aplazamientos`
 --
 
@@ -53,6 +64,17 @@ CREATE TABLE `aplazamientos` (
   `idcliente` bigint(20) DEFAULT NULL,
   `id_tipo_aplazamiento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cita_medica`
+--
+
+CREATE TABLE `cita_medica` (
+  `idcita_medica` int(11) NOT NULL,
+  `consultorios_idconsultorio` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -69,6 +91,16 @@ CREATE TABLE `clientes` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `consultorios`
+--
+
+CREATE TABLE `consultorios` (
+  `idconsultorio` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `correos`
 --
 
@@ -77,13 +109,6 @@ CREATE TABLE `correos` (
   `correo` varchar(45) NOT NULL,
   `id_usuario` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `correos`
---
-
-INSERT INTO `correos` (`id_correo`, `correo`, `id_usuario`) VALUES
-(1, 'rdconsuegra@misena.edu.co', 1031174466);
 
 -- --------------------------------------------------------
 
@@ -134,15 +159,6 @@ CREATE TABLE `empresa` (
   `nombre` varchar(45) NOT NULL COMMENT 'Este campo almacena el nombre de la empresa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `empresa`
---
-
-INSERT INTO `empresa` (`idEmpresa`, `nombre`) VALUES
-(1, 'Colpatria'),
-(2, 'Porvenir'),
-(3, 'Bancolombia');
-
 -- --------------------------------------------------------
 
 --
@@ -171,10 +187,8 @@ CREATE TABLE `estados` (
 --
 
 INSERT INTO `estados` (`id_estados`, `nombre`, `descripccion`) VALUES
-(1, 'activo', ''),
-(2, 'bloqueado', NULL),
-(3, 'sin rol', NULL),
-(4, 'sin permisos', NULL);
+(1, 'activo', 'usuario puede aceder al sistema'),
+(2, 'bloqueado', ' usuario bloqueado');
 
 -- --------------------------------------------------------
 
@@ -184,11 +198,11 @@ INSERT INTO `estados` (`id_estados`, `nombre`, `descripccion`) VALUES
 
 CREATE TABLE `inscripciones` (
   `idInscripciones` int(11) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id) \n',
-  `idPrograma` int(11) NOT NULL COMMENT 'Este campo almacena el (id) de la tabla "Programas"',
   `idCliente` bigint(20) NOT NULL COMMENT 'Este campo almacena el (id) de la tabla "Clientes"',
   `fechaInicio` date DEFAULT NULL COMMENT 'Este campo almacena la fecha en que fue realizada la incripcion al programa',
-  `fechaFin` date DEFAULT NULL,
-  `valor` int(11) DEFAULT NULL COMMENT 'Este campo almacena el coste de la inscripcion'
+  `valor` int(11) DEFAULT NULL COMMENT 'Este campo almacena el coste de la inscripcion',
+  `id_servicio` int(11) NOT NULL,
+  `numero_sesiones` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -201,31 +215,6 @@ CREATE TABLE `localidades` (
   `id_localidad` int(11) NOT NULL,
   `localidad` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `localidades`
---
-
-INSERT INTO `localidades` (`id_localidad`, `localidad`) VALUES
-(1, 'USAQUÉN'),
-(2, 'CHAPINERO'),
-(3, 'SANTA FE'),
-(4, 'SAN CRISTÖBAL'),
-(5, 'USME'),
-(6, 'TUNJUELIO'),
-(7, 'BOSA'),
-(8, 'KENNEDY'),
-(9, 'FONTIBÖN'),
-(10, 'ENGATIVÄ'),
-(11, 'SUBA'),
-(12, 'BARRIOS UNIDOS'),
-(13, 'LOS MÄRTIRES'),
-(14, 'ANTONIO NARIÑO'),
-(15, 'PUENTE ARANDA'),
-(16, 'LA CANDELARIA'),
-(17, 'RAFAEL URIBE URIBE'),
-(18, 'CIUDAD BOLÏVAR'),
-(19, 'SUMAPAZ');
 
 -- --------------------------------------------------------
 
@@ -241,22 +230,6 @@ CREATE TABLE `permisos` (
   `permisos_padre` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `permisos`
---
-
-INSERT INTO `permisos` (`id`, `nombre`, `url`, `icon`, `permisos_padre`) VALUES
-(1, 'Perfil', '', 'fa fa-user', NULL),
-(2, 'Programas', '', 'fa fa-heart', NULL),
-(3, 'Agenda', '', 'fa fa-calendar', NULL),
-(4, 'Usuarios', '', 'fa fa-users', NULL),
-(5, 'Citas', '', 'fa fa-list', NULL),
-(6, 'Aplazamientos', '', 'fa fa-list-ul', NULL),
-(42, 'usuarios', '/app/usuarios/listar.xhtml', 'fa fa-list-ul', 4),
-(44, 'Registrar usuario', '/app/usuarios/nuevo.xhtml', 'fa fa-plus', 4),
-(51, 'Rutinas Citas', '/app/citas/listarrutinas.xhtml', 'fa fa-list', 5),
-(61, 'Registro Aplazamientos', '/app/aplazamientos/lista.xhtml\r\n', 'fa fa-list-ul', 6);
-
 -- --------------------------------------------------------
 
 --
@@ -267,25 +240,6 @@ CREATE TABLE `permisosroles` (
   `permisos_id` int(11) NOT NULL,
   `roles_idRoles` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `permisosroles`
---
-
-INSERT INTO `permisosroles` (`permisos_id`, `roles_idRoles`) VALUES
-(1, 1),
-(1, 3),
-(2, 1),
-(2, 3),
-(3, 1),
-(4, 1),
-(5, 1),
-(5, 3),
-(6, 1),
-(42, 1),
-(44, 1),
-(51, 1),
-(61, 1);
 
 -- --------------------------------------------------------
 
@@ -299,13 +253,6 @@ CREATE TABLE `personalmedico` (
   `cargo` varchar(20) NOT NULL COMMENT 'Este campo almacena el tipo de cargo que tiene el personal Medico (Prenatal o Posnatal)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `personalmedico`
---
-
-INSERT INTO `personalmedico` (`idPersonalMedico`, `perfilProfesional`, `cargo`) VALUES
-(1031174466, 'Entrenadora Fisica', 'Rutinas Prenatales');
-
 -- --------------------------------------------------------
 
 --
@@ -313,17 +260,19 @@ INSERT INTO `personalmedico` (`idPersonalMedico`, `perfilProfesional`, `cargo`) 
 --
 
 CREATE TABLE `programas` (
-  `idProgramas` int(11) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id) ',
-  `fechaInicio` date DEFAULT NULL,
-  `idRutinaServicios` int(11) NOT NULL
+  `idprograma` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `programas`
+-- Estructura de tabla para la tabla `programas_has_clases`
 --
 
-INSERT INTO `programas` (`idProgramas`, `fechaInicio`, `idRutinaServicios`) VALUES
-(1111, '2017-04-09', 1);
+CREATE TABLE `programas_has_clases` (
+  `idprograma` int(11) NOT NULL,
+  `idactividad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -342,9 +291,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`idRoles`, `nombre`, `descripcion`) VALUES
-(1, 'Administrador', 'Encargado del sistema de información'),
-(2, 'Cliente', 'El acceso a consultas de las rutinas y el agendamiento de citas por parte de los usuarios'),
-(3, 'Personal Medico', 'Personal medico orientado al tratamiento de los programas del gimnasio');
+(1, 'Administrador', 'hola'),
+(2, 'clientes', 'como '),
+(3, 'personal medico', 'estas?');
 
 -- --------------------------------------------------------
 
@@ -362,9 +311,7 @@ CREATE TABLE `rolesusuarios` (
 --
 
 INSERT INTO `rolesusuarios` (`idRoles`, `idUsuarios`) VALUES
-(1, 1031174466),
-(2, 24367890),
-(2, 43829148);
+(1, 1031174466);
 
 -- --------------------------------------------------------
 
@@ -378,39 +325,18 @@ CREATE TABLE `rutinas` (
   `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `rutinas`
---
-
-INSERT INTO `rutinas` (`idRutinas`, `nombre`, `descripcion`) VALUES
-(1, 'Pilates', ''),
-(2, 'Esferodinamia', ''),
-(3, 'Rumba', ''),
-(4, 'Yoga', ''),
-(5, 'Body Jam', '');
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `rutinaservicios`
+-- Estructura de tabla para la tabla `salones`
 --
 
-CREATE TABLE `rutinaservicios` (
-  `idRutinaServicios` int(11) NOT NULL,
-  `idRutinas` int(11) NOT NULL,
-  `idServicios` int(11) DEFAULT NULL
+CREATE TABLE `salones` (
+  `id_salones` varchar(45) NOT NULL,
+  `actividad` int(11) DEFAULT NULL,
+  `salon` varchar(45) NOT NULL,
+  `descripcion` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `rutinaservicios`
---
-
-INSERT INTO `rutinaservicios` (`idRutinaServicios`, `idRutinas`, `idServicios`) VALUES
-(1, 1, 1),
-(2, 2, 1),
-(3, 3, 1),
-(4, 4, 1),
-(5, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -421,15 +347,11 @@ INSERT INTO `rutinaservicios` (`idRutinaServicios`, `idRutinas`, `idServicios`) 
 CREATE TABLE `servicios` (
   `idServicio` int(11) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id) de cada programa',
   `nombre` varchar(20) DEFAULT NULL COMMENT 'Este campo almacena el nombre de programa ',
-  `descripcion` text COMMENT 'Este campo almacena una pequeña descripcion de cada programa'
+  `descripcion` text COMMENT 'Este campo almacena una pequeña descripcion de cada programa',
+  `tipo_servicio_idtipo_servicio` int(11) NOT NULL,
+  `inicio` datetime DEFAULT NULL,
+  `fin` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `servicios`
---
-
-INSERT INTO `servicios` (`idServicio`, `nombre`, `descripcion`) VALUES
-(1, 'Pre-natal', 'Programa especializado al estado pre natal o periodo de gestación de la mujer');
 
 -- --------------------------------------------------------
 
@@ -440,10 +362,10 @@ INSERT INTO `servicios` (`idServicio`, `nombre`, `descripcion`) VALUES
 CREATE TABLE `sesiones` (
   `idSesiones` int(11) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id) ',
   `idPersonalMedico` bigint(20) DEFAULT NULL COMMENT 'Este campo almacena el (id) de la tabla "Programa"',
-  `fecha` date DEFAULT NULL COMMENT 'Este campo almacena la fecha de la realizacion de la clase del programa',
+  `fecha` date NOT NULL COMMENT 'Este campo almacena la fecha de la realizacion de la clase del programa',
   `hora` time DEFAULT NULL COMMENT 'Este campo almacena la hora en que se realiza el programa',
-  `idPrograma` int(11) DEFAULT NULL,
-  `numeroSesiones` int(11) DEFAULT NULL
+  `inscripciones_idInscripciones` int(11) NOT NULL,
+  `estado` tinyint(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -470,14 +392,6 @@ CREATE TABLE `tg_registro_usuarios` (
   `id_nuevo_usuario` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `tg_registro_usuarios`
---
-
-INSERT INTO `tg_registro_usuarios` (`fecha_registro`, `hora_registro`, `id_nuevo_usuario`) VALUES
-('2017-06-02', '13:33:07', 1234242341),
-('2017-06-07', '18:11:56', 441242134);
-
 -- --------------------------------------------------------
 
 --
@@ -495,18 +409,6 @@ CREATE TABLE `tg_roles_usuarios_after_update` (
   `anterior_rol` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `tg_roles_usuarios_after_update`
---
-
-INSERT INTO `tg_roles_usuarios_after_update` (`id_actualizacion_rol`, `fecha`, `Hora`, `actualiza_id`, `actualizo_id`, `id_rol`, `anterior_usuario`, `anterior_rol`) VALUES
-(1, '2017-06-01', '22:50:28', 0, 1031174466, 1, NULL, NULL),
-(2, '2017-06-02', '08:41:10', 0, 1031174466, 2, 1031174466, 1),
-(3, '2017-06-02', '08:41:32', 0, 1031174466, 2, 1031174466, 2),
-(4, '2017-06-02', '08:41:49', 0, 1031174466, 2, 1031174466, 2),
-(5, '2017-06-02', '08:41:51', 0, 1031174466, 2, 1031174466, 2),
-(6, '2017-06-02', '09:49:31', 0, 1031174466, 1, 1031174466, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -516,6 +418,17 @@ INSERT INTO `tg_roles_usuarios_after_update` (`id_actualizacion_rol`, `fecha`, `
 CREATE TABLE `tipo_aplazamiento` (
   `id_tipo` int(11) NOT NULL,
   `tipo` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_servicio`
+--
+
+CREATE TABLE `tipo_servicio` (
+  `idtipo_servicio` int(11) NOT NULL,
+  `tipo_servicio` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -552,9 +465,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`cedula`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `fechaNaci`, `clave`, `imegen_perfil`, `id_estados`) VALUES
-(24367890, 'Lorena', 'hgjvkg', 'Maria', 'gjgjkghg', '2017-06-04', 'Gustam', NULL, 3),
-(43829148, 'sdhajfldhlj', 'djldskfakjfh', 'sldfhadlfjksh', 'sdklfhsakjlf', '2017-06-04', '4218421439', NULL, 3),
-(1031174466, 'Nicol', 'Lina', 'Gomez', 'Carvajal', '1997-07-01', '1031174466', NULL, 1);
+(1031174466, 'Nicol', 'Lorena', 'Maella ', 'Parra', '1995-06-21', '1031174466', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -585,6 +496,13 @@ CREATE TABLE `usuarios_has_telefonos` (
 --
 
 --
+-- Indices de la tabla `actividades`
+--
+ALTER TABLE `actividades`
+  ADD PRIMARY KEY (`idadtividad`),
+  ADD KEY `fk_clases_rutinas1_idx` (`idRutinas`);
+
+--
 -- Indices de la tabla `aplazamientos`
 --
 ALTER TABLE `aplazamientos`
@@ -593,11 +511,24 @@ ALTER TABLE `aplazamientos`
   ADD KEY `fk_aplazamiento_tipo_aplazamiento` (`id_tipo_aplazamiento`);
 
 --
+-- Indices de la tabla `cita_medica`
+--
+ALTER TABLE `cita_medica`
+  ADD PRIMARY KEY (`idcita_medica`),
+  ADD KEY `fk_cita_medica_consultorios1_idx` (`consultorios_idconsultorio`);
+
+--
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`idClientes`),
   ADD KEY `fk_ClientesEmpresa_idx` (`idEmpresa`);
+
+--
+-- Indices de la tabla `consultorios`
+--
+ALTER TABLE `consultorios`
+  ADD PRIMARY KEY (`idconsultorio`);
 
 --
 -- Indices de la tabla `correos`
@@ -653,7 +584,7 @@ ALTER TABLE `estados`
 ALTER TABLE `inscripciones`
   ADD PRIMARY KEY (`idInscripciones`),
   ADD KEY `fk_InscripcionesCliente_idx` (`idCliente`),
-  ADD KEY `FKProgramasInscripciones` (`idPrograma`);
+  ADD KEY `fk_inscripciones_servicios1_idx` (`id_servicio`);
 
 --
 -- Indices de la tabla `localidades`
@@ -686,8 +617,15 @@ ALTER TABLE `personalmedico`
 -- Indices de la tabla `programas`
 --
 ALTER TABLE `programas`
-  ADD PRIMARY KEY (`idProgramas`),
-  ADD KEY `fk_programas_rutinaservicios1_idx` (`idRutinaServicios`);
+  ADD PRIMARY KEY (`idprograma`);
+
+--
+-- Indices de la tabla `programas_has_clases`
+--
+ALTER TABLE `programas_has_clases`
+  ADD PRIMARY KEY (`idprograma`,`idactividad`),
+  ADD KEY `fk_programas_has_clases_clases1_idx` (`idactividad`),
+  ADD KEY `fk_programas_has_clases_programas1_idx` (`idprograma`);
 
 --
 -- Indices de la tabla `roles`
@@ -709,26 +647,26 @@ ALTER TABLE `rutinas`
   ADD PRIMARY KEY (`idRutinas`);
 
 --
--- Indices de la tabla `rutinaservicios`
+-- Indices de la tabla `salones`
 --
-ALTER TABLE `rutinaservicios`
-  ADD PRIMARY KEY (`idRutinaServicios`),
-  ADD KEY `FkRutnas_RutinasServicios_idx` (`idRutinas`),
-  ADD KEY `FkServicios_RutinasServicios_idx` (`idServicios`);
+ALTER TABLE `salones`
+  ADD PRIMARY KEY (`id_salones`),
+  ADD KEY `fk_salones_clases1_idx` (`actividad`);
 
 --
 -- Indices de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  ADD PRIMARY KEY (`idServicio`);
+  ADD PRIMARY KEY (`idServicio`),
+  ADD KEY `fk_servicios_tipo_servicio1_idx` (`tipo_servicio_idtipo_servicio`);
 
 --
 -- Indices de la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  ADD PRIMARY KEY (`idSesiones`),
-  ADD KEY `FKSesionesProgramas_idx` (`idPrograma`),
-  ADD KEY `FKPersonalSesiones` (`idPersonalMedico`);
+  ADD PRIMARY KEY (`idSesiones`,`fecha`),
+  ADD KEY `FKPersonalSesiones` (`idPersonalMedico`),
+  ADD KEY `fk_sesiones_inscripciones1_idx` (`inscripciones_idInscripciones`);
 
 --
 -- Indices de la tabla `telefonos`
@@ -748,6 +686,12 @@ ALTER TABLE `tg_roles_usuarios_after_update`
 --
 ALTER TABLE `tipo_aplazamiento`
   ADD PRIMARY KEY (`id_tipo`);
+
+--
+-- Indices de la tabla `tipo_servicio`
+--
+ALTER TABLE `tipo_servicio`
+  ADD PRIMARY KEY (`idtipo_servicio`);
 
 --
 -- Indices de la tabla `tipo_telefono`
@@ -786,22 +730,17 @@ ALTER TABLE `usuarios_has_telefonos`
 -- AUTO_INCREMENT de la tabla `correos`
 --
 ALTER TABLE `correos`
-  MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
-  MODIFY `id_estados` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_estados` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `localidades`
 --
 ALTER TABLE `localidades`
-  MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
---
--- AUTO_INCREMENT de la tabla `rutinaservicios`
---
-ALTER TABLE `rutinaservicios`
-  MODIFY `idRutinaServicios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `sesiones`
 --
@@ -811,7 +750,7 @@ ALTER TABLE `sesiones`
 -- AUTO_INCREMENT de la tabla `tg_roles_usuarios_after_update`
 --
 ALTER TABLE `tg_roles_usuarios_after_update`
-  MODIFY `id_actualizacion_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_actualizacion_rol` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `usuarios_has_direcciones`
 --
@@ -822,11 +761,25 @@ ALTER TABLE `usuarios_has_direcciones`
 --
 
 --
+-- Filtros para la tabla `actividades`
+--
+ALTER TABLE `actividades`
+  ADD CONSTRAINT `fk_clases_rutinas1` FOREIGN KEY (`idRutinas`) REFERENCES `rutinas` (`idRutinas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_clases_servicios1` FOREIGN KEY (`idadtividad`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `aplazamientos`
 --
 ALTER TABLE `aplazamientos`
   ADD CONSTRAINT `FKClientesAplazamientos` FOREIGN KEY (`idcliente`) REFERENCES `clientes` (`idClientes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_aplazamiento_tipo_aplazamiento` FOREIGN KEY (`id_tipo_aplazamiento`) REFERENCES `tipo_aplazamiento` (`id_tipo`);
+
+--
+-- Filtros para la tabla `cita_medica`
+--
+ALTER TABLE `cita_medica`
+  ADD CONSTRAINT `fk_cita_medica_consultorios1` FOREIGN KEY (`consultorios_idconsultorio`) REFERENCES `consultorios` (`idconsultorio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_cita_medica_servicios1` FOREIGN KEY (`idcita_medica`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `clientes`
@@ -871,8 +824,8 @@ ALTER TABLE `empresa_has_telefonos`
 -- Filtros para la tabla `inscripciones`
 --
 ALTER TABLE `inscripciones`
-  ADD CONSTRAINT `FKProgramasInscripciones` FOREIGN KEY (`idPrograma`) REFERENCES `programas` (`idProgramas`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_InscripcionesCliente` FOREIGN KEY (`idCliente`) REFERENCES `clientes` (`idClientes`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_InscripcionesCliente` FOREIGN KEY (`idCliente`) REFERENCES `clientes` (`idClientes`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_inscripciones_servicios1` FOREIGN KEY (`id_servicio`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `permisos`
@@ -897,7 +850,14 @@ ALTER TABLE `personalmedico`
 -- Filtros para la tabla `programas`
 --
 ALTER TABLE `programas`
-  ADD CONSTRAINT `FK_ProgramasRutinasServicios` FOREIGN KEY (`idRutinaServicios`) REFERENCES `rutinaservicios` (`idServicios`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_programas_servicios1` FOREIGN KEY (`idprograma`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `programas_has_clases`
+--
+ALTER TABLE `programas_has_clases`
+  ADD CONSTRAINT `fk_programas_has_clases_clases1` FOREIGN KEY (`idactividad`) REFERENCES `actividades` (`idadtividad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_programas_has_clases_programas1` FOREIGN KEY (`idprograma`) REFERENCES `programas` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `rolesusuarios`
@@ -907,18 +867,23 @@ ALTER TABLE `rolesusuarios`
   ADD CONSTRAINT `fk_UsuariosRoles` FOREIGN KEY (`idUsuarios`) REFERENCES `usuarios` (`cedula`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `rutinaservicios`
+-- Filtros para la tabla `salones`
 --
-ALTER TABLE `rutinaservicios`
-  ADD CONSTRAINT `FkRutnas_RutinasServicios` FOREIGN KEY (`idRutinas`) REFERENCES `rutinas` (`idRutinas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FkServicios_RutinasServicios` FOREIGN KEY (`idServicios`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `salones`
+  ADD CONSTRAINT `fk_salones_clases1` FOREIGN KEY (`actividad`) REFERENCES `actividades` (`idadtividad`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `servicios`
+--
+ALTER TABLE `servicios`
+  ADD CONSTRAINT `fk_servicios_tipo_servicio1` FOREIGN KEY (`tipo_servicio_idtipo_servicio`) REFERENCES `tipo_servicio` (`idtipo_servicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
   ADD CONSTRAINT `FKPersonalSesiones` FOREIGN KEY (`idPersonalMedico`) REFERENCES `personalmedico` (`idPersonalMedico`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FKSesionesProgramas` FOREIGN KEY (`idPrograma`) REFERENCES `programas` (`idProgramas`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_sesiones_inscripciones1` FOREIGN KEY (`inscripciones_idInscripciones`) REFERENCES `inscripciones` (`idInscripciones`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `telefonos`
