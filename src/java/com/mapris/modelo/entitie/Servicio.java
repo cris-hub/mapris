@@ -44,6 +44,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Servicio.findByFin", query = "SELECT s FROM Servicio s WHERE s.fin = :fin")})
 public class Servicio implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "serviciosidServicio")
+    private List<Aplazamiento> aplazamientoList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -195,6 +198,15 @@ public class Servicio implements Serializable {
     @Override
     public String toString() {
         return "com.mapris.modelo.entitie.Servicio[ idServicio=" + idServicio + " ]";
+    }
+
+    @XmlTransient
+    public List<Aplazamiento> getAplazamientoList() {
+        return aplazamientoList;
+    }
+
+    public void setAplazamientoList(List<Aplazamiento> aplazamientoList) {
+        this.aplazamientoList = aplazamientoList;
     }
     
 }

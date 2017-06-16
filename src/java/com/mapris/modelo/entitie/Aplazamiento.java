@@ -6,7 +6,6 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -37,6 +34,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Aplazamiento.findByFechaRetorno", query = "SELECT a FROM Aplazamiento a WHERE a.fechaRetorno = :fechaRetorno")})
 public class Aplazamiento implements Serializable {
 
+    @JoinColumn(name = "servicios_idServicio", referencedColumnName = "idServicio")
+    @ManyToOne(optional = false)
+    private Servicio serviciosidServicio;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -47,9 +48,6 @@ public class Aplazamiento implements Serializable {
     @Size(max = 65535)
     @Column(name = "motivo")
     private String motivo;
-    @Column(name = "fechaRetorno")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaRetorno;
     @JoinColumn(name = "idcliente", referencedColumnName = "idClientes")
     @ManyToOne(fetch = FetchType.LAZY)
     private Cliente idcliente;
@@ -78,14 +76,6 @@ public class Aplazamiento implements Serializable {
 
     public void setMotivo(String motivo) {
         this.motivo = motivo;
-    }
-
-    public Date getFechaRetorno() {
-        return fechaRetorno;
-    }
-
-    public void setFechaRetorno(Date fechaRetorno) {
-        this.fechaRetorno = fechaRetorno;
     }
 
     public Cliente getIdcliente() {
@@ -127,6 +117,14 @@ public class Aplazamiento implements Serializable {
     @Override
     public String toString() {
         return "com.mapris.modelo.entitie.Aplazamiento[ idaplazamiento=" + idaplazamiento + " ]";
+    }
+
+    public Servicio getServiciosidServicio() {
+        return serviciosidServicio;
+    }
+
+    public void setServiciosidServicio(Servicio serviciosidServicio) {
+        this.serviciosidServicio = serviciosidServicio;
     }
     
 }
