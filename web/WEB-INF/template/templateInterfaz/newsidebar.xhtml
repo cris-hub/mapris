@@ -23,7 +23,7 @@
 
                 <c:forEach items="#{sessionController.rolSeleccionado.permisos}"
                            var="p">
-                    <c:if test="#{empty p.permisoPadre}">
+                    <c:if test="#{empty p.permisosPadre}">
                         <li class="nav-item start">
                             <a class="nav-link nav-toggle" href="javascript:;">
                                 <i class="#{p.icon}"></i>

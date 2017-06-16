@@ -1,0 +1,10 @@
+
+LOAD DATA LOCAL infile 'C:\\Users\\SMEGS\\Documents\\BASES DE DATOS\\llenado de datos para mapris\\permisos.csv'
+ 
+REPLACE INTO TABLE permisos
+fields terminated BY ";"
+lines terminated BY "\n"
+(id, nombre, url,`icon`,@permisos_padre)
+SET permisos_padre = nullif(@permisos_padre,'');
+SHOW WARNINGS;
+SELECT * FROM permisos;

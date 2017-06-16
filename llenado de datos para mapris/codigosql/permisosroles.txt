@@ -1,0 +1,11 @@
+
+LOAD DATA LOCAL infile 'C:\\Users\\SMEGS\\Documents\\BASES DE DATOS\\llenado de datos para mapris\\rolespermisos.csv'
+ 
+REPLACE INTO TABLE permisosroles
+fields terminated BY ";"
+lines terminated BY "\n"
+IGNORE 1 LINES
+(permisos_id,roles_idRoles);
+SHOW WARNINGS;
+
+SELECT * FROM permisosroles;
