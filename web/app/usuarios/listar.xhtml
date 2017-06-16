@@ -67,9 +67,7 @@
 
                                         <ul class="dropdown-menu pull-right">
                                             <li>
-                                                <p:commandButton value="PDF" ajax="false">
-                                                    <p:dataExporter  type="xls" target="dtUsuarios" fileName="Usuariospfd"></p:dataExporter>
-                                                </p:commandButton>
+                                                <h:commandLink value="PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
                                             </li>
                                             <li>
                                                 <a href="javascript:;">
@@ -115,43 +113,7 @@
                                 <b:commandButton look="default" value="" iconAwesome="#{editarUsuarioController.getIconUsuarioBloqueo(user)}" action="#{editarUsuarioController.cambioDeEstado(user)}"/>
                             </b:dataTableColumn>
                         </b:dataTable>
-                        
-                        <h:commandLink>
-                            <p:graphicImage library="img" name="export/pdf.png" />
-                            <p:dataExporter type="pdf" target="dtUsuario" fileName="cars" pageOnly="true" />
-                        </h:commandLink>
-                        
-                        <p:dataTable id="dtUsuarios"  var="user" value="#{listarUsuaariosController.usuarios}">
-                            <p:column headerText="Documento">
-                                <h:outputText value="#{user.cedula}" />
-                            </p:column>
 
-                            <p:column headerText="Nombre">
-                                <h:outputText value="
-                                               #{user.primerNombre} 
-                                               #{user.segundoNombre} 
-                                               #{user.primerApellido} 
-                                               #{user.primerApellido}" />
-                            </p:column>
-
-                            <p:column headerText="Roles">
-                                 <ui:repeat value="#{user.roles}" var="r2">
-                                    <h:outputText value="#{r2.nombre}"/><br/>
-                                </ui:repeat>
-                            </p:column>
-
-                            
-                        </p:dataTable>
-
-
-                        <h:commandLink>
-                            <p:graphicImage library="img" name="export/pdf.png" />
-                            <p:dataExporter type="pdf" target="dtUsuarios" fileName="ListaUsuarios" pageOnly="true" />
-                        </h:commandLink>
-                        <h:commandLink>
-                            <p:graphicImage library="img" name="export/excel.png" />
-                            <p:dataExporter type="xls" target="dtUsuarios" fileName="ListaUsuarios" pageOnly="true" />
-                        </h:commandLink>
                     </h:form>
                 </div>
             </div>

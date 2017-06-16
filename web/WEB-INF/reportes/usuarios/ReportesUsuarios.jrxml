@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportesUsuarios" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="89d1c2c3-b9c1-4dfb-b4e7-ba63593becd9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="cedula" class="java.lang.Long"/>
+	<field name="primerNombre" class="java.lang.String"/>
+	<field name="segundoNombre" class="java.lang.String"/>
+	<field name="primerApellido" class="java.lang.String"/>
+	<field name="segundoApellido" class="java.lang.String"/>
+	<field name="fechaNaci" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement mode="Transparent" x="0" y="0" width="129" height="69" uuid="b5d2a0ad-d93d-4597-980c-1312f0bd5ef5"/>
+				<imageExpression><![CDATA["C:\\Users\\N1KoLach0\\Documents\\favicon.png"]]></imageExpression>
+			</image>
+			<break type="Column">
+				<reportElement mode="Transparent" x="0" y="76" width="551" height="1" uuid="9a81d6dd-6d28-4c3d-83ee-8075f6dd81dd"/>
+			</break>
+			<staticText>
+				<reportElement mode="Transparent" x="129" y="18" width="330" height="40" forecolor="#000000" backcolor="#FFFFFF" uuid="f82bfba2-a71e-4d08-b167-8cdee0dba387"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Abbey-Medium Extended" size="30" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Maternity Manager]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="118" y="17" width="319" height="33" forecolor="#000000" backcolor="#FFFFFF" uuid="acde3877-8ebd-4a2a-8d0d-e387e5830fcf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="24" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Reportes de Usuarios]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="10" y="10" width="70" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3f2ed753-313f-4f6c-9fa2-804c187c2629"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Cedula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="87" y="10" width="144" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="fd768d76-ea3a-4270-91f2-43fde29cea54"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="246" y="10" width="176" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="0230c997-a1df-4420-9fde-035bd464935b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="435" y="10" width="116" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="76d0fe40-fd14-488f-95d9-aff98ff81b5a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Fecha Nacimiento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="87" y="21" width="70" height="20" uuid="8dd6f7f2-ccd4-4bcd-af7f-f80dfd184945"/>
+				<textFieldExpression><![CDATA[$F{primerNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="157" y="21" width="74" height="20" uuid="f6caeea7-bf06-4d3e-ac0a-639ba8f7a0f6"/>
+				<textFieldExpression><![CDATA[$F{segundoNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="21" width="88" height="20" uuid="34d44fa8-e8bf-4a10-9446-76f8f0eada2e"/>
+				<textFieldExpression><![CDATA[$F{primerApellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="334" y="21" width="88" height="20" uuid="69088df5-1285-40c1-bcf6-a73ff78754ae"/>
+				<textFieldExpression><![CDATA[$F{segundoApellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="441" y="21" width="110" height="20" uuid="db05daca-c487-4c49-a3a3-4cea12d7c3aa"/>
+				<textFieldExpression><![CDATA[$F{fechaNaci}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="21" width="70" height="20" uuid="d8c31822-6a5b-4343-a2e3-103b074ac5d8"/>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
