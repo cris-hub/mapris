@@ -6,7 +6,8 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:pst="http://xmlns.jcp.org/jsf/passthrough">
+                xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="titulo">#{sessionController.usuario.primerNombre}</ui:define>
     <ui:define name="pagetitle">
@@ -33,6 +34,7 @@
     </ui:define>
 
     <ui:define name="contenido">
+        
         <div class="col-md-12">
             <!-- BEGIN PROFILE SIDEBAR -->
             <div class="profile-sidebar">
@@ -40,7 +42,7 @@
                 <div class="portlet light profile-sidebar-portlet bordered">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="#{request.contextPath}/resources/img/avatars/photo3.jpg" class="img-responsive" alt=""/>
+                        <img src="#{request.contextPath}/files/profileimg/#{sessionController.usuario.cedula.toString()}/perfil/perfil.png" class="img-responsive" alt=""/>
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
@@ -181,6 +183,7 @@
                                         <p> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
                                             eiusmod. </p>
                                         <h:form  role="form" enctype="multipart/form-data" prependId="false">
+                                            <b:messages global-only="true"   showSummary="true" showDetail="true" />
                                             <div class="form-group">
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
@@ -190,7 +193,7 @@
                                                         <span class="btn default btn-file">
                                                             <span class="fileinput-new"> Selecciona tu fotografía  </span>
                                                             <span class="fileinput-exists"> Cambiar </span>
-                                                            <h:inputFile value="#{subirArchivoController.filePart}"/>
+                                                            <h:inputFile id = "fileUpload" />
                                                         </span>
                                                         <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
                                                     </div>
@@ -201,7 +204,7 @@
                                                 </div>
                                             </div>
                                             <div class="margin-top-10">
-                                                <h:commandButton actionListener="#{subirArchivoController.uploadFile()}" class="btn green" value="Subir"/> 
+                                                <h:commandButton value="update progres" id="upload" class="btn default " actionListener="#{cargarArchivoController.uploadProfileImage}"/>
                                                 <a href="javascript:;" class="btn default"> Cancel </a>
                                             </div>
                                         </h:form>
