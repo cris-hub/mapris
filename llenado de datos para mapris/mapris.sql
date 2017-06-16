@@ -41,6 +41,27 @@ END$$
 
 DELIMITER ;
 
+--
+ -- Table structure for table `actividades`
+  --
+--
+ DROP TABLE IF EXISTS `actividades`;
+ /*!40101 SET @saved_cs_client     = @@character_set_client */;
+ /*!40101 SET character_set_client = utf8 */;
+ CREATE TABLE `actividades` (
+  `idadtividad` int(11) NOT NULL,
+  `idRutinas` int(11) NOT NULL,
+  PRIMARY KEY (`idadtividad`),
+  KEY `fk_clases_rutinas1_idx` (`idRutinas`),
+  CONSTRAINT `fk_clases_rutinas1` FOREIGN KEY (`idRutinas`) REFERENCES `rutinas` (`idRutinas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_clases_servicios1` FOREIGN KEY (`idadtividad`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ /*!40101 SET character_set_client = @saved_cs_client */;
+ 
+LOCK TABLES `actividades` WRITE;
+ /*!40000 ALTER TABLE `actividades` DISABLE KEYS */;
+ /*!40000 ALTER TABLE `actividades` ENABLE KEYS */;
+ UNLOCK TABLES;
 -- --------------------------------------------------------
 
 --
@@ -97,33 +118,6 @@ LOCK TABLES `cita_medica` WRITE;
 /*!40000 ALTER TABLE `cita_medica` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cita_medica` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `clases`
---
-
-DROP TABLE IF EXISTS `clases`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `clases` (
-  `idadtividad` int(11) NOT NULL,
-  `idRutinas` int(11) NOT NULL,
-  PRIMARY KEY (`idadtividad`),
-  KEY `fk_clases_rutinas1_idx` (`idRutinas`),
-  CONSTRAINT `fk_clases_rutinas1` FOREIGN KEY (`idRutinas`) REFERENCES `rutinas` (`idRutinas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_clases_servicios1` FOREIGN KEY (`idadtividad`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `clases`
---
-
-LOCK TABLES `clases` WRITE;
-/*!40000 ALTER TABLE `clases` DISABLE KEYS */;
-/*!40000 ALTER TABLE `clases` ENABLE KEYS */;
-UNLOCK TABLES;
-
 --
 -- Table structure for table `clientes`
 --
@@ -525,7 +519,7 @@ CREATE TABLE `programas_has_clases` (
   PRIMARY KEY (`idprograma`,`idactividad`),
   KEY `fk_programas_has_clases_clases1_idx` (`idactividad`),
   KEY `fk_programas_has_clases_programas1_idx` (`idprograma`),
-  CONSTRAINT `fk_programas_has_clases_clases1` FOREIGN KEY (`idactividad`) REFERENCES `clases` (`idadtividad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_programas_has_clases_clases1` FOREIGN KEY (`idactividad`) REFERENCES `actividades` (`idadtividad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_programas_has_clases_programas1` FOREIGN KEY (`idprograma`) REFERENCES `programas` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -657,7 +651,7 @@ CREATE TABLE `salones` (
   `descripcion` text,
   PRIMARY KEY (`id_salones`),
   KEY `fk_salones_clases1_idx` (`actividad`),
-  CONSTRAINT `fk_salones_clases1` FOREIGN KEY (`actividad`) REFERENCES `clases` (`idadtividad`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_salones_clases1` FOREIGN KEY (`actividad`) REFERENCES `actividades` (`idadtividad`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
