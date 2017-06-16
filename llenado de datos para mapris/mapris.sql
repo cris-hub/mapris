@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.21-MariaDB, for Win32 (AMD64)
+﻿-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
--- Host: localhost    Database: localhost
+-- Host: 127.0.0.1    Database: mapris
 -- ------------------------------------------------------
--- Server version	10.1.21-MariaDB
+-- Server version	5.5.5-10.1.19-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,33 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `actividades`
---
-
-DROP TABLE IF EXISTS `actividades`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `actividades` (
-  `idadtividad` int(11) NOT NULL,
-  `idRutinas` int(11) NOT NULL,
-  PRIMARY KEY (`idadtividad`),
-  KEY `fk_clases_rutinas1_idx` (`idRutinas`),
-  CONSTRAINT `fk_clases_rutinas1` FOREIGN KEY (`idRutinas`) REFERENCES `rutinas` (`idRutinas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_clases_servicios1` FOREIGN KEY (`idadtividad`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `actividades`
---
-
-LOCK TABLES `actividades` WRITE;
-/*!40000 ALTER TABLE `actividades` DISABLE KEYS */;
-/*!40000 ALTER TABLE `actividades` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `aplazamientos`
+--
+--
+-- Base de datos: `mapris`
+--
+CREATE DATABASE IF NOT EXISTS `mapris` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `mapris`;
+DELIMITER $$
+--
+-- Funciones
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `fc_descencriptar` (`clave_codificada` VARCHAR(10)) RETURNS VARCHAR(10) CHARSET latin1 BEGIN
+DECLARE var VARCHAR(10);
+SET var = (SELECT decode(clave_codificada,255));
+RETURN var;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `fc_encriptar` (`clave` VARCHAR(10)) RETURNS VARCHAR(10) CHARSET latin1 BEGIN
+DECLARE var VARCHAR(10);
+SET var = (SELECT encode(clave,255));
+return var;
+END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `aplazamientos`
 --
 
 DROP TABLE IF EXISTS `aplazamientos`;
@@ -51,14 +53,13 @@ DROP TABLE IF EXISTS `aplazamientos`;
 CREATE TABLE `aplazamientos` (
   `idaplazamiento` int(11) NOT NULL,
   `motivo` text COMMENT 'Este campo almacena la razon por la cual se hace el aplazamiento',
-  `fechaRetorno` datetime DEFAULT NULL,
   `idcliente` bigint(20) DEFAULT NULL,
-  `id_tipo_aplazamiento` int(11) NOT NULL,
+  `servicios_idServicio` int(11) NOT NULL,
   PRIMARY KEY (`idaplazamiento`),
   KEY `FKClientesAplazamientos_idx` (`idcliente`),
-  KEY `fk_aplazamiento_tipo_aplazamiento` (`id_tipo_aplazamiento`),
+  KEY `fk_aplazamientos_servicios1_idx` (`servicios_idServicio`),
   CONSTRAINT `FKClientesAplazamientos` FOREIGN KEY (`idcliente`) REFERENCES `clientes` (`idClientes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_aplazamiento_tipo_aplazamiento` FOREIGN KEY (`id_tipo_aplazamiento`) REFERENCES `tipo_aplazamiento` (`id_tipo`)
+  CONSTRAINT `fk_aplazamientos_servicios1` FOREIGN KEY (`servicios_idServicio`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -95,6 +96,32 @@ CREATE TABLE `cita_medica` (
 LOCK TABLES `cita_medica` WRITE;
 /*!40000 ALTER TABLE `cita_medica` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cita_medica` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clases`
+--
+
+DROP TABLE IF EXISTS `clases`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `clases` (
+  `idadtividad` int(11) NOT NULL,
+  `idRutinas` int(11) NOT NULL,
+  PRIMARY KEY (`idadtividad`),
+  KEY `fk_clases_rutinas1_idx` (`idRutinas`),
+  CONSTRAINT `fk_clases_rutinas1` FOREIGN KEY (`idRutinas`) REFERENCES `rutinas` (`idRutinas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_clases_servicios1` FOREIGN KEY (`idadtividad`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clases`
+--
+
+LOCK TABLES `clases` WRITE;
+/*!40000 ALTER TABLE `clases` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clases` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -315,7 +342,7 @@ CREATE TABLE `estados` (
   `nombre` varchar(45) DEFAULT NULL,
   `descripccion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_estados`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -324,7 +351,7 @@ CREATE TABLE `estados` (
 
 LOCK TABLES `estados` WRITE;
 /*!40000 ALTER TABLE `estados` DISABLE KEYS */;
-INSERT INTO `estados` VALUES (1,'activo','usuario puede aceder al sistema'),(2,'bloqueado',' usuario bloqueado');
+INSERT INTO `estados` VALUES (1,'activo',''),(2,'bloqueado',NULL),(3,'sin rol',NULL),(4,'sin permisos',NULL);
 /*!40000 ALTER TABLE `estados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -407,7 +434,6 @@ CREATE TABLE `permisos` (
 
 LOCK TABLES `permisos` WRITE;
 /*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
-INSERT INTO `permisos` VALUES (1,'perfil','','fa fa-user-o\r',NULL),(2,'usuarios','','fa fa-users\r',NULL),(3,'aplazamientos','','fa fa-clock-o\r',NULL),(4,'citas','','fa fa-calendar-check-o\r',NULL),(5,'agenda','','fa fa-calendar\r',NULL),(11,'Mi perfil','/app/perfil/miperfil.xhtml','fa fa-user\r',1),(12,'Cambiar Datos','/app/perfil/cambiardatos.xhtml','fa fa-plus',1),(21,'Lista usuarios','/app/usuarios/listar.xhtml','fa fa-list\r',2),(22,'Nuevo usuario','/app/usuarios/nuevo.xhtml','fa fa-user-plus\r',2),(31,'Lista Aplazamientos','/app/aplazamientos/lista.xhtml','fa fa-list\r',3),(32,'Registrar aplazamiento','/app/aplazamientos/nuevo.xhtml','fa fa-plus\r',3);
 /*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -435,7 +461,6 @@ CREATE TABLE `permisosroles` (
 
 LOCK TABLES `permisosroles` WRITE;
 /*!40000 ALTER TABLE `permisosroles` DISABLE KEYS */;
-INSERT INTO `permisosroles` VALUES (1,1),(2,1),(3,1),(11,1),(12,1),(21,1),(22,1),(31,1),(32,1);
 /*!40000 ALTER TABLE `permisosroles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -500,7 +525,7 @@ CREATE TABLE `programas_has_clases` (
   PRIMARY KEY (`idprograma`,`idactividad`),
   KEY `fk_programas_has_clases_clases1_idx` (`idactividad`),
   KEY `fk_programas_has_clases_programas1_idx` (`idprograma`),
-  CONSTRAINT `fk_programas_has_clases_clases1` FOREIGN KEY (`idactividad`) REFERENCES `actividades` (`idadtividad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_programas_has_clases_clases1` FOREIGN KEY (`idactividad`) REFERENCES `clases` (`idadtividad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_programas_has_clases_programas1` FOREIGN KEY (`idprograma`) REFERENCES `programas` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -535,7 +560,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Administrador','hola'),(2,'clientes','como '),(3,'personal medico','estas?');
+INSERT INTO `roles` VALUES (1,'Administrador','Encargado del sistema de información'),(2,'Cliente','El acceso a consultas de las rutinas y el agendamiento de citas por parte de los usuarios'),(3,'Personal Medico','Personal medico orientado al tratamiento de los programas del gimnasio');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -562,7 +587,7 @@ CREATE TABLE `rolesusuarios` (
 
 LOCK TABLES `rolesusuarios` WRITE;
 /*!40000 ALTER TABLE `rolesusuarios` DISABLE KEYS */;
-INSERT INTO `rolesusuarios` VALUES (1,1031174466);
+INSERT INTO `rolesusuarios` VALUES (1,1031174466),(2,24367890),(2,43829148);
 /*!40000 ALTER TABLE `rolesusuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -591,6 +616,34 @@ LOCK TABLES `rutinas` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `rutinaservicios`
+--
+
+DROP TABLE IF EXISTS `rutinaservicios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `rutinaservicios` (
+  `idRutinaServicios` int(11) NOT NULL AUTO_INCREMENT,
+  `idRutinas` int(11) NOT NULL,
+  `idServicios` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idRutinaServicios`),
+  KEY `FkRutnas_RutinasServicios_idx` (`idRutinas`),
+  KEY `FkServicios_RutinasServicios_idx` (`idServicios`),
+  CONSTRAINT `FkRutnas_RutinasServicios` FOREIGN KEY (`idRutinas`) REFERENCES `rutinas` (`idRutinas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FkServicios_RutinasServicios` FOREIGN KEY (`idServicios`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rutinaservicios`
+--
+
+LOCK TABLES `rutinaservicios` WRITE;
+/*!40000 ALTER TABLE `rutinaservicios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rutinaservicios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `salones`
 --
 
@@ -604,7 +657,7 @@ CREATE TABLE `salones` (
   `descripcion` text,
   PRIMARY KEY (`id_salones`),
   KEY `fk_salones_clases1_idx` (`actividad`),
-  CONSTRAINT `fk_salones_clases1` FOREIGN KEY (`actividad`) REFERENCES `actividades` (`idadtividad`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_salones_clases1` FOREIGN KEY (`actividad`) REFERENCES `clases` (`idadtividad`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -756,29 +809,6 @@ LOCK TABLES `tg_roles_usuarios_after_update` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tipo_aplazamiento`
---
-
-DROP TABLE IF EXISTS `tipo_aplazamiento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipo_aplazamiento` (
-  `id_tipo` int(11) NOT NULL,
-  `tipo` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id_tipo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tipo_aplazamiento`
---
-
-LOCK TABLES `tipo_aplazamiento` WRITE;
-/*!40000 ALTER TABLE `tipo_aplazamiento` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipo_aplazamiento` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tipo_servicio`
 --
 
@@ -853,7 +883,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1031174466,'Nicol','Lorena','Maella ','Parra','1995-06-21','1031174466',NULL,1);
+INSERT INTO `usuarios` VALUES (24367890,'Lorena','hgjvkg','Maria','gjgjkghg','2017-06-04','Gustam',NULL,3),(43829148,'PrimerNombre','SegundoNombre','PrimerApellido','SegundoApellido','2017-06-04','4218421439',NULL,3),(1031174466,'Nicol','Lina','Gomez','Carvajal','1997-07-01','1031174466',NULL,1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -912,6 +942,56 @@ LOCK TABLES `usuarios_has_telefonos` WRITE;
 /*!40000 ALTER TABLE `usuarios_has_telefonos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuarios_has_telefonos` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'mapris'
+--
+
+--
+-- Dumping routines for database 'mapris'
+--
+/*!50003 DROP FUNCTION IF EXISTS `fc_descencriptar` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `fc_descencriptar`(`clave_codificada` VARCHAR(10)) RETURNS varchar(10) CHARSET latin1
+BEGIN
+DECLARE var VARCHAR(10);
+SET var = (SELECT decode(clave_codificada,255));
+RETURN var;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `fc_encriptar` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `fc_encriptar`(`clave` VARCHAR(10)) RETURNS varchar(10) CHARSET latin1
+BEGIN
+DECLARE var VARCHAR(10);
+SET var = (SELECT encode(clave,255));
+return var;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -922,4 +1002,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-16  9:19:55
+-- Dump completed on 2017-06-15 20:18:57
