@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../../WEB-INF/template/templateInterfaz.xhtml"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="titulo"> 
+        #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} 
+    </ui:define>
+    <ui:define name="pagetitle">
+        <div class="page-head">
+            <div class="page-title">
+                <h1> Sesiones
+                    <small>Registrar sesiones</small>
+                </h1>
+            </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="index.html">Inicio</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Registrar Aplazamientos</span>
+            </li>
+        </ul>
+
+    </ui:define>
+    <ui:define name="contenido">
+
+        <div class="col-sm-12">
+            <div class="portlet light bordered">
+
+
+                <b:form>
+
+                    <br/>
+                    <b:dropButton look="primary" value="Personal Medico">
+                        <b:navLink value="Medico 1" href="#"></b:navLink>
+                        <b:navLink value="Medico 2" href="#"></b:navLink>
+                        <b:navLink value="Medico 3" href="#"></b:navLink>
+                    </b:dropButton> 
+                    <br/>
+                    <br/>
+                    <b:dateTimePicker value="#{registrarAplazamientoController.getFechaHoraActual()}"
+                                      allow-input-toggle="false" 
+                                      icon-position="right"
+                                      side-by-side="false"
+                                      show-date="true"
+                                      show-time="true"
+                                      show-icon="true"
+                                      use-current="true" />
+                    <br/>
+                    <br/>
+                    <b:dropButton look="primary" value="Programas">
+                        <b:navLink value="Programa Prenatal" href="#"></b:navLink>
+                        <b:navLink value="Programa Posparto" href="#"></b:navLink>
+                        <b:navLink value="Club Bebe" href="#"></b:navLink>
+                    </b:dropButton> 
+                    <br/>
+                    <br/>
+                    <b:formGroup>
+                        <b:inputText label="Numero Sesiones" placeholder="Ingrese el numero de sesiones" value="#{registrarAplazamientoController}">
+                        </b:inputText>
+                        <br/>
+                    </b:formGroup>
+                    <b:button value="Enviar" look="primary" outcome="registrarAplazamiento"/>
+
+
+
+                </b:form>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

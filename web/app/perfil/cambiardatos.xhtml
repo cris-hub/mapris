@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="titulo">#{sessionController.usuario.primerNombre}</ui:define>
+    <ui:define name="pagetitle">
+        <div class="page-head">
+            <div class="page-title">
+                <h1> Perfil - Cambiar Datos
+                    <small>Mis datos personales</small>
+                </h1>
+            </div>
+        </div>
+    </ui:define>
+    
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a href="index.html">Mi perfil</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span class="active">Cambiar datos</span>
+                </li>
+            </ul>
+ 
+    </ui:define>
+
+    <ui:define name="contenido">
+        
+        <div class="col-md-12">
+            <!-- BEGIN PROFILE SIDEBAR -->
+            <div class="profile-sidebar">
+                <!-- PORTLET MAIN -->
+                <div class="portlet light profile-sidebar-portlet bordered">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img src="#{request.contextPath}/files/profileimg/#{sessionController.usuario.cedula.toString()}/perfil/perfil.png" class="img-responsive" alt=""/>
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name"> #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </div>
+                        <div class="profile-usertitle-job"> #{sessionController.rolSeleccionado.nombre} </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <div class="profile-userbuttons">
+                        <button type="button" class="btn btn-circle green btn-sm">Follow</button>
+                        <button type="button" class="btn btn-circle red btn-sm">Message</button>
+                    </div>
+                    <!-- END SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR MENU -->
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li>
+                                <a href="page_user_profile_1.html">
+                                    <i class="icon-home"></i> Overview </a>
+                            </li>
+                            <li class="active">
+                                <a href="page_user_profile_1_account.html">
+                                    <i class="icon-settings"></i> Account Settings </a>
+                            </li>
+                            <li>
+                                <a href="page_user_profile_1_help.html">
+                                    <i class="icon-info"></i> Help </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END MENU -->
+                </div>
+                <!-- END PORTLET MAIN -->
+                <!-- PORTLET MAIN -->
+                <div class="portlet light bordered">
+                    <!-- STAT -->
+                    <div class="row list-separated profile-stat">
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title">#{reportesUsuarioController.numeroUsuarios} </div>
+                            <div class="uppercase profile-stat-text"> Usuarios </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> 51 </div>
+                            <div class="uppercase profile-stat-text"> Tasks </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> 61 </div>
+                            <div class="uppercase profile-stat-text"> Uploads </div>
+                        </div>
+                    </div>
+                    <!-- END STAT -->
+                    <div>
+                        <h4 class="profile-desc-title">About Marcus Doe</h4>
+                        <span class="profile-desc-text"> Lorem ipsum dolor sit amet diam nonummy nibh dolore. </span>
+                        <div class="margin-top-20 profile-desc-link">
+                            <i class="fa fa-globe"></i>
+                            <a href="http://www.keenthemes.com">www.keenthemes.com</a>
+                        </div>
+                        <div class="margin-top-20 profile-desc-link">
+                            <i class="fa fa-twitter"></i>
+                            <a href="http://www.twitter.com/keenthemes/">@keenthemes</a>
+                        </div>
+                        <div class="margin-top-20 profile-desc-link">
+                            <i class="fa fa-facebook"></i>
+                            <a href="http://www.facebook.com/keenthemes/">keenthemes</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PORTLET MAIN -->
+            </div>
+            <!-- END BEGIN PROFILE SIDEBAR -->
+            <!-- BEGIN PROFILE CONTENT -->
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet light bordered">
+                            <div class="portlet-title tabbable-line">
+                                <div class="caption caption-md">
+                                    <i class="icon-globe theme-font hide"></i>
+                                    <span class="caption-subject font-blue-madison bold uppercase">#{msjPerfil.txtcuentaperfil}</span>
+                                </div>
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#tab_1_1" data-toggle="tab">#{msjPerfil.labelinfop}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab_1_2" data-toggle="tab">#{msjPerfil.butoncambiarfoto}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab_1_3" data-toggle="tab">#{msjPerfil.butoncam}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab_1_4" data-toggle="tab">Privacy Settings</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="tab-content">
+                                    <!-- PERSONAL INFO TAB -->
+                                    <div class="tab-pane active" id="tab_1_1">
+                                        <h:form role="form" >
+                                            <div class="form-group">
+                                                <label class="control-label">#{msjPerfil.labelnombre}</label>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.primerNombre}" class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">#{msjPerfil.labelapellido}</label>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.primerApellido}"  class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">#{msjPerfil.labeltele}</label>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.telefonos}"  class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">#{msjPerfil.labelcorreo}</label>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.correos}"  class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">#{msjPerfil.labeldirec}</label>
+                                                <h:inputText   pst:placeholder="#{sessionController.usuario.direccionesUsuarios}"  class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">#{msjPerfil.labelfecha}</label>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.fechaNaci}"  class="form-control true" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Acerca</label>
+                                                <textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Website Url</label>
+                                                <h:inputText  pst:placeholder="http://www.mywebsite.com" class="form-control" /> </div>
+                                               
+                                            <div class="margiv-top-10">
+                                                <h:commandButton action="#{modificarPerfilController.actualizarPerfil()}" value="Modificar Datos" class="btn green"/>
+                                                <a href="javascript:;" class="btn default"> Cancel </a>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                    <!-- END PERSONAL INFO TAB -->
+                                    <!-- CHANGE AVATAR TAB -->
+                                    <div class="tab-pane" id="tab_1_2">
+                                        <p> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+                                            eiusmod. </p>
+                                        <h:form  role="form" enctype="multipart/form-data" prependId="false">
+                                            <b:messages global-only="true"   showSummary="true" showDetail="true" />
+                                            <div class="form-group">
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
+                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                                    <div>
+                                                        <span class="btn default btn-file">
+                                                            <span class="fileinput-new"> Selecciona tu fotografía  </span>
+                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                            <h:inputFile id = "fileUpload" />
+                                                        </span>
+                                                        <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix margin-top-10">
+                                                    <span class="label label-danger">NOTA! </span>
+                                                    <span>La imagen debe contener extensión .jpg o .png para poder ser leida por el sistema </span>
+                                                </div>
+                                            </div>
+                                            <div class="margin-top-10">
+                                                <h:commandButton value="update progres" id="upload" class="btn default " actionListener="#{cargarArchivoController.uploadProfileImage}"/>
+                                                <a href="javascript:;" class="btn default"> Cancel </a>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                    <!-- END CHANGE AVATAR TAB -->
+                                    <!-- CHANGE PASSWORD TAB -->
+                                    <div class="tab-pane" id="tab_1_3">
+                                        <h:form >
+                                            <div class="form-group">
+                                                <label class="control-label">Current Password</label>
+                                                <h:inputSecret  class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">New Password</label>
+                                                <h:inputSecret  class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Re-type New Password</label>
+                                                <h:inputSecret  class="form-control" /> </div>
+                                            <div class="margin-top-10">
+                                                <a href="javascript:;" class="btn green"> Change Password </a>
+                                                <a href="javascript:;" class="btn default"> Cancel </a>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                    <!-- END CHANGE PASSWORD TAB -->
+                                    <!-- PRIVACY SETTINGS TAB -->
+                                    <div class="tab-pane" id="tab_1_4">
+                                        <h:form >
+                                            <table class="table table-light table-hover">
+                                                <tr>
+                                                    <td> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.. </td>
+                                                    <td>
+                                                        <div class="mt-radio-inline">
+                                                            <label class="mt-radio">
+                                                                <h:selectBooleanCheckbox  value="option1" /> Yes
+                                                                <span></span>
+                                                            </label>
+                                                            <label class="mt-radio">
+                                                                <h:selectBooleanCheckbox  value="option2" /> No
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
+                                                    <td>
+                                                        <div class="mt-radio-inline">
+                                                            <label class="mt-radio">
+                                                                <h:selectBooleanCheckbox value="option1" /> Yes
+                                                                <span></span>
+                                                            </label>
+                                                            <label class="mt-radio">
+                                                                <h:selectBooleanCheckbox  value="option2" /> No
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
+                                                    <td>
+                                                        <div class="mt-radio-inline">
+                                                            <label class="mt-radio">
+                                                                <h:selectBooleanCheckbox value="option1" /> Yes
+                                                                <span></span>
+                                                            </label>
+                                                            <label class="mt-radio">
+                                                                <h:selectBooleanCheckbox value="option2"/> No
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
+                                                    <td>
+                                                        <div class="mt-radio-inline">
+                                                            <label class="mt-radio">
+                                                                <h:selectBooleanCheckbox   value="option1" /> Yes
+                                                                <span></span>
+                                                            </label>
+                                                            <label class="mt-radio">
+                                                                <h:selectBooleanCheckbox   value="option2" /> No
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <!--end profile-settings-->
+                                            <div class="margin-top-10">
+                                                <a href="javascript:;" class="btn red"> Save Changes </a>
+                                                <a href="javascript:;" class="btn default"> Cancel </a>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                    <!-- END PRIVACY SETTINGS TAB -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PROFILE CONTENT -->
+        </div>
+    </ui:define>
+
+</ui:composition> 

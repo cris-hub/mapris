@@ -58,23 +58,22 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "cedula")
-    
     private Long cedula;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "primer_nombre")
-    
     private String primerNombre;
+    
     @Size(max = 20)
     @Column(name = "segundo_nombre")
-    
     private String segundoNombre;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "primer_apellido")
-    
     private String primerApellido;
     
     @Size(max = 20)
