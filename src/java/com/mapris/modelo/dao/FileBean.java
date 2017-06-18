@@ -43,6 +43,13 @@ public class FileBean {
         }
         return null;
     }
+    public String getExtension(){
+        if (part.getSubmittedFileName() != null) {
+            String[] datos = part.getSubmittedFileName().split("\\.");
+            return datos[datos.length -1];
+        }
+        return null;
+    }
 
     public String getType() {
         return type;

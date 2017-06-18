@@ -8,3 +8,4 @@
 22;Nuevo usuario;/app/usuarios/nuevo.xhtml;fa fa-user-plus
 31;Lista Aplazamientos;/app/aplazamientos/lista.xhtml;fa fa-list
 32;Registrar aplazamiento;/app/aplazamientos/nuevo.xhtml;fa fa-plus
+12;Cambiar Datos;/app/perfil/cambiardatos.xhtml;fa fa-pencil

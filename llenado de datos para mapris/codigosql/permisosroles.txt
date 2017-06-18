@@ -1,6 +1,5 @@
 
-LOAD DATA LOCAL infile 'C:\\Users\\SMEGS\\Documents\\BASES DE DATOS\\llenado de datos para mapris\\rolespermisos.csv'
- 
+LOAD DATA LOCAL infile 'C:\\Users\\SMEGS\\Documents\\NetBeansProjects\\mapris\\llenado de datos para mapris\\rolespermisos.csv"'
 REPLACE INTO TABLE permisosroles
 fields terminated BY ";"
 lines terminated BY "\n"
