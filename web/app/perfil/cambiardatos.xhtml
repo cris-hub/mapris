@@ -9,21 +9,21 @@
                 xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:b="http://bootsfaces.net/ui">
 
-    <ui:define name="titulo">#{sessionController.usuario.primerNombre}</ui:define>
+    <ui:define name="titulo">#{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </ui:define>
     <ui:define name="pagetitle">
-        <div class="page-head">
+<!--        <div class="page-head">
             <div class="page-title">
                 <h1> Perfil - Cambiar Datos
                     <small>Mis datos personales</small>
                 </h1>
             </div>
-        </div>
+        </div>-->
     </ui:define>
     
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
                 <li>
-                    <a href="index.html">Mi perfil</a>
+                    <a href="#{request.contextPath}/app/index.xhtml">inicio</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>

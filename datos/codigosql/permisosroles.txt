@@ -8,3 +8,11 @@ IGNORE 1 LINES
 SHOW WARNINGS;
 
 SELECT * FROM permisosroles;
+
+/*
+use mapris;
+ SELECT * FROM permisos  INTO OUTFILE 'C:\\Users\\SMEGS\\Documents\\NetBeansProjects\\mapris\\datos\\permisos.csv'
+ FIELDS TERMINATED BY ';'
+ LINES TERMINATED BY '\n'
+
+*/

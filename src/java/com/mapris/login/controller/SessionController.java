@@ -23,6 +23,7 @@ import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -129,8 +130,8 @@ public class SessionController implements Serializable {
         clave = null;
         documento = null;
         rolSeleccionado = null;
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-     
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.invalidate();
         return "/login.xhtml?faces-redirect=true";
     }
    

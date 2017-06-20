@@ -13,12 +13,17 @@
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
-            <li>
-                <a href="index.html">Home</a>
+             <li>
+                <a href="#{request.contextPath}/app/index.xhtml">inicio</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
+                <a href="#{request.contextPath}/app/usuarios/listar.xhtml">Usuarios</a>
+                <i class="fa fa-circle"></i>
+            </li>
+             <li>
                 <span class="active">Ver</span>
+                
             </li>
         </ul>
 
