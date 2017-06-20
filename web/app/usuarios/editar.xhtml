@@ -11,11 +11,16 @@
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.html">Mi perfil</a>
+                <a href="#{request.contextPath}/app/index.xhtml">inicio</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Cambiar datos</span>
+                <a href="#{request.contextPath}/app/usuarios/listar.xhtml">Usuarios</a>
+                <i class="fa fa-circle"></i>
+            </li>
+             <li>
+                <span class="active">Modificar información</span>
+                
             </li>
         </ul>
 
@@ -41,12 +46,12 @@
                         <b:inputText value="#{editarUsuarioController.usuarioSelecionado.primerNombre}"/>
                         <h:outputText value=" apellidos"/>
                         <b:inputText value="#{editarUsuarioController.usuarioSelecionado.primerApellido}"/>
-                             <h:outputText value="Correo"/>
-                                <b:dataTable value="#{editarUsuarioController.usuarioSelecionado.correos}" var="correo">
-                                    <b:dataTableColumn >
-                                        <b:inputText col-lg="12" value="#{correo.correo}"/>
-                                    </b:dataTableColumn>
-                                </b:dataTable>
+                        <h:outputText value="Correo"/>
+                        <b:dataTable value="#{editarUsuarioController.usuarioSelecionado.correos}" var="correo">
+                            <b:dataTableColumn >
+                                <b:inputText col-lg="12" value="#{correo.correo}"/>
+                            </b:dataTableColumn>
+                        </b:dataTable>
                         <h:outputText value="Fecha Nacimiento"/>
                         <b:datepicker  value="#{editarUsuarioController.usuarioSelecionado.fechaNaci}"  />
 

@@ -38,7 +38,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "usuarios")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Usuario.findLogin", query = "SELECT u FROM Usuario u WHERE u.cedula = :doc AND u.clave = :clv"),
+    @NamedQuery(name = "Usuario.findLogin", query = "SELECT u FROM Usuario u WHERE u.cedula = :doc AND u.clave = :clv")
+    ,
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
     , @NamedQuery(name = "Usuario.findByCedula", query = "SELECT u FROM Usuario u WHERE u.cedula = :cedula")
     , @NamedQuery(name = "Usuario.findByPrimerNombre", query = "SELECT u FROM Usuario u WHERE u.primerNombre = :primerNombre")
@@ -59,56 +60,60 @@ public class Usuario implements Serializable {
     @NotNull
     @Column(name = "cedula")
     private Long cedula;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "primer_nombre")
     private String primerNombre;
-    
+
     @Size(max = 20)
     @Column(name = "segundo_nombre")
     private String segundoNombre;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "primer_apellido")
     private String primerApellido;
-    
+
     @Size(max = 20)
     @Column(name = "segundo_apellido")
     private String segundoApellido;
-    
+
     @Column(name = "fechaNaci")
     @Temporal(TemporalType.DATE)
     private Date fechaNaci;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "clave")
     private String clave;
-    
+
+    @Column(name = "fecha_registro")
+    @Temporal(TemporalType.DATE)
+    private Date fechaRegistro;
+
     @ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
     private List<Rol> roles;
-    
+
     @ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
     private List<Telefono> telefonos;
-    
+
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY)
     private Personalmedico personalmedico;
-    
+
     @JoinColumn(name = "id_estados", referencedColumnName = "id_estados")
     @ManyToOne(fetch = FetchType.LAZY)
     private Estado estado;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosCedula", fetch = FetchType.LAZY)
     private List<UsuarioDireccione> direccionesUsuarios;
-    
+
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY)
     private Cliente cliente;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private List<Correo> correos;
 
@@ -224,6 +229,15 @@ public class Usuario implements Serializable {
         this.estado = estado;
     }
 
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+    
+
     @XmlTransient
     public List<UsuarioDireccione> getDireccionesUsuarios() {
         return direccionesUsuarios;
@@ -275,6 +289,4 @@ public class Usuario implements Serializable {
         return "com.mapris.modelo.entitie.Usuario[ cedula=" + cedula + " ]";
     }
 
-  
-    
 }

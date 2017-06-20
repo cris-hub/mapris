@@ -25,12 +25,12 @@ public class EditarUsuarioController implements Serializable {
 
     @EJB
     private UsuarioFacadeLocal ufl;
-    
+
     private Usuario usuarioSelecionado;
-    
+
     @PostConstruct
-    public void init(){
-    usuarioSelecionado = new Usuario();
+    public void init() {
+        usuarioSelecionado = new Usuario();
     }
 
     public EditarUsuarioController() {
@@ -46,25 +46,9 @@ public class EditarUsuarioController implements Serializable {
 
     public void actualizarDatos() {
         try {
-            
-            usuarioSelecionado.setCedula(usuarioSelecionado.getCedula());
-            usuarioSelecionado.setClave(usuarioSelecionado.getClave());
-            usuarioSelecionado.setPrimerNombre(usuarioSelecionado.getPrimerNombre());
-            usuarioSelecionado.setSegundoNombre(usuarioSelecionado.getSegundoNombre());
-            usuarioSelecionado.setPrimerApellido(usuarioSelecionado.getPrimerApellido());
-            usuarioSelecionado.setSegundoApellido(usuarioSelecionado.getSegundoApellido());
-//            System.out.println(
-//            usuarioSelecionado.getClave(),
-//            usuarioSelecionado.getClientes(),
-//            usuarioSelecionado.getPersonalmedico(),
-//            usuarioSelecionado.getCorreos().get(0),
-//            usuarioSelecionado.getFechaNaci(),
-//            usuarioSelecionado.getRoles().get(0),
-//            usuarioSelecionado.getTelefonos().get(0),
-//            usuarioSelecionado.getEstado(),
-//            usuarioSelecionado.getDirecciones()
-//            );
-            
+
+
+
             ufl.edit(usuarioSelecionado);
             MessageUtil.enviarMensajeInformacion("form-editar", "Actualizacion", "los datos fueron actualizados");
         } catch (Exception e) {
@@ -73,17 +57,17 @@ public class EditarUsuarioController implements Serializable {
         }
 
     }
-    
-    public String preModificar(Usuario u){
+
+    public String preModificar(Usuario u) {
         setUsuarioSelecionado(u);
         return "/app/usuarios/editar.xhtml?faces-redirect=true";
     }
-    
-        public void cambioDeEstado(Usuario u){
+
+    public void cambioDeEstado(Usuario u) {
         try {
             if (u.getEstado().getNombre().equals("1")) {
                 u.getEstado().setNombre("2");
-                
+
             } else {
                 u.getEstado().setNombre("1");
             }
@@ -93,12 +77,11 @@ public class EditarUsuarioController implements Serializable {
             e.printStackTrace();
             MessageUtil.enviarMensajeErrorGlobal("Errcambiar el estado del usuario", e.getStackTrace().toString());
         }
-        
-        
+
     }
-    
-    public String getIconUsuarioBloqueo(Usuario u){
-        return (u.getEstado().getNombre().equals("1")) ? "lock": "unlock";
+
+    public String getIconUsuarioBloqueo(Usuario u) {
+        return (u.getEstado().getNombre().equals("1")) ? "lock" : "unlock";
     }
 
 }

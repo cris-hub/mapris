@@ -7,6 +7,7 @@ package com.mapris.archivos.controller;
 
 import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.FileBean;
+import com.mapris.util.MessageUtil;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,19 +32,17 @@ import javax.servlet.http.Part;
  */
 @Named(value = "cargarArchivoController")
 @ViewScoped
-public class CargarArchivosController implements Serializable{
-        @Inject
-        private SessionController sc;
-        
-        
-       private final static String UPLOAD_DIR="/files/profileimg/";
-    
+public class CargarArchivosController implements Serializable {
+
+    @Inject
+    private SessionController sc;
+    //Ruta en built de donde se guardara el archivo
+    private final static String UPLOAD_DIR = "/files/profileimg/";
+    String extension;
+
     /**
      * Creates a new instance of FileUploadController
      */
-
-       
-
     public CargarArchivosController() {
 
     }
@@ -52,18 +51,28 @@ public class CargarArchivosController implements Serializable{
     public void init() {
     }
 
+    public static ExternalContext getExternalContext() {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        return ec;
+    }
+
     public void uploadProfileImage() {
         try {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            ExternalContext ec = fc.getExternalContext();
-            List<FileBean> filesBeans = getFilesUpload(ec);
+
+            List<FileBean> filesBeans = getFilesUpload(CargarArchivosController.getExternalContext());
 
             for (FileBean fileBean : filesBeans) {
-                savePartProfileimg(ec, fileBean);
-                System.out.println("Datos: " + fileBean.toString());
+                if (fileBean.getExtension().equals("jpg") || fileBean.getExtension().equals("png")) {
+                    extension = fileBean.getExtension();
+                    savePartProfileimg(CargarArchivosController.getExternalContext(), fileBean);
+                    MessageUtil.enviarMensajeInformacion(null, "formato correco", "La imagen ha sido cargada satisfactoriamente");
+                } else {
+                    MessageUtil.enviarMensajeError(null, "formato incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg'");
+                }
             }
-            deleteFile(ec, "perfil.pgn");
+            deleteFile(CargarArchivosController.getExternalContext(), "perfil." + extension);
         } catch (IOException ex) {
+            MessageUtil.enviarMensajeError(null, "formato incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg'");
             ex.printStackTrace();
         } catch (ServletException ex) {
             ex.printStackTrace();
@@ -86,13 +95,18 @@ public class CargarArchivosController implements Serializable{
         return rq.getParts();
     }
 
+    private void save() {
+
+    }
+
     private void savePartProfileimg(ExternalContext ec, FileBean fileBean) throws IOException {
-        File dir = new File(ec.getRealPath("") + UPLOAD_DIR + sc.getUsuario().getCedula().toString()+"/perfil/");
+        File dir = new File(ec.getRealPath("") + UPLOAD_DIR + sc.getUsuario().getCedula().toString() + "/perfil/");
         dir.mkdirs();
-        File file = new File(dir,"perfil.png");
+        File file = new File(dir, "perfil."+extension);
         file.createNewFile();
 
         FileOutputStream outputStream = new FileOutputStream(file);
+
         InputStream inputStream = fileBean.getPart().getInputStream();
 
         byte[] buffer = new byte[1024];
@@ -104,17 +118,11 @@ public class CargarArchivosController implements Serializable{
         outputStream.close();
         inputStream.close();
     }
-   private void deleteFile(ExternalContext ec, String name){
+
+    private void deleteFile(ExternalContext ec, String name) {
         File dir = new File(ec.getRealPath("") + UPLOAD_DIR);
         dir.mkdirs();
         File file = new File(dir, name);
         file.delete();
-   }
+    }
 }
-
-
-
-
-
-
-
