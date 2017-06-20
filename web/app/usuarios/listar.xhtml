@@ -61,17 +61,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Opciones
                                             <i class="fa fa-angle-down"></i>
                                         </button>
 
                                         <ul class="dropdown-menu pull-right">
                                             <li>
-                                                <h:commandLink value="PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                <b:commandButton icon-awesome="fa-file-pdf-o" value="Guardar como PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
+                                                
                                             </li>
                                             <li>
                                                 <a href="javascript:;">
