@@ -10,7 +10,7 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">#{sessionController.usuario.primerNombre}</ui:define>
+    <ui:define name="titulo">Administrador-Inscripciones</ui:define>
     <ui:define name="pagetitle">
         <div class="page-head">
             <div class="page-title">
@@ -86,7 +86,7 @@
                     </div>
                     <b:message for="form-data-table-usuarios" showSummary="true" showDetail="true"/>
                     <h:form id="form-data-table-usuarios" prependId="false">
-                        <b:dataTable id="dtUsuario" value="#{listarInscripcionController.inscripciones}" var="in">
+                        <b:dataTable id="dtUsuario" value="#{listarInscripcionController.inscripciones}" var="in" >
 
 
                             <b:dataTableColumn label="Id Inscripcion" value="#{in.idInscripciones}"/>
@@ -97,22 +97,23 @@
                                     <f:convertDateTime pattern="dd/mm/yyyy"/>                           
                                 </h:outputText>
                             </b:dataTableColumn>
-                            <b:dataTableColumn label="Valor de la inscripción" value="#{in.valor}"/>
-                            <b:dataTableColumn label="Roles" >
-                                <ui:repeat value="#{inscripciones.idServicio}" var="s">
-                                    <h:outputText value="#{s.nombre}"/><br/>
-                                </ui:repeat>
+                            <b:dataTableColumn label="Valor de la inscripción">
+                                <h:outputText value="#{in.valor}">
+                                <f:convertNumber  currencySymbol="$" groupingUsed="true" 
+                                                  maxFractionDigits="0" type="currency" locale="es_CO" />
+                                </h:outputText>
                             </b:dataTableColumn>
-                            <b:dataTableColumn  label="Opciones">
-                                <b:commandButton look="success" value="" iconAwesome="eye" action="#{verInscripcionController.verInscripcion(in)}"/>
-                                <b:commandButton look="primary" value="" iconAwesome="pencil" action="#{editarInscripcionController.preModificar(in)}"/>
-                                <b:commandButton look="danger" value=""
+                            <b:dataTableColumn label="# de sesiones" value="#{in.numeroSesiones}" />
+                           <b:dataTableColumn  label="Opciones" >
+                               <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verInscripcionController.verInscripcion(in)}"/>
+                               <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarInscripcionController.preModificar(in)}"/>
+                                <b:commandButton size="sm"  look="danger" value=""
                                                  iconAwesome="trash" tooltip="Eliminar"
                                                  onclick="$('.modalPseudoClass').modal();">
                                     <f:ajax event="click" render=":message-modal-confirm"
                                             listener="#{listarInscripcionController.setInscripcionSeleccionado(in)}"/>
                                 </b:commandButton>
-                                </b:dataTableColumn>
+                            </b:dataTableColumn>
                         </b:dataTable>
 
                     </h:form>

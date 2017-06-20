@@ -17,7 +17,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Named(value = "editarInscripcionController")
 @SessionScoped
@@ -47,10 +47,8 @@ public class EditarInscripcionController implements Serializable {
     public void actualizarDatos() {
         try {
             
-            inscripcionSelecionada.setIdCliente(inscripcionSelecionada.getIdCliente());
-            inscripcionSelecionada.setIdServicio(inscripcionSelecionada.getIdServicio());
+            
             inscripcionSelecionada.setNumeroSesiones(inscripcionSelecionada.getNumeroSesiones());
-            inscripcionSelecionada.setSesiones(inscripcionSelecionada.getSesiones());
             inscripcionSelecionada.setFechaInicio(inscripcionSelecionada.getFechaInicio());
             inscripcionSelecionada.setValor(inscripcionSelecionada.getValor());
 //       
@@ -66,7 +64,7 @@ public class EditarInscripcionController implements Serializable {
     
     public String preModificar(Inscripcion i){
         setInscripcionSelecionada(i);
-        return "/app/administrador/editar.xhtml?faces-redirect=true";
+        return "/app/administrador/inscripciones/editar.xhtml?faces-redirect=true";
     }
     
       

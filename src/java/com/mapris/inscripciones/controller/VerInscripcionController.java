@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Named(value="verInscripcionController")
 @SessionScoped
@@ -36,9 +36,9 @@ public class VerInscripcionController implements Serializable{
         this.inscripcion = inscripcion;
     }
     
-    public String verInscripcion(Inscripcion u){
-    this.inscripcion = u;
-    return "/app/administrador/ver.xhtml?faces-redirect=true";
+    public String verInscripcion(Inscripcion i){
+    this.inscripcion = i;
+    return "/app/administrador/inscripciones/ver.xhtml?faces-redirect=true";
     }
     
     

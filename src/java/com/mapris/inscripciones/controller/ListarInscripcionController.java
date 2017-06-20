@@ -16,19 +16,17 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
-
-
 import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Named(value = "listarInscripcionController")
 @ViewScoped
 public class ListarInscripcionController implements Serializable{
-//    cdi 
+//    Code Dependention Injection
 
     @Inject
     private SessionController sessionController;
@@ -58,7 +56,7 @@ public class ListarInscripcionController implements Serializable{
     public void eliminarInscripcion(){
         
         Date hoy = new Date();
-       
+       //Si la fecha de hoy coincide con la fecha de la cita a eliminar no se podría eliminar porque entra en vigencia *Bussiness Rules*
         if(inscripcionSeleccionado.getFechaInicio().getDay() == hoy.getDay() && 
                 inscripcionSeleccionado.getFechaInicio().getMonth() == hoy.getMonth() &&
                 inscripcionSeleccionado.getFechaInicio().getYear() == hoy.getYear()){

@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:ps="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">
+        <title>Usuario</title>
+    </ui:define>
+
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Ver</span>
+            </li>
+        </ul>
+
+    </ui:define>
+
+
+    <ui:define name="contenido">
+        <div class="container">
+            <div class="row">
+
+                <div class=" col-md-10  toppad" >
+
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><h:outputText value="#{verUsuarioControoller.usuario.primerNombre} #{verUsuarioControoller.usuario.primerApellido}"/></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="" class="img-circle img-responsive"/> </div>
+
+                           
+                                <div class=" col-md-9 col-lg-9 "> 
+                                    <table class="table table-user-information">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h:outputText value="ceula"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{verUsuarioControoller.usuario.cedula}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:outputText value="nombre"/>
+
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{verUsuarioControoller.usuario.primerNombre} #{verUsuarioControoller.usuario.primerApellido}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:outputText value="correos"/>
+
+                                                </td>
+
+                                                <td>
+                                                    <b:dataTable value="#{verUsuarioControoller.usuario.correos}" var="correo">
+                                                        <b:dataTableColumn value="#{correo.correo}"/>
+                                                    </b:dataTable>
+                                                    
+                                                  
+                                                </td>
+                                            </tr>
+
+
+
+
+
+
+
+                                        </tbody>
+                                    </table>
+                                    <!--                                    <div class="btn-group">
+                                                                            <a href="#" class=" btn-block  btn btn-primary">My Sales Performance</a>
+                                                                            <a href="#" class=" btn-block btn btn-primary">Team Sales Performance</a>
+                                                                        </div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <h:link styleClass="btn btn-primary" outcome="/app/usuarios/listar.xhtml" value="Volver"/>
+                            <span class="pull-right">
+                                <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </ui:define>
+</ui:composition>
+
