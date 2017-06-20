@@ -10,21 +10,21 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">Usuarios</ui:define>
+    <ui:define name="titulo">#{sessionController.usuario.primerNombre}</ui:define>
     <ui:define name="pagetitle">
-<!--        <div class="page-head">
+        <div class="page-head">
             <div class="page-title">
                 <h1> Usuarios
                     <small>Lista de usuarios</small>
                 </h1>
             </div>
-        </div>-->
+        </div>
     </ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="#{request.contextPath}/app/index.xhtml">inicio</a>
+                <a href="index.html">Home</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -61,14 +61,17 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Opciones
+                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                             <i class="fa fa-angle-down"></i>
                                         </button>
 
                                         <ul class="dropdown-menu pull-right">
                                             <li>
-                                                <b:commandButton icon-awesome="fa-file-pdf-o" value="Guardar como PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
-                                                
+                                                <h:commandLink value="PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
                                             </li>
                                             <li>
                                                 <a href="javascript:;">

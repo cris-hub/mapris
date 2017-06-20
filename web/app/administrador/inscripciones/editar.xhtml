@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:b="http://bootsfaces.net/ui">
+
+
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="index.html">Mi perfil</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Cambiar datos</span>
+            </li>
+        </ul>
+
+    </ui:define>
+    <ui:define name="contenido">
+
+        <div class="col-sm-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase">Editar Inscripción</span>
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+                <b:messages showSummary="true" show-detail="true"/>
+                <b:form id="form-editar" prependId="false">
+                    <b:panelGrid colSm="12" columns="2">
+                        <h:outputText value="Id Inscripción"/>
+                        <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idInscripciones}" disabled="true"/>
+                        <h:outputText value="Cedula cliente"/>
+                        <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.cedula}" disabled="true" />
+                        <h:outputText value=" Nombre del cliente"/>
+                        <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.primerNombre} #{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.primerApellido}" disabled="true"/>
+                        <h:outputText value="Valor de la inscripción"/>
+                        <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.valor}">
+                        <f:convertNumber  currencySymbol="$" groupingUsed="true" 
+                           maxFractionDigits="0" type="currency" locale="es_CO" />
+                                                  
+                        </b:inputText>
+                        <h:outputText value="Número de sesiones"/>
+                        <b:inputText  value="#{editarInscripcionController.inscripcionSelecionada.numeroSesiones}"  />
+
+                        <h:outputText value="Fecha de inicio"/>
+                        <b:datepicker value="#{editarInscripcionController.inscripcionSelecionada.fechaInicio}" changeMonth="true" changeYear="true" numberOfMonths="2">
+                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                        </b:datepicker>
+
+                        
+                    </b:panelGrid>
+                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/inscripciones/inscripciones.xhtml" value="Volver"/>
+                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarInscripcionController.actualizarDatos()}"/>
+                </b:form>
+            </div>
+        </div>
+
+
+
+    </ui:define>
+</ui:composition>
+

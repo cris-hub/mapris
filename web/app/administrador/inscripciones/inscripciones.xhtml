@@ -10,21 +10,21 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">Usuarios</ui:define>
+    <ui:define name="titulo">Administrador-Inscripciones</ui:define>
     <ui:define name="pagetitle">
-<!--        <div class="page-head">
+        <div class="page-head">
             <div class="page-title">
-                <h1> Usuarios
-                    <small>Lista de usuarios</small>
+                <h1> Inscripciones
+                    <small>Lista de inscripciones</small>
                 </h1>
             </div>
-        </div>-->
+        </div>
     </ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="#{request.contextPath}/app/index.xhtml">inicio</a>
+                <a href="index.html">Home</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -44,7 +44,7 @@
                 <div class="portlet-title">
                     <div class="caption font-dark">
                         <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Lista de Usuarios</span>
+                        <span class="caption-subject bold uppercase">Lista de Inscripciones</span>
                     </div>
                     <div class="tools"> </div>
                 </div>
@@ -61,14 +61,17 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Opciones
+                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                             <i class="fa fa-angle-down"></i>
                                         </button>
 
                                         <ul class="dropdown-menu pull-right">
                                             <li>
-                                                <b:commandButton icon-awesome="fa-file-pdf-o" value="Guardar como PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
-                                                
+                                                <h:commandLink value="PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
                                             </li>
                                             <li>
                                                 <a href="javascript:;">
@@ -83,31 +86,33 @@
                     </div>
                     <b:message for="form-data-table-usuarios" showSummary="true" showDetail="true"/>
                     <h:form id="form-data-table-usuarios" prependId="false">
-                        <b:dataTable id="dtUsuario" value="#{listarUsuaariosController.usuarios}" var="user">
+                        <b:dataTable id="dtUsuario" value="#{listarInscripcionController.inscripciones}" var="in" >
 
 
-                            <b:dataTableColumn label="Documento" value="#{user.cedula}"/>
-                            <b:dataTableColumn label="Nombre" value="
-                                               #{user.primerNombre} 
-                                               #{user.segundoNombre} 
-                                               #{user.primerApellido} 
-                                               #{user.primerApellido}"/>
-
-                            <b:dataTableColumn label="Roles" >
-                                <ui:repeat value="#{user.roles}" var="r2">
-                                    <h:outputText value="#{r2.nombre}"/><br/>
-                                </ui:repeat>
+                            <b:dataTableColumn label="Id Inscripcion" value="#{in.idInscripciones}"/>
+                            <b:dataTableColumn label="Cedula Cliente" value="#{in.idCliente.usuario.cedula}"/>
+                            <b:dataTableColumn label="Nombre Cliente" value="#{in.idCliente.usuario.primerNombre}"/>
+                            <b:dataTableColumn label="Fecha de Inicio">
+                                <h:outputText value="#{in.fechaInicio}">
+                                    <f:convertDateTime pattern="dd/mm/yyyy"/>                           
+                                </h:outputText>
                             </b:dataTableColumn>
-                            <b:dataTableColumn  label="Opciones">
-                                <b:commandButton look="success" value="" iconAwesome="eye" action="#{verUsuarioControoller.verUsuario(user)}"/>
-                                <b:commandButton look="primary" value="" iconAwesome="pencil" action="#{editarUsuarioController.preModificar(user)}"/>
-                                <b:commandButton look="danger" value=""
+                            <b:dataTableColumn label="Valor de la inscripción">
+                                <h:outputText value="#{in.valor}">
+                                <f:convertNumber  currencySymbol="$" groupingUsed="true" 
+                                                  maxFractionDigits="0" type="currency" locale="es_CO" />
+                                </h:outputText>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="# de sesiones" value="#{in.numeroSesiones}" />
+                           <b:dataTableColumn  label="Opciones" >
+                               <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verInscripcionController.verInscripcion(in)}"/>
+                               <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarInscripcionController.preModificar(in)}"/>
+                                <b:commandButton size="sm"  look="danger" value=""
                                                  iconAwesome="trash" tooltip="Eliminar"
                                                  onclick="$('.modalPseudoClass').modal();">
                                     <f:ajax event="click" render=":message-modal-confirm"
-                                            listener="#{listarUsuaariosController.setUsuarioSeleccionado(user)}"/>
+                                            listener="#{listarInscripcionController.setInscripcionSeleccionado(in)}"/>
                                 </b:commandButton>
-                                <b:commandButton look="default" value="" iconAwesome="#{editarUsuarioController.getIconUsuarioBloqueo(user)}" action="#{editarUsuarioController.cambioDeEstado(user)}"/>
                             </b:dataTableColumn>
                         </b:dataTable>
 
@@ -117,14 +122,14 @@
         </div> 
         <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
             <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>¿Está seguro de eliminar el usuario #{listarUsuaariosController.usuarioSeleccionado.primerNombre} #{listarUsuaariosController.usuarioSeleccionado.primerApellido} ?
+                <p>¿Está seguro de eliminar la inscripción del cliente ?
                 </p>
             </h:panelGroup>
             <f:facet name="footer">
                 <h:form id="form-eliminar" prependId="false">
                     <b:button value="Close" dismiss="modal" />
                     <b:commandButton value="Ok" look="primary"
-                                     actionListener="#{listarUsuaariosController.eliminarUsuario()}"/>
+                                     actionListener="#{listarInscripcionController.eliminarInscripcion()}"/>
                 </h:form>
             </f:facet>
         </b:modal>
