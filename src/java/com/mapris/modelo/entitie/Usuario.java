@@ -91,7 +91,7 @@ public class Usuario implements Serializable {
     @Column(name = "clave")
     private String clave;
 
-    @Column(name = "fechaNaci")
+    @Column(name = "fecha_registro")
     @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
 
@@ -228,6 +228,15 @@ public class Usuario implements Serializable {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+    
 
     @XmlTransient
     public List<UsuarioDireccione> getDireccionesUsuarios() {
