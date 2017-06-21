@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2017 a las 16:20:42
+-- Tiempo de generación: 21-06-2017 a las 21:20:07
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -21,6 +21,24 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `mapris` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `mapris`;
+
+DELIMITER $$
+--
+-- Funciones
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `fc_descencriptar` (`clave_codificada` VARCHAR(10)) RETURNS VARCHAR(10) CHARSET latin1 BEGIN
+DECLARE var VARCHAR(10);
+SET var = (SELECT decode(clave_codificada,255));
+RETURN var;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `fc_encriptar` (`clave` VARCHAR(10)) RETURNS VARCHAR(10) CHARSET latin1 BEGIN
+DECLARE var VARCHAR(10);
+SET var = (SELECT encode(clave,255));
+return var;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -54,9 +72,8 @@ INSERT INTO `actividades` (`idadtividad`, `idRutinas`) VALUES
 CREATE TABLE `aplazamientos` (
   `idaplazamiento` int(11) NOT NULL,
   `motivo` text COMMENT 'Este campo almacena la razon por la cual se hace el aplazamiento',
-  `fechaRetorno` datetime DEFAULT NULL,
   `idcliente` bigint(20) DEFAULT NULL,
-  `id_tipo_aplazamiento` int(11) NOT NULL
+  `servicios_idServicio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -297,274 +314,123 @@ INSERT INTO `direcciones` (`iddirecciones`, `id_localidad`, `avenida`, `calle`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `direcciones_has_empresa`
---
-
-CREATE TABLE `direcciones_has_empresa` (
-  `direcciones_iddirecciones` int(11) NOT NULL,
-  `empresa_idEmpresa` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `direcciones_has_empresa`
---
-
-INSERT INTO `direcciones_has_empresa` (`direcciones_iddirecciones`, `empresa_idEmpresa`) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6),
-(7, 7),
-(8, 8),
-(9, 9),
-(10, 10),
-(11, 11),
-(12, 12),
-(13, 13),
-(14, 14),
-(15, 15),
-(16, 16),
-(17, 17),
-(18, 18),
-(19, 19),
-(20, 20),
-(21, 21),
-(22, 22),
-(23, 23),
-(24, 24),
-(25, 25),
-(26, 26),
-(27, 27),
-(28, 28),
-(29, 29),
-(30, 30),
-(31, 31),
-(32, 32),
-(33, 33),
-(34, 34),
-(35, 35),
-(36, 36),
-(37, 37),
-(38, 38),
-(39, 39),
-(40, 40),
-(41, 41),
-(42, 42),
-(43, 43),
-(44, 44),
-(45, 45),
-(46, 46),
-(47, 47),
-(48, 48),
-(49, 49),
-(50, 50),
-(51, 51),
-(52, 52),
-(53, 53),
-(54, 54),
-(55, 55),
-(56, 56),
-(57, 57),
-(58, 58),
-(59, 59),
-(60, 60),
-(61, 61),
-(62, 62),
-(63, 63),
-(64, 64),
-(65, 65),
-(66, 66),
-(67, 67),
-(68, 68),
-(69, 69),
-(70, 70),
-(71, 71),
-(72, 72),
-(73, 73),
-(74, 74),
-(75, 75),
-(76, 76),
-(77, 77),
-(78, 78),
-(79, 79),
-(80, 80),
-(81, 81),
-(82, 82),
-(83, 83),
-(84, 84),
-(85, 85),
-(86, 86),
-(87, 87),
-(88, 88),
-(89, 89),
-(90, 90),
-(91, 91),
-(92, 92),
-(93, 93),
-(94, 94),
-(95, 95),
-(96, 96),
-(97, 97),
-(98, 98),
-(99, 99),
-(100, 100);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `empresa`
 --
 
 CREATE TABLE `empresa` (
   `idEmpresa` bigint(20) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id) ',
-  `nombre` varchar(45) NOT NULL COMMENT 'Este campo almacena el nombre de la empresa'
+  `nombre` varchar(45) NOT NULL COMMENT 'Este campo almacena el nombre de la empresa',
+  `direccionP` varchar(45) DEFAULT NULL,
+  `direccionO` varchar(45) DEFAULT NULL,
+  `telefonoF` bigint(20) DEFAULT NULL,
+  `telefonoC` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`idEmpresa`, `nombre`) VALUES
-(1, 'Augue LLC'),
-(2, 'Vitae Risus Duis Limited'),
-(3, 'Orci Tincidunt Corporation'),
-(4, 'Fringilla Donec Incorporated'),
-(5, 'Dignissim Lacus Aliquam LLC'),
-(6, 'Morbi Accumsan Ltd'),
-(7, 'Enim Nec Tempus LLP'),
-(8, 'Arcu Curabitur Ut PC'),
-(9, 'Dolor Nonummy Ac Industries'),
-(10, 'Torquent Per Conubia Inc.'),
-(11, 'Mauris LLP'),
-(12, 'Non Arcu Vivamus Foundation'),
-(13, 'Morbi Company'),
-(14, 'Facilisis Magna Tellus PC'),
-(15, 'Cum Sociis Natoque LLC'),
-(16, 'Eu Odio Tristique Foundation'),
-(17, 'Purus Inc.'),
-(18, 'Elit Elit Fermentum Corp.'),
-(19, 'Sed Pede Nec LLC'),
-(20, 'Tellus Sem Mollis Foundation'),
-(21, 'Mauris Inc.'),
-(22, 'A Aliquet Vel Corporation'),
-(23, 'Ullamcorper Viverra Limited'),
-(24, 'Lacinia Orci Consectetuer Corporation'),
-(25, 'Sem Ut Dolor Corporation'),
-(26, 'Consectetuer Mauris Id Corporation'),
-(27, 'Volutpat Nunc Institute'),
-(28, 'Aliquam Incorporated'),
-(29, 'Blandit Mattis PC'),
-(30, 'Dictum Augue Malesuada Corp.'),
-(31, 'Posuere Company'),
-(32, 'Pharetra Corp.'),
-(33, 'Maecenas Malesuada LLC'),
-(34, 'Sodales Mauris LLP'),
-(35, 'Sapien Limited'),
-(36, 'Dui Incorporated'),
-(37, 'Et Ultrices Consulting'),
-(38, 'Mauris Limited'),
-(39, 'Nunc LLC'),
-(40, 'Placerat Cras Dictum Company'),
-(41, 'Fusce Feugiat Lorem PC'),
-(42, 'Eu Turpis Corporation'),
-(43, 'Lectus Rutrum LLP'),
-(44, 'Risus Quis Corporation'),
-(45, 'Euismod Enim Corporation'),
-(46, 'Nibh PC'),
-(47, 'Quam A Company'),
-(48, 'Ridiculus Consulting'),
-(49, 'Amet Consulting'),
-(50, 'Adipiscing Mauris LLP'),
-(51, 'Nulla LLC'),
-(52, 'Cursus Incorporated'),
-(53, 'Nunc Laoreet Incorporated'),
-(54, 'Dolor Elit Pellentesque LLP'),
-(55, 'Tincidunt Ltd'),
-(56, 'Duis Gravida Corporation'),
-(57, 'Ipsum Industries'),
-(58, 'Gravida Limited'),
-(59, 'Nec Incorporated'),
-(60, 'Elit Etiam LLP'),
-(61, 'Interdum Nunc Limited'),
-(62, 'Dui LLC'),
-(63, 'Sollicitudin Inc.'),
-(64, 'Est Nunc Corporation'),
-(65, 'Aliquam Corporation'),
-(66, 'Ligula Nullam Institute'),
-(67, 'Est Congue Foundation'),
-(68, 'Vestibulum Accumsan Neque Corporation'),
-(69, 'Sodales Institute'),
-(70, 'Ut Institute'),
-(71, 'Lacus Ut Nec Corporation'),
-(72, 'Dictum Phasellus In Ltd'),
-(73, 'Elit Erat Vitae Corp.'),
-(74, 'Ac Nulla Corp.'),
-(75, 'Nulla At Sem Inc.'),
-(76, 'Quam Foundation'),
-(77, 'Lorem Auctor Corp.'),
-(78, 'Mauris Vel Turpis Foundation'),
-(79, 'Donec Associates'),
-(80, 'Porta Corporation'),
-(81, 'Cras Sed Leo Consulting'),
-(82, 'Suspendisse Sagittis Nullam Associates'),
-(83, 'Conubia Consulting'),
-(84, 'Ligula Aenean LLC'),
-(85, 'Auctor Vitae Aliquet Associates'),
-(86, 'Sed LLC'),
-(87, 'Quis Urna Industries'),
-(88, 'Nunc Sit Industries'),
-(89, 'Dolor Sit Amet Consulting'),
-(90, 'Lorem Ipsum Dolor Industries'),
-(91, 'Class Ltd'),
-(92, 'Odio Corp.'),
-(93, 'Taciti Sociosqu Industries'),
-(94, 'Bibendum Ullamcorper Incorporated'),
-(95, 'Lacus Cras Interdum LLC'),
-(96, 'Mauris Company'),
-(97, 'Eros Nec LLP'),
-(98, 'Quam A Consulting'),
-(99, 'Feugiat Sed Associates'),
-(100, 'Lobortis PC');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empresa_has_telefonos`
---
-
-CREATE TABLE `empresa_has_telefonos` (
-  `empresa_idEmpresa` bigint(20) NOT NULL,
-  `telefonos_id_telefono` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `empresa_has_telefonos`
---
-
-INSERT INTO `empresa_has_telefonos` (`empresa_idEmpresa`, `telefonos_id_telefono`) VALUES
-(80, 80),
-(81, 81),
-(82, 82),
-(83, 83),
-(84, 84),
-(85, 85),
-(86, 86),
-(87, 87),
-(88, 88),
-(89, 89),
-(90, 90),
-(91, 91),
-(92, 92),
-(93, 93),
-(94, 94),
-(95, 95),
-(96, 96),
-(97, 97),
-(98, 98),
-(99, 99),
-(100, 100);
+INSERT INTO `empresa` (`idEmpresa`, `nombre`, `direccionP`, `direccionO`, `telefonoF`, `telefonoC`) VALUES
+(1, 'El apojeo', 'Calle siempre viva', 'Fasalis 200', 2919029, 3123242425),
+(2, 'Vitae Risus Duis Limited', 'Apdo.:452-9780 Erat Avenida', '8389 Suspendisse Avda.', 793, 903),
+(3, 'Orci Tincidunt Corporation', 'Apartado núm.: 439, 8810 Tempus C.', 'Apdo.:196-7901 Duis C.', 967, 421),
+(4, 'Fringilla Donec Incorporated', 'Apdo.:535-8438 Nunc Avenida', 'Apartado núm.: 376, 8122 Magna. Ctra.', 968, 580),
+(5, 'Dignissim Lacus Aliquam LLC', 'Apartado núm.: 223, 9032 Magna. Ctra.', '160-9189 Ridiculus Carretera', 259, 452),
+(6, 'Morbi Accumsan Ltd', 'Apdo.:983-9356 Urna. Avenida', 'Apdo.:980-4715 Cum C/', 638, 150),
+(7, 'Enim Nec Tempus LLP', 'Apdo.:842-5765 Interdum. Av.', 'Apartado núm.: 882, 9381 Aliquet C/', 138, 331),
+(8, 'Arcu Curabitur Ut PC', '3126 Dignissim C.', 'Apartado núm.: 191, 357 Auctor. Avda.', 896, 290),
+(9, 'Dolor Nonummy Ac Industries', 'Apartado núm.: 212, 9740 Luctus Avenida', 'Apdo.:423-5407 Consequat ', 154, 863),
+(10, 'Torquent Per Conubia Inc.', '372-9413 Pellentesque C.', 'Apartado núm.: 155, 1330 Morbi Avda.', 964, 392),
+(11, 'Mauris LLP', '374-7501 Metus. Calle', '3088 Mollis ', 376, 640),
+(12, 'Non Arcu Vivamus Foundation', '253-5280 Curabitur Calle', 'Apartado núm.: 280, 8387 Non C.', 929, 906),
+(13, 'Morbi Company', '844-2528 Eleifend, C.', '403-9288 Aliquet ', 141, 645),
+(14, 'Facilisis Magna Tellus PC', '5465 Eu Calle', 'Apartado núm.: 349, 1586 Urna, Av.', 641, 803),
+(15, 'Cum Sociis Natoque LLC', '4018 In, Av.', 'Apartado núm.: 340, 398 Venenatis C/', 259, 426),
+(16, 'Eu Odio Tristique Foundation', '330-1949 Ipsum Av.', '150-1575 Nonummy Av.', 605, 274),
+(17, 'Purus Inc.', '808-6100 Ut ', 'Apartado núm.: 153, 1824 Tellus Carretera', 715, 818),
+(18, 'Elit Elit Fermentum Corp.', 'Apartado núm.: 791, 1231 Gravida Carretera', 'Apdo.:613-1809 Ipsum C.', 204, 196),
+(19, 'Sed Pede Nec LLC', 'Apartado núm.: 833, 1260 At C/', '225-4214 Pede. Calle', 665, 742),
+(20, 'Tellus Sem Mollis Foundation', '6791 Dolor. ', '4521 Vivamus Carretera', 789, 204),
+(21, 'Mauris Inc.', '523-9341 Mauris C.', 'Apdo.:382-1647 At Calle', 726, 667),
+(22, 'A Aliquet Vel Corporation', 'Apartado núm.: 218, 8815 Nulla C/', 'Apdo.:578-5467 Sapien. Av.', 780, 573),
+(23, 'Ullamcorper Viverra Limited', '183-573 Tellus Avda.', '652-6681 Eu C/', 472, 425),
+(24, 'Lacinia Orci Consectetuer Corporation', '5323 Neque. Calle', 'Apdo.:242-4508 Etiam Calle', 199, 841),
+(25, 'Sem Ut Dolor Corporation', '331-1709 Adipiscing Calle', '5536 Non Avda.', 138, 861),
+(26, 'Consectetuer Mauris Id Corporation', '920-1085 Sed Carretera', '9713 Fringilla. Ctra.', 960, 916),
+(27, 'Volutpat Nunc Institute', 'Apartado núm.: 836, 9646 Velit Ctra.', 'Apartado núm.: 674, 2334 Praesent Calle', 195, 920),
+(28, 'Aliquam Incorporated', 'Apdo.:884-2544 Congue. Avenida', 'Apartado núm.: 794, 4474 Arcu. Ctra.', 744, 388),
+(29, 'Blandit Mattis PC', 'Apdo.:406-4270 Ornare. C/', '9000 Scelerisque C/', 599, 438),
+(30, 'Dictum Augue Malesuada Corp.', '514-9129 Dis Avenida', 'Apartado núm.: 435, 6828 Suspendisse Av.', 812, 122),
+(31, 'Posuere Company', '6287 Erat. Avda.', '233-8968 Fusce C.', 772, 550),
+(32, 'Pharetra Corp.', 'Apdo.:725-3550 Nisi. Ctra.', '574-3210 Enim. Ctra.', 849, 913),
+(33, 'Maecenas Malesuada LLC', '4138 Nulla Ctra.', '264 Et Ctra.', 115, 181),
+(34, 'Sodales Mauris LLP', 'Apartado núm.: 527, 5573 Lorem Calle', 'Apdo.:126-9684 Facilisis Calle', 115, 601),
+(35, 'Sapien Limited', '242-9634 Quisque Carretera', '772-4500 Eu Avenida', 361, 243),
+(36, 'Dui Incorporated', '7060 Mi Avda.', '6854 Placerat, C/', 419, 538),
+(37, 'Et Ultrices Consulting', '882-4291 Nunc. C/', '6749 Dolor. Avda.', 309, 492),
+(38, 'Mauris Limited', '792-7025 Lacus. C.', '624-1022 Libero. Av.', 414, 417),
+(39, 'Nunc LLC', 'Apartado núm.: 696, 1025 Massa. C.', 'Apdo.:496-9286 Risus. Carretera', 964, 420),
+(40, 'Placerat Cras Dictum Company', '9628 Arcu. ', 'Apdo.:245-2583 Imperdiet Ctra.', 880, 653),
+(41, 'Fusce Feugiat Lorem PC', 'Apdo.:575-2071 Nec, ', '266-6761 Proin Calle', 709, 638),
+(42, 'Eu Turpis Corporation', '3445 Sit Avda.', 'Apdo.:662-6269 Nulla. Ctra.', 101, 753),
+(43, 'Lectus Rutrum LLP', 'Apartado núm.: 705, 9924 Mi. C.', '682-2298 Consequat, Avenida', 384, 760),
+(44, 'Risus Quis Corporation', '9705 Congue. C/', 'Apdo.:302-2471 Dignissim. Calle', 116, 405),
+(45, 'Euismod Enim Corporation', '856-9532 Semper Avenida', '557-1952 Facilisis, Carretera', 839, 708),
+(46, 'Nibh PC', '654-9826 Pellentesque Calle', 'Apdo.:296-8431 Nunc Calle', 284, 521),
+(47, 'Quam A Company', 'Apdo.:102-7702 Magna. Av.', '6271 Velit Ctra.', 621, 349),
+(48, 'Ridiculus Consulting', 'Apdo.:875-9453 Est C/', 'Apartado núm.: 771, 9673 Egestas Calle', 746, 443),
+(49, 'Amet Consulting', '4159 Eu, Av.', 'Apdo.:932-8296 Tellus ', 182, 998),
+(50, 'Adipiscing Mauris LLP', '100-3415 Molestie C/', 'Apdo.:760-3262 Aliquam C.', 265, 454),
+(51, 'Nulla LLC', '654-1126 Diam C/', '4861 Orci, Av.', 921, 465),
+(52, 'Cursus Incorporated', '608-9892 Non, Avenida', 'Apdo.:143-8230 Lorem Ctra.', 600, 466),
+(53, 'Nunc Laoreet Incorporated', '771-8771 Nulla C/', 'Apdo.:129-4075 Et, Avenida', 578, 511),
+(54, 'Dolor Elit Pellentesque LLP', '9003 Ligula Avda.', 'Apdo.:205-573 Rhoncus. ', 145, 636),
+(55, 'Tincidunt Ltd', 'Apartado núm.: 344, 6154 In, Calle', '9479 Nunc C.', 837, 833),
+(56, 'Duis Gravida Corporation', 'Apdo.:703-886 Tristique C.', 'Apdo.:579-1685 Purus. Avda.', 164, 419),
+(57, 'Ipsum Industries', '919-7831 Non, Avda.', '125-3846 Dui. Calle', 300, 326),
+(58, 'Gravida Limited', '968-2437 Vitae Carretera', 'Apdo.:488-6473 Diam ', 153, 994),
+(59, 'Nec Incorporated', 'Apartado núm.: 927, 9634 Dictum. Ctra.', 'Apdo.:120-5996 Molestie ', 566, 219),
+(60, 'Elit Etiam LLP', '594-5048 Ac Carretera', 'Apartado núm.: 186, 1668 Nulla. C/', 627, 827),
+(61, 'Interdum Nunc Limited', 'Apdo.:672-8335 Ut Ctra.', 'Apdo.:182-7118 Molestie Avenida', 256, 320),
+(62, 'Dui LLC', '6948 Duis Carretera', 'Apartado núm.: 548, 2788 Fusce Av.', 794, 354),
+(63, 'Sollicitudin Inc.', 'Apartado núm.: 321, 2315 Turpis Avenida', '715-2355 Nisl. Avenida', 309, 178),
+(64, 'Est Nunc Corporation', 'Apdo.:115-3245 Fusce ', '7319 Quam Calle', 729, 731),
+(65, 'Aliquam Corporation', '977-192 Mi Calle', '350-7583 Ipsum. Avenida', 201, 941),
+(66, 'Ligula Nullam Institute', '493-2043 Nulla Avda.', '206-8029 Nisl C/', 352, 114),
+(67, 'Est Congue Foundation', 'Apdo.:219-194 Erat. Avda.', 'Apartado núm.: 395, 6640 Dui ', 906, 572),
+(68, 'Vestibulum Accumsan Neque Corporation', 'Apdo.:797-3549 Vitae Avenida', '766-6488 Eget Ctra.', 537, 499),
+(69, 'Sodales Institute', '2495 Lorem Carretera', '4431 Nunc Av.', 138, 847),
+(70, 'Ut Institute', 'Apdo.:550-6728 Mauris ', 'Apartado núm.: 434, 2516 Nunc. Avda.', 487, 790),
+(71, 'Lacus Ut Nec Corporation', 'Apartado núm.: 565, 8599 Penatibus Carretera', 'Apartado núm.: 193, 3073 Amet Avenida', 401, 985),
+(72, 'Dictum Phasellus In Ltd', 'Apdo.:818-7463 Erat. Av.', 'Apdo.:922-3422 Tortor C.', 614, 185),
+(73, 'Elit Erat Vitae Corp.', '724-3814 Curabitur Calle', '684-7300 Non, C/', 506, 689),
+(74, 'Ac Nulla Corp.', 'Apdo.:306-1961 Vivamus Ctra.', 'Apdo.:521-2564 Consequat Calle', 513, 177),
+(75, 'Nulla At Sem Inc.', '501-6954 Suspendisse Carretera', '8882 Neque Avenida', 755, 102),
+(76, 'Quam Foundation', '595-3978 Cras C.', '759-1621 Sem Avenida', 429, 270),
+(77, 'Lorem Auctor Corp.', '591-1337 Maecenas Av.', '311-9870 Et C.', 162, 705),
+(78, 'Mauris Vel Turpis Foundation', 'Apdo.:818-6879 Orci ', '4966 Amet Av.', 283, 804),
+(79, 'Donec Associates', 'Apdo.:645-5607 Sapien Avenida', 'Apdo.:773-7256 Dui ', 628, 494),
+(80, 'Porta Corporation', 'Apdo.:149-2714 Vestibulum, C/', 'Apartado núm.: 430, 5597 Sociis Ctra.', 183, 387),
+(81, 'Cras Sed Leo Consulting', '2412 Elit Calle', 'Apdo.:873-6482 Ornare, C/', 434, 167),
+(82, 'Suspendisse Sagittis Nullam Associates', '6501 Sed ', 'Apdo.:636-5008 Ornare ', 282, 196),
+(83, 'Conubia Consulting', 'Apdo.:373-2112 Montes, ', 'Apdo.:332-5072 Lacus. Avda.', 919, 316),
+(84, 'Ligula Aenean LLC', 'Apartado núm.: 488, 4098 Fusce C/', 'Apdo.:316-1946 Elementum, ', 207, 215),
+(85, 'Auctor Vitae Aliquet Associates', '510-1344 Vitae, Ctra.', 'Apdo.:840-2981 At Calle', 161, 732),
+(86, 'Sed LLC', '542-7566 Erat C/', 'Apdo.:962-6663 Molestie Calle', 581, 416),
+(87, 'Quis Urna Industries', 'Apdo.:100-934 Scelerisque Carretera', '3216 Porttitor Avda.', 781, 188),
+(88, 'Nunc Sit Industries', 'Apartado núm.: 100, 3830 Ante. Avda.', '1725 Mi C.', 853, 937),
+(89, 'Dolor Sit Amet Consulting', '2173 Lobortis ', '548-2443 Augue. Calle', 544, 798),
+(90, 'Lorem Ipsum Dolor Industries', '262-6041 Ridiculus Av.', 'Apartado núm.: 386, 9366 Pharetra Carretera', 783, 996),
+(91, 'Class Ltd', '923-7657 Cursus Av.', '738-6256 Sed Avda.', 696, 639),
+(92, 'Odio Corp.', 'Apdo.:734-452 Rutrum Avda.', 'Apartado núm.: 556, 511 Facilisi. Calle', 694, 488),
+(93, 'Taciti Sociosqu Industries', '723-3823 Velit. Avenida', 'Apdo.:212-9686 Vel, Carretera', 932, 583),
+(94, 'Bibendum Ullamcorper Incorporated', '7127 Magna C.', 'Apdo.:423-6579 Auctor Avda.', 248, 952),
+(95, 'Lacus Cras Interdum LLC', 'Apdo.:386-8824 Ligula. Calle', '531-5301 A, Calle', 685, 555),
+(96, 'Mauris Company', '5271 Et Av.', '5368 Purus C/', 213, 955),
+(97, 'Eros Nec LLP', 'Apdo.:887-3525 Elit Carretera', 'Apartado núm.: 540, 4339 Auctor, Av.', 655, 236),
+(98, 'Quam A Consulting', 'Apartado núm.: 890, 2904 Pede C/', '3429 Molestie C.', 238, 818),
+(99, 'Feugiat Sed Associates', 'Apdo.:952-7164 In Carretera', '7328 Sociis Avda.', 461, 778),
+(100, 'Lobortis PC', '9458 Fusce Av.', 'Apartado núm.: 734, 4376 Donec Calle', 264, 957);
 
 -- --------------------------------------------------------
 
@@ -583,8 +449,10 @@ CREATE TABLE `estados` (
 --
 
 INSERT INTO `estados` (`id_estados`, `nombre`, `descripccion`) VALUES
-(1, 'activo', 'usuario puede aceder al sistema'),
-(2, 'bloqueado', ' usuario bloqueado');
+(1, 'activo', ''),
+(2, 'bloqueado', NULL),
+(3, 'sin rol', NULL),
+(4, 'sin permisos', NULL);
 
 -- --------------------------------------------------------
 
@@ -753,17 +621,20 @@ CREATE TABLE `permisos` (
 --
 
 INSERT INTO `permisos` (`id`, `nombre`, `url`, `icon`, `permisos_padre`) VALUES
-(1, 'perfil', '', 'fa fa-user-o\r', NULL),
-(2, 'usuarios', '', 'fa fa-users\r', NULL),
-(3, 'aplazamientos', '', 'fa fa-clock-o\r', NULL),
-(4, 'citas', '', 'fa fa-calendar-check-o\r', NULL),
-(5, 'agenda', '', 'fa fa-calendar\r', NULL),
+(0, '6\r', NULL, NULL, NULL),
+(1, 'Perfil', '', 'fa fa-user-o\r', NULL),
+(2, 'Usuarios', '', 'fa fa-users\r', NULL),
+(3, 'Aplazamientos', '', 'fa fa-clock-o\r', NULL),
+(4, 'Citas', '', 'fa fa-calendar-check-o\r', NULL),
+(5, 'Agenda', '', 'fa fa-calendar\r', NULL),
+(6, 'Agendar', '', 'fa fa-calendar-check-o\r', NULL),
 (11, 'Mi perfil', '/app/perfil/miperfil.xhtml', 'fa fa-user\r', 1),
 (12, 'Cambiar Datos', '/app/perfil/cambiardatos.xhtml', 'fa fa-pencil\r', 1),
 (21, 'Lista usuarios', '/app/usuarios/listar.xhtml', 'fa fa-list\r', 2),
 (22, 'Nuevo usuario', '/app/usuarios/nuevo.xhtml', 'fa fa-user-plus\r', 2),
 (31, 'Lista Aplazamientos', '/app/aplazamientos/lista.xhtml', 'fa fa-list\r', 3),
-(32, 'Registrar aplazamiento', '/app/aplazamientos/nuevo.xhtml', 'fa fa-plus\r', 3);
+(32, 'Registrar aplazamiento', '/app/aplazamientos/nuevo.xhtml', 'fa fa-plus\r', 3),
+(41, 'Reservar', '/app/cliente/servicios.xhtml', 'fa fa-pencil-square-o\r', 4);
 
 -- --------------------------------------------------------
 
@@ -782,14 +653,19 @@ CREATE TABLE `permisosroles` (
 
 INSERT INTO `permisosroles` (`permisos_id`, `roles_idRoles`) VALUES
 (1, 1),
+(1, 2),
 (2, 1),
 (3, 1),
+(4, 1),
 (11, 1),
+(11, 2),
 (12, 1),
 (21, 1),
 (22, 1),
 (31, 1),
-(32, 1);
+(32, 1),
+(41, 1),
+(41, 2);
 
 -- --------------------------------------------------------
 
@@ -800,7 +676,7 @@ INSERT INTO `permisosroles` (`permisos_id`, `roles_idRoles`) VALUES
 CREATE TABLE `personalmedico` (
   `idPersonalMedico` bigint(20) NOT NULL COMMENT 'Este campo almacena la cedula de cada Personal Medico (Solo Personal Medico)',
   `perfilProfesional` varchar(45) NOT NULL COMMENT 'Este campo almacena la especialidad que tiene cada Personal Medico ',
-  `cargo` varchar(70) NOT NULL COMMENT 'Este campo almacena el tipo de cargo que tiene el personal Medico (Prenatal o Posnatal)'
+  `cargo` varchar(20) NOT NULL COMMENT 'Este campo almacena el tipo de cargo que tiene el personal Medico (Prenatal o Posnatal)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -808,11 +684,11 @@ CREATE TABLE `personalmedico` (
 --
 
 INSERT INTO `personalmedico` (`idPersonalMedico`, `perfilProfesional`, `cargo`) VALUES
-(1600072330999, 'Ginecobstetra', 'Profesional en la salud'),
-(1602120920199, 'Fisioterapeuta', 'Profesional en la salud'),
-(1606072561599, 'Masajista', 'Profesional en la salud'),
-(1609080393299, 'Estétisista', 'Profesional en la belleza'),
-(1616110563599, 'Especialista en Yoga ', 'Profesional en el arte de la meditación');
+(1600072330999, 'Ginecobstetra', 'Profesional en la sa'),
+(1602120920199, 'Fisioterapeuta', 'Profesional en la sa'),
+(1606072561599, 'Masajista', 'Profesional en la sa'),
+(1609080393299, 'Estétisista', 'Profesional en la be'),
+(1616110563599, 'Especialista en Yoga ', 'Profesional en el ar');
 
 -- --------------------------------------------------------
 
@@ -870,9 +746,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`idRoles`, `nombre`, `descripcion`) VALUES
-(1, 'Administrador', 'Maxima autoridad del sistema'),
-(2, 'Cliente', 'Usuarios rutinarios del sistema'),
-(3, 'Personal Medico', 'Especialistas del gimnasio');
+(1, 'Administrador', 'Encargado del sistema de información'),
+(2, 'Cliente', 'El acceso a consultas de las rutinas y el agendamiento de citas por parte de los usuarios'),
+(3, 'Personal Medico', 'Personal medico orientado al tratamiento de los programas del gimnasio');
 
 -- --------------------------------------------------------
 
@@ -930,6 +806,18 @@ INSERT INTO `rutinas` (`idRutinas`, `nombre`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `rutinaservicios`
+--
+
+CREATE TABLE `rutinaservicios` (
+  `idRutinaServicios` int(11) NOT NULL,
+  `idRutinas` int(11) NOT NULL,
+  `idServicios` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `salones`
 --
 
@@ -959,7 +847,7 @@ INSERT INTO `salones` (`id_salones`, `actividad`, `salon`, `descripcion`) VALUES
 
 CREATE TABLE `servicios` (
   `idServicio` int(11) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id) de cada programa',
-  `nombre` varchar(100) DEFAULT NULL COMMENT 'Este campo almacena el nombre de programa ',
+  `nombre` varchar(20) DEFAULT NULL COMMENT 'Este campo almacena el nombre de programa ',
   `descripcion` text COMMENT 'Este campo almacena una pequeña descripcion de cada programa',
   `tipo_servicio_idtipo_servicio` int(11) NOT NULL,
   `inicio` datetime DEFAULT NULL,
@@ -971,18 +859,18 @@ CREATE TABLE `servicios` (
 --
 
 INSERT INTO `servicios` (`idServicio`, `nombre`, `descripcion`, `tipo_servicio_idtipo_servicio`, `inicio`, `fin`) VALUES
-(1, 'Programa de promoción y prevención', 'Programa de prevención y promoción en el estado prenatal, valoración física realizada por profesional en Fisioterapia.', 1, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
-(2, 'Acondicionamiento Fisico', 'Clases de Salón especialmente diseñadas para total seguridad de las embarazadas', 1, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
-(3, 'Curso Psicoprofiláctico', 'Curso grupal o personalizado  de preparación para el parto y la maternidad.', 1, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
+(1, 'Programa de promoció', 'Programa de prevención y promoción en el estado prenatal, valoración física realizada por profesional en Fisioterapia.', 1, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
+(2, 'Acondicionamiento Fi', 'Clases de Salón especialmente diseñadas para total seguridad de las embarazadas', 1, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
+(3, 'Curso Psicoprofiláct', 'Curso grupal o personalizado  de preparación para el parto y la maternidad.', 1, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
 (4, 'Spa y Relajación', 'Masajes Prenatales: Masajes relajantes y drenajes linfáticos.  Spa Prenatal: Depilación completa especial para el parto, exfoliación corporal, hidratacion facial, chocolaterapia, masaje relajante, drenaje linfático, musicoterapia, aromaterapia, manicura y pedicura con productos naturales.', 1, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
-(5, 'Programa de promoción y prevención', 'Valoración médica realizada por Ginecologia, valoración física realizada por Fisioterapeuta, valoración nutricional realizada por Nutricionista, valoración por médicina Estética.', 2, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
-(6, 'Acondicionamiento Físico', 'Clases posparto de: yoga posparto, pilates posparto, tono y acondicionamiento fisico posnatal', 2, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
+(5, 'Programa de promoció', 'Valoración médica realizada por Ginecologia, valoración física realizada por Fisioterapeuta, valoración nutricional realizada por Nutricionista, valoración por médicina Estética.', 2, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
+(6, 'Acondicionamiento Fí', 'Clases posparto de: yoga posparto, pilates posparto, tono y acondicionamiento fisico posnatal', 2, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
 (7, 'Área Especializada', 'Manejo de la incontinencia urinaria por medio de Electroestimulación y biofeedback perineal y Drenaje mamario: Masajes especiales durante la lactancia para la prevención de la mastitis puerperal.', 2, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
-(8, 'Reducción de peso y medidas', 'Sesiones especializadas para mujeres lactantes en posparto o poscesárea', 2, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
+(8, 'Reducción de peso y ', 'Sesiones especializadas para mujeres lactantes en posparto o poscesárea', 2, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
 (9, 'Taller de Shantala', 'El arte de acariciar a tú bebé, técnica Hindu de estimulación a través del masaje. Regula el sistema digestivo, circulatorio, respiratorio y musculo- esqueletico; activa conexion afectiva con sus padres.', 3, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
 (10, 'Baby Rumba', 'Ritmo y movimiento generan en el bebé la estimulación sensorial y el control vestibular, mejorando la tonificación neuromuscular. Activa la conexión papás - bebé, generando seguridad y tranquilidad.', 3, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
 (11, 'Yoga Baby', 'Los movimientos suaves, armónicos y controlados del Yoga Baby favorecen la relajación y el equilibrio del bebé y la mamá.', 3, '2016-12-12 00:00:00', '2017-05-05 00:00:00'),
-(12, 'Taller de Primeros Auxilios para Padres y Cuidadores', 'Cuatro (4) sesiones teórico - prácticas de una (1) hora.', 3, '2016-12-12 00:00:00', '2017-05-05 00:00:00');
+(12, 'Taller de Primeros A', 'Cuatro (4) sesiones teórico - prácticas de una (1) hora.', 3, '2016-12-12 00:00:00', '2017-05-05 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1161,26 +1049,6 @@ CREATE TABLE `tg_roles_usuarios_after_update` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_aplazamiento`
---
-
-CREATE TABLE `tipo_aplazamiento` (
-  `id_tipo` int(11) NOT NULL,
-  `tipo` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `tipo_aplazamiento`
---
-
-INSERT INTO `tipo_aplazamiento` (`id_tipo`, `tipo`) VALUES
-(1, 'Vacaciones'),
-(2, 'Motivo personal'),
-(3, 'Motivo medico');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `tipo_servicio`
 --
 
@@ -1241,7 +1109,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`cedula`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `fechaNaci`, `clave`, `imegen_perfil`, `id_estados`, `fecha_registro`) VALUES
-(1031174466, 'Rub', 'Lorena', 'Maella ', 'Parra', '1995-06-21', '1031174466', NULL, 1, NULL),
+(1031174466, 'Nicol', 'Lorena', 'Maella ', 'Parra', '1995-06-21', '1031174466', NULL, 1, NULL),
 (1600032140599, 'Gretchen', 'Janna', 'Mccray', 'Evans', '1998-02-26', 'UWD99TPB6PM', 0x50656e617469627573204574204c4c43, 1, NULL),
 (1600072330999, 'Ariel', 'Ashely', 'Benton', 'Ramirez', '1996-09-20', 'XXI49MEC5JL', 0x4e6f6e204e6973692041656e65616e20436f6e73756c74696e67, 1, NULL),
 (1600112313399, 'Quyn', 'Rebecca', 'Ortiz', 'Stewart', '1995-04-27', 'EMS11CWJ1IY', 0x41656e65616e20536564204c4c43, 1, NULL),
@@ -1416,7 +1284,7 @@ ALTER TABLE `actividades`
 ALTER TABLE `aplazamientos`
   ADD PRIMARY KEY (`idaplazamiento`),
   ADD KEY `FKClientesAplazamientos_idx` (`idcliente`),
-  ADD KEY `fk_aplazamiento_tipo_aplazamiento` (`id_tipo_aplazamiento`);
+  ADD KEY `fk_aplazamientos_servicios1_idx` (`servicios_idServicio`);
 
 --
 -- Indices de la tabla `cita_medica`
@@ -1459,26 +1327,10 @@ ALTER TABLE `direcciones`
   ADD KEY `fk_direcciones_localidad` (`id_localidad`);
 
 --
--- Indices de la tabla `direcciones_has_empresa`
---
-ALTER TABLE `direcciones_has_empresa`
-  ADD PRIMARY KEY (`direcciones_iddirecciones`,`empresa_idEmpresa`),
-  ADD KEY `fk_direcciones_has_empresa_empresa1_idx` (`empresa_idEmpresa`),
-  ADD KEY `fk_direcciones_has_empresa_direcciones1_idx` (`direcciones_iddirecciones`);
-
---
 -- Indices de la tabla `empresa`
 --
 ALTER TABLE `empresa`
   ADD PRIMARY KEY (`idEmpresa`);
-
---
--- Indices de la tabla `empresa_has_telefonos`
---
-ALTER TABLE `empresa_has_telefonos`
-  ADD PRIMARY KEY (`empresa_idEmpresa`,`telefonos_id_telefono`),
-  ADD KEY `fk_empresa_has_telefonos_telefonos1_idx` (`telefonos_id_telefono`),
-  ADD KEY `fk_empresa_has_telefonos_empresa1_idx` (`empresa_idEmpresa`);
 
 --
 -- Indices de la tabla `estados`
@@ -1555,6 +1407,14 @@ ALTER TABLE `rutinas`
   ADD PRIMARY KEY (`idRutinas`);
 
 --
+-- Indices de la tabla `rutinaservicios`
+--
+ALTER TABLE `rutinaservicios`
+  ADD PRIMARY KEY (`idRutinaServicios`),
+  ADD KEY `FkRutnas_RutinasServicios_idx` (`idRutinas`),
+  ADD KEY `FkServicios_RutinasServicios_idx` (`idServicios`);
+
+--
 -- Indices de la tabla `salones`
 --
 ALTER TABLE `salones`
@@ -1588,12 +1448,6 @@ ALTER TABLE `telefonos`
 --
 ALTER TABLE `tg_roles_usuarios_after_update`
   ADD PRIMARY KEY (`id_actualizacion_rol`);
-
---
--- Indices de la tabla `tipo_aplazamiento`
---
-ALTER TABLE `tipo_aplazamiento`
-  ADD PRIMARY KEY (`id_tipo`);
 
 --
 -- Indices de la tabla `tipo_servicio`
@@ -1643,12 +1497,17 @@ ALTER TABLE `correos`
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
-  MODIFY `id_estados` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_estados` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `localidades`
 --
 ALTER TABLE `localidades`
   MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+--
+-- AUTO_INCREMENT de la tabla `rutinaservicios`
+--
+ALTER TABLE `rutinaservicios`
+  MODIFY `idRutinaServicios` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `sesiones`
 --
@@ -1680,7 +1539,7 @@ ALTER TABLE `actividades`
 --
 ALTER TABLE `aplazamientos`
   ADD CONSTRAINT `FKClientesAplazamientos` FOREIGN KEY (`idcliente`) REFERENCES `clientes` (`idClientes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_aplazamiento_tipo_aplazamiento` FOREIGN KEY (`id_tipo_aplazamiento`) REFERENCES `tipo_aplazamiento` (`id_tipo`);
+  ADD CONSTRAINT `fk_aplazamientos_servicios1` FOREIGN KEY (`servicios_idServicio`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `cita_medica`
@@ -1713,20 +1572,6 @@ ALTER TABLE `datosclinicos`
 --
 ALTER TABLE `direcciones`
   ADD CONSTRAINT `fk_direcciones_localidad` FOREIGN KEY (`id_localidad`) REFERENCES `localidades` (`id_localidad`);
-
---
--- Filtros para la tabla `direcciones_has_empresa`
---
-ALTER TABLE `direcciones_has_empresa`
-  ADD CONSTRAINT `fk_direcciones_has_empresa_direcciones1` FOREIGN KEY (`direcciones_iddirecciones`) REFERENCES `direcciones` (`iddirecciones`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_direcciones_has_empresa_empresa1` FOREIGN KEY (`empresa_idEmpresa`) REFERENCES `empresa` (`idEmpresa`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `empresa_has_telefonos`
---
-ALTER TABLE `empresa_has_telefonos`
-  ADD CONSTRAINT `fk_empresa_has_telefonos_empresa1` FOREIGN KEY (`empresa_idEmpresa`) REFERENCES `empresa` (`idEmpresa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_empresa_has_telefonos_telefonos1` FOREIGN KEY (`telefonos_id_telefono`) REFERENCES `telefonos` (`id_telefono`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `inscripciones`
@@ -1773,6 +1618,13 @@ ALTER TABLE `programas_has_clases`
 ALTER TABLE `rolesusuarios`
   ADD CONSTRAINT `fK_RolesUsuarios` FOREIGN KEY (`idRoles`) REFERENCES `roles` (`idRoles`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_UsuariosRoles` FOREIGN KEY (`idUsuarios`) REFERENCES `usuarios` (`cedula`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `rutinaservicios`
+--
+ALTER TABLE `rutinaservicios`
+  ADD CONSTRAINT `FkRutnas_RutinasServicios` FOREIGN KEY (`idRutinas`) REFERENCES `rutinas` (`idRutinas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FkServicios_RutinasServicios` FOREIGN KEY (`idServicios`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `salones`
