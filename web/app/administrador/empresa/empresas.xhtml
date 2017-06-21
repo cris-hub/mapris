@@ -44,22 +44,17 @@
                     <b:dataTable value="#{listarEmpresaController.empresa}" var="empresa">
                         <b:dataTableColumn label="Nit de la empresa" value="#{empresa.idEmpresa}" />
                         <b:dataTableColumn label="Nombre de la empresa" value="#{empresa.nombre}" />
-                        <b:dataTableColumn label="Dirección" >
-                            <ui:repeat value="#{empresa.direcciones}"  var="dir">
-                                <h:outputText value="#{dir.avenida} #{dir.calle} #{dir.carrera}"/><br/>
-                            </ui:repeat>
-                        </b:dataTableColumn>
+                        <b:dataTableColumn label="Dirección sede principal" value="#{empresa.direccionP}"/>
+                        <b:dataTableColumn label="Dirección sede alterna" value="#{empresa.direccionO}"/>
+                        <b:dataTableColumn label="Telefono fijo" value="#{empresa.telefonoF}"/>
+                        <b:dataTableColumn label="Telefono celular" value="#{empresa.telefonoC}"/>
+                        
                          <b:dataTableColumn label="Clientes vinculados" >
                             <ui:repeat value="#{empresa.clientes}"  var="dir">
                                 <h:outputText value="#{dir.usuario.cedula}"/><br/>
                             </ui:repeat>
                         </b:dataTableColumn>
-                         <b:dataTableColumn label="Telefonos de contacto" >
-                            <ui:repeat value="#{empresa.telefonos}"  var="tel">
-                                <h:outputText value="#{tel.numero}"/><br/>
-                            </ui:repeat>
-                        </b:dataTableColumn>
-                        <b:dataTableColumn  label="Opciones" >
+                       <b:dataTableColumn  label="Opciones" >
                             <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verEmpresaController.verEmpresa(empresa)}"/>
                                <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarEmpresaController.preModificar(empresa)}"/>
                                 <b:commandButton size="sm"  look="danger" value=""
