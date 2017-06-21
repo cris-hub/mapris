@@ -63,29 +63,60 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <h:outputText value="Telefonos"/>
+                                                    <h:outputText value="Telefono Fijo"/>
 
                                                 </td>
 
                                                 <td>
-                                                    <b:dataTable border="false" info="false" paginated="false" searching="false"  value="#{verEmpresaController.empresa.telefonos}" var="tel">
-                                                        <b:dataTableColumn value="#{tel.numero}"/>
-                                                    </b:dataTable>
                                                     
+                                                  <h:outputText value="#{verEmpresaController.empresa.telefonoF}"/>  
+                                                  
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:outputText value="Telefono Celular"/>
+
+                                                </td>
+
+                                                <td>
+                                                    
+                                                  <h:outputText value="#{verEmpresaController.empresa.telefonoC}"/>  
                                                   
                                                 </td>
                                             </tr>
                                               <tr>
                                                 <td>
-                                                    <h:outputText value="Dirección"/>
+                                                    <h:outputText value="Dirección sede principal"/>
 
                                                 </td>
 
                                                 <td>
-                                                    <b:dataTable  border="false" info="false" paginated="false" searching="false" value="#{verEmpresaController.empresa.direcciones}" var="dir">
-                                                        <b:dataTableColumn value="#{dir.avenida} #{dir.calle} #{dir.carrera}"/>
-                                                    </b:dataTable>
+                                                    <h:outputText value="#{verEmpresaController.empresa.direccionP}"/>                                                    
+                                                  
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td>
+                                                    <h:outputText value="Dirección sede principal"/>
+
+                                                </td>
+
+                                                <td>
+                                                    <h:outputText value="#{verEmpresaController.empresa.direccionP}"/>                                                    
+                                                  
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:outputText value="Dirección sede alterna"/>
+
+                                                </td>
+
+                                                <td>
                                                     
+                                                    <h:outputText value="#{verEmpresaController.empresa.direccionO}"/>                                                    
+                                                   
                                                   
                                                 </td>
                                             </tr>

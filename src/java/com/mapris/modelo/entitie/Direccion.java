@@ -56,13 +56,6 @@ public class Direccion implements Serializable {
     @Size(max = 45)
     @Column(name = "carrera")
     private String carrera;
-    
-    @JoinTable(name = "direcciones_has_empresa", joinColumns = {
-        @JoinColumn(name = "direcciones_iddirecciones", referencedColumnName = "iddirecciones")}, inverseJoinColumns = {
-        @JoinColumn(name = "empresa_idEmpresa", referencedColumnName = "idEmpresa")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Empresa> empresas;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "direccionesIddirecciones", fetch = FetchType.LAZY)
     private List<UsuarioDireccione> direccionesUsuarios;
     @JoinColumn(name = "id_localidad", referencedColumnName = "id_localidad")
@@ -107,17 +100,7 @@ public class Direccion implements Serializable {
     public void setCarrera(String carrera) {
         this.carrera = carrera;
     }
-
-    @XmlTransient
-    public List<Empresa> getEmpresas() {
-        return empresas;
-    }
-
-    public void setEmpresas(List<Empresa> empresas) {
-        this.empresas = empresas;
-    }
-
-    @XmlTransient
+   @XmlTransient
     public List<UsuarioDireccione> getDireccionesUsuarios() {
         return direccionesUsuarios;
     }

@@ -39,20 +39,15 @@
                         <b:inputText value="#{editarEmpresaController.empresaSelecionada.idEmpresa}" />
                         <h:outputText value="Nombre de la empresa"/>
                         <b:inputText value="#{editarEmpresaController.empresaSelecionada.nombre}"/>
-                         <h:outputText value="Dirección"/>
-                         <b:dataTable border="false" info="false" paginated="false" searching="false" value="#{editarEmpresaController.empresaSelecionada.direcciones}" var="dir">
-                             <b:dataTableColumn>
-                                        <b:inputText col-lg="12" placeholder="Avenida" value="#{dir.avenida}"/>
-                                        <b:inputText col-lg="12" placeholder="Calle" value="#{dir.calle}"/>
-                                        <b:inputText col-lg="12" placeholder="Carrera" value="#{dir.carrera}"/>
-                                    </b:dataTableColumn>
-                                </b:dataTable>
-                          <h:outputText value="Telefonos"/>
-                         <b:dataTable border="false" info="false" paginated="false" searching="false"  value="#{editarEmpresaController.empresaSelecionada.telefonos}" var="tel">
-                            <b:dataTableColumn>
-                                        <b:inputText col-lg="12" value="#{tel.numero}"/>
-                            </b:dataTableColumn>
-                                </b:dataTable>
+                        <h:outputText value="Dirección sede principal"/>
+                        <b:inputText value="#{editarEmpresaController.empresaSelecionada.direccionP}"/>
+                        <h:outputText value="Dirección sede alterna"/>
+                        <b:inputText value="#{editarEmpresaController.empresaSelecionada.direccionO}"/>
+                        <h:outputText value="Telefono fijo"/>
+                        <b:inputText value="#{editarEmpresaController.empresaSelecionada.telefonoF}"/>
+                        <h:outputText value="Telefono celular"/>
+                        <b:inputText value="#{editarEmpresaController.empresaSelecionada.telefonoC}"/>
+                         
                          
                              
                     </b:panelGrid>
