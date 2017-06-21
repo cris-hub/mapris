@@ -1,39 +1,12 @@
 body {
+    background-image: url(../img/morado-oscuro.jpg);
+    background-size: contain;
+    color: #666666;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-
-
-
-#banner {
-    color: #ffffff;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-
-    text-align: center;
-    height: 100%;
-    overflow: auto;
-    position: relative;
-}
-
-#banner .gradient-overlay {
-
-    background: #7b4397; /* fallback for old browsers */
-    background: -webkit-linear-gradient(120deg, #7b4397 , #dc2430); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(120deg, #7b4397 , #dc2430); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    opacity: 0.8;      
-    
-    width: 100%;
-    height: 100%;
-}
-
-
-
-
-
 
 
 /* Pen Title */
@@ -60,7 +33,7 @@ body {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background:#7b4397;
+    background: #ed2553;
     width: 56px;
     height: 56px;
     border-radius: 100%;
@@ -102,7 +75,7 @@ body {
 /* Container */
 
 .container {
-
+    position: relative;
     max-width: 460px;
     width: 100%;
     margin: 0 auto 100px;
@@ -185,9 +158,7 @@ body {
 /* Card */
 
 .card {
-
-
-
+    position: relative;
     background: #ffffff;
     border-radius: 5px;
     padding: 60px 0 40px 0;
@@ -240,7 +211,34 @@ body {
     font-weight: 400;
 }
 
+.card .form-group input:focus~label {
+    color: #9d9d9d;
+    -webkit-transform: translate(-12%, -50%) scale(0.75);
+    transform: translate(-12%, -50%) scale(0.75);
+}
 
+.card .form-group input:focus~.bar:before,
+.card .form-group input:focus~.bar:after {
+    width: 50%;
+}
+
+.card .form-group input:valid~label {
+    color: #9d9d9d;
+    -webkit-transform: translate(-12%, -50%) scale(0.75);
+    transform: translate(-12%, -50%) scale(0.75);
+}
+
+.card .form-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #757575;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 60px;
+    -webkit-transition: 0.2s ease;
+    transition: 0.2s ease;
+}
 
 .card .form-group .bar {
     position: absolute;
@@ -282,7 +280,7 @@ body {
     display: inline-block;
     background: 0;
     width: 240px;
-    border: 2px solid #CAC9C9;
+    border: 2px solid #e3e3e3;
     padding: 20px 0;
     font-size: 24px;
     font-weight: 600;
@@ -296,7 +294,7 @@ body {
 .card .button-container button span {
     position: relative;
     z-index: 1;
-    color: #CAC9C9;
+    color: #ddd;
     -webkit-transition: .3s ease;
     transition: .3s ease;
 }
@@ -343,7 +341,7 @@ body {
 
 .card .footer {
     margin: 40px 0 0;
-    color: #A5A5A5;
+    color: #d3d3d3;
     font-size: 24px;
     font-weight: 300;
     text-align: center;
@@ -435,8 +433,8 @@ body {
 }
 
 .card.alt .form-group input {
-    color: #000;
-    background-color: white;
+    color: #ffffff;
+    margin: 10px;
 }
 
 .card.alt .form-group input:focus~label {
@@ -466,7 +464,9 @@ body {
     border-color: #ffffff;
 }
 
-
+.card.alt .button-container button span {
+    color: #ed2553;
+}
 
 .card.alt .button-container button:hover {
     background: rgba(255, 255, 255, 0.9);
@@ -497,9 +497,25 @@ body {
 
 /*BOTONES USUARIO Y PERSONAL*/
 
+.btn-group {
+    left: 15px;
+    bottom: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    display: inline-block;
+    color: #FFF;
+}
 
+.btn-group button span {
+    color: #ed2553;
+    position: relative;
+    z-index: 1;
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
 
-.button{
+.btn-group button {
     background-color: transparent;
     cursor: pointer;
     width: 200px;
@@ -514,26 +530,12 @@ body {
     transition: .3s ease;
 }
 
-/*ESTILO ANTIGUO*/
-.btn-group .button { 
-    background-color: transparent;
-    cursor: pointer;
-    width: 200px;
-    border: 3px solid #ed2553;
-    padding: 20px 0;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1;
-    text-transform: uppercase;
-    margin: -15px 0 0 -15px;
-    -webkit-transition: .3s ease;
-    transition: .3s ease;
+.btn-group button:hover span,
+.btn-group button:active span,
+.btn-group button:focus span
+{
+    color: #fff;
 }
-
-
-
-
-
 
 .btn-group button:hover,
 .btn-group button:active,
@@ -582,8 +584,4 @@ body {
 }
 .btn-primary:focus{
     color: #fff;
-}
-txtclave1_panel{
-    display: block;
-    margin: 50%;
 }

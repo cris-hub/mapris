@@ -16,8 +16,8 @@
 		<band height="79" splitType="Stretch">
 			<staticText>
 				<reportElement mode="Transparent" x="130" y="24" width="330" height="40" forecolor="#000000" backcolor="#FFFFFF" uuid="d36f8c77-3722-47ec-af19-da5f0ba1fae1"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Abbey-Medium Extended" size="30" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Vijaya" size="36" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Maternity Manager]]></text>
@@ -44,7 +44,7 @@
 			<staticText>
 				<reportElement mode="Opaque" x="439" y="57" width="112" height="20" forecolor="#FFFFFF" backcolor="#FF6699" uuid="04ae218a-9bf0-4990-91d9-9a6b5fb8cdfe"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="AdLib Th" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Timeless" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Fecha Nacimiento]]></text>
@@ -52,23 +52,15 @@
 			<staticText>
 				<reportElement mode="Opaque" x="96" y="57" width="144" height="20" forecolor="#FFFFFF" backcolor="#FF6699" uuid="4842a6a5-5feb-43a7-8f9e-f20aefbc41b5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="AdLib Th" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Timeless" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Nombres]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="17" y="57" width="70" height="20" forecolor="#FFFFFF" backcolor="#FF6699" uuid="e88e2c93-79fe-4a30-ad45-cb9febf79e1e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="AdLib Th" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" tabStopWidth="40"/>
-				</textElement>
-				<text><![CDATA[Cedula]]></text>
-			</staticText>
-			<staticText>
 				<reportElement mode="Opaque" x="255" y="57" width="176" height="20" forecolor="#FFFFFF" backcolor="#FF6699" uuid="fa8fdac2-52b4-4fbe-98e5-ba90d8406d2a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="AdLib Th" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Timeless" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Apellidos]]></text>
@@ -81,6 +73,14 @@
 				<reportElement x="507" y="17" width="43" height="20" uuid="609eab4d-ba6f-45c8-8903-51fe8eea01d3"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="17" y="57" width="70" height="20" forecolor="#FFFFFF" backcolor="#FF6699" uuid="e88e2c93-79fe-4a30-ad45-cb9febf79e1e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Timeless" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single" tabStopWidth="40"/>
+				</textElement>
+				<text><![CDATA[Cedula]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
