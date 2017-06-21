@@ -91,9 +91,9 @@ public class Usuario implements Serializable {
     @Column(name = "clave")
     private String clave;
 
-//    @Column(name = "fecha_registro")
-//    @Temporal(TemporalType.DATE)
-//    private Date fechaRegistro;
+    @Column(name = "fecha_registro")
+    @Temporal(TemporalType.DATE)
+    private Date fechaRegistro;
 
     @ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
     private List<Rol> roles;
@@ -229,13 +229,13 @@ public class Usuario implements Serializable {
         this.estado = estado;
     }
 
-//    public Date getFechaRegistro() {
-//        return fechaRegistro;
-//    }
-//
-//    public void setFechaRegistro(Date fechaRegistro) {
-//        this.fechaRegistro = fechaRegistro;
-//    }
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
     
 
     @XmlTransient
