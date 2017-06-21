@@ -113,7 +113,8 @@ INSERT INTO `clientes` (`idClientes`, `idEmpresa`, `estado`) VALUES
 (1606072561599, 7, '1'),
 (1607032664899, 8, '1'),
 (1608021707799, 9, '1'),
-(1609080393299, 10, '1');
+(1609080393299, 10, '1'),
+(1031174466, 11, '1');
 
 -- --------------------------------------------------------
 
@@ -633,7 +634,7 @@ INSERT INTO `permisos` (`id`, `nombre`, `url`, `icon`, `permisos_padre`) VALUES
 (21, 'Lista usuarios', '/app/usuarios/listar.xhtml', 'fa fa-list\r', 2),
 (22, 'Nuevo usuario', '/app/usuarios/nuevo.xhtml', 'fa fa-user-plus\r', 2),
 (31, 'Lista Aplazamientos', '/app/aplazamientos/lista.xhtml', 'fa fa-list\r', 3),
-(32, 'Registrar aplazamiento', '/app/aplazamientos/nuevo.xhtml', 'fa fa-plus\r', 3),
+(32, 'Registrar Aplazamiento', '/app/aplazamientos/registrarAplazamiento.xhtml', 'fa fa-plus\r', 3),
 (41, 'Reservar', '/app/cliente/servicios.xhtml', 'fa fa-pencil-square-o\r', 4);
 
 -- --------------------------------------------------------
