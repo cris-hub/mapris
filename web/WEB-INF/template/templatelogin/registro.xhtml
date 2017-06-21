@@ -18,15 +18,18 @@
                 <h1 class="title">#{msjLogin.titleIngresar}</h1>
             </div>
             <div class="col-md-4">
+           
                 <h:form>
+
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                             #{msjApp.idioma} <span class="caret"></span>
                         </button>
+
                         <ul class="dropdown-menu dropdown-menu-left">
-                            <c:forEach items="#{languageController.supportLanguages}" var="l" >
+                            <c:forEach items="#{sessionController.supportLanguages}" var="l" >
                                 <li>
-                                    <h:commandLink  value="#{msjApp[l.displayLanguage]}" action="#{languageController.cambiarIdioma(l)}">
+                                    <h:commandLink  value="#{msjApp[l.displayLanguage]}" action="#{sessionController.cambiarIdioma(l)}">
                                         <img src="#{request.contextPath}/resources/img/languages/#{l.language}.png" width="25px" alt="#{msjApp[l.displayLanguage]}"/>
                                     </h:commandLink>
                                 </li>
@@ -45,55 +48,49 @@
 
                 <div id="camposUsuario">
                     <div class="form-group">
-                        <p:outputLabel for="txtNombre" value="#{msjRegister.labelNombre}"/>
-                        <p:inputText placeholder="#{msjRegister.placeholderNombre}" id="txtNombre" value="#{registroController.usuario.nombre}" required="true" requiredMessage="El nombre es requerido"/>
-                        <p:message for="txtNombre"/>
-                    </div>
-
-                    <div class="form-group">
-                        <p:outputLabel for="txtApellido" value="#{msjRegister.labelApellido}"/>
-                        <p:inputText id="txtApellido" placeholder="#{msjRegister.placeholderApellido}" value="#{registroController.usuario.apellidos}" required="true" requiredMessage="El apellido es requerido"/>
-                        <p:message for="txtApellido"/>
-                    </div>
-
-                    <div class="form-group">
-                        <p:outputLabel for="txtDocumentoRegistro" value="#{msjRegister.labelDocumentoIdentidad}"/>
-                        <p:inputText id="txtDocumentoRegistro" placeholder="#{msjRegister.placeholderDocumento}" value="#{registroController.usuario.cedula}" required="true" requiredMessage="El numero de documento es requerido"/>
+                        <p:outputLabel for="txtDocumentoRegistro" value="#{msjRegister.placeholderDocumento}"/>
+                        <p:inputText placeholder="#{msjRegister.placeholderDocumento}" id="txtDocumentoRegistro" value="#{registroController.nuevoUsuario.cedula}" required="true" requiredMessage="Numero de documento es requerido"/>
                         <p:message for="txtDocumentoRegistro"/>
+                    </div>
+
+                    <div class="form-group">
+                        <p:outputLabel for="txtPrimerNombre" value="#{msjRegister.labelNombre}"/>
+                        <p:inputText id="txtPrimerNombre" placeholder="#{msjRegister.placeholderNombre}" value="#{registroController.nuevoUsuario.primerNombre}" required="true" requiredMessage="El nombre es requerido"/>
+                        <p:message for="txtPrimerNombre"/>
+                    </div>
+
+                    <div class="form-group">
+                        <p:outputLabel for="txtSegundoNombre" value="#{msjRegister.labelNombre}"/>
+                        <p:inputText id="txtSegundoNombre" placeholder="#{msjRegister.placeholderNombre}" value="#{registroController.nuevoUsuario.segundoNombre}" required="true" requiredMessage="El nombre es requerido"/>
+                        <p:message for="txtSegundoNombre"/>
+                    </div>
+                    <div class="form-group">
+                        <p:outputLabel for="txtPrimerApellido" value="#{msjRegister.labelApellido}"/>
+                        <p:inputText id="txtPrimerApellido" placeholder="#{msjRegister.placeholderApellido}" value="#{registroController.nuevoUsuario.primerApellido}" required="true" requiredMessage="El nombre es requerido"/>
+                        <p:message for="txtPrimerApellido"/>
+                    </div>
+                    <div class="form-group">
+                        <p:outputLabel for="txtSegundoApellido" value="#{msjRegister.labelApellido}"/>
+                        <p:inputText id="txtSegundoApellido" placeholder="#{msjRegister.placeholderApellido}" value="#{registroController.nuevoUsuario.segundoApellido}" required="true" requiredMessage="El nombre es requerido"/>
+                        <p:message for="txtSegundoApellido"/>
                     </div>
                     
                     <div class="form-group">
                         <p:outputLabel for="txtFecha" value="#{msjRegister.labelFechaNacimiento}"/>
-                        <p:calendar id="txtFecha" placeholder="#{msjRegister.placeholderFechaNaci}" locale="#{l.language}" value="#{registroController.usuario.fechaNaci}" required="true" requiredMessage="indique la fecha de nacimiento"/>
+                        <p:calendar id="txtFecha" placeholder="#{msjRegister.placeholderFechaNaci}" locale="#{l.language}" value="#{registroController.nuevoUsuario.fechaNaci}" required="true" requiredMessage="indique la fecha de nacimiento"/>
                         <p:message for="txtFecha"/>
                     </div>
                 </div>
                 
                 <div  id="camposCuenta">
                     
-                    
-<!--                    <div class="form-group">
-                        <p:outputLabel for="txtEmailRegistro" value="#{msjRegister.labelCorreoElectronico}"/>
-                        <p:inputText id="txtEmailRegistro" placeholder="#{msjRegister.placeholderCorreo}" value="#{registroController.usuario.email}" required="true" requiredMessage="El correo electronico es requerido para el registro"/>
-                        <p:message for="txtEmailRegistro"/>
-                    </div>-->
-<!--                    <div class="form-group">
-                        <p:outputLabel for="txtDireccionRegistro" value="#{msjRegister.labelDireccion}"/>
-                        <p:inputText id="txtDireccionRegistro" placeholder="#{msjRegister.placeholderDireccion}" value="#{registroController.usuario.dirreccion}" required="true" requiredMessage="La dirección es requerida para el registro"/>
-                        <p:message for="txtDireccionRegistro"/>
-                    </div>-->
-<!--                    <div class="form-group">
-                        <p:outputLabel for="txtTelefonoRegistro" value="#{msjRegister.lapelTelefono}"/>
-                        <p:inputText id="txtTelefonoRegistro"  placeholder="#{msjRegister.placeholderTelefono}" value="#{registroController.usuario.telefono}" required="true" requiredMessage="El telefono es requerido para el registro"/>
-                        <p:message for="txtTelefonoRegistro"/>
-                    </div>-->
-                   
+
 
 
                     <div class="form-group">
 
                         <p:outputLabel for="txtclave1" value="#{msjRegister.labelContraseña}"/>
-                        <p:password id="txtclave1" class="input-group" value="#{registroController.usuario.clave}" 
+                        <p:password id="txtclave1" class="input-group" value="#{registroController.nuevoUsuario.clave}" 
                                     feedback="true" inline="true"
                                     weakLabel="Debil" goodLabel="Buena" strongLabel="Fuerte" 
                                     validatorMessage="Las claves no coinciden" required="true" requiredMessage="campo necesario"
