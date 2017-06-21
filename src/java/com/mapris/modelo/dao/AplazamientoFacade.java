@@ -28,5 +28,21 @@ public class AplazamientoFacade extends AbstractFacade<Aplazamiento> implements 
     public AplazamientoFacade() {
         super(Aplazamiento.class);
     }
-    
+
+    @Override
+    public Aplazamiento registrarAplazamiento(Aplazamiento nuevoAplzamiento) {
+        try {
+            if (nuevoAplzamiento == null) {
+                            System.out.println("El nuevo aplazamiento es nulo error AplazamientoFacade");
+                return null;
+            }
+            //Now saving...
+            em.persist(nuevoAplzamiento); //em.merge(u); for updates
+            return nuevoAplzamiento;
+        } catch (Exception e) {
+            System.out.println("El nuevo aplazamiento no pudo ser registrado error AplazamientoFacade");
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

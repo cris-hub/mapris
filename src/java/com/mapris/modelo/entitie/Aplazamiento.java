@@ -30,8 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Aplazamiento.findAll", query = "SELECT a FROM Aplazamiento a")
-    , @NamedQuery(name = "Aplazamiento.findByIdaplazamiento", query = "SELECT a FROM Aplazamiento a WHERE a.idaplazamiento = :idaplazamiento")
-    , @NamedQuery(name = "Aplazamiento.findByFechaRetorno", query = "SELECT a FROM Aplazamiento a WHERE a.fechaRetorno = :fechaRetorno")})
+    , @NamedQuery(name = "Aplazamiento.findByIdaplazamiento", query = "SELECT a FROM Aplazamiento a WHERE a.idaplazamiento = :idaplazamiento")})
 public class Aplazamiento implements Serializable {
 
     @JoinColumn(name = "servicios_idServicio", referencedColumnName = "idServicio")
@@ -51,9 +50,6 @@ public class Aplazamiento implements Serializable {
     @JoinColumn(name = "idcliente", referencedColumnName = "idClientes")
     @ManyToOne(fetch = FetchType.LAZY)
     private Cliente idcliente;
-    @JoinColumn(name = "id_tipo_aplazamiento", referencedColumnName = "id_tipo")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TipoAplazamiento idTipoAplazamiento;
 
     public Aplazamiento() {
     }
@@ -84,14 +80,6 @@ public class Aplazamiento implements Serializable {
 
     public void setIdcliente(Cliente idcliente) {
         this.idcliente = idcliente;
-    }
-
-    public TipoAplazamiento getIdTipoAplazamiento() {
-        return idTipoAplazamiento;
-    }
-
-    public void setIdTipoAplazamiento(TipoAplazamiento idTipoAplazamiento) {
-        this.idTipoAplazamiento = idTipoAplazamiento;
     }
 
     @Override
@@ -126,5 +114,5 @@ public class Aplazamiento implements Serializable {
     public void setServiciosidServicio(Servicio serviciosidServicio) {
         this.serviciosidServicio = serviciosidServicio;
     }
-    
+
 }

@@ -29,5 +29,7 @@ public interface AplazamientoFacadeLocal {
     List<Aplazamiento> findRange(int[] range);
 
     int count();
+
+    public Aplazamiento registrarAplazamiento(Aplazamiento nuevoAplazamiento);
     
 }

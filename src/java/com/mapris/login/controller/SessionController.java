@@ -116,7 +116,7 @@ public class SessionController implements Serializable {
         if(usuario != null){
             rolSeleccionado = sr.validarRol(usuario);
             if(rolSeleccionado != null){
-                urlDestino = "/app/aplazamientos/registrarAplazamiento.xhtml?faces-redirect=true";
+                urlDestino = "/app/index.xhtml?faces-redirect=true";
             } else{
                 usuario = null;
             }
