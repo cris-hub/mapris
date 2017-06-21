@@ -7,67 +7,67 @@
 }
 /* entire container, keeps perspective */
 .card-container {
-	  -webkit-perspective: 800px;
-   -moz-perspective: 800px;
-     -o-perspective: 800px;
-        perspective: 800px;
-        margin-bottom: 30px;
+    -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    -o-perspective: 800px;
+    perspective: 800px;
+    margin-bottom: 30px;
 }
 /* flip the pane when hovered */
 .card-container:not(.manual-flip):hover .card,
 .card-container.hover.manual-flip .card{
-	-webkit-transform: rotateY( 180deg );
--moz-transform: rotateY( 180deg );
- -o-transform: rotateY( 180deg );
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
     transform: rotateY( 180deg );
 }
 
 
 .card-container.static:hover .card,
 .card-container.static.hover .card {
-	-webkit-transform: none;
--moz-transform: none;
- -o-transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
     transform: none;
 }
 /* flip speed goes here */
 .card {
-	 -webkit-transition: -webkit-transform .5s;
-   -moz-transition: -moz-transform .5s;
-     -o-transition: -o-transform .5s;
-        transition: transform .5s;
--webkit-transform-style: preserve-3d;
-   -moz-transform-style: preserve-3d;
-     -o-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-	position: relative;
+    -webkit-transition: -webkit-transform .5s;
+    -moz-transition: -moz-transform .5s;
+    -o-transition: -o-transform .5s;
+    transition: transform .5s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    position: relative;
 }
 
 /* hide back of pane during swap */
 .front, .back {
-	-webkit-backface-visibility: hidden;
-   -moz-backface-visibility: hidden;
-     -o-backface-visibility: hidden;
-        backface-visibility: hidden;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background-color: #FFF;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FFF;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
 }
 
 /* front pane, placed above back */
 .front {
-	z-index: 2;
+    z-index: 2;
 }
 
 /* back, initially hidden pane */
 .back {
-		-webkit-transform: rotateY( 180deg );
-   -moz-transform: rotateY( 180deg );
-     -o-transform: rotateY( 180deg );
-        transform: rotateY( 180deg );
-        z-index: 3;
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+    z-index: 3;
 }
 
 .back .btn-simple{
@@ -84,12 +84,12 @@
     color: #444444;
 }
 .card-container, .front, .back {
-	width: 100%;
-	height: 420px;
-	border-radius: 4px;
-	-webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
--moz-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
+    width: 100%;
+    height: 420px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
+    -moz-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
+    box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
 }
 .card .cover{
     height: 105px;
@@ -124,8 +124,78 @@ box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
 .card .back .content .main {
     height: 215px;
 }
+.main .button-container {
+    margin: 0;
+    text-align: center;
+}
+
+.main .button-container button {
+    outline: 0;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    background: 0;
+    width: 150px;
+    z: 2px solid #CAC9C9;
+    padding: 10px 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+    overflow: hidden;
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.main .button-container button span {
+    position: relative;
+    z-index: 1;
+    color: #CAC9C9;
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.main .button-container button:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    background: #ed2553;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin: -15px 0 0 -15px;
+    opacity: 0;
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.main .button-container button:hover,
+.main .button-container button:active,
+.main .button-container button:focus {
+    border-color: #ed2553;
+}
+
+.main .button-container button:hover span,
+.main .button-container button:active span,
+.main .button-container button:focus span {
+    color: #ed2553;
+}
+
+.main .button-container button:active span,
+.main .button-container button:focus span {
+    color: #ffffff;
+}
+
+.main .button-container button:active:before,
+.main .button-container button:focus:before {
+    opacity: 1;
+    -webkit-transform: scale(10);
+    transform: scale(10);
+}
 .card .name {
-		font-family: 'Arima Madurai', cursive;
+    font-family: 'Arima Madurai', cursive;
     font-size: 22px;
     line-height: 28px;
     margin: 10px 0 0;
@@ -163,39 +233,39 @@ box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
     height: 90px;
 }
 .card .motto{
-		font-family: 'Arima Madurai', cursive;
+    font-family: 'Arima Madurai', cursive;
     border-bottom: 1px solid #EEEEEE;
     color: #999999;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 400;
     padding-bottom: 10px;
     text-align: center;
 }
 
 .card .stats-container{
-	width: 100%;
-	margin-top: 50px;
+    width: 100%;
+    margin-top: 50px;
 }
 .card .stats{
-	display: block;
-	float: left;
-	width: 33.333333%;
-	text-align: center;
+    display: block;
+    float: left;
+    width: 33.333333%;
+    text-align: center;
 }
 
 .card .stats:first-child{
-	border-right: 1px solid #EEEEEE;
+    border-right: 1px solid #EEEEEE;
 }
 .card .stats:last-child{
-	border-left: 1px solid #EEEEEE;
+    border-left: 1px solid #EEEEEE;
 }
 .card .stats h4{
-		font-family: 'Arima Madurai', cursive;
-	font-weight: 300;
-	margin-bottom: 5px;
+    font-family: 'Arima Madurai', cursive;
+    font-weight: 300;
+    margin-bottom: 5px;
 }
 .card .stats p{
-	color: #777777;
+    color: #777777;
 }
 /*      Just for presentation        */
 
@@ -206,8 +276,8 @@ box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
     margin: 0;
 }
 .space-30{
-	height: 30px;
-	display: block;
+    height: 30px;
+    display: block;
 }
 .space-50{
     height: 50px;
@@ -226,7 +296,7 @@ box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
     color: #F74933;
 }
 
- pre.prettyprint{
+pre.prettyprint{
     background-color: #ffffff;
     border: 1px solid #999;
     margin-top: 20px;
@@ -237,13 +307,13 @@ box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
     color: #05AE0E;
 }
 .tag, .pln, .kwd{
-     color: #3472F7;
+    color: #3472F7;
 }
 .atn{
-  color: #2C93FF;
+    color: #2C93FF;
 }
 .pln{
-   color: #333;
+    color: #333;
 }
 .com{
     color: #999;
