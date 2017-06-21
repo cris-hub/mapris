@@ -6,6 +6,7 @@
 package com.mapris.modelo.dao;
 
 import com.mapris.modelo.entitie.Usuario;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -31,5 +32,7 @@ public interface UsuarioFacadeLocal {
     int count();
     
     Usuario login(Long documento,String clave);
+    
+    List<Usuario>  registros(Date fechaInicio, Date fechaFin,String modo);
     
 }
