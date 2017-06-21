@@ -4,26 +4,27 @@
 <ui:composition  template="/WEB-INF/template/templateInterfaz.xhtml"
                  xmlns:ui="http://java.sun.com/jsf/facelets"
                  xmlns:hf="http://highfaces.org"
-                 xmlns:h="http://xmlns.jcp.org/jsf/html">
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:b="http://bootsfaces.net/ui">
 
 
     <ui:define name="titulo">Maternity Club &amp; Spa</ui:define>
     <ui:define name="pagetitle">
-<!--        <div class="page-head">
-            <div class="page-title">
-                <h1> Poner nombre
-                    <small>Poner nombre</small>
-                </h1>
-            </div>
-        </div>-->
-        
+        <!--        <div class="page-head">
+                    <div class="page-title">
+                        <h1> Poner nombre
+                            <small>Poner nombre</small>
+                        </h1>
+                    </div>
+                </div>-->
+
     </ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
                 <a href="#" class="disabled">inicio</a>
-                
+
             </li>
         </ul>
 
@@ -33,9 +34,16 @@
     <ui:define name="contenido">
         <div class="col-md-12">
             <h:form prependId="false" >
-                
-             <hf:chart  type="line" value="#{lineChartBean.simpleList}" var="point"
-                       point="#{point}" title="List of Integer values" xaxisLabel="Index" yaxisLabel="Amount"/>
+
+
+
+                <b:commandButton value="Consultar" action-listener=""/>
+
+
+               <hf:chart type="line" value="#{lineChartBean.simpleList}" var="point"
+     point="#{point}" title="List of Integer values" xaxisLabel="Index" yaxisLabel="Amount"/>
+
+
             </h:form>
         </div>
 

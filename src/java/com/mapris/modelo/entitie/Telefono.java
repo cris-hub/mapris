@@ -49,8 +49,6 @@ public class Telefono implements Serializable {
     @Size(max = 15)
     @Column(name = "numero")
     private String numero;
-    @ManyToMany(mappedBy = "telefonos", fetch = FetchType.LAZY)
-    private List<Empresa> empresas;
     @JoinTable(name = "usuarios_has_telefonos", joinColumns = {
         @JoinColumn(name = "telefonos_id_telefono", referencedColumnName = "id_telefono")}, inverseJoinColumns = {
         @JoinColumn(name = "usuarios_cedula", referencedColumnName = "cedula")})
@@ -74,14 +72,7 @@ public class Telefono implements Serializable {
         this.numero = numero;
     }
 
-    @XmlTransient
-    public List<Empresa> getEmpresas() {
-        return empresas;
-    }
-
-    public void setEmpresas(List<Empresa> empresas) {
-        this.empresas = empresas;
-    }
+   
 
     @XmlTransient
     public List<Usuario> getUsuarios() {

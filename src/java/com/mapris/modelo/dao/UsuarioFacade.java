@@ -6,9 +6,12 @@
 package com.mapris.modelo.dao;
 
 import com.mapris.modelo.entitie.Usuario;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -45,4 +48,21 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         }
     }
 
+    
+    public List<Usuario> registros(Date fechaInicio, Date fechaFin,String modo) {
+        List<Usuario> usuarios = null;
+        String sql = "SELECT ?1(cedula),YEAR(fechaNaci) FROM usuarios WHERE usuarios.fechaNaci BETWEEN   ?2 AND ?3 GROUP BY ?4(fechaNaci)";
+               
+        Query q =  getEntityManager().createNativeQuery(sql, Usuario.class);
+        q.setParameter(1, modo);
+        q.setParameter(2, fechaFin);
+        q.setParameter(3, fechaFin);
+        q.setParameter(4, modo);
+        usuarios = q.getResultList();
+        
+        return usuarios;
+
+    }
+
+   
 }

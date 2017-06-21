@@ -50,8 +50,10 @@ public class EditarEmpresaController implements Serializable {
             
             empresaSelecionada.setNombre(empresaSelecionada.getNombre());
             empresaSelecionada.setIdEmpresa(empresaSelecionada.getIdEmpresa());
-            empresaSelecionada.setDirecciones(empresaSelecionada.getDirecciones());
-            empresaSelecionada.setTelefonos(empresaSelecionada.getTelefonos());
+            empresaSelecionada.setDireccionP(empresaSelecionada.getDireccionP());
+            empresaSelecionada.setDireccionO(empresaSelecionada.getDireccionO());
+            empresaSelecionada.setTelefonoF(empresaSelecionada.getTelefonoF());
+            empresaSelecionada.setTelefonoC(empresaSelecionada.getTelefonoC());
             //Datos modificados
             
             efl.edit(empresaSelecionada);//Codigo de modificación de la empresa

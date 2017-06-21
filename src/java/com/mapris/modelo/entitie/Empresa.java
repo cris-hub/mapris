@@ -44,18 +44,29 @@ public class Empresa implements Serializable {
     @NotNull
     @Column(name = "idEmpresa")
     private Long idEmpresa;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "nombre")
     private String nombre;
-    @JoinTable(name = "empresa_has_telefonos", joinColumns = {
-        @JoinColumn(name = "empresa_idEmpresa", referencedColumnName = "idEmpresa")}, inverseJoinColumns = {
-        @JoinColumn(name = "telefonos_id_telefono", referencedColumnName = "id_telefono")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Telefono> telefonos;
-    @ManyToMany(mappedBy = "empresas", fetch = FetchType.LAZY)
-    private List<Direccion> direcciones;
+   
+    @Basic(optional = false)
+    @Size(min = 1, max = 45)
+    @Column(name = "direccionP")
+    private String direccionP;
+    
+    @Basic(optional = false)
+    @Size(min = 1, max = 45)
+    @Column(name = "direccionO")
+    private String direccionO;
+    
+    @Column(name = "telefonoF")
+    private Long telefonoF;
+    
+    @Column(name = "telefonoC")
+    private Long telefonoC;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpresa", fetch = FetchType.LAZY)
     private List<Cliente> clientes;
 
@@ -66,10 +77,16 @@ public class Empresa implements Serializable {
         this.idEmpresa = idEmpresa;
     }
 
-    public Empresa(Long idEmpresa, String nombre) {
+    public Empresa(Long idEmpresa, String nombre, String direccionP, String direccionO, Long telefonoF, Long telefonoC) {
         this.idEmpresa = idEmpresa;
         this.nombre = nombre;
+        this.direccionP = direccionP;
+        this.direccionO = direccionO;
+        this.telefonoF = telefonoF;
+        this.telefonoC = telefonoC;
     }
+
+    
 
     public Long getIdEmpresa() {
         return idEmpresa;
@@ -87,24 +104,39 @@ public class Empresa implements Serializable {
         this.nombre = nombre;
     }
 
-    @XmlTransient
-    public List<Telefono> getTelefonos() {
-        return telefonos;
+    public String getDireccionP() {
+        return direccionP;
     }
 
-    public void setTelefonos(List<Telefono> telefonos) {
-        this.telefonos = telefonos;
+    public void setDireccionP(String direccionP) {
+        this.direccionP = direccionP;
     }
 
-    @XmlTransient
-    public List<Direccion> getDirecciones() {
-        return direcciones;
+    public String getDireccionO() {
+        return direccionO;
     }
 
-    public void setDirecciones(List<Direccion> direcciones) {
-        this.direcciones = direcciones;
+    public void setDireccionO(String direccionO) {
+        this.direccionO = direccionO;
     }
 
+    public Long getTelefonoF() {
+        return telefonoF;
+    }
+
+    public void setTelefonoF(Long telefonoF) {
+        this.telefonoF = telefonoF;
+    }
+
+    public Long getTelefonoC() {
+        return telefonoC;
+    }
+
+    public void setTelefonoC(Long telefonoC) {
+        this.telefonoC = telefonoC;
+    }
+    
+    
     @XmlTransient
     public List<Cliente> getClientes() {
         return clientes;
