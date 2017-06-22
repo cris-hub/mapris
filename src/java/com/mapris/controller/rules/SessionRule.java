@@ -28,7 +28,7 @@ public class SessionRule {
         Usuario u = null;
         if (documento != null && documento > 0
                 && clave != null && clave.length() > 0) {
-            u = ufl.login(documento, clave);
+            u = ufl.loginProcedure(documento, clave);
             if (u != null) {
                 if (u.getEstado().getIdEstados() == 2) {
                     u = null;

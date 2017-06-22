@@ -31,6 +31,8 @@ public interface UsuarioFacadeLocal {
 
     int count();
     
+    public Usuario loginProcedure(Long documento, String clave);
+    
     Usuario login(Long documento,String clave);
     
     List<Usuario>  registros(Date fechaInicio, Date fechaFin,String modo);

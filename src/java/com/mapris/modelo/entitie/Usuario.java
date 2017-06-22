@@ -20,8 +20,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,6 +40,16 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "usuarios")
 @XmlRootElement
+@NamedStoredProcedureQuery(
+	name = "pr_validar_usuario", 
+	procedureName = "pr_validar_usuario", 
+        resultClasses = Usuario.class,
+	parameters = { 
+		@StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "pr_cedula"), 
+		@StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "pr_clave"), 
+		
+	}
+)
 @NamedQueries({
     @NamedQuery(name = "Usuario.findLogin", query = "SELECT u FROM Usuario u WHERE u.cedula = :doc AND u.clave = :clv")
     ,
@@ -87,7 +100,6 @@ public class Usuario implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 200)
     @Column(name = "clave")
     private String clave;
 

@@ -7,11 +7,14 @@ package com.mapris.modelo.dao;
 
 import com.mapris.modelo.entitie.Usuario;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 
 /**
@@ -48,21 +51,89 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         }
     }
 
+    @Override
+    public Usuario loginProcedure(Long documento, String clave) {
+        Usuario u = null;
+        try {
+            getEntityManager().getEntityManagerFactory().getCache().evictAll();
+//            String sql = "CALL pr_validar_usuario( " + documento + "," + clave + ")";
+ 
+
+              StoredProcedureQuery p = getEntityManager().createNamedStoredProcedureQuery("pr_validar_usuario");
+              p.setParameter("pr_cedula", documento);
+              p.setParameter("pr_clave", clave);
+              p.execute();
+              u =(Usuario) p.getSingleResult();
+//            try {
+//                StoredProcedureQuery storedProcedure = getEntityManager().createStoredProcedureQuery("pr_validar_usuario")
+//                        .registerStoredProcedureParameter(0, Long.class, ParameterMode.IN)
+//                        .registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
+//
+//                storedProcedure.setParameter(0, documento)
+//                        .setParameter(1, clave);
+//                        
+//
+//                storedProcedure.execute();
+//           List usuarios = storedProcedure.getResultList();
+//
+//         
+//
+//        //Creating Iterator for the List
+//
+//        Iterator i=usuarios.iterator();
+//
+//      
+//        //Iterating Through
+//
+//        while(i.hasNext())
+//
+//        {
+//
+//         u= (Usuario) i.next();
+//
+//           
+//
+//        }
+//
+//                return u;
+//                
+//                
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                
+//            }
+//            
+//        
+
+        
+        return u;
+    }
+    catch (Exception e
+
     
-    public List<Usuario> registros(Date fechaInicio, Date fechaFin,String modo) {
+        ) {
+            System.out.println("El usuario no ingreso a la sesión");
+        e.printStackTrace();
+        return null;
+    }
+}
+
+public List<Usuario> registros(Date fechaInicio, Date fechaFin, String modo) {
         List<Usuario> usuarios = null;
-        String sql = "SELECT ?1(cedula),YEAR(fechaNaci) FROM usuarios WHERE usuarios.fechaNaci BETWEEN   ?2 AND ?3 GROUP BY ?4(fechaNaci)";
-               
-        Query q =  getEntityManager().createNativeQuery(sql, Usuario.class);
+        String sql = "SELECT ?(cedula),YEAR(fechaNaci) FROM usuarios WHERE usuarios.fechaNaci BETWEEN   ? AND ? GROUP BY ?(fechaNaci)";
+
+        Query 
+
+q = getEntityManager().createNativeQuery(sql, Usuario.class
+);
         q.setParameter(1, modo);
         q.setParameter(2, fechaFin);
         q.setParameter(3, fechaFin);
         q.setParameter(4, modo);
         usuarios = q.getResultList();
-        
+
         return usuarios;
 
     }
 
-   
 }
