@@ -4,6 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:v="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:b="http://bootsfaces.net/ui">
 
@@ -81,23 +82,24 @@
                     <span class="form-subtitle">Introduzca su correo electrónico para restablecerlo.</span>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="cedula" id="cedula" required="required" maxlength="15" tabindex="1"/>
+                    <h:inputText v:type="text" class="form-control" v:name="cedula" id="cedula" required="true" maxlength="15" tabindex="1" value="#{controllerEmailContrasena.cedula}"/>
                     <label for="cedula">Numero de Documento</label>
                     <div class="bar"></div>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" id="Password" name="Password" required="required" maxlength="15" tabindex="2"></input> 
+                    <h:inputText v:type="email" class="form-control" id="Password" v:name="Password" required="true" value="#{controllerEmailContrasena.email}" tabindex="2"></h:inputText> 
                     <label for="email">Correo Electronico</label>
                     <div class="bar"></div>
                 </div>
 
                 <div class="button-container">
-                    <button type="submit" value="Entrar" target="_parent"><span>Enviar</span></button>
+                    <h:commandButton type="submit" action="#{controllerEmailContrasena.enviarMensaje()}" v:target="_parent" value="Recuperar contraseña"><span>Enviar</span></h:commandButton>
 
                 </div>
                 <div class="forgot" style="margin: 30px 280px 0px 0; font-size: 20px;">
                     <a href="#usuario" type="button" ><span id="boton2">Atras</span></a>
                 </div>
+                <b:messages showSummary="true" showDetail="true" globalOnly="true"/>
 
 
             </div>
