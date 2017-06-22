@@ -25,5 +25,12 @@
             30
         </session-timeout>
     </session-config>
-
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/pageError/Error404.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/pageError/Error500.xhtml</location>
+    </error-page>
 </web-app>

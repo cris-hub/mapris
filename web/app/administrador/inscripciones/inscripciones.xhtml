@@ -12,35 +12,27 @@
 
     <ui:define name="titulo">Administrador-Inscripciones</ui:define>
     <ui:define name="pagetitle">
-        <div class="page-head">
-            <div class="page-title">
-                <h1> Inscripciones
-                    <small>Lista de inscripciones</small>
-                </h1>
-            </div>
-        </div>
+        
     </ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.html">Home</a>
+                <a href="index.html">Administrador</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Listar</span>
+                <span class="active">Listar inscripciones</span>
             </li>
         </ul>
 
     </ui:define>
 
     <ui:define name="contenido">
-        <div class="col-sm-12">
-            <b:messages showDetail="true" showSummary="true" globalOnly="true"/>
-        </div>
+       
 
         <div class="col-sm-12">
-            <div class="portlet light bordered">
+            <div class="portlet light bordered" style="border-radius: 30px;">
                 <div class="portlet-title">
                     <div class="caption font-dark">
                         <i class="icon-settings font-dark"></i>
@@ -84,17 +76,18 @@
                             </h:form>
                         </div>
                     </div>
-                    <b:message for="form-data-table-usuarios" showSummary="true" showDetail="true"/>
+                    
                     <h:form id="form-data-table-usuarios" prependId="false">
+                        <b:messages globalOnly="true" showSummary="true" showDetail="true"/>
                         <b:dataTable id="dtUsuario" value="#{listarInscripcionController.inscripciones}" var="in" >
 
 
                             <b:dataTableColumn label="Id Inscripcion" value="#{in.idInscripciones}"/>
                             <b:dataTableColumn label="Cedula Cliente" value="#{in.idCliente.usuario.cedula}"/>
-                            <b:dataTableColumn label="Nombre Cliente" value="#{in.idCliente.usuario.primerNombre}"/>
+                            <b:dataTableColumn label="Nombre Cliente" value="#{in.idCliente.usuario.primerNombre} #{in.idCliente.usuario.primerApellido} "/>
                             <b:dataTableColumn label="Fecha de Inicio">
                                 <h:outputText value="#{in.fechaInicio}">
-                                    <f:convertDateTime pattern="dd/mm/yyyy"/>                           
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>                           
                                 </h:outputText>
                             </b:dataTableColumn>
                             <b:dataTableColumn label="Valor de la inscripción">
@@ -113,6 +106,8 @@
                                     <f:ajax event="click" render=":message-modal-confirm"
                                             listener="#{listarInscripcionController.setInscripcionSeleccionado(in)}"/>
                                 </b:commandButton>
+                               <b:commandButton look="default" value="" iconAwesome="#{editarInscripcionController.getIconUsuarioBloqueo(in)}" action="#{editarInscripcionController.cambioDeEstado(in)}"/>
+
                             </b:dataTableColumn>
                         </b:dataTable>
 
@@ -122,13 +117,13 @@
         </div> 
         <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
             <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>¿Está seguro de eliminar la inscripción del cliente ?
+                <p>¿Está seguro de eliminar la inscripción del cliente #{listarInscripcionController.inscripcionSeleccionado.idCliente.usuario.primerNombre} #{listarInscripcionController.inscripcionSeleccionado.idCliente.usuario.primerApellido} ?  
                 </p>
             </h:panelGroup>
             <f:facet name="footer">
                 <h:form id="form-eliminar" prependId="false">
-                    <b:button value="Close" dismiss="modal" />
-                    <b:commandButton value="Ok" look="primary"
+                    <b:button value="No estoy segura" dismiss="modal" />
+                    <b:commandButton value="Estoy totalmente segura" look="primary"
                                      actionListener="#{listarInscripcionController.eliminarInscripcion()}"/>
                 </h:form>
             </f:facet>

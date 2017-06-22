@@ -6,10 +6,10 @@
 package com.mapris.inscripciones.controller;
 
 import com.mapris.modelo.dao.InscripcionFacadeLocal;
-import com.mapris.modelo.entitie.Correo;
 import com.mapris.modelo.entitie.Inscripcion;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -27,6 +27,7 @@ public class EditarInscripcionController implements Serializable {
     private InscripcionFacadeLocal ifl;
     
     private Inscripcion inscripcionSelecionada;
+   
     
     @PostConstruct
     public void init(){
@@ -44,8 +45,9 @@ public class EditarInscripcionController implements Serializable {
         this.inscripcionSelecionada = inscripcionSelecionada;
     }
 
-    public void actualizarDatos() {
+   public void actualizarDatos() {
         try {
+            
             
             
             inscripcionSelecionada.setNumeroSesiones(inscripcionSelecionada.getNumeroSesiones());
@@ -65,6 +67,28 @@ public class EditarInscripcionController implements Serializable {
     public String preModificar(Inscripcion i){
         setInscripcionSelecionada(i);
         return "/app/administrador/inscripciones/editar.xhtml?faces-redirect=true";
+    }
+    
+     public void cambioDeEstado(Inscripcion i) {
+        try {
+            if (i.getEstado().equalsIgnoreCase("Pendiente")) {
+                
+                i.setEstado("Activa");
+
+            } else {
+                i.setEstado("Pendiente");
+            }
+            ifl.edit(i);
+            MessageUtil.enviarMensajeInformacionGlobal("Actualización", "La inscripción se ha activado o desactivado correctamente");
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageUtil.enviarMensajeErrorGlobal("Error al activar la inscripción", e.getStackTrace().toString());
+        }
+
+    }
+
+    public String getIconUsuarioBloqueo(Inscripcion i) {
+        return (i.getEstado().equalsIgnoreCase("Pendiente")) ? "cog" : "check";
     }
     
       

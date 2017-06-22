@@ -23,6 +23,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -56,6 +57,12 @@ public class Inscripcion implements Serializable {
     private Integer valor;
     @Column(name = "numero_sesiones")
     private Integer numeroSesiones;
+    
+    @Basic(optional = false)
+    @Size(min = 1, max = 25)
+    @Column(name = "estado")
+    private String estado;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "inscripcionesidInscripciones", fetch = FetchType.LAZY)
     private List<Sesion> sesiones;
     @JoinColumn(name = "idCliente", referencedColumnName = "idClientes")
@@ -81,6 +88,7 @@ public class Inscripcion implements Serializable {
     }
 
     public Date getFechaInicio() {
+      
         return fechaInicio;
     }
 
@@ -103,6 +111,16 @@ public class Inscripcion implements Serializable {
     public void setNumeroSesiones(Integer numeroSesiones) {
         this.numeroSesiones = numeroSesiones;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
 
     @XmlTransient
     public List<Sesion> getSesiones() {
