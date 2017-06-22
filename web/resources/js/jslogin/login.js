@@ -4,7 +4,7 @@
       HIDE_CLASS = 'hide',
       ACTIVE_CLASS = 'active';
   
-  $('.btn-group').on('click', 'button', function(e){
+  $('.forgot').on('click', 'a', function(e){
     e.preventDefault();
     var $tab = $( this ),
          href = $tab.attr( 'href' );

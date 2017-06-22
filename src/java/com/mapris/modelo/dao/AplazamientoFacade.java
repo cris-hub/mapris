@@ -5,10 +5,17 @@
  */
 package com.mapris.modelo.dao;
 
+import static com.lowagie.text.pdf.PdfName.T;
 import com.mapris.modelo.entitie.Aplazamiento;
+import java.util.Iterator;
+import java.util.Set;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 /**
  *
@@ -30,19 +37,19 @@ public class AplazamientoFacade extends AbstractFacade<Aplazamiento> implements 
     }
 
     @Override
-    public Aplazamiento registrarAplazamiento(Aplazamiento nuevoAplzamiento) {
-        try {
-            if (nuevoAplzamiento == null) {
-                            System.out.println("El nuevo aplazamiento es nulo error AplazamientoFacade");
-                return null;
+    public void create(Aplazamiento aplazamiento) {
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Aplazamiento>> constraintViolations = validator.validate(aplazamiento);
+        if (constraintViolations.size() > 0) {
+            Iterator<ConstraintViolation<Aplazamiento>> iterator = constraintViolations.iterator();
+            while (iterator.hasNext()) {
+                ConstraintViolation<Aplazamiento> cv = iterator.next();
+                System.err.println(cv.getRootBeanClass().getName() + "." + cv.getPropertyPath() + " " + cv.getMessage());
             }
-            //Now saving...
-            em.persist(nuevoAplzamiento); //em.merge(u); for updates
-            return nuevoAplzamiento;
-        } catch (Exception e) {
-            System.out.println("El nuevo aplazamiento no pudo ser registrado error AplazamientoFacade");
-            e.printStackTrace();
-            return null;
+        } else {
+            getEntityManager().persist(aplazamiento);
         }
     }
 }
