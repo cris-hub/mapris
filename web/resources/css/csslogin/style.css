@@ -240,7 +240,34 @@ body {
     font-weight: 400;
 }
 
+.card .form-group input:focus~label {
+    color: #9d9d9d;
+    -webkit-transform: translate(-12%, -50%) scale(0.75);
+    transform: translate(-12%, -50%) scale(0.75);
+}
 
+.card .form-group input:focus~.bar:before,
+.card .form-group input:focus~.bar:after {
+    width: 50%;
+}
+
+.card .form-group input:valid~label {
+    color: #9d9d9d;
+    -webkit-transform: translate(-12%, -50%) scale(0.75);
+    transform: translate(-12%, -50%) scale(0.75);
+}
+
+.card .form-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #757575;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 60px;
+    -webkit-transition: 0.2s ease;
+    transition: 0.2s ease;
+}
 
 .card .form-group .bar {
     position: absolute;
@@ -284,7 +311,7 @@ body {
     width: 200px;
     border: 2px solid #CAC9C9;
     padding: 20px 0;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     line-height: 1;
     text-transform: uppercase;
@@ -357,6 +384,23 @@ body {
 }
 
 .card .footer a:hover {
+    color: #bababa;
+}
+
+.card .forgot{
+    margin: -40px 140px 50px 0;
+    color: #A5A5A5;
+    font-size: 15px;
+    font-weight: 300;
+    text-align: center;
+}
+.card .forgot a {
+    color: inherit;
+    text-decoration: none;
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
+.card .forgot a:hover {
     color: #bababa;
 }
 
@@ -587,3 +631,16 @@ txtclave1_panel{
     display: block;
     margin: 50%;
 }
+.card .form-title {
+  margin-bottom: 20px; }
+
+.card .form-title {
+  color: #F05075;
+  font-size: 22px;
+  font-weight: 400 !important; }
+
+.card .form-subtitle {
+  color: #68879C;
+  font-size: 17px;
+  font-weight: 300 !important;
+  padding-left: 10px; }
