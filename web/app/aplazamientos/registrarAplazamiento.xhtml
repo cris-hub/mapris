@@ -34,41 +34,6 @@
   <div class="col-sm-12">
             <b:messages showDetail="true" showSummary="true" globalOnly="true"/>
         </div>
-
-        <div class="col-sm-12">
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption font-dark">
-                        <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Lista de Servicios #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </span>
-                    </div>
-                    <div class="tools"> </div>
-                </div>
-                <div class="portlet-body">
-                    <b:message for="form-data-table-servicios" showSummary="true" showDetail="true"/>
-                    <h:form id="form-data-table-servicios" prependId="false">
-                        <b:dataTable id="dtServicio" value="#{listarServiciosController.servicios}" var="servicio">
-
-
-                            <b:dataTableColumn label="idServicio"  rendered="false" value="#{servicio.idServicio}"/>
-                            <b:dataTableColumn label="Nombre" value="
-                                               #{servicio.nombre}"/>
-
-                            <b:dataTableColumn label="Descripción" >
-                                #{servicio.descripcion}
-                            </b:dataTableColumn>
-                            <b:dataTableColumn label="Fecha Inicio Servicio" value="
-                                               #{servicio.inicio}"/>
-                            <b:dataTableColumn  label="Opciones">
-                                <b:commandButton look="primary" value="" iconAwesome="pencil" action="#{registrarAplazamientoController.preModificar(servicio)}"/>
-                            </b:dataTableColumn>
-                        </b:dataTable>
-
-                    </h:form>
-                </div>
-            </div>
-        </div>
-
         <div class="col-sm-12">
             <div class="portlet light bordered">
                 <div class="portlet-title">
@@ -95,7 +60,6 @@
 
         <div class="col-sm-12">
             <div class="portlet light bordered">
-
                 <b:message for="form-registrarAplazamiento" showSummary="true" show-detail="true"/>
                 <b:form id="form-registrarAplazamiento" rendered="#{registrarAplazamientoController.existeServicioSeleccionado()}">
                     <b:formGroup>
@@ -118,6 +82,39 @@
                     <br/>
                     <b:commandButton  value="Enviar" type="submit" look="primary" action="#{registrarAplazamientoController.registrar()}"/>
                 </b:form>
+            </div>
+        </div>
+                <div class="col-sm-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase">Lista de Servicios #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </span>
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+                <div class="portlet-body">
+                    <b:message for="form-data-table-servicios" showSummary="true" showDetail="true"/>
+                    <h:form id="form-data-table-servicios" prependId="false">
+                        <b:dataTable id="dtServicio" value="#{listarServiciosController.servicios}" var="servicio">
+
+
+                            <b:dataTableColumn label="idServicio"  rendered="false" value="#{servicio.idServicio}"/>
+                            <b:dataTableColumn label="Nombre" value="
+                                               #{servicio.nombre}"/>
+
+                            <b:dataTableColumn label="Descripción" >
+                                #{servicio.descripcion}
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="Fecha Inicio Servicio" value="
+                                               #{servicio.inicio}"/>
+                            <b:dataTableColumn  label="Opciones">
+                                <b:commandButton look="primary" value="" iconAwesome="clock-o" action="#{registrarAplazamientoController.preModificar(servicio)}"/>
+                            </b:dataTableColumn>
+                        </b:dataTable>
+
+                    </h:form>
+                </div>
             </div>
         </div>
     </ui:define>

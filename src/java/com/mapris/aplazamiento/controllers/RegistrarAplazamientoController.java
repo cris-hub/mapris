@@ -19,6 +19,7 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.*;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 /**
@@ -104,9 +105,8 @@ public class RegistrarAplazamientoController implements Serializable {
         return fecha.getFechaActual();
     }
 
-    public String preModificar(Servicio s) {
+    public void preModificar(Servicio s) {
         setServicioSeleccionado(s);
-        return "/app/aplazamientos/registrarAplazamiento.xhtml?faces-redirect=true";
     }
 
     public String existeServicioSeleccionado() {
@@ -116,15 +116,24 @@ public class RegistrarAplazamientoController implements Serializable {
             return "false";
         }
     }
-
+    private void cambioDeFechaServicio(){
+        try {
+            servicioSeleccionado.setInicio(fechaHora);
+            servicioFacadeLocal.edit(servicioSeleccionado);
+            MessageUtil.enviarMensajeInformacion("form-registrarAplazamiento", "Actualización", "Se ha cambiado la fecha del servicio.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageUtil.enviarMensajeError("form-registrarAplazamiento", "Error cambiar la fecha del servicio","");
+        }      
+    }
     public void registrar() {
-        nuevoAplazamiento.setIdaplazamiento(2);
+        cambioDeFechaServicio();
         nuevoAplazamiento.setIdcliente(clienteFacadeLocal.find(sessionController.getDocumento()));
         nuevoAplazamiento.setServiciosidServicio(servicioFacadeLocal.find(servicioSeleccionado.getIdServicio()));
         nuevoAplazamiento.setMotivo(motivo);
         if (nuevoAplazamiento != null) {
             try {
-                aplazamientoFacadeLocal.registrarAplazamiento(nuevoAplazamiento);
+                aplazamientoFacadeLocal.create(nuevoAplazamiento);
                 init();
                 MessageUtil.enviarMensajeInformacion("form-registrarAplazamiento", "Registro satisfactorio", "");
             } catch (Exception e) {
