@@ -70,14 +70,8 @@
                     </b:formGroup>
                     <br/>
                     <br/>
-                    <b:dateTimePicker value="#{registrarAplazamientoController.fechaHora}"
-                                      allow-input-toggle="false" 
-                                      icon-position="right"
-                                      side-by-side="false"
-                                      show-date="true"
-                                      show-time="true"
-                                      show-icon="true"
-                                      use-current="false" />
+                    <b:datepicker value="#{registrarAplazamientoController.fechaHora}"
+                                      />
                     <br/>
                     <br/>
                     <b:commandButton  value="Enviar" type="submit" look="primary" action="#{registrarAplazamientoController.registrar()}"/>
