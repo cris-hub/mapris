@@ -1,6 +1,5 @@
-yy<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+<ui:composition template="./../../WEB-INF/template/templateInterfaz.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -11,8 +10,8 @@ yy<?xml version='1.0' encoding='UTF-8' ?>
     <ui:define name="pagetitle">
         <div class="page-head">
             <div class="page-title">
-                <h1> Usuarios
-                    <small>Lista de usuarios</small>
+                <h1> Aplazamientos
+                    <small>Lista de aplazamientos</small>
                 </h1>
             </div>
         </div>
@@ -21,56 +20,43 @@ yy<?xml version='1.0' encoding='UTF-8' ?>
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.html">Home</a>
+                <a href="index.html">Inicio</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Listar</span>
+                <span class="active">Listar Aplazamientos</span>
             </li>
         </ul>
 
     </ui:define>
 
     <ui:define name="contenido">
-        
-        <f:view>
-
-
-
-            <h:form>
-                <h1><h:outputText value="List"/></h1>
-                <h:dataTable value="#{listarAplazamientoController.aplazamientos}" var="item">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Idaplazamiento"/>
-                        </f:facet>
-                        <h:outputText value="#{item.idaplazamiento}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Motivo"/>
-                        </f:facet>
-                        <h:outputText value="#{item.motivo}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="FechaRetorno"/>
-                        </f:facet>
-                        <h:outputText value="#{item.fechaRetorno}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Idcliente"/>
-                        </f:facet>
-                        <h:outputText value="#{item.idcliente}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-        </f:view>
-        
-
+        <div class="col-sm-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase">Lista de Aplazamientos #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </span>
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+                <div class="portlet-body">
+                    <b:message for="form-data-table-aplazamientos" showSummary="true" showDetail="true"/>
+                    <h:form id="form-data-table-aplazamientos" prependId="false">
+                        <b:dataTable id="dtServicio" value="#{listarAplazamientoController.aplazamientos}" var="aplazamiento">
+                            <b:dataTableColumn label="idAplazamiento"  rendered="false" value="#{aplazamiento.idaplazamiento}"/>
+                            <b:dataTableColumn label="Motivo" value="
+                                               #{aplazamiento.motivo}"/>
+                            <b:dataTableColumn label="Cliente" >
+                                #{aplazamiento.idcliente}
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="Servicio" value="
+                                               #{aplazamiento.serviciosidServicio}"/>
+                        </b:dataTable>
+                    </h:form>
+                </div>
+            </div>
+        </div>
     </ui:define>
 </ui:composition>
 
