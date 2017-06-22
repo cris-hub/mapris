@@ -59,13 +59,13 @@ public class RegistrarUsuarioController {
                 nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
                 nuevoUsuario.setEstado(estadoFacadeLocal.find(2));
                 usuarioFacadeLocal.create(nuevoUsuario);
-                MessageUtil.enviarMensajeInformacion("form-registro", "Registro satisfactorio", "");
+                MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El usuario se ha creado con exito");
                 init();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            MessageUtil.enviarMensajeError("form-registro", "no se han dioligenciado los campos ", "");
+            MessageUtil.enviarMensajeInformacionGlobal( "Error al registrar el usuario", "No se pudo registrar el usuario");
         }
     }
 

@@ -5,20 +5,21 @@
       xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <!-- menu 2 navbar -->
 
 
     <div class="card" style="margin-top: 5%;width: 600px;" >
-        
-       <div class="row">
+
+        <div class="row">
             <div class="col-md-8">
                 <h1 class="title">#{msjLogin.titleIngresar}</h1>
             </div>
             <div class="col-md-4">
-           
+
                 <h:form>
 
                     <div class="btn-group">
@@ -43,47 +44,47 @@
 
         <h:form prependId="false" >
             <p:growl  id="mensaje" autoUpdate="false" severity="info,error" showSummary="false" showDetail="true"/>
-            
+            <b:messages showSummary="true" showDetail="true" globalOnly="true"/>
             <p:fieldset legend="#{msjRegister.legendDatosCuenta}" id="txtRegistro" >
 
                 <div id="camposUsuario">
                     <div class="form-group">
                         <p:outputLabel for="txtDocumentoRegistro" value="#{msjRegister.placeholderDocumento}"/>
-                        <p:inputText placeholder="#{msjRegister.placeholderDocumento}" id="txtDocumentoRegistro" value="#{registroController.nuevoUsuario.cedula}" required="true" requiredMessage="Numero de documento es requerido"/>
+                        <p:inputText  id="txtDocumentoRegistro" value="#{registroController.nuevoUsuario.cedula}" required="true" requiredMessage="Numero de documento es requerido"/>
                         <p:message for="txtDocumentoRegistro"/>
                     </div>
 
                     <div class="form-group">
                         <p:outputLabel for="txtPrimerNombre" value="#{msjRegister.labelNombre}"/>
-                        <p:inputText id="txtPrimerNombre" placeholder="#{msjRegister.placeholderNombre}" value="#{registroController.nuevoUsuario.primerNombre}" required="true" requiredMessage="El nombre es requerido"/>
+                        <p:inputText id="txtPrimerNombre" value="#{registroController.nuevoUsuario.primerNombre}" required="true" requiredMessage="El nombre es requerido"/>
                         <p:message for="txtPrimerNombre"/>
                     </div>
 
                     <div class="form-group">
                         <p:outputLabel for="txtSegundoNombre" value="#{msjRegister.labelNombre}"/>
-                        <p:inputText id="txtSegundoNombre" placeholder="#{msjRegister.placeholderNombre}" value="#{registroController.nuevoUsuario.segundoNombre}" required="true" requiredMessage="El nombre es requerido"/>
+                        <p:inputText id="txtSegundoNombre"  value="#{registroController.nuevoUsuario.segundoNombre}" required="true" requiredMessage="El nombre es requerido"/>
                         <p:message for="txtSegundoNombre"/>
                     </div>
                     <div class="form-group">
                         <p:outputLabel for="txtPrimerApellido" value="#{msjRegister.labelApellido}"/>
-                        <p:inputText id="txtPrimerApellido" placeholder="#{msjRegister.placeholderApellido}" value="#{registroController.nuevoUsuario.primerApellido}" required="true" requiredMessage="El nombre es requerido"/>
+                        <p:inputText id="txtPrimerApellido"  value="#{registroController.nuevoUsuario.primerApellido}" required="true" requiredMessage="El nombre es requerido"/>
                         <p:message for="txtPrimerApellido"/>
                     </div>
                     <div class="form-group">
                         <p:outputLabel for="txtSegundoApellido" value="#{msjRegister.labelApellido}"/>
-                        <p:inputText id="txtSegundoApellido" placeholder="#{msjRegister.placeholderApellido}" value="#{registroController.nuevoUsuario.segundoApellido}" required="true" requiredMessage="El nombre es requerido"/>
+                        <p:inputText id="txtSegundoApellido" value="#{registroController.nuevoUsuario.segundoApellido}" required="true" requiredMessage="El nombre es requerido"/>
                         <p:message for="txtSegundoApellido"/>
                     </div>
-                    
+
                     <div class="form-group">
-                        <p:outputLabel for="txtFecha" value="#{msjRegister.labelFechaNacimiento}"/>
-                        <p:calendar id="txtFecha" placeholder="#{msjRegister.placeholderFechaNaci}" locale="#{l.language}" value="#{registroController.nuevoUsuario.fechaNaci}" required="true" requiredMessage="indique la fecha de nacimiento"/>
-                        <p:message for="txtFecha"/>
+                        <h:outputText value="#{msjRegister.labelFechaNacimiento}"/>
+                        <b:datepicker id="txtFecha"    value="#{registroController.nuevoUsuario.fechaNaci}"  />
+                        
                     </div>
                 </div>
-                
+
                 <div  id="camposCuenta">
-                    
+
 
 
 
@@ -103,17 +104,14 @@
 
                     </div>
                 </div>
-
+                
             </p:fieldset>
             <br/><br/>
-            <div class="form-group">
-                <p:commandButton class=" btn btn-success  btn-block " value="#{msjRegister.btnRegistrar}" action="#{registroController.registrar()}"  update="txtRegistro"/>
-                <p:link class="btn btn-primary  btn-block" value="#{msjRegister.btnLogin}"  outcome="/login.xhtml" />
-            </div>
-
-
-
-        </h:form>
+                <div class="form-group">
+                    <h:commandButton class=" btn btn-success  btn-block " value="#{msjRegister.btnRegistrar}" action="#{registroController.registrar()}"  />
+                    <p:link class="btn btn-primary  btn-block" value="#{msjRegister.btnLogin}"  outcome="/login.xhtml" />
+                </div>
+            </h:form>
 
 
     </div>

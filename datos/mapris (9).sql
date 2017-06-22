@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2017 a las 14:22:59
+-- Tiempo de generación: 22-06-2017 a las 16:38:53
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -635,7 +635,7 @@ INSERT INTO `permisos` (`id`, `nombre`, `url`, `icon`, `permisos_padre`) VALUES
 (30, 'Editar usuario', '/app/administrador/usuarios/editar.xhtml', 'fa fa-pencil-square-o', 2),
 (31, 'Lista Aplazamientos', '/app/aplazamientos/lista.xhtml', 'fa fa-list', 3),
 (32, 'Registrar aplazamiento', '/app/aplazamientos/nuevo.xhtml', 'fa fa-plus', 3),
-(41, 'Reservar', '/app/cliente/servicios.xhtml', 'fa fa-pencil-square-o', 6),
+(61, 'Reservar', '/app/cliente/servicios.xhtml', 'fa fa-pencil-square-o', 6),
 (71, 'Listar Inscripciones', '/app/administrador/inscripciones/inscripciones.xhtml', 'fa fa-list-ol', 7),
 (72, 'Editar Inscripci?n', '/app/administrador/inscripciones/editar.xhtml', 'fa fa-pencil', 7),
 (81, 'Listar Empresas', '/app/administrador/empresa/empresas.xhtml', 'fa fa-th-large', 8),
@@ -661,17 +661,18 @@ INSERT INTO `permisosroles` (`permisos_id`, `roles_idRoles`) VALUES
 (1, 2),
 (2, 1),
 (3, 1),
-(6, 1),
+(6, 2),
 (7, 1),
 (8, 1),
 (11, 1),
 (11, 2),
 (12, 1),
+(12, 2),
 (21, 1),
 (22, 1),
 (31, 1),
 (32, 1),
-(41, 2),
+(61, 2),
 (71, 1),
 (72, 1),
 (81, 1),
@@ -1107,7 +1108,13 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`cedula`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `fechaNaci`, `clave`, `imegen_perfil`, `id_estados`, `fecha_registro`) VALUES
-(1031174466, 'Nicol', 'Lorena', 'Maella ', 'Parra', '1995-06-21', '6ed4c7d5a3c613c60872eb785486ed0a', NULL, 1, NULL),
+(1212, 'kjaskdh', 'kjaksjdh', 'khaskdjh', 'kajdskjh', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22'),
+(121212, 'kajsdkhakj', 'kajsdkjashkj', 'kjasdhkjashk', 'skjhkajsd', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22'),
+(123123, 'oiajsdiajs', 'oaijsdoijas', 'oaijsdoiajs', 'soidjaosijd', '2001-01-01', 'ac0ddf9e65d57b6a56b2453386cd5db5', NULL, 2, '2017-06-22'),
+(1010101, 'ajskdnan', 'kajsdkjn', 'Cristian', 'lalalalala', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22'),
+(1212312, 'aosdkoak', 'kakakak', 'kakakaak', 'lahermanadeCristian', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22'),
+(120102010, 'oiajsldjk', 'lkajsldkj', 'lkjsldkja', 'lksjdlak', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22'),
+(1031174466, 'Nicol', 'Lorena', 'Maella ', 'Parra', '1995-06-21', 'e486a7c972307f5c236eeb3dad9e4e8d', NULL, 1, NULL),
 (12342135213, 'Ajo', 'Tomaete', 'Piña', 'Cereza', '1998-01-29', '9f73741f137ec4fdc00a06c7a40eb87f', NULL, 3, '2017-06-22'),
 (1600032140599, 'Gretchen', 'Janna', 'Mccray', 'Evans', '1998-02-26', '80a6c12e1ae3b63a86ec741aa8ef0cb4', 0x50656e617469627573204574204c4c43, 1, NULL),
 (1600072330999, 'Ariel', 'Ashely', 'Benton', 'Ramirez', '1996-09-20', 'XXI49MEC5JL', 0x4e6f6e204e6973692041656e65616e20436f6e73756c74696e67, 1, NULL),
@@ -1208,13 +1215,14 @@ INSERT INTO `usuarios` (`cedula`, `primer_nombre`, `segundo_nombre`, `primer_ape
 (1694111915199, 'Suki', 'Jescie', 'Thompson', 'Cantu', '1996-07-10', 'AUI82JKC4FO', 0x416d65742044617069627573204964205043, 1, NULL),
 (1697052772099, 'Heidi', 'Kalia', 'Hester', 'Robles', '1994-04-25', 'HVJ43RVY4OE', 0x4c756374757320437572616269747572204c7464, 1, NULL),
 (1698082293299, 'Meghan', 'Susan', 'Cox', 'Morgan', '1997-08-31', 'TBN93DAI2KR', 0x517569737175652056617269757320436f6e73756c74696e67, 1, NULL),
-(1698113071199, 'Melinda', 'Melyssa', 'Morgan', 'Kelly', '1999-08-06', 'IVT01RVV5AB', 0x4475697320566f6c7574706174204e756e6320496e73746974757465, 1, NULL);
+(1698113071199, 'Melinda', 'Melyssa', 'Morgan', 'Kelly', '1999-08-06', 'IVT01RVV5AB', 0x4475697320566f6c7574706174204e756e6320496e73746974757465, 1, NULL),
+(111111111111111, 'firewall', 'ajsdkj', 'asildkj', 'lkajsd', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22');
 
 --
 -- Disparadores `usuarios`
 --
 DELIMITER $$
-CREATE TRIGGER `tr_before_update_password` BEFORE UPDATE ON `usuarios` FOR EACH ROW SET NEW.clave = fc_encriptar(NEW.clave)
+CREATE TRIGGER `tr_before_update_password` BEFORE UPDATE ON `usuarios` FOR EACH ROW SET new.clave = fc_encriptar(new.clave)
 $$
 DELIMITER ;
 DELIMITER $$

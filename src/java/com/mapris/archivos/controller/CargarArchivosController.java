@@ -38,7 +38,7 @@ public class CargarArchivosController implements Serializable {
     private SessionController sc;
     //Ruta en built de donde se guardara el archivo
     private final static String UPLOAD_DIR = "/files/profileimg/";
-    String extension;
+    private String extension;
 
     /**
      * Creates a new instance of FileUploadController
@@ -46,6 +46,15 @@ public class CargarArchivosController implements Serializable {
     public CargarArchivosController() {
 
     }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
+    }
+    
 
     @PostConstruct
     public void init() {
@@ -62,12 +71,13 @@ public class CargarArchivosController implements Serializable {
             List<FileBean> filesBeans = getFilesUpload(CargarArchivosController.getExternalContext());
 
             for (FileBean fileBean : filesBeans) {
-                if (fileBean.getExtension().equals("jpg") || fileBean.getExtension().equals("png")) {
+                if (fileBean.getExtension().equals("png")) {
+                    setExtension(fileBean.getExtension()) ;
                     extension = fileBean.getExtension();
                     savePartProfileimg(CargarArchivosController.getExternalContext(), fileBean);
                     MessageUtil.enviarMensajeInformacion(null, "formato correco", "La imagen ha sido cargada satisfactoriamente");
                 } else {
-                    MessageUtil.enviarMensajeError(null, "formato incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg'");
+                    MessageUtil.enviarMensajeError(null, "formato incorrecto", "Solo puedes subir imagenes te tipo 'png' ");
                 }
             }
             deleteFile(CargarArchivosController.getExternalContext(), "perfil." + extension);

@@ -13,8 +13,8 @@
 30;Editar usuario;/app/administrador/usuarios/editar.xhtml;fa fa-pencil-square-o;2;; 
 31;Lista Aplazamientos;/app/aplazamientos/lista.xhtml;fa fa-list;3;;
 32;Registrar aplazamiento;/app/aplazamientos/nuevo.xhtml;fa fa-plus;3;;
-41;Reservar;/app/cliente/servicios.xhtml;fa fa-pencil-square-o;6;;
-42;Listar Inscripciones;/app/administrador/inscripciones/inscripciones.xhtml;fa fa-list-ol;7;;
-43;Editar Inscripción;/app/administrador/inscripciones/editar.xhtml;fa fa-pencil;7;;
-44;Listar Empresas;/app/administrador/empresa/empresas.xhtml;fa fa-th-large;8;;
-45;Editar Empresa;/app/administrador/empresa/editar.xhtml;fa fa-pencil;8;;
+61;Reservar;/app/cliente/servicios.xhtml;fa fa-pencil-square-o;6;;
+71;Listar Inscripciones;/app/administrador/inscripciones/inscripciones.xhtml;fa fa-list-ol;7;;
+72;Editar Inscripción;/app/administrador/inscripciones/editar.xhtml;fa fa-pencil;7;;
+81;Listar Empresas;/app/administrador/empresa/empresas.xhtml;fa fa-th-large;8;;
+82;Editar Empresa;/app/administrador/empresa/editar.xhtml;fa fa-pencil;8;;

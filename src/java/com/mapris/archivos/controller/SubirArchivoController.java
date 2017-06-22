@@ -36,6 +36,15 @@ public class SubirArchivoController implements Serializable {
     private SessionController sc;
 
     private Part filePart;
+    private String ext;
+
+    public String getExt() {
+        return ext;
+    }
+
+    public void setExt(String ext) {
+        this.ext = ext;
+    }
 
     /**
      * Creates a new instance of FileUploadController
@@ -106,6 +115,7 @@ public class SubirArchivoController implements Serializable {
     }
 
     private void saveFile(Part p) throws IOException {
+        
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
         String path = ec.getRealPath("") + "/WEB-INF/files/documentos/";
@@ -134,6 +144,7 @@ public class SubirArchivoController implements Serializable {
 
     private String getExtention(String path) {
         String[] datos = path.split("\\.");
+        setExt(datos[datos.length - 1]);
         return datos[datos.length - 1];
     }
 
