@@ -11,7 +11,11 @@
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.html">Mi perfil</a>
+                <a href="index.xhtml">Administrador</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <a href="inscripciones.xhtml">Inscripciones</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -31,7 +35,7 @@
                     </div>
                     <div class="tools"> </div>
                 </div>
-                <b:messages showSummary="true" show-detail="true"/>
+                <b:messages showSummary="true" show-detail="true" />
                 <b:form id="form-editar" prependId="false">
                     <b:panelGrid colSm="12" columns="2">
                         <h:outputText value="Id Inscripción"/>
@@ -50,10 +54,10 @@
                         <b:inputText  value="#{editarInscripcionController.inscripcionSelecionada.numeroSesiones}"  />
 
                         <h:outputText value="Fecha de inicio"/>
-                        <b:datepicker value="#{editarInscripcionController.inscripcionSelecionada.fechaInicio}" changeMonth="true" changeYear="true" numberOfMonths="2">
-                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                        <b:datepicker value="#{editarInscripcionController.inscripcionSelecionada.fechaInicio}">
+                            
                         </b:datepicker>
-
+                       
                         
                     </b:panelGrid>
                     <h:link styleClass="btn btn-primary" outcome="/app/administrador/inscripciones/inscripciones.xhtml" value="Volver"/>

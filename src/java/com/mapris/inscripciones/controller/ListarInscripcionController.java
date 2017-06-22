@@ -11,6 +11,9 @@ import com.mapris.modelo.dao.InscripcionFacadeLocal;
 import com.mapris.modelo.entitie.Inscripcion;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -37,6 +40,7 @@ public class ListarInscripcionController implements Serializable{
     private List<Inscripcion> inscripciones;
 
     private Inscripcion inscripcionSeleccionado;
+    private Calendar hoy;
 
     
     
@@ -47,32 +51,14 @@ public class ListarInscripcionController implements Serializable{
     @PostConstruct
     public void init() {
         recargarInscripcions();
+        this.hoy = Calendar.getInstance();
     }
     
     private void recargarInscripcions(){
         inscripciones = inscripcionFacadeLocal.findAll();
     }
     
-    public void eliminarInscripcion(){
-        
-        Date hoy = new Date();
-       //Si la fecha de hoy coincide con la fecha de la cita a eliminar no se podría eliminar porque entra en vigencia *Bussiness Rules*
-        if(inscripcionSeleccionado.getFechaInicio().getDay() == hoy.getDay() && 
-                inscripcionSeleccionado.getFechaInicio().getMonth() == hoy.getMonth() &&
-                inscripcionSeleccionado.getFechaInicio().getYear() == hoy.getYear()){
-            MessageUtil.enviarMensajeError(null, "Error al eliminar", "No se puede eliminar una inscripción que entra el mismo día de vigencia");
-        } else{
-            inscripcionFacadeLocal.remove(inscripcionSeleccionado);
-            recargarInscripcions();
-        }
-        
-    }
-        
-    
-    
-    
-
-    public InscripcionFacadeLocal getInscripcionFacadeLocal() {
+     public InscripcionFacadeLocal getInscripcionFacadeLocal() {
         return inscripcionFacadeLocal;
     }
 
@@ -92,6 +78,31 @@ public class ListarInscripcionController implements Serializable{
     public Inscripcion getInscripcionSeleccionado() {
         return this.inscripcionSeleccionado;
     }
+    
+    public void eliminarInscripcion(){
+        System.out.println("DIA=" + this.hoy.get(Calendar.DAY_OF_MONTH)+ "MES: "+ (this.hoy.get(Calendar.MONTH)+1)+ "AÑO" + this.hoy.get(Calendar.YEAR));
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(inscripcionSeleccionado.getFechaInicio());
+        System.out.println("DIA= " + cal.get(Calendar.DAY_OF_MONTH)+ " MES: "+ (cal.get(Calendar.MONTH)+1)+ " AÑO " + cal.get(Calendar.YEAR));
+       
+        
+       //Si la fecha de hoy coincide con la fecha de la cita a eliminar no se podría eliminar porque entra en vigencia *Bussiness Rules*
+        if(cal.get(Calendar.DAY_OF_MONTH) == this.hoy.get(Calendar.DAY_OF_MONTH) && 
+                (cal.get(Calendar.MONTH)+1) == (this.hoy.get(Calendar.MONTH)+1) &&
+                cal.get(Calendar.YEAR) == this.hoy.get(Calendar.YEAR)){
+            MessageUtil.enviarMensajeError(null, "Error al eliminar", "No se puede eliminar una inscripción que entra el mismo día de vigencia");
+        } else{
+            inscripcionFacadeLocal.remove(inscripcionSeleccionado);
+            recargarInscripcions();
+        }
+        
+    }
+        
+    
+    
+    
+
+   
 
 
 }
