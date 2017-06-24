@@ -13,6 +13,7 @@ import com.mapris.modelo.entitie.Rol;
 import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -35,6 +36,7 @@ public class RegistrarUsuarioController {
     private EstadoFacadeLocal estadoFacadeLocal;
 
     private Usuario nuevoUsuario;
+    private Calendar hoy;
 
     public RegistrarUsuarioController() {
     }
@@ -42,6 +44,7 @@ public class RegistrarUsuarioController {
     @PostConstruct
     public void init() {
         nuevoUsuario = new Usuario();
+        this.hoy = Calendar.getInstance();
     }
 
     public Usuario getNuevoUsuario() {
@@ -55,12 +58,35 @@ public class RegistrarUsuarioController {
     public void registrar() {
         if (nuevoUsuario != null) {
             try {
+                
+                 Calendar cal = Calendar.getInstance();
+                 cal.setTime(nuevoUsuario.getFechaNaci());
+                 
+                
+                if (cal.get(Calendar.YEAR) >= this.hoy.get(Calendar.YEAR) ) {
+                    
+                    nuevoUsuario=null;
+                    MessageUtil.enviarMensajeErrorGlobal("No se puede registrar", "La fecha introducida es igual o supera el año actual.");
+                    
+                }else if(cal.get(Calendar.YEAR) > (this.hoy.get(Calendar.YEAR)-18)   ){
+                    
+                    System.out.println("" + (this.hoy.get(Calendar.YEAR)-18) );
+                    nuevoUsuario=null;
+                    MessageUtil.enviarMensajeErrorGlobal("No se puede registrar", "Tu fecha de nacimiento indica que eres menor de edad");
+                    
+                
+                } else{
+                
                 nuevoUsuario.setRoles(new ArrayList<Rol>());
                 nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
                 nuevoUsuario.setEstado(estadoFacadeLocal.find(2));
+                
                 usuarioFacadeLocal.create(nuevoUsuario);
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El usuario se ha creado con exito");
                 init();
+                }
+                
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }

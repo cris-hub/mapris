@@ -50,10 +50,12 @@
                     <h:outputText value="Segundo Apellido"/>
                     <b:inputText value="#{registroController.nuevoUsuario.segundoApellido}"/>
                     
-                    
+                                           
                     <h:outputText value="Fecha Nacimiento"/>
-                    <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}"  required="true"/>
-
+                    <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}" changeYear="true" changeMonth="true"  required="true">
+                    <span  ><i class="fa fa-commenting"></i>¡Recuerda! debes ser mayor de edad para registrarte</span>
+                    </b:datepicker>
+                  
 
 
                     <h:outputText value="Clave"/>
