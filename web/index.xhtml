@@ -72,13 +72,13 @@
                             <!-- Boton de Idioma  -->
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">  #{msjApp.idioma} <span class="caret"></span></a>
                                 <ul class="dropdown-menu dropdown-menu-left">
-                                    <c:forEach items="#{languageController.supportLanguages}" var="l" >
-                                        <li>
-                                            <h:commandLink  style="color:black;" value="#{msjApp[l.displayLanguage]}" action="#{languageController.cambiarIdioma(l)}">
-                                                <img src="#{request.contextPath}/resources/img/languages/#{l.language}.png" width="25px" alt="#{msjApp[l.displayLanguage]}"/>
-                                            </h:commandLink>
-                                        </li>
-                                    </c:forEach>
+                                   <c:forEach items="#{sessionController.supportLanguages}" var="l" >
+                                <li>
+                                    <h:commandLink  value="#{msjApp[l.displayLanguage]}" action="#{sessionController.cambiarIdioma(l)}" style="color: #353131;">
+                                        <img src="#{request.contextPath}/resources/img/languages/#{l.language}.png" width="25px" alt="#{msjApp[l.displayLanguage]}" />
+                                    </h:commandLink>
+                                </li>
+                            </c:forEach>
                                 </ul>
                             </li>
                             <li class="btn-login"><a  href="#{request.contextPath}/login.xhtml">#{msjHome.navbar_button_ingresar}</a></li>
