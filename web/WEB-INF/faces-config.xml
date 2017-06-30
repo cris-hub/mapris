@@ -24,7 +24,7 @@
             <base-name>com.mapris.languages.validacion.LoginValidation</base-name>
             <var>msjValidacionLogin</var>
         </resource-bundle>
-           <resource-bundle>
+        <resource-bundle>
             <base-name>com.mapris.languages.app.App</base-name>
             <var>mensajeApp</var>
         </resource-bundle>
@@ -32,6 +32,11 @@
         <resource-bundle>
             <base-name>com.mapris.languages.App</base-name>
             <var>msjApp</var>
+        </resource-bundle>
+        
+        <resource-bundle>
+            <base-name>com.mapris.languages</base-name>
+            <var>msjTra</var>
         </resource-bundle>
 
         <resource-bundle>
@@ -64,7 +69,7 @@
             <var>msjModals</var>
         </resource-bundle>
         
-<!--        <context-param>
+        <!--        <context-param>
             <param-name>javax.faces.FACELETS_DECORATORS</param-name>
             <param-value>
                 net.bootsfaces.decorator.BootsFacesTagDecorator
