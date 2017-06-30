@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
         <link rel="shorcut icon" href="#{request.contextPath}/resources/img/logos/favicon.png"/>
@@ -34,7 +35,7 @@
 
     </h:head>
     <h:body style=" font-family: Handlee-Regular;">
-
+<f:view locale="#{sessionController.seleccionarLenguaje}">
         <div class="loader loader-bg">
             <div class="loader-inner ball-pulse-rise">
                 <div></div>
@@ -498,7 +499,7 @@
         <script src="resources/home/js/core.js" type="text/javascript"></script>
 
 
-
+        </f:view>
     </h:body>
 </html>
 
