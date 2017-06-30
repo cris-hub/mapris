@@ -11,7 +11,7 @@
     </h:head>
 
     <h:body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
-
+        <f:view locale="#{sessionController.seleccionarLenguaje}">
         <ui:include src="/WEB-INF/template/templateInterfaz/newnavbar.xhtml" />
 
         <!-- BEGIN HEADER & CONTENT DIVIDER -->
@@ -29,7 +29,7 @@
         <!-- END CONTAINER -->
         <ui:include src="/WEB-INF/template/templateInterfaz/newfooter.xhtml" />
         <ui:include src="/WEB-INF/template/templateInterfaz/scrips.xhtml" />
-
+</f:view>
     </h:body>
 </html>
 

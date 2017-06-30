@@ -27,7 +27,7 @@
                         <li class="nav-item start">
                             <a class="nav-link nav-toggle" href="javascript:;">
                                 <i class="#{p.icon}"></i>
-                                <span class="title"> #{p.nombre}</span>
+                                <span class="title"> #{mensajeApp[p.nombre]}</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
@@ -37,7 +37,7 @@
                                             <li class="nav-item start ">
                                                 <h:link class="nav-link" outcome="#{sp.url}">
                                                     <i class="#{sp.icon}"></i>
-                                                    <span class="title"> #{sp.nombre}</span>
+                                                    <span class="title"> #{mensajeApp[sp.nombre]}</span>
 <!--                                                    <span class="badge badge-success">1</span>-->
 
                                                    </h:link>

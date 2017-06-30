@@ -8,15 +8,15 @@
                 xmlns:b="http://bootsfaces.net/ui">
 
 
-<ui:define name="titulo"> Registrar Usuario</ui:define>
+    <ui:define name="titulo"> #{mensajeApp.regiserUsers}</ui:define>
 <ui:define name="breadcrumb">
     <ul class="page-breadcrumb breadcrumb">
         <li>
-            <a href="#{request.contextPath}/app/index.xhtml">inicio</a>
+            <a href="#{request.contextPath}/app/index.xhtml">#{mensajeApp.inicio}</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span class="active">Registrar Usuario</span>
+            <span class="active">#{mensajeApp.newUser}</span>
         </li>
     </ul>
 </ui:define>
@@ -28,7 +28,7 @@
             <div class="portlet-title">
                 <div class="caption font-dark">
                     <i class="icon-settings font-dark"></i>
-                    <span class="caption-subject bold uppercase">Nuevo Usuario</span>
+                    <span class="caption-subject bold uppercase">#{mensajeApp.newUser}</span>
                 </div>
                 <div class="tools"> </div>
             </div>
@@ -38,28 +38,28 @@
                 <b:panelGrid colSm="12" columns="2">
 
 
-                    <h:outputText value="Documento"/>
+                    <h:outputText value="#{mensajeApp.documento}"/>
                     <b:inputText name="document" value="#{registroController.nuevoUsuario.cedula}" a:data-mask="0000000000" required="true"/>
-                    <h:outputText value="Primer Nombre"/>
+                    <h:outputText value="#{mensajeApp.firtsName}"/>
                     <b:inputText value="#{registroController.nuevoUsuario.primerNombre}" rendered="true"/>
-                    <h:outputText value="Segundo Nombre"/>
+                    <h:outputText value="#{mensajeApp.secondName}"/>
                     <b:inputText value="#{registroController.nuevoUsuario.segundoNombre}" rendered="true"/>
-                    <h:outputText value="Primer Apellido "/>
+                    <h:outputText value="#{mensajeApp.firtsLastName} "/>
                     <b:inputText value="#{registroController.nuevoUsuario.primerApellido}"/>
-                    <h:outputText value="Segundo Apellido"/>
+                    <h:outputText value="#{mensajeApp.secondLastName}"/>
                     <b:inputText value="#{registroController.nuevoUsuario.segundoApellido}"/>
                     
                     
-                    <h:outputText value="Fecha Nacimiento"/>
+                    <h:outputText value="#{mensajeApp.birt}"/>
                     <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}" changeYear="true" changeMonth="true" required="true"/>
 
 
 
-                    <h:outputText value="Clave"/>
+                    <h:outputText value="#{mensajeApp.password}"/>
                     <b:inputSecret value="#{registroController.nuevoUsuario.clave}" required="true"/>
                 </b:panelGrid>
-                <h:link styleClass="btn btn-primary" outcome="/app/usuarios/listar.xhtml" value="Volver"/>
-                <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{registroController.registrar()}"/>
+                <h:link styleClass="btn btn-primary" outcome="/app/usuarios/listar.xhtml" value="#{mensajeApp.back}"/>
+                <b:commandButton value="#{mensajeApp.save}" icon="floppy-disk" actionListener="#{registroController.registrar()}"/>
             </b:form>
         </div>
     </div>

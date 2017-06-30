@@ -10,7 +10,7 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">Usuarios</ui:define>
+    <ui:define name="titulo">#{mensajeApp.listTitle}</ui:define>
     <ui:define name="pagetitle">
 <!--        <div class="page-head">
             <div class="page-title">
@@ -24,11 +24,11 @@
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="#{request.contextPath}/app/index.xhtml">inicio</a>
+                <a href="#{request.contextPath}/app/index.xhtml">#{mensajeApp.inicio}</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Listar</span>
+                <span class="active">#{mensajeApp.listar}</span>
             </li>
         </ul>
 
@@ -44,7 +44,7 @@
                 <div class="portlet-title">
                     <div class="caption font-dark">
                         <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Lista de Usuarios</span>
+                        <span class="caption-subject bold uppercase">#{mensajeApp.usersListar}</span>
                     </div>
                     <div class="tools"> </div>
                 </div>
@@ -54,14 +54,14 @@
                             <h:form>
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <button id="sample_editable_1_new" class="btn sbold green"> Add New
+                                        <button id="sample_editable_1_new" class="btn sbold green"> #{mensajeApp.agregarUsuario}
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Opciones
+                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">#{mensajeApp.opciones}
                                             <i class="fa fa-angle-down"></i>
                                         </button>
 
@@ -72,7 +72,7 @@
                                             </li>
                                             <li>
                                                 <a href="javascript:;">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                    <i class="fa fa-file-excel-o"></i> #{mensajeApp.exportExcel}</a>
                                             </li>
                                         </ul>
 
@@ -86,23 +86,23 @@
                         <b:dataTable id="dtUsuario" value="#{listarUsuaariosController.usuarios}" var="user">
 
 
-                            <b:dataTableColumn label="Documento" value="#{user.cedula}"/>
-                            <b:dataTableColumn label="Nombre" value="
+                            <b:dataTableColumn label=" #{mensajeApp.documento}" value="#{user.cedula}"/>
+                            <b:dataTableColumn label="#{mensajeApp.nombre}" value="
                                                #{user.primerNombre} 
                                                #{user.segundoNombre} 
                                                #{user.primerApellido} 
                                                #{user.primerApellido}"/>
 
-                            <b:dataTableColumn label="Roles" >
+                            <b:dataTableColumn label="#{mensajeApp.roles}" >
                                 <ui:repeat value="#{user.roles}" var="r2">
                                     <h:outputText value="#{r2.nombre}"/><br/>
                                 </ui:repeat>
                             </b:dataTableColumn>
-                            <b:dataTableColumn  label="Opciones">
+                            <b:dataTableColumn  label="#{mensajeApp.opciones}">
                                 <b:commandButton look="success" value="" iconAwesome="eye" action="#{verUsuarioControoller.verUsuario(user)}"/>
                                 <b:commandButton look="primary" value="" iconAwesome="pencil" action="#{editarUsuarioController.preModificar(user)}"/>
-                                <b:commandButton look="danger" value=""
-                                                 iconAwesome="trash" tooltip="Eliminar"
+                                <b:commandButton look="danger" 
+                                                 iconAwesome="trash" tooltip="Eliminar" tooltip-position="top" tooltipContainer="true"
                                                  onclick="$('.modalPseudoClass').modal();">
                                     <f:ajax event="click" render=":message-modal-confirm"
                                             listener="#{listarUsuaariosController.setUsuarioSeleccionado(user)}"/>
@@ -115,15 +115,14 @@
                 </div>
             </div>
         </div> 
-        <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
+        <b:modal id="amodal" title="#{mensajeApp.modalDeleteUsersTitle}" styleClass="modalPseudoClass">
             <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>¿Está seguro de eliminar el usuario #{listarUsuaariosController.usuarioSeleccionado.primerNombre} #{listarUsuaariosController.usuarioSeleccionado.primerApellido} ?
-                </p>
+                <p>#{mensajeApp.modalSure} #{listarUsuaariosController.usuarioSeleccionado.primerNombre} #{listarUsuaariosController.usuarioSeleccionado.primerApellido} ? </p>
             </h:panelGroup>
             <f:facet name="footer">
                 <h:form id="form-eliminar" prependId="false">
-                    <b:button value="Close" dismiss="modal" />
-                    <b:commandButton value="Ok" look="primary"
+                    <b:button value="#{mensajeApp.modalClose}" dismiss="modal" />
+                    <b:commandButton value="#{mensajeApp.modalOk}" look="primary"
                                      actionListener="#{listarUsuaariosController.eliminarUsuario()}"/>
                 </h:form>
             </f:facet>

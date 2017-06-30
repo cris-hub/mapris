@@ -7,23 +7,21 @@
                 xmlns:ps="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <ui:define name="title">
-        <title>Usuario</title>
-    </ui:define>
+    <ui:define name="titulo">#{mensajeApp.usuario}</ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
-             <li>
-                <a href="#{request.contextPath}/app/index.xhtml">inicio</a>
+            <li>
+                <a href="#{request.contextPath}/app/index.xhtml">#{mensajeApp.inicio}</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="#{request.contextPath}/app/usuarios/listar.xhtml">Usuarios</a>
+                <a href="#{request.contextPath}/app/usuarios/listar.xhtml">#{mensajeApp.usuarios}</a>
                 <i class="fa fa-circle"></i>
             </li>
-             <li>
-                <span class="active">Ver</span>
-                
+            <li>
+                <span class="active">#{mensajeApp.ver}</span>
+
             </li>
         </ul>
 
@@ -43,15 +41,15 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="#{request.contextPath}/files/profileimg/#{verUsuarioControoller.usuario.cedula.toString()}/perfil/perfil.png" class="img-circle img-responsive"/> </div>
+                                <div class="col-md-3 col-lg-3 " align="center"> <img alt="#{mensajeApp.viewImage}" src="#{request.contextPath}/files/profileimg/#{verUsuarioControoller.usuario.cedula.toString()}/perfil/perfil.png" class="img-circle img-responsive"/> </div>
 
-                           
+
                                 <div class=" col-md-9 col-lg-9 "> 
                                     <table class="table table-user-information">
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <h:outputText value="ceula"/>
+                                                    <h:outputText value="#{mensajeApp.documento}"/>
                                                 </td>
                                                 <td>
                                                     <h:outputText value="#{verUsuarioControoller.usuario.cedula}"/>
@@ -59,7 +57,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <h:outputText value="nombre"/>
+                                                    <h:outputText value="#{mensajeApp.nombre}"/>
 
                                                 </td>
                                                 <td>
@@ -68,16 +66,16 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <h:outputText value="correos"/>
+                                                    <h:outputText value="#{mensajeApp.correos}"/>
 
                                                 </td>
 
                                                 <td>
-                                                    <b:dataTable value="#{verUsuarioControoller.usuario.correos}" var="correo">
-                                                        <b:dataTableColumn value="#{correo.correo}"/>
+                                                    <b:dataTable  value="#{verUsuarioControoller.usuario.correos}" var="correo">
+                                                        <b:dataTableColumn  value="#{correo.correo}"/>
                                                     </b:dataTable>
-                                                    
-                                                  
+
+
                                                 </td>
                                             </tr>
 
@@ -99,8 +97,8 @@
                         <div class="panel-footer">
                             <h:link styleClass="btn btn-primary" outcome="/app/usuarios/listar.xhtml" value="Volver"/>
                             <span class="pull-right">
-                                <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                                <a href="edit.html" data-original-title="#{mensajeApp.viewEditarUser}" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a data-original-title="#{mensajeApp.viewDeleteUser}" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                             </span>
                         </div>
 

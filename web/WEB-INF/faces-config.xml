@@ -24,6 +24,10 @@
             <base-name>com.mapris.languages.validacion.LoginValidation</base-name>
             <var>msjValidacionLogin</var>
         </resource-bundle>
+           <resource-bundle>
+            <base-name>com.mapris.languages.app.App</base-name>
+            <var>mensajeApp</var>
+        </resource-bundle>
         
         <resource-bundle>
             <base-name>com.mapris.languages.App</base-name>

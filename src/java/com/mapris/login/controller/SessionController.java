@@ -61,7 +61,7 @@ public class SessionController implements Serializable {
                 break;
             }
         }
-        seleccionarLenguaje = (support) ? idiomaUsuario: new Locale("es");
+//        seleccionarLenguaje = (support) ? idiomaUsuario: new Locale("es");
     }
     
     
