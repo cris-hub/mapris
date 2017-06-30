@@ -66,7 +66,7 @@
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <!-- DOC: Apply "dropdown-hoverable" class after "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
                         <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
-                        <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
+<!--                        <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-bell"></i>
                                 <span class="badge badge-success"> 7 </span>
@@ -163,12 +163,12 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
                         <!-- END NOTIFICATION DROPDOWN -->
                         <li class="separator hide"> </li>
                         <!-- BEGIN INBOX DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
+<!--                        <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-envelope-open"></i>
                                 <span class="badge badge-danger"> 4 </span>
@@ -240,12 +240,12 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
                         <!-- END INBOX DROPDOWN -->
                         <li class="separator hide"> </li>
                         <!-- BEGIN TODO DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
+<!--                        <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-calendar"></i>
                                 <span class="badge badge-primary"> 3 </span>
@@ -352,7 +352,7 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
                         <!-- END TODO DROPDOWN -->
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
@@ -368,32 +368,24 @@
                                     
 <!--                                        <h:link outcome="#{request.contextPath}/WEB-INF/template/user_perfil_miPerfil.xhtml"/> -->
                                     <a href="#{request.contextPath}/app/miperfil.xhtml">
-                                        <i class="icon-user"></i> #{msjPerfil.txtperfil}  </a>  
+                                        <i class="icon-user"></i> #{mensajeApp.myProfile}</a>  
                                 </li>
                                 <li>
                                     <a href="app_calendar.html">
-                                        <i class="icon-calendar"></i> My Calendar </a>
+                                        <i class="icon-calendar"></i>  #{mensajeApp.appNavbarCalendar}</a>
                                 </li>
                                 <li>
                                     <a href="app_inbox.html">
-                                        <i class="icon-envelope-open"></i> My Inbox
+                                        <i class="icon-envelope-open"></i> #{mensajeApp.appInboc}
                                         <span class="badge badge-danger"> 3 </span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="app_todo_2.html">
-                                        <i class="icon-rocket"></i> My Tasks
-                                        <span class="badge badge-success"> 7 </span>
-                                    </a>
-                                </li>
+                          
                                 <li class="divider"> </li>
-                                <li>
-                                    <a href="page_user_lock_1.html">
-                                        <i class="icon-lock"></i> Lock Screen </a>
-                                </li>
+                            
                                 <li>
                                     <a href="page_user_login_1.html">
-                                        <i class="icon-key"></i> Log Out </a>
+                                        <i class="icon-key"></i>  #{mensajeApp.appLogOut} </a>
                                 </li>
                             </ul>
                         </li>

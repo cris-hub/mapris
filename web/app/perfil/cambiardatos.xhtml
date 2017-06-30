@@ -11,30 +11,30 @@
 
     <ui:define name="titulo">#{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </ui:define>
     <ui:define name="pagetitle">
-<!--        <div class="page-head">
-            <div class="page-title">
-                <h1> Perfil - Cambiar Datos
-                    <small>Mis datos personales</small>
-                </h1>
-            </div>
-        </div>-->
+        <!--        <div class="page-head">
+                    <div class="page-title">
+                        <h1> Perfil - Cambiar Datos
+                            <small>Mis datos personales</small>
+                        </h1>
+                    </div>
+                </div>-->
     </ui:define>
-    
+
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="#{request.contextPath}/app/index.xhtml">#{mensajeApp.inicio}</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <span class="active">#{mensajeApp.cambiarDatos}</span>
-                </li>
-            </ul>
- 
+            <li>
+                <a href="#{request.contextPath}/app/index.xhtml">#{mensajeApp.inicio}</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">#{mensajeApp.cambiarDatos}</span>
+            </li>
+        </ul>
+
     </ui:define>
 
     <ui:define name="contenido">
-        
+
         <div class="col-md-12">
             <!-- BEGIN PROFILE SIDEBAR -->
             <div class="profile-sidebar">
@@ -53,8 +53,8 @@
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
                     <div class="profile-userbuttons">
-                          <button type="button" class="btn btn-circle green btn-sm">#{mensajeApp.avances}</button>
-                    <button type="button" class="btn btn-circle red btn-sm">#{mensajeApp.recomendaciones}</button>
+                        <button type="button" class="btn btn-circle green btn-sm">#{mensajeApp.avances}</button>
+                        <button type="button" class="btn btn-circle red btn-sm">#{mensajeApp.recomendaciones}</button>
                     </div>
                     <!-- END SIDEBAR BUTTONS -->
                     <!-- SIDEBAR MENU -->
@@ -62,22 +62,22 @@
                         <ul class="nav">
                             <li>
                                 <a href="page_user_profile_1.html">
-                                    <i class="icon-home"></i> Overview </a>
+                                    <i class="icon-home"></i> #{mensajeApp.inicio} </a>
                             </li>
                             <li class="active">
                                 <a href="page_user_profile_1_account.html">
-                                    <i class="icon-settings"></i> Account Settings </a>
+                                    <i class="icon-settings"></i> #{mensajeApp.changeData} </a>
                             </li>
-                            <li>
-                                <a href="page_user_profile_1_help.html">
-                                    <i class="icon-info"></i> Help </a>
-                            </li>
+                            <!--                            <li>
+                                                            <a href="page_user_profile_1_help.html">
+                                                                <i class="icon-info"></i> Help </a>
+                                                        </li>-->
                         </ul>
                     </div>
                     <!-- END MENU -->
                 </div>
                 <!-- END PORTLET MAIN -->
-              
+
                 <!-- END PORTLET MAIN -->
             </div>
             <!-- END BEGIN PROFILE SIDEBAR -->
@@ -93,16 +93,16 @@
                                 </div>
                                 <ul class="nav nav-tabs">
                                     <li class="active">
-                                        <a href="#tab_1_1" data-toggle="tab">#{msjPerfil.labelinfop}</a>
+                                        <a href="#tab_1_1" data-toggle="tab">#{mensajeApp.datosPersonales}</a>
                                     </li>
                                     <li>
-                                        <a href="#tab_1_2" data-toggle="tab">#{msjPerfil.butoncambiarfoto}</a>
+                                        <a href="#tab_1_2" data-toggle="tab">#{mensajeApp.cambiarFotoPerfil}</a>
                                     </li>
                                     <li>
-                                        <a href="#tab_1_3" data-toggle="tab">#{msjPerfil.butoncam}</a>
+                                        <a href="#tab_1_3" data-toggle="tab">#{mensajeApp.cambiarContraseña}</a>
                                     </li>
                                     <li>
-                                        <a href="#tab_1_4" data-toggle="tab">Privacy Settings</a>
+                                        <a href="#tab_1_4" data-toggle="tab">#{mensajeApp.configuracionPrivacidad}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -112,42 +112,28 @@
                                     <div class="tab-pane active" id="tab_1_1">
                                         <h:form role="form" >
                                             <div class="form-group">
-                                                <label class="control-label">#{msjPerfil.labelnombre}</label>
+                                                <label class="control-label">#{mensajeApp.firtsName}</label>
                                                 <h:inputText  pst:placeholder="#{sessionController.usuario.primerNombre}" class="form-control" /> </div>
                                             <div class="form-group">
-                                                <label class="control-label">#{msjPerfil.labelapellido}</label>
+                                                <label class="control-label">#{mensajeApp.secondName}</label>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.segundoNombre}"  class="form-control" /> </div>
+                                            <div class="form-group">
+                                                <label class="control-label">#{mensajeApp.firtsLastName}</label>
                                                 <h:inputText  pst:placeholder="#{sessionController.usuario.primerApellido}"  class="form-control" /> </div>
                                             <div class="form-group">
-                                                <label class="control-label">#{msjPerfil.labeltele}</label>
-                                                <h:inputText  pst:placeholder="#{sessionController.usuario.telefonos}"  class="form-control" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">#{msjPerfil.labelcorreo}</label>
-                                                <h:inputText  pst:placeholder="#{sessionController.usuario.correos}"  class="form-control" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">#{msjPerfil.labeldirec}</label>
-                                                <h:inputText   pst:placeholder="#{sessionController.usuario.direccionesUsuarios}"  class="form-control" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">#{msjPerfil.labelfecha}</label>
-                                                <h:inputText  pst:placeholder="#{sessionController.usuario.fechaNaci}"  class="form-control true" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Acerca</label>
-                                                <textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Website Url</label>
-                                                <h:inputText  pst:placeholder="http://www.mywebsite.com" class="form-control" /> </div>
-                                               
+                                                <label class="control-label">#{mensajeApp.secondLastName}</label>
+                                                <h:inputText  pst:placeholder="#{sessionController.usuario.segundoApellido}"  class="form-control" /> </div>
+
                                             <div class="margiv-top-10">
                                                 <h:commandButton action="#{modificarPerfilController.actualizarPerfil()}" value="Modificar Datos" class="btn green"/>
-                                                <a href="javascript:;" class="btn default"> Cancel </a>
+                                                <a href="javascript:;" class="btn default"> #{mensajeApp.changeProfileBtn} </a>
                                             </div>
                                         </h:form>
                                     </div>
                                     <!-- END PERSONAL INFO TAB -->
                                     <!-- CHANGE AVATAR TAB -->
                                     <div class="tab-pane" id="tab_1_2">
-                                        <p> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                            eiusmod. </p>
+                                        <p>#{mensajeApp.textCambiarFoto} </p>
                                         <h:form  role="form" enctype="multipart/form-data" prependId="false">
                                             <b:messages global-only="true"   showSummary="true" showDetail="true" />
                                             <div  class="form-group">
