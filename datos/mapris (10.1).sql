@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2017 a las 16:38:53
+-- Tiempo de generación: 30-06-2017 a las 15:11:18
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -26,18 +26,21 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+DROP PROCEDURE IF EXISTS `pr_validar_usuario`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pr_validar_usuario` (IN `pr_cedula` BIGINT(20), IN `pr_clave` VARCHAR(20))  NO SQL
 SELECT * FROM usuarios WHERE cedula = pr_cedula AND  clave = fc_encriptar(pr_clave)$$
 
 --
 -- Funciones
 --
+DROP FUNCTION IF EXISTS `fc_descencriptar`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `fc_descencriptar` (`clave_codificada` VARCHAR(10)) RETURNS VARCHAR(10) CHARSET latin1 BEGIN
 DECLARE var VARCHAR(10);
 SET var = (SELECT decode(clave_codificada,255));
 RETURN var;
 END$$
 
+DROP FUNCTION IF EXISTS `fc_encriptar`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `fc_encriptar` (`clave` VARCHAR(35) CHARSET utf8) RETURNS VARCHAR(35) CHARSET utf8 BEGIN
 DECLARE var VARCHAR(35);
 SET var = (SELECT MD5(clave));
@@ -52,6 +55,7 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `actividades`
 --
 
+DROP TABLE IF EXISTS `actividades`;
 CREATE TABLE `actividades` (
   `idadtividad` int(11) NOT NULL,
   `idRutinas` int(11) NOT NULL
@@ -75,6 +79,7 @@ INSERT INTO `actividades` (`idadtividad`, `idRutinas`) VALUES
 -- Estructura de tabla para la tabla `aplazamientos`
 --
 
+DROP TABLE IF EXISTS `aplazamientos`;
 CREATE TABLE `aplazamientos` (
   `idaplazamiento` int(11) NOT NULL,
   `motivo` text COMMENT 'Este campo almacena la razon por la cual se hace el aplazamiento',
@@ -88,6 +93,7 @@ CREATE TABLE `aplazamientos` (
 -- Estructura de tabla para la tabla `cita_medica`
 --
 
+DROP TABLE IF EXISTS `cita_medica`;
 CREATE TABLE `cita_medica` (
   `idcita_medica` int(11) NOT NULL,
   `consultorios_idconsultorio` int(11) NOT NULL
@@ -99,6 +105,7 @@ CREATE TABLE `cita_medica` (
 -- Estructura de tabla para la tabla `clientes`
 --
 
+DROP TABLE IF EXISTS `clientes`;
 CREATE TABLE `clientes` (
   `idClientes` bigint(20) NOT NULL COMMENT 'Este campo almacena la cedula de los clientes (Solo los clientes)',
   `idEmpresa` bigint(20) NOT NULL COMMENT 'Este campo almacena el (id) de la tabla "Empresa"\n',
@@ -110,15 +117,11 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`idClientes`, `idEmpresa`, `estado`) VALUES
-(1600072330999, 1, '1'),
 (1600112313399, 2, '1'),
 (1602081548099, 3, '1'),
 (1602120920199, 4, '1'),
 (1603010433999, 5, '1'),
-(1605052037499, 6, '1'),
-(1606072561599, 7, '1'),
 (1607032664899, 8, '1'),
-(1608021707799, 9, '1'),
 (1609080393299, 10, '1');
 
 -- --------------------------------------------------------
@@ -127,6 +130,7 @@ INSERT INTO `clientes` (`idClientes`, `idEmpresa`, `estado`) VALUES
 -- Estructura de tabla para la tabla `consultorios`
 --
 
+DROP TABLE IF EXISTS `consultorios`;
 CREATE TABLE `consultorios` (
   `idconsultorio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -146,6 +150,7 @@ INSERT INTO `consultorios` (`idconsultorio`) VALUES
 -- Estructura de tabla para la tabla `correos`
 --
 
+DROP TABLE IF EXISTS `correos`;
 CREATE TABLE `correos` (
   `id_correo` int(11) NOT NULL,
   `correo` varchar(45) NOT NULL,
@@ -159,13 +164,10 @@ CREATE TABLE `correos` (
 INSERT INTO `correos` (`id_correo`, `correo`, `id_usuario`) VALUES
 (1, 'ma@gmail.com', 1031174466),
 (2, 'ka@gmail.com', 1600032140599),
-(3, 'lo@gmail.com', 1600072330999),
 (4, 'po@gmail.com', 1600112313399),
 (5, 'pa@gmail.com', 1602081548099),
 (6, 'ro@gmail.com', 1602120920199),
 (7, 'yu@gmail.com', 1603010433999),
-(8, 'pri@gmail.com', 1605052037499),
-(9, 'io@gmail.com', 1606072561599),
 (10, 'tupac@gmail.com', 1607032664899);
 
 -- --------------------------------------------------------
@@ -174,6 +176,7 @@ INSERT INTO `correos` (`id_correo`, `correo`, `id_usuario`) VALUES
 -- Estructura de tabla para la tabla `datosclinicos`
 --
 
+DROP TABLE IF EXISTS `datosclinicos`;
 CREATE TABLE `datosclinicos` (
   `idCliente` bigint(20) NOT NULL COMMENT 'Este campo almacena la cedula del cliente de la tabla "Clientes"',
   `rh` char(2) DEFAULT NULL COMMENT 'Este campo almacena el tipo de sangre del cliente',
@@ -186,15 +189,11 @@ CREATE TABLE `datosclinicos` (
 --
 
 INSERT INTO `datosclinicos` (`idCliente`, `rh`, `datosPosparto`, `datosPrenatales`) VALUES
-(1600072330999, 'O+', 1, 2),
 (1600112313399, 'A-', 1, 2),
 (1602081548099, 'A+', 1, 2),
 (1602120920199, 'B-', 1, 2),
 (1603010433999, 'O-', 1, 2),
-(1605052037499, 'A-', 1, 2),
-(1606072561599, 'O+', 1, 2),
 (1607032664899, 'A-', 1, 2),
-(1608021707799, 'B+', 1, 2),
 (1609080393299, 'O-', 1, 2);
 
 -- --------------------------------------------------------
@@ -203,6 +202,7 @@ INSERT INTO `datosclinicos` (`idCliente`, `rh`, `datosPosparto`, `datosPrenatale
 -- Estructura de tabla para la tabla `direcciones`
 --
 
+DROP TABLE IF EXISTS `direcciones`;
 CREATE TABLE `direcciones` (
   `iddirecciones` int(11) NOT NULL,
   `id_localidad` int(11) NOT NULL,
@@ -323,6 +323,7 @@ INSERT INTO `direcciones` (`iddirecciones`, `id_localidad`, `avenida`, `calle`, 
 -- Estructura de tabla para la tabla `empresa`
 --
 
+DROP TABLE IF EXISTS `empresa`;
 CREATE TABLE `empresa` (
   `idEmpresa` bigint(20) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id) ',
   `nombre` varchar(45) NOT NULL COMMENT 'Este campo almacena el nombre de la empresa',
@@ -444,6 +445,7 @@ INSERT INTO `empresa` (`idEmpresa`, `nombre`, `direccionP`, `direccionO`, `telef
 -- Estructura de tabla para la tabla `estados`
 --
 
+DROP TABLE IF EXISTS `estados`;
 CREATE TABLE `estados` (
   `id_estados` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
@@ -466,6 +468,7 @@ INSERT INTO `estados` (`id_estados`, `nombre`, `descripccion`) VALUES
 -- Estructura de tabla para la tabla `inscripciones`
 --
 
+DROP TABLE IF EXISTS `inscripciones`;
 CREATE TABLE `inscripciones` (
   `idInscripciones` int(11) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id) \n',
   `idCliente` bigint(20) NOT NULL COMMENT 'Este campo almacena el (id) de la tabla "Clientes"',
@@ -489,6 +492,7 @@ INSERT INTO `inscripciones` (`idInscripciones`, `idCliente`, `fechaInicio`, `val
 -- Estructura de tabla para la tabla `localidades`
 --
 
+DROP TABLE IF EXISTS `localidades`;
 CREATE TABLE `localidades` (
   `id_localidad` int(11) NOT NULL,
   `localidad` varchar(30) NOT NULL
@@ -606,6 +610,7 @@ INSERT INTO `localidades` (`id_localidad`, `localidad`) VALUES
 -- Estructura de tabla para la tabla `permisos`
 --
 
+DROP TABLE IF EXISTS `permisos`;
 CREATE TABLE `permisos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
@@ -619,27 +624,27 @@ CREATE TABLE `permisos` (
 --
 
 INSERT INTO `permisos` (`id`, `nombre`, `url`, `icon`, `permisos_padre`) VALUES
-(0, '6\r', NULL, NULL, NULL),
-(1, 'Perfil', '', 'fa fa-user-o', NULL),
-(2, 'Usuarios', '/app/administrador/usuarios/ver.xhtml', 'fa fa-users', NULL),
-(3, 'Aplazamientos', '', 'fa fa-clock-o', NULL),
-(4, 'Citas', '', 'fa fa-calendar-check-o', NULL),
-(5, 'Agenda', '', 'fa fa-calendar', NULL),
-(6, 'Agendar', '', 'fa fa-calendar-check-o', NULL),
-(7, 'Inscripciones', '/app/administrador/inscripciones/ver.xhtml', 'fa fa-list-alt', NULL),
-(8, 'Empresa', '/app/administrador/empresa/ver.xhtml', 'fa fa-columns', NULL),
-(11, 'Mi perfil', '/app/perfil/miperfil.xhtml', 'fa fa-user', 1),
-(12, 'Cambiar Datos', '/app/perfil/cambiardatos.xhtml', 'fa fa-pencil', 1),
-(21, 'Lista usuarios', '/app/administrador/usuarios/usuarios.xhtml', 'fa fa-list', 2),
-(22, 'Nuevo usuario', '/app/administrador/usuarios/nuevo.xhtml', 'fa fa-user-plus', 2),
-(30, 'Editar usuario', '/app/administrador/usuarios/editar.xhtml', 'fa fa-pencil-square-o', 2),
-(31, 'Lista Aplazamientos', '/app/aplazamientos/lista.xhtml', 'fa fa-list', 3),
-(32, 'Registrar aplazamiento', '/app/aplazamientos/nuevo.xhtml', 'fa fa-plus', 3),
-(61, 'Reservar', '/app/cliente/servicios.xhtml', 'fa fa-pencil-square-o', 6),
-(71, 'Listar Inscripciones', '/app/administrador/inscripciones/inscripciones.xhtml', 'fa fa-list-ol', 7),
-(72, 'Editar Inscripci?n', '/app/administrador/inscripciones/editar.xhtml', 'fa fa-pencil', 7),
-(81, 'Listar Empresas', '/app/administrador/empresa/empresas.xhtml', 'fa fa-th-large', 8),
-(82, 'Editar Empresa', '/app/administrador/empresa/editar.xhtml', 'fa fa-pencil', 8);
+(0, 'inicio', '/app/index.xhtml\n', 'fa fa-home', NULL),
+(1, 'perfil', '', 'fa fa-user-o', NULL),
+(2, 'usuarios', '/app/administrador/usuarios/ver.xhtml', 'fa fa-users', NULL),
+(3, 'aplazamientos', '', 'fa fa-clock-o', NULL),
+(4, 'citas', '', 'fa fa-calendar-check-o', NULL),
+(5, 'agenda', '', 'fa fa-calendar', NULL),
+(6, 'agendar', '', 'fa fa-calendar-check-o', NULL),
+(7, 'inscripciones', '/app/administrador/inscripciones/ver.xhtml', 'fa fa-list-alt', NULL),
+(8, 'empresa', '/app/administrador/empresa/ver.xhtml', 'fa fa-columns', NULL),
+(11, 'miPerfil', '/app/perfil/miperfil.xhtml', 'fa fa-user', 1),
+(12, 'cambiarDatos', '/app/perfil/cambiardatos.xhtml', 'fa fa-pencil', 1),
+(21, 'listarUsuarios', '/app/usuarios/listar.xhtml', 'fa fa-list', 2),
+(22, 'nuevoUsuario', '/app/usuarios/nuevo.xhtml', 'fa fa-user-plus', 2),
+(30, 'editarAplazamiento', '/app//usuarios/editar.xhtml', 'fa fa-pencil-square-o', 2),
+(31, 'listaAplazamientos', '/app/aplazamientos/lista.xhtml', 'fa fa-list', 3),
+(32, 'registrarAplazamiento', '/app/aplazamientos/nuevo.xhtml', 'fa fa-plus', 3),
+(61, 'reservar', '/app/cliente/servicios.xhtml', 'fa fa-pencil-square-o', 6),
+(71, 'listaInscripciones', '/app/administrador/inscripciones/inscripciones.xhtml', 'fa fa-list-ol', 7),
+(72, 'editarIncripcion', '/app/administrador/inscripciones/editar.xhtml', 'fa fa-pencil', 7),
+(81, 'listarEmpresas', '/app/administrador/empresa/empresas.xhtml', 'fa fa-th-large', 8),
+(82, 'editarEmpresa', '/app/administrador/empresa/editar.xhtml', 'fa fa-pencil', 8);
 
 -- --------------------------------------------------------
 
@@ -647,6 +652,7 @@ INSERT INTO `permisos` (`id`, `nombre`, `url`, `icon`, `permisos_padre`) VALUES
 -- Estructura de tabla para la tabla `permisosroles`
 --
 
+DROP TABLE IF EXISTS `permisosroles`;
 CREATE TABLE `permisosroles` (
   `permisos_id` int(11) NOT NULL,
   `roles_idRoles` int(11) NOT NULL
@@ -684,6 +690,7 @@ INSERT INTO `permisosroles` (`permisos_id`, `roles_idRoles`) VALUES
 -- Estructura de tabla para la tabla `personalmedico`
 --
 
+DROP TABLE IF EXISTS `personalmedico`;
 CREATE TABLE `personalmedico` (
   `idPersonalMedico` bigint(20) NOT NULL COMMENT 'Este campo almacena la cedula de cada Personal Medico (Solo Personal Medico)',
   `perfilProfesional` varchar(45) NOT NULL COMMENT 'Este campo almacena la especialidad que tiene cada Personal Medico ',
@@ -695,9 +702,7 @@ CREATE TABLE `personalmedico` (
 --
 
 INSERT INTO `personalmedico` (`idPersonalMedico`, `perfilProfesional`, `cargo`) VALUES
-(1600072330999, 'Ginecobstetra', 'Profesional en la sa'),
 (1602120920199, 'Fisioterapeuta', 'Profesional en la sa'),
-(1606072561599, 'Masajista', 'Profesional en la sa'),
 (1609080393299, 'Estétisista', 'Profesional en la be'),
 (1616110563599, 'Especialista en Yoga ', 'Profesional en el ar');
 
@@ -707,6 +712,7 @@ INSERT INTO `personalmedico` (`idPersonalMedico`, `perfilProfesional`, `cargo`) 
 -- Estructura de tabla para la tabla `programas`
 --
 
+DROP TABLE IF EXISTS `programas`;
 CREATE TABLE `programas` (
   `idprograma` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -726,6 +732,7 @@ INSERT INTO `programas` (`idprograma`) VALUES
 -- Estructura de tabla para la tabla `programas_has_clases`
 --
 
+DROP TABLE IF EXISTS `programas_has_clases`;
 CREATE TABLE `programas_has_clases` (
   `idprograma` int(11) NOT NULL,
   `idactividad` int(11) NOT NULL
@@ -746,6 +753,7 @@ INSERT INTO `programas_has_clases` (`idprograma`, `idactividad`) VALUES
 -- Estructura de tabla para la tabla `roles`
 --
 
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `idRoles` int(11) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id)',
   `nombre` varchar(20) NOT NULL COMMENT 'Este campo almacena el nombre de cada rol',
@@ -759,7 +767,7 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`idRoles`, `nombre`, `descripcion`) VALUES
 (1, 'Administrador', 'Encargado del sistema de información'),
 (2, 'Cliente', 'El acceso a consultas de las rutinas y el agendamiento de citas por parte de los usuarios'),
-(3, 'Personal Medico', 'Personal medico orientado al tratamiento de los programas del gimnasio');
+(3, 'PersonalMedico', 'Personal medico orientado al tratamiento de los programas del gimnasio');
 
 -- --------------------------------------------------------
 
@@ -767,6 +775,7 @@ INSERT INTO `roles` (`idRoles`, `nombre`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `rolesusuarios`
 --
 
+DROP TABLE IF EXISTS `rolesusuarios`;
 CREATE TABLE `rolesusuarios` (
   `idRoles` int(11) NOT NULL DEFAULT '2' COMMENT 'Este campo almacena el (id) de la tabla "Roles"',
   `idUsuarios` bigint(20) NOT NULL COMMENT 'Este campo almacena el (id) de la tabla "Usuarios"'
@@ -779,15 +788,11 @@ CREATE TABLE `rolesusuarios` (
 INSERT INTO `rolesusuarios` (`idRoles`, `idUsuarios`) VALUES
 (1, 1031174466),
 (2, 1600032140599),
-(3, 1600072330999),
 (1, 1600112313399),
 (2, 1602081548099),
 (3, 1602120920199),
 (1, 1603010433999),
-(2, 1605052037499),
-(3, 1606072561599),
 (1, 1607032664899),
-(2, 1608021707799),
 (3, 1609080393299),
 (1, 1610122573899),
 (2, 1611012149999),
@@ -799,6 +804,7 @@ INSERT INTO `rolesusuarios` (`idRoles`, `idUsuarios`) VALUES
 -- Estructura de tabla para la tabla `rutinas`
 --
 
+DROP TABLE IF EXISTS `rutinas`;
 CREATE TABLE `rutinas` (
   `idRutinas` int(11) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id) ',
   `nombre` varchar(45) NOT NULL COMMENT 'Este campo almacena el nombre de la rutina',
@@ -820,6 +826,7 @@ INSERT INTO `rutinas` (`idRutinas`, `nombre`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `rutinaservicios`
 --
 
+DROP TABLE IF EXISTS `rutinaservicios`;
 CREATE TABLE `rutinaservicios` (
   `idRutinaServicios` int(11) NOT NULL,
   `idRutinas` int(11) NOT NULL,
@@ -832,6 +839,7 @@ CREATE TABLE `rutinaservicios` (
 -- Estructura de tabla para la tabla `salones`
 --
 
+DROP TABLE IF EXISTS `salones`;
 CREATE TABLE `salones` (
   `id_salones` varchar(45) NOT NULL,
   `actividad` int(11) DEFAULT NULL,
@@ -856,6 +864,7 @@ INSERT INTO `salones` (`id_salones`, `actividad`, `salon`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `servicios`
 --
 
+DROP TABLE IF EXISTS `servicios`;
 CREATE TABLE `servicios` (
   `idServicio` int(11) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id) de cada programa',
   `nombre` varchar(20) DEFAULT NULL COMMENT 'Este campo almacena el nombre de programa ',
@@ -889,6 +898,7 @@ INSERT INTO `servicios` (`idServicio`, `nombre`, `descripcion`, `tipo_servicio_i
 -- Estructura de tabla para la tabla `sesiones`
 --
 
+DROP TABLE IF EXISTS `sesiones`;
 CREATE TABLE `sesiones` (
   `idSesiones` int(11) NOT NULL COMMENT 'Este campo es la clave primaria de la tabla y  almacena el (id) ',
   `idPersonalMedico` bigint(20) DEFAULT NULL COMMENT 'Este campo almacena el (id) de la tabla "Programa"',
@@ -904,6 +914,7 @@ CREATE TABLE `sesiones` (
 -- Estructura de tabla para la tabla `telefonos`
 --
 
+DROP TABLE IF EXISTS `telefonos`;
 CREATE TABLE `telefonos` (
   `id_telefono` int(11) NOT NULL,
   `numero` varchar(15) DEFAULT NULL,
@@ -1022,6 +1033,7 @@ INSERT INTO `telefonos` (`id_telefono`, `numero`, `tipo_telefono_idtipo_telefono
 -- Estructura de tabla para la tabla `tg_registro_usuarios`
 --
 
+DROP TABLE IF EXISTS `tg_registro_usuarios`;
 CREATE TABLE `tg_registro_usuarios` (
   `fecha_registro` date DEFAULT NULL,
   `hora_registro` time DEFAULT NULL,
@@ -1034,6 +1046,7 @@ CREATE TABLE `tg_registro_usuarios` (
 -- Estructura de tabla para la tabla `tg_roles_usuarios_after_update`
 --
 
+DROP TABLE IF EXISTS `tg_roles_usuarios_after_update`;
 CREATE TABLE `tg_roles_usuarios_after_update` (
   `id_actualizacion_rol` int(11) NOT NULL,
   `fecha` date DEFAULT NULL,
@@ -1051,6 +1064,7 @@ CREATE TABLE `tg_roles_usuarios_after_update` (
 -- Estructura de tabla para la tabla `tipo_servicio`
 --
 
+DROP TABLE IF EXISTS `tipo_servicio`;
 CREATE TABLE `tipo_servicio` (
   `idtipo_servicio` int(11) NOT NULL,
   `tipo_servicio` varchar(45) DEFAULT NULL
@@ -1071,6 +1085,7 @@ INSERT INTO `tipo_servicio` (`idtipo_servicio`, `tipo_servicio`) VALUES
 -- Estructura de tabla para la tabla `tipo_telefono`
 --
 
+DROP TABLE IF EXISTS `tipo_telefono`;
 CREATE TABLE `tipo_telefono` (
   `idtipo_telefono` int(11) NOT NULL,
   `tipo` varchar(10) DEFAULT NULL
@@ -1090,6 +1105,7 @@ INSERT INTO `tipo_telefono` (`idtipo_telefono`, `tipo`) VALUES
 -- Estructura de tabla para la tabla `usuarios`
 --
 
+DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `cedula` bigint(20) NOT NULL DEFAULT '0' COMMENT 'Este campo almacena la cedula de todos los usuarios',
   `primer_nombre` varchar(20) NOT NULL COMMENT 'Este campo almacena el nombre de cada usuario',
@@ -1108,29 +1124,17 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`cedula`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `fechaNaci`, `clave`, `imegen_perfil`, `id_estados`, `fecha_registro`) VALUES
-(1212, 'kjaskdh', 'kjaksjdh', 'khaskdjh', 'kajdskjh', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22'),
-(121212, 'kajsdkhakj', 'kajsdkjashkj', 'kjasdhkjashk', 'skjhkajsd', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22'),
-(123123, 'oiajsdiajs', 'oaijsdoijas', 'oaijsdoiajs', 'soidjaosijd', '2001-01-01', 'ac0ddf9e65d57b6a56b2453386cd5db5', NULL, 2, '2017-06-22'),
-(1010101, 'ajskdnan', 'kajsdkjn', 'Cristian', 'lalalalala', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22'),
-(1212312, 'aosdkoak', 'kakakak', 'kakakaak', 'lahermanadeCristian', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22'),
-(120102010, 'oiajsldjk', 'lkajsldkj', 'lkjsldkja', 'lksjdlak', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22'),
-(1031174466, 'Nicol', 'Lorena', 'Maella ', 'Parra', '1995-06-21', 'e486a7c972307f5c236eeb3dad9e4e8d', NULL, 1, NULL),
-(12342135213, 'Ajo', 'Tomaete', 'Piña', 'Cereza', '1998-01-29', '9f73741f137ec4fdc00a06c7a40eb87f', NULL, 3, '2017-06-22'),
+(1031174466, 'Nicol', 'Lorena', 'Maella ', 'Parra', '1995-06-21', '399dec8439a6d672fd92ea183f99e682', NULL, 1, NULL),
 (1600032140599, 'Gretchen', 'Janna', 'Mccray', 'Evans', '1998-02-26', '80a6c12e1ae3b63a86ec741aa8ef0cb4', 0x50656e617469627573204574204c4c43, 1, NULL),
-(1600072330999, 'Ariel', 'Ashely', 'Benton', 'Ramirez', '1996-09-20', 'XXI49MEC5JL', 0x4e6f6e204e6973692041656e65616e20436f6e73756c74696e67, 1, NULL),
 (1600112313399, 'Quyn', 'Rebecca', 'Ortiz', 'Stewart', '1995-04-27', 'EMS11CWJ1IY', 0x41656e65616e20536564204c4c43, 1, NULL),
 (1602081548099, 'Denise', 'Patience', 'Atkins', 'Dominguez', '1993-04-29', 'EOF50SRS7DA', 0x4f64696f20536167697474697320436f72702e, 1, NULL),
 (1602120920199, 'Kylee', 'Hanna', 'Diaz', 'Wallace', '1999-08-30', 'VWV85GCH0MR', 0x566976616d757320436f6e73756c74696e67, 1, NULL),
 (1603010433999, 'Abra', 'Zena', 'Stout', 'Deleon', '1992-05-08', 'LCA51OMK3KU', 0x5065646520457420526973757320496e73746974757465, 1, NULL),
-(1605052037499, 'Iliana', 'Rosalyn', 'Delaney', 'Fleming', '1996-01-27', 'XUP91ZXY1FP', 0x497073756d20436f72706f726174696f6e, 1, NULL),
-(1606072561599, 'Kalia', 'Zoe', 'Everett', 'King', '1995-10-12', 'FIB03HOQ6ZU', 0x446f6c6f72205175697371756520466f756e646174696f6e, 1, NULL),
 (1607032664899, 'Chantale', 'Diana', 'Melton', 'Lindsay', '1994-03-11', 'IYF43GUJ4RN', 0x4e756c6c61204575204e6571756520496e632e, 1, NULL),
-(1608021707799, 'Denise', 'Veronica', 'Giles', 'Howell', '1996-10-27', 'ZZQ75FLZ6JN', 0x466163696c69736973204d61676e61204c4c50, 1, NULL),
 (1609080393299, 'Brenda', 'Michelle', 'Joyner', 'Stone', '1990-06-24', 'PDE34ARW3GD', 0x446f6e656320436f6e73756c74696e67, 1, NULL),
 (1610122573899, 'Serena', 'Unity', 'Beard', 'David', '1994-04-09', 'SKM13NKJ5EM', 0x5065646520436f6e73756c74696e67, 1, NULL),
 (1611012149999, 'Kessie', 'Hedda', 'Robertson', 'Pace', '1995-11-08', 'ZXO52JNG4PV', 0x4575204e6571756520466f756e646174696f6e, 1, NULL),
 (1616110563599, 'Daphne', 'Ava', 'Johnson', 'Walls', '1992-07-11', 'VFS24TEL8MC', 0x54726973746971756520436f6d70616e79, 1, NULL),
-(1617070797699, 'Madison', 'Sarah', 'Beach', 'Walls', '1991-01-19', 'UVO65FSC9UC', 0x4e69736c20436f72702e, 1, NULL),
 (1619012900899, 'Lenore', 'Iliana', 'Kirkland', 'Rodgers', '1995-11-22', 'IGW59YND0FH', 0x4120556c7472696369657320496e632e, 1, NULL),
 (1620021257999, 'Minerva', 'Holly', 'Patton', 'Levine', '1998-07-20', 'YVQ34QPD3DX', 0x4d6f6c6c697320436f6d70616e79, 1, NULL),
 (1620070122399, 'Dominique', 'Aphrodite', 'Perez', 'Bell', '1998-08-07', 'DHO55EBJ4YS', 0x456c656966656e64204567657374617320496e73746974757465, 1, NULL),
@@ -1142,9 +1146,7 @@ INSERT INTO `usuarios` (`cedula`, `primer_nombre`, `segundo_nombre`, `primer_ape
 (1632031299399, 'Illiana', 'Eve', 'Martin', 'Swanson', '1996-03-27', 'TZH91FRD5RI', 0x4665726d656e74756d204172637520566573746962756c756d20496e636f72706f7261746564, 1, NULL),
 (1633070177799, 'Brenna', 'Autumn', 'Harper', 'Charles', '1996-07-01', 'SWP76UXG9XM', 0x43757273757320496e6475737472696573, 1, NULL),
 (1634011459899, 'Avye', 'Kaye', 'Frank', 'Church', '1998-07-12', 'LEM36UNR9QG', 0x496163756c697320416c6971756574204469616d20436f72702e, 1, NULL),
-(1635010473799, 'Melissa', 'Erin', 'Austin', 'Guy', '1992-12-07', 'RUB10ZLJ7CE', 0x4665726d656e74756d204c696d69746564, 1, NULL),
 (1635050159199, 'Guinevere', 'Vanna', 'Mckinney', 'Morton', '1994-10-17', 'BYO82RUL7AN', 0x4e756c6c616d2056656c697420436f6d70616e79, 1, NULL),
-(1635081917699, 'MacKenzie', 'Desirae', 'Rojas', 'Salas', '1999-02-01', 'TOD90NVJ1OX', 0x536f63696973204e61746f71756520436f6e73756c74696e67, 1, NULL),
 (1636110154999, 'Clio', 'Sierra', 'Winters', 'Zimmerman', '1993-10-03', 'UPE65RTB1GG', 0x416320436f72702e, 1, NULL),
 (1638021692099, 'Judith', 'Lysandra', 'Rodriquez', 'Mcdowell', '1999-07-24', 'GIB10SSR9PH', 0x4f72636920436f72702e, 1, NULL),
 (1638072795999, 'Regan', 'Lael', 'Coffey', 'Mcdaniel', '1999-03-28', 'BCS05BRE6NK', 0x45726174204e65717565204e6f6e20466f756e646174696f6e, 1, NULL),
@@ -1161,7 +1163,6 @@ INSERT INTO `usuarios` (`cedula`, `primer_nombre`, `segundo_nombre`, `primer_ape
 (1647062147599, 'Maggie', 'Natalie', 'Booth', 'Berry', '1997-10-08', 'VXY08KCW7UY', 0x5175616d204c7464, 1, NULL),
 (1647072657899, 'Raya', 'Kessie', 'Hines', 'Hull', '1996-02-18', 'ZRX71GTH6BK', 0x53656d20566974616520416c697175616d20436f6d70616e79, 1, NULL),
 (1647082077799, 'Sydney', 'Alexandra', 'Black', 'Combs', '1993-09-17', 'NKK14IJB2JK', 0x50657220496e636570746f732048796d656e61656f73205043, 1, NULL),
-(1647112505399, 'Basia', 'Myra', 'Davenport', 'Hernandez', '1998-04-06', 'KQX27EPY8WB', 0x517569732054726973746971756520416320496e636f72706f7261746564, 1, NULL),
 (1648031209799, 'Ursula', 'Charde', 'Huff', 'Glover', '1993-08-02', 'IRY28WPZ7LU', 0x4174205043, 1, NULL),
 (1649020833299, 'Blossom', 'Melissa', 'May', 'Koch', '1992-11-27', 'AEX89MVL0RS', 0x4d6f6c6573746965204173736f636961746573, 1, NULL),
 (1649051323699, 'Chelsea', 'Brianna', 'Paul', 'Bowen', '1990-07-14', 'DUJ31IEU5PN', 0x5269737573204e756e6320436f72706f726174696f6e, 1, NULL),
@@ -1208,23 +1209,17 @@ INSERT INTO `usuarios` (`cedula`, `primer_nombre`, `segundo_nombre`, `primer_ape
 (1688012500799, 'Clementine', 'Brianna', 'Wyatt', 'Harmon', '1999-12-07', 'CNH03RXD6FO', 0x4e6563204c656f20436f72706f726174696f6e, 1, NULL),
 (1691102489599, 'Maya', 'Whilemina', 'Terry', 'Garrison', '1993-12-12', 'GEO35EVP2ST', 0x50686173656c6c757320446f6c6f7220496e6475737472696573, 1, NULL),
 (1692061225799, 'Nola', 'Brooke', 'Barber', 'Morin', '1993-05-07', 'OUV44JOV2QH', 0x457469616d204c696d69746564, 1, NULL),
-(1692111185099, 'Rhiannon', 'Amy', 'Schultz', 'Herring', '1997-11-09', 'SYG83PYH0GV', 0x4567657420566f6c7574706174204f726e61726520436f72706f726174696f6e, 1, NULL),
-(1693011923799, 'Alfreda', 'Renee', 'Levy', 'Fields', '1995-02-15', 'WKP94LZI1AB', 0x526973757320446f6e656320466f756e646174696f6e, 1, NULL),
-(1693020964499, 'Jaquelyn', 'Naida', 'Hickman', 'Leblanc', '1991-04-29', 'LWY38GTS4XI', 0x456765737461732044756973204163205043, 1, NULL),
-(1693063060799, 'Sierra', 'Whitney', 'Gardner', 'Mcgowan', '1995-10-15', 'DRO63IKX0JU', 0x52757472756d20496e6475737472696573, 1, NULL),
-(1694111915199, 'Suki', 'Jescie', 'Thompson', 'Cantu', '1996-07-10', 'AUI82JKC4FO', 0x416d65742044617069627573204964205043, 1, NULL),
-(1697052772099, 'Heidi', 'Kalia', 'Hester', 'Robles', '1994-04-25', 'HVJ43RVY4OE', 0x4c756374757320437572616269747572204c7464, 1, NULL),
-(1698082293299, 'Meghan', 'Susan', 'Cox', 'Morgan', '1997-08-31', 'TBN93DAI2KR', 0x517569737175652056617269757320436f6e73756c74696e67, 1, NULL),
-(1698113071199, 'Melinda', 'Melyssa', 'Morgan', 'Kelly', '1999-08-06', 'IVT01RVV5AB', 0x4475697320566f6c7574706174204e756e6320496e73746974757465, 1, NULL),
-(111111111111111, 'firewall', 'ajsdkj', 'asildkj', 'lkajsd', '2001-01-01', 'fceeb9b9d469401fe558062c4bd25954', NULL, 2, '2017-06-22');
+(1692111185099, 'Rhiannon', 'Amy', 'Schultz', 'Herring', '1997-11-09', 'SYG83PYH0GV', 0x4567657420566f6c7574706174204f726e61726520436f72706f726174696f6e, 1, NULL);
 
 --
 -- Disparadores `usuarios`
 --
+DROP TRIGGER IF EXISTS `tr_before_update_password`;
 DELIMITER $$
 CREATE TRIGGER `tr_before_update_password` BEFORE UPDATE ON `usuarios` FOR EACH ROW SET new.clave = fc_encriptar(new.clave)
 $$
 DELIMITER ;
+DROP TRIGGER IF EXISTS `tr_usuario_before_insert`;
 DELIMITER $$
 CREATE TRIGGER `tr_usuario_before_insert` BEFORE INSERT ON `usuarios` FOR EACH ROW SET NEW.clave =  fc_encriptar(new.clave),
 new.fecha_registro = CURRENT_DATE
@@ -1237,6 +1232,7 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `usuarios_has_direcciones`
 --
 
+DROP TABLE IF EXISTS `usuarios_has_direcciones`;
 CREATE TABLE `usuarios_has_direcciones` (
   `id_direccion` smallint(6) NOT NULL,
   `usuarios_cedula` bigint(20) NOT NULL,
@@ -1251,13 +1247,10 @@ CREATE TABLE `usuarios_has_direcciones` (
 INSERT INTO `usuarios_has_direcciones` (`id_direccion`, `usuarios_cedula`, `direcciones_iddirecciones`, `vive_aqui`) VALUES
 (1, 1031174466, 1, 1),
 (2, 1600032140599, 2, 1),
-(3, 1600072330999, 3, 1),
 (4, 1600112313399, 4, 1),
 (5, 1602081548099, 5, 1),
 (6, 1602120920199, 6, 1),
 (7, 1603010433999, 7, 1),
-(8, 1605052037499, 8, 1),
-(9, 1606072561599, 9, 1),
 (10, 1607032664899, 10, 1);
 
 -- --------------------------------------------------------
@@ -1266,6 +1259,7 @@ INSERT INTO `usuarios_has_direcciones` (`id_direccion`, `usuarios_cedula`, `dire
 -- Estructura de tabla para la tabla `usuarios_has_telefonos`
 --
 
+DROP TABLE IF EXISTS `usuarios_has_telefonos`;
 CREATE TABLE `usuarios_has_telefonos` (
   `usuarios_cedula` bigint(20) NOT NULL,
   `telefonos_id_telefono` int(11) NOT NULL
@@ -1278,13 +1272,10 @@ CREATE TABLE `usuarios_has_telefonos` (
 INSERT INTO `usuarios_has_telefonos` (`usuarios_cedula`, `telefonos_id_telefono`) VALUES
 (1031174466, 1),
 (1600032140599, 2),
-(1600072330999, 3),
 (1600112313399, 4),
 (1602081548099, 5),
 (1602120920199, 6),
 (1603010433999, 7),
-(1605052037499, 8),
-(1606072561599, 9),
 (1607032664899, 10);
 
 --
