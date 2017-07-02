@@ -40,7 +40,7 @@ public class SessionController implements Serializable {
     private Long documento;
     private Rol rolSeleccionado;
     private Usuario usuario;
-    private Locale seleccionarLenguaje;
+    private Locale seleccionarLenguaje = new Locale("es");
     /**
      * Creates a new instance of SessionController
      */
@@ -61,7 +61,7 @@ public class SessionController implements Serializable {
                 break;
             }
         }
-//        seleccionarLenguaje = (support) ? idiomaUsuario: new Locale("es");
+        seleccionarLenguaje = (support) ? idiomaUsuario: new Locale("es");
     }
     
     

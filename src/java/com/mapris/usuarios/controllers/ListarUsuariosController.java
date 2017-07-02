@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -33,8 +34,7 @@ import javax.inject.Named;
 public class ListarUsuariosController implements Serializable {
 //    cdi 
 
-    @Inject
-    private SessionController sessionController;
+    
     @Inject
     private SessionController sc;
     @EJB
@@ -50,9 +50,9 @@ public class ListarUsuariosController implements Serializable {
 
     @PostConstruct
     public void init() {
-        
+        leerArchivo();
         recargarUsuarios();
-         leerArchivo();
+         
     }
 
     private void recargarUsuarios() {
@@ -60,7 +60,7 @@ public class ListarUsuariosController implements Serializable {
     }
 
     public void eliminarUsuario() {
-        Usuario uS = sessionController.getUsuario();
+        Usuario uS = sc.getUsuario();
         System.out.println("El usuario que inicio sesión es: " + uS.getPrimerNombre());
         System.out.println("Voy a eliminar el usuario: " + usuarioSeleccionado.getPrimerNombre());
         if (uS.getCedula().intValue() != usuarioSeleccionado.getCedula()) {
@@ -107,14 +107,18 @@ public class ListarUsuariosController implements Serializable {
 
     private Properties leerArchivo() {
         try {
+            
             Properties prop = new Properties();
-            System.out.println("_____________________________");
-            System.out.println(sc.getSeleccionarLenguaje().toString().substring(0, 2));
-            System.out.println("******************************");
             if (sc.getSeleccionarLenguaje().toString().substring(0, 2).equals("es")) {
             prop.load(ListarUsuariosController.class.getClassLoader().getResourceAsStream("com/mapris/languages/app/App.properties"));
                 
-            }else{
+            }
+            if (sc.getSeleccionarLenguaje() == null) {
+                sc.setSeleccionarLenguaje(new Locale("es"));
+                prop.load(ListarUsuariosController.class.getClassLoader().getResourceAsStream("com/mapris/languages/app/App_en.properties"));
+                
+            } else{
+                sc.setSeleccionarLenguaje(new Locale("es"));
             prop.load(ListarUsuariosController.class.getClassLoader().getResourceAsStream("com/mapris/languages/app/App_en.properties"));
             
             }
