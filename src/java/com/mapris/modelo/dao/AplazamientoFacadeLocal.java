@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Local
 public interface AplazamientoFacadeLocal {
@@ -28,5 +28,6 @@ public interface AplazamientoFacadeLocal {
 
     List<Aplazamiento> findRange(int[] range);
 
-    int count();    
+    int count();
+    
 }

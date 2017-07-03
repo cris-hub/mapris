@@ -7,11 +7,9 @@ package com.mapris.modelo.dao;
 
 import com.mapris.modelo.entitie.Usuario;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
@@ -19,7 +17,7 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
@@ -35,8 +33,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
-
-    @Override
+    
+      @Override
     public Usuario login(Long documento, String clave) {
         try {
             getEntityManager().getEntityManagerFactory().getCache().evictAll();
@@ -135,5 +133,5 @@ q = getEntityManager().createNativeQuery(sql, Usuario.class
         return usuarios;
 
     }
-
+    
 }

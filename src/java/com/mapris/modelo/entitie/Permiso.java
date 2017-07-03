@@ -10,7 +10,6 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Entity
 @Table(name = "permisos")
@@ -59,12 +58,12 @@ public class Permiso implements Serializable {
     @JoinTable(name = "permisosroles", joinColumns = {
         @JoinColumn(name = "permisos_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "roles_idRoles", referencedColumnName = "idRoles")})
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     private List<Rol> roles;
-    @OneToMany(mappedBy = "permisosPadre", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "permisosPadre")
     private List<Permiso> subPermisos;
     @JoinColumn(name = "permisos_padre", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Permiso permisosPadre;
 
     public Permiso() {

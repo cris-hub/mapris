@@ -121,7 +121,7 @@ public class ControllerEmailContrasena {
             
             usuarioBuscar = ufl.find(usuarioBuscar.getCedula());
             
-            System.out.println("" + usuarioBuscar.getCedula() + " " + usuarioBuscar.getPrimerNombre());
+            System.out.println("" + usuarioBuscar.getCedula() + " " + usuarioBuscar.getNombres());
             System.out.println("" + getEmail());
             
             usuarioBuscar.setClave(getClave(8));
@@ -129,13 +129,13 @@ public class ControllerEmailContrasena {
             ufl.edit(usuarioBuscar);
             
              this.asuntoR = "Recuperación de contraseña ";
-            this.contenidoR = "<h1>Hola " + usuarioBuscar.getPrimerNombre() + " " + usuarioBuscar.getPrimerApellido() 
+            this.contenidoR = "<h1>Hola " + usuarioBuscar.getNombres() + " " + usuarioBuscar.getApellidos() 
             + "</h1>" + "</br><p>Haz solicitado un cambio de contraseña, nosotros te hemos generado una automatica, recuerda que la puedes cambiar cuando ingreses al sistema en cualquier momento" + "</p>" +
            "</br><p> Tu nueva contraseña es: "+ usuarioBuscar.getClave()+"</br>" + "<p><b>Este correo se genero automaticamente, por favor no responder este mensaje.</b></p>";
             
             this.asuntoA = "Un usuario ha hecho una recuperación de contraseña";
             this.contenidoA = "<h1> Hola administradora</h1></br>" + "<p> Un usuario de nuestro sistema ha hecho una recuperación de contraseña, recuerda que si hay mas de 5 emails de recuperación iguales al día con el mismo usuario, algo raro puede estar pasando</p>"+
-                    "</br><p> El usuario que recupero y cambio su contraseña fue: " + "</br>" +usuarioBuscar.getCedula() + "</br>" + usuarioBuscar.getPrimerNombre() + " " + usuarioBuscar.getPrimerApellido();
+                    "</br><p> El usuario que recupero y cambio su contraseña fue: " + "</br>" +usuarioBuscar.getCedula() + "</br>" + usuarioBuscar.getNombres() + " " + usuarioBuscar.getApellidos();
             
             
             EnviarMailContrasena mail = new EnviarMailContrasena("helpmaternityclub@gmail.com", "mapris12345678", "aplicationmaternitymapris@gmail.com");

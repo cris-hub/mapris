@@ -10,7 +10,6 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -26,16 +25,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Entity
 @Table(name = "roles")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")
-    
-    , @NamedQuery(name = "Rol.findByNombre", query = "SELECT r FROM Rol r WHERE r.nombre = :nombre")
-})
+    , @NamedQuery(name = "Rol.findByIdRoles", query = "SELECT r FROM Rol r WHERE r.idRoles = :idRoles")
+    , @NamedQuery(name = "Rol.findByNombre", query = "SELECT r FROM Rol r WHERE r.nombre = :nombre")})
 public class Rol implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,7 +41,7 @@ public class Rol implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "idRoles")
-    private Integer idRol;
+    private Integer idRoles;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -53,32 +51,32 @@ public class Rol implements Serializable {
     @Size(max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
+    @ManyToMany(mappedBy = "roles")
+    private List<Permiso> permisos;
     @JoinTable(name = "rolesusuarios", joinColumns = {
         @JoinColumn(name = "idRoles", referencedColumnName = "idRoles")}, inverseJoinColumns = {
         @JoinColumn(name = "idUsuarios", referencedColumnName = "cedula")})
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     private List<Usuario> usuarios;
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    private List<Permiso> permisos;
 
     public Rol() {
     }
 
     public Rol(Integer idRoles) {
-        this.idRol = idRoles;
+        this.idRoles = idRoles;
     }
 
     public Rol(Integer idRoles, String nombre) {
-        this.idRol = idRoles;
+        this.idRoles = idRoles;
         this.nombre = nombre;
     }
 
-    public Integer getIdRol() {
-        return idRol;
+    public Integer getIdRoles() {
+        return idRoles;
     }
 
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
+    public void setIdRoles(Integer idRoles) {
+        this.idRoles = idRoles;
     }
 
     public String getNombre() {
@@ -98,15 +96,6 @@ public class Rol implements Serializable {
     }
 
     @XmlTransient
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    @XmlTransient
     public List<Permiso> getPermisos() {
         return permisos;
     }
@@ -115,10 +104,19 @@ public class Rol implements Serializable {
         this.permisos = permisos;
     }
 
+    @XmlTransient
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idRol != null ? idRol.hashCode() : 0);
+        hash += (idRoles != null ? idRoles.hashCode() : 0);
         return hash;
     }
 
@@ -129,7 +127,7 @@ public class Rol implements Serializable {
             return false;
         }
         Rol other = (Rol) object;
-        if ((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol))) {
+        if ((this.idRoles == null && other.idRoles != null) || (this.idRoles != null && !this.idRoles.equals(other.idRoles))) {
             return false;
         }
         return true;
@@ -137,7 +135,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Rol[ idRoles=" + idRol + " ]";
+        return "com.mapris.modelo.entitie.Rol[ idRoles=" + idRoles + " ]";
     }
     
 }
