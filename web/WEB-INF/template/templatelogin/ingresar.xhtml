@@ -70,7 +70,7 @@
                     <b:commandButton  type="submit"  action="#{sessionController.iniciarSesion()}" ><span>#{msjLogin.valueingresar}</span> </b:commandButton>
                 </div>
                 <div class="footer">
-                    <h:link outcome="/registrar.xhtml" value="#{msjLogin.buttonRegistrar}" />
+                     <a href="#registro" type="button" >#{msjLogin.buttonRegistrar}</a>  
                 </div>
             </div>
         </h:form>
@@ -107,6 +107,37 @@
             </h:form>
         </div>
         <!-- Fin Div Usuario -->
+       <!--- Registrar Usuario-->
+       <div id="registro" class="form-action hide">
+
+            <div class="form-title">
+                <span class="form-title">#{msjRegister.titleRegistrate}</span><br/><br/>
+                <span class="form-subtitle">#{msjRegister.valueRegisterWelcome}</span>
+            </div>
+
+            <h:form prependId="false" id="form-4">
+                <div class="form-group col-md-5 col-lg-5">
+                    <h:inputText v:type="text"  v:name="r" id="r" required="true" maxlength="15" tabindex="1" value=""/>
+                    <label for="r">#{msjRegister.labelNombre}</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="form-group col-md-5 col-lg-5">
+                    <h:inputText v:type="email"  id="e" v:name="e" required="true" value="" tabindex="2"></h:inputText> 
+                    <label for="e">#{msjRegister.labelApellido}</label>
+                    <div class="bar"></div>
+                </div>
+
+                <div class="button-container">
+                    <b:commandButton type="submit"  v:target="_parent" ><span>#{msjRegister.btnRegistrar}</span></b:commandButton>
+
+                </div>
+                <div class="forgot" style="margin: 30px 280px 0px 0; font-size: 20px;">
+                    <a href="#usuario" type="button" ><span id="boton2">#{msjLogin.Atras}</span></a>
+                </div>
+            
+
+            </h:form>
+        </div>
 
 
 

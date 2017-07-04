@@ -96,7 +96,7 @@
                                                   maxFractionDigits="0" type="currency" locale="es_CO" />
                                 </h:outputText>
                             </b:dataTableColumn>
-                            <b:dataTableColumn label="# de sesiones" value="#{in.numeroSesiones}" />
+                            <b:dataTableColumn label="# de sesiones" value="#{in.idSesiones.numeroSesiones}" />
                            <b:dataTableColumn  label="Opciones" >
                                <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verInscripcionController.verInscripcion(in)}"/>
                                <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarInscripcionController.preModificar(in)}"/>

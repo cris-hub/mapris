@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `mapris`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mapris
 -- ------------------------------------------------------
--- Server version	5.7.17-log
+-- Server version	5.6.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -71,6 +71,7 @@ CREATE TABLE `calendario` (
 
 LOCK TABLES `calendario` WRITE;
 /*!40000 ALTER TABLE `calendario` DISABLE KEYS */;
+INSERT INTO `calendario` VALUES (1,'0000-00-00 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00');
 /*!40000 ALTER TABLE `calendario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,6 +99,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (112312,1,'Activo');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,6 +153,7 @@ CREATE TABLE `empresa` (
 
 LOCK TABLES `empresa` WRITE;
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
+INSERT INTO `empresa` VALUES (1,'Cafam','Cll 32 # 43 - 45','Cll 43 # 45-45',6524144,3109463525);
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,6 +178,7 @@ CREATE TABLE `estados` (
 
 LOCK TABLES `estados` WRITE;
 /*!40000 ALTER TABLE `estados` DISABLE KEYS */;
+INSERT INTO `estados` VALUES (1,'Activo','Usuario que puede ingresar al sistem'),(2,'Bloqueado','Usuario que ha sido dado de baja en el sistem'),(3,'Inhabilitado','Usuario a la espera de habilitar la cuenta');
 /*!40000 ALTER TABLE `estados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,6 +238,7 @@ CREATE TABLE `inscripciones` (
 
 LOCK TABLES `inscripciones` WRITE;
 /*!40000 ALTER TABLE `inscripciones` DISABLE KEYS */;
+INSERT INTO `inscripciones` VALUES (1,112312,1,'2017-09-09',300000,'Activa',NULL,NULL,3);
 /*!40000 ALTER TABLE `inscripciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,6 +267,7 @@ CREATE TABLE `permisos` (
 
 LOCK TABLES `permisos` WRITE;
 /*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
+INSERT INTO `permisos` VALUES (0,'inicio','/app/index.xhtml\n','fa fa-home',NULL),(1,'perfil','','fa fa-user-o',NULL),(2,'usuarios','/app/administrador/usuarios/ver.xhtml','fa fa-users',NULL),(3,'aplazamientos','','fa fa-clock-o',NULL),(4,'citas','','fa fa-calendar-check-o',NULL),(5,'agenda','','fa fa-calendar',NULL),(6,'agendar','','fa fa-calendar-check-o',NULL),(7,'inscripciones','/app/administrador/inscripciones/ver.xhtml','fa fa-list-alt',NULL),(8,'empresa','/app/administrador/empresa/ver.xhtml','fa fa-columns',NULL),(11,'miPerfil','/app/perfil/miperfil.xhtml','fa fa-user',1),(12,'cambiarDatos','/app/perfil/cambiardatos.xhtml','fa fa-pencil',1),(21,'listarUsuarios','/app/usuarios/listar.xhtml','fa fa-list',2),(22,'nuevoUsuario','/app/usuarios/nuevo.xhtml','fa fa-user-plus',2),(30,'editarAplazamiento','/app//usuarios/editar.xhtml','fa fa-pencil-square-o',2),(31,'listaAplazamientos','/app/aplazamientos/lista.xhtml','fa fa-list',3),(32,'registrarAplazamiento','/app/aplazamientos/registrarAplazamiento.xhtml','fa fa-plus',3),(61,'reservar','/app/cliente/servicios.xhtml','fa fa-pencil-square-o',6),(71,'listaInscripciones','/app/administrador/inscripciones/inscripciones.xhtml','fa fa-list-ol',7),(72,'editarIncripcion','/app/administrador/inscripciones/editar.xhtml','fa fa-pencil',7),(81,'listarEmpresas','/app/administrador/empresa/empresas.xhtml','fa fa-th-large',8),(82,'editarEmpresa','/app/administrador/empresa/editar.xhtml','fa fa-pencil',8);
 /*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -289,6 +295,7 @@ CREATE TABLE `permisosroles` (
 
 LOCK TABLES `permisosroles` WRITE;
 /*!40000 ALTER TABLE `permisosroles` DISABLE KEYS */;
+INSERT INTO `permisosroles` VALUES (1,1),(2,1),(3,1),(7,1),(8,1),(11,1),(12,1),(21,1),(22,1),(31,1),(32,1),(71,1),(72,1),(81,1),(82,1),(1,2),(6,2),(11,2),(12,2),(61,2);
 /*!40000 ALTER TABLE `permisosroles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,6 +351,7 @@ CREATE TABLE `programas` (
 
 LOCK TABLES `programas` WRITE;
 /*!40000 ALTER TABLE `programas` DISABLE KEYS */;
+INSERT INTO `programas` VALUES (1,'Programa prental','2017-07-04 00:00:00',1,1);
 /*!40000 ALTER TABLE `programas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -368,6 +376,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'Administrador','Encargado del sistema'),(2,'Cliente','Usuarios habitual del sistem'),(3,'Personal medico','Encargado del bienestar de los clientes del g');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -394,6 +403,7 @@ CREATE TABLE `rolesusuarios` (
 
 LOCK TABLES `rolesusuarios` WRITE;
 /*!40000 ALTER TABLE `rolesusuarios` DISABLE KEYS */;
+INSERT INTO `rolesusuarios` VALUES (1,1111),(2,112312);
 /*!40000 ALTER TABLE `rolesusuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -418,6 +428,7 @@ CREATE TABLE `rutinas` (
 
 LOCK TABLES `rutinas` WRITE;
 /*!40000 ALTER TABLE `rutinas` DISABLE KEYS */;
+INSERT INTO `rutinas` VALUES (1,'Rutina de acondicionamiento fisico','Ejercicio Acondicionador de fisicio');
 /*!40000 ALTER TABLE `rutinas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -437,7 +448,7 @@ CREATE TABLE `rutinaservicios` (
   KEY `FkServicios_RutinasServicios_idx` (`idServicios`),
   CONSTRAINT `FkRutnas_RutinasServicios` FOREIGN KEY (`idRutinas`) REFERENCES `rutinas` (`idRutinas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FkServicios_RutinasServicios` FOREIGN KEY (`idServicios`) REFERENCES `servicios` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -446,6 +457,7 @@ CREATE TABLE `rutinaservicios` (
 
 LOCK TABLES `rutinaservicios` WRITE;
 /*!40000 ALTER TABLE `rutinaservicios` DISABLE KEYS */;
+INSERT INTO `rutinaservicios` VALUES (1,1,1),(2,1,2);
 /*!40000 ALTER TABLE `rutinaservicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -471,6 +483,7 @@ CREATE TABLE `salones` (
 
 LOCK TABLES `salones` WRITE;
 /*!40000 ALTER TABLE `salones` DISABLE KEYS */;
+INSERT INTO `salones` VALUES (1,0,'1A','Salón especializado en el programa prenatal');
 /*!40000 ALTER TABLE `salones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -498,6 +511,7 @@ CREATE TABLE `servicios` (
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
+INSERT INTO `servicios` VALUES (1,'Pilates','Ejercicio de acondicionamiento',1),(2,'Esferodinamia','Ejercicio de acondicionamiento',1);
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -521,6 +535,7 @@ CREATE TABLE `sesiones` (
 
 LOCK TABLES `sesiones` WRITE;
 /*!40000 ALTER TABLE `sesiones` DISABLE KEYS */;
+INSERT INTO `sesiones` VALUES (1,5),(2,10),(3,15),(4,20),(5,25);
 /*!40000 ALTER TABLE `sesiones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -639,6 +654,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1111,'Paula','Mendez','0199-01-01','fceeb9b9d469401fe558062c4bd25954',NULL,1,'2017-07-04','pm@gmailcom','4312321','3104391876'),(112312,'Maria','Melendez','1999-12-22','3b2285b348e95774cb556cb36e583106',NULL,1,'2017-07-04','MM@gmaill.com',NULL,NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -756,4 +772,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-03  2:06:21
+-- Dump completed on 2017-07-04 11:46:49

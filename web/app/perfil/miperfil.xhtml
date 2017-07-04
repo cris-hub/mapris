@@ -7,7 +7,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
- <ui:define name="titulo">#{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </ui:define>
+ <ui:define name="titulo">#{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} </ui:define>
     <ui:define name="pagetitle">
 <!--        <div class="page-head">
             <div class="page-title">
@@ -44,7 +44,7 @@
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
-                    <div class="profile-usertitle-name"> #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido}</div>
+                    <div class="profile-usertitle-name"> #{sessionController.usuario.nombres} #{sessionController.usuario.apellidos}</div>
                     <div class="profile-usertitle-job"> #{mensajeApp[sessionController.rolSeleccionado.nombre]} </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->

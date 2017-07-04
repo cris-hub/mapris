@@ -41,13 +41,11 @@
                     <h:outputText value="#{mensajeApp.documento}"/>
                     <b:inputText name="document" value="#{registroController.nuevoUsuario.cedula}" a:data-mask="0000000000" required="true"/>
                     <h:outputText value="#{mensajeApp.firtsName}"/>
-                    <b:inputText value="#{registroController.nuevoUsuario.primerNombre}" rendered="true"/>
-                    <h:outputText value="#{mensajeApp.secondName}"/>
-                    <b:inputText value="#{registroController.nuevoUsuario.segundoNombre}" rendered="true"/>
+                    <b:inputText value="#{registroController.nuevoUsuario.nombres}" rendered="true"/>
+                  
                     <h:outputText value="#{mensajeApp.firtsLastName} "/>
-                    <b:inputText value="#{registroController.nuevoUsuario.primerApellido}"/>
-                    <h:outputText value="#{mensajeApp.secondLastName}"/>
-                    <b:inputText value="#{registroController.nuevoUsuario.segundoApellido}"/>
+                    <b:inputText value="#{registroController.nuevoUsuario.apellidos}"/>
+                   
                     
                     
                     <h:outputText value="#{mensajeApp.birt}"/>

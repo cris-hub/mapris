@@ -88,10 +88,8 @@
 
                             <b:dataTableColumn label=" #{mensajeApp.documento}" value="#{user.cedula}"/>
                             <b:dataTableColumn label="#{mensajeApp.nombre}" value="
-                                               #{user.primerNombre} 
-                                               #{user.segundoNombre} 
-                                               #{user.primerApellido} 
-                                               #{user.primerApellido}"/>
+                                               #{user.nombres} 
+                                               #{user.apellidos}"/>
 
                             <b:dataTableColumn label="#{mensajeApp.roles}" >
                                 <ui:repeat value="#{user.roles}" var="r2">
@@ -117,7 +115,7 @@
         </div> 
         <b:modal id="amodal" title="#{mensajeApp.modalDeleteUsersTitle}" styleClass="modalPseudoClass">
             <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>#{mensajeApp.modalSure} #{listarUsuaariosController.usuarioSeleccionado.primerNombre} #{listarUsuaariosController.usuarioSeleccionado.primerApellido} ? </p>
+                <p>#{mensajeApp.modalSure} #{listarUsuaariosController.usuarioSeleccionado.nombres} #{listarUsuaariosController.usuarioSeleccionado.apellidos} ? </p>
             </h:panelGroup>
             <f:facet name="footer">
                 <h:form id="form-eliminar" prependId="false">

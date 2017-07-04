@@ -75,14 +75,14 @@ public class CargarArchivosController implements Serializable {
                     setExtension(fileBean.getExtension()) ;
                     extension = fileBean.getExtension();
                     savePartProfileimg(CargarArchivosController.getExternalContext(), fileBean);
-                    MessageUtil.enviarMensajeInformacion(null, "formato correco", "La imagen ha sido cargada satisfactoriamente");
+                    MessageUtil.enviarMensajeInformacion(null, "Formato correcto", "La imagen ha sido cargada satisfactoriamente");
                 } else {
-                    MessageUtil.enviarMensajeError(null, "formato incorrecto", "Solo puedes subir imagenes te tipo 'png' ");
+                    MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir imagenes te tipo 'png' ");
                 }
             }
             deleteFile(CargarArchivosController.getExternalContext(), "perfil." + extension);
         } catch (IOException ex) {
-            MessageUtil.enviarMensajeError(null, "formato incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg'");
+            MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg'");
             ex.printStackTrace();
         } catch (ServletException ex) {
             ex.printStackTrace();

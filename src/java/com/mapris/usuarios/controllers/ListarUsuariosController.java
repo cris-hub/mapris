@@ -52,7 +52,7 @@ public class ListarUsuariosController implements Serializable {
     public void init() {
         
         recargarUsuarios();
-         leerArchivo();
+         //leerArchivo();
     }
 
     private void recargarUsuarios() {

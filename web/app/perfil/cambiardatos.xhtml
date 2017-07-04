@@ -9,7 +9,7 @@
                 xmlns:pst="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:b="http://bootsfaces.net/ui">
 
-    <ui:define name="titulo">#{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </ui:define>
+    <ui:define name="titulo">#{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} </ui:define>
     <ui:define name="pagetitle">
         <!--        <div class="page-head">
                     <div class="page-title">
@@ -47,7 +47,7 @@
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
-                        <div class="profile-usertitle-name"> #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </div>
+                        <div class="profile-usertitle-name"> #{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} </div>
                         <div class="profile-usertitle-job"> #{sessionController.rolSeleccionado.nombre} </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
@@ -111,19 +111,15 @@
                                     <!-- PERSONAL INFO TAB -->
                                     <div class="tab-pane active" id="tab_1_1">
                                         <h:form role="form" >
+                                            <b:messages showDetail="true" showSummary="true" globalOnly="true"/>
                                             <div class="form-group">
                                                 <label class="control-label">#{mensajeApp.firtsName}</label>
-                                                <h:inputText  pst:placeholder="#{sessionController.usuario.primerNombre}" class="form-control" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">#{mensajeApp.secondName}</label>
-                                                <h:inputText  pst:placeholder="#{sessionController.usuario.segundoNombre}"  class="form-control" /> </div>
+                                                <h:inputText  value="#{sessionController.usuario.nombres}" class="form-control" /> 
+                                            </div>
                                             <div class="form-group">
                                                 <label class="control-label">#{mensajeApp.firtsLastName}</label>
-                                                <h:inputText  pst:placeholder="#{sessionController.usuario.primerApellido}"  class="form-control" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">#{mensajeApp.secondLastName}</label>
-                                                <h:inputText  pst:placeholder="#{sessionController.usuario.segundoApellido}"  class="form-control" /> </div>
-
+                                                <h:inputText  value="#{sessionController.usuario.apellidos}"  class="form-control" /> 
+                                                </div>
                                             <div class="margiv-top-10">
                                                 <h:commandButton action="#{modificarPerfilController.actualizarPerfil()}" value="Modificar Datos" class="btn green"/>
                                                 <a href="javascript:;" class="btn default"> #{mensajeApp.changeProfileBtn} </a>

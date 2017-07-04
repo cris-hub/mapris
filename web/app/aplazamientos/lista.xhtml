@@ -6,7 +6,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui">
 
-    <ui:define name="titulo">#{sessionController.usuario.primerNombre}</ui:define>
+    <ui:define name="titulo">#{sessionController.usuario.nombres}</ui:define>
     <ui:define name="pagetitle">
         <div class="page-head">
             <div class="page-title">
@@ -36,7 +36,7 @@
                 <div class="portlet-title">
                     <div class="caption font-dark">
                         <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Lista de Aplazamientos #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </span>
+                        <span class="caption-subject bold uppercase">Lista de Aplazamientos #{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} </span>
                     </div>
                     <div class="tools"> </div>
                 </div>
