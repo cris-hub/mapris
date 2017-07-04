@@ -10,7 +10,7 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">#{sessionController.usuario.primerNombre}</ui:define>
+    <ui:define name="titulo">#{sessionController.usuario.nombres}</ui:define>
     <ui:define name="pagetitle">
         <div class="page-head">
             <div class="page-title">
@@ -91,10 +91,9 @@
 
                             <b:dataTableColumn label="Documento" value="#{user.cedula}"/>
                             <b:dataTableColumn label="Nombre" value="
-                                               #{user.primerNombre} 
-                                               #{user.segundoNombre} 
-                                               #{user.primerApellido} 
-                                               #{user.primerApellido}"/>
+                                               #{user.nombres} 
+                                               #{user.apellidos} 
+                                              "/>
 
                             <b:dataTableColumn label="Roles" >
                                 <ui:repeat value="#{user.roles}" var="r2">
@@ -120,7 +119,7 @@
         </div> 
         <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
             <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>¿Está seguro de eliminar el usuario #{listarUsuaariosController.usuarioSeleccionado.primerNombre} #{listarUsuaariosController.usuarioSeleccionado.primerApellido} ?
+                <p>¿Está seguro de eliminar el usuario #{listarUsuaariosController.usuarioSeleccionado.nombres} ?
                 </p>
             </h:panelGroup>
             <f:facet name="footer">

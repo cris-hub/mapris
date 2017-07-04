@@ -51,7 +51,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
     @Override
     public Usuario loginProcedure(Long documento, String clave) {
-        Usuario u = null;
+      
         try {
             getEntityManager().getEntityManagerFactory().getCache().evictAll();
 //            String sql = "CALL pr_validar_usuario( " + documento + "," + clave + ")";
@@ -61,7 +61,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
               p.setParameter("pr_cedula", documento);
               p.setParameter("pr_clave", clave);
               p.execute();
-              u =(Usuario) p.getSingleResult();
+              return (Usuario) p.getSingleResult();
 //            try {
 //                StoredProcedureQuery storedProcedure = getEntityManager().createStoredProcedureQuery("pr_validar_usuario")
 //                        .registerStoredProcedureParameter(0, Long.class, ParameterMode.IN)
@@ -103,13 +103,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 //            
 //        
 
-        
-        return u;
     }
-    catch (Exception e
-
-    
-        ) {
+    catch (Exception e) {
             System.out.println("El usuario no ingreso a la sesión");
         e.printStackTrace();
         return null;

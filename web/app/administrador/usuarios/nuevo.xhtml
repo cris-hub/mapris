@@ -42,16 +42,10 @@
                     <h:outputText value="Documento"/>
                     <b:inputText name="document" value="#{registroController.nuevoUsuario.cedula}" a:data-mask="0000000000" required="true"/>
                     <h:outputText value="Primer Nombre"/>
-                    <b:inputText value="#{registroController.nuevoUsuario.primerNombre}" rendered="true"/>
-                    <h:outputText value="Segundo Nombre"/>
-                    <b:inputText value="#{registroController.nuevoUsuario.segundoNombre}" rendered="true"/>
+                    <b:inputText value="#{registroController.nuevoUsuario.nombres}" rendered="true"/>
                     <h:outputText value="Primer Apellido "/>
-                    <b:inputText value="#{registroController.nuevoUsuario.primerApellido}"/>
-                    <h:outputText value="Segundo Apellido"/>
-                    <b:inputText value="#{registroController.nuevoUsuario.segundoApellido}"/>
-                    
-                                           
-                    <h:outputText value="Fecha Nacimiento"/>
+                    <b:inputText value="#{registroController.nuevoUsuario.apellidos}"/>
+                     <h:outputText value="Fecha Nacimiento"/>
                     <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}" changeYear="true" changeMonth="true"  required="true">
                     <span  ><i class="fa fa-commenting"></i>¡Recuerda! debes ser mayor de edad para registrarte</span>
                     </b:datepicker>

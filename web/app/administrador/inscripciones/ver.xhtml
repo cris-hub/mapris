@@ -39,7 +39,7 @@
 
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><h:outputText value="Esta es la inscripción del cliente: #{verInscripcionController.inscripcion.idCliente.usuario.primerNombre} #{verInscripcionController.inscripcion.idCliente.usuario.primerApellido} "/></h3>
+                            <h3 class="panel-title"><h:outputText value="Esta es la inscripción del cliente: #{verInscripcionController.inscripcion.idCliente.usuario.nombres} #{verInscripcionController.inscripcion.idCliente.usuario.apellidos} "/></h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -73,7 +73,7 @@
                                                 </td>
 
                                                 <td>
-                                                    <h:outputText value="#{verInscripcionController.inscripcion.idCliente.usuario.primerNombre} #{verInscripcionController.inscripcion.idCliente.usuario.primerApellido}" />
+                                                    <h:outputText value="#{verInscripcionController.inscripcion.idCliente.usuario.nombres} #{verInscripcionController.inscripcion.idCliente.usuario.apellidos}" />
                                                                                                   
                                                 </td>
                                             </tr>
@@ -95,7 +95,7 @@
                                                 </td>
 
                                                 <td>
-                                                    <h:outputText value="#{verInscripcionController.inscripcion.numeroSesiones}" />
+                                                    <h:outputText value="#{verInscripcionController.inscripcion.idSesiones.numeroSesiones}" />
                                                                                                   
                                                 </td>
                                             </tr>
