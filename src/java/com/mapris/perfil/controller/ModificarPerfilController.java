@@ -59,6 +59,8 @@ public class ModificarPerfilController implements Serializable{
     
     
         try {
+            System.out.println("Nuevo nombre: " + getSc().getUsuario().getNombres());
+            System.out.println("Nuevo apellido: " + getSc().getUsuario().getApellidos());
             ufl.edit(getSc().getUsuario());
             MessageUtil.enviarMensajeInformacionGlobal("Se ha actualizado con exito", "Su información personal ha sido actualizada correctamente");
         } catch (Exception e) {

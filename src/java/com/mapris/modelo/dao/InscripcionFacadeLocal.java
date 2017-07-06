@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Local
 public interface InscripcionFacadeLocal {
@@ -21,6 +21,8 @@ public interface InscripcionFacadeLocal {
     void edit(Inscripcion inscripcion);
 
     void remove(Inscripcion inscripcion);
+    
+    List<Inscripcion> buscarCliente(Long idCliente);
 
     Inscripcion find(Object id);
 

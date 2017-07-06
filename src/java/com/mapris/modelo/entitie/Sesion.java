@@ -6,136 +6,98 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Entity
 @Table(name = "sesiones")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sesion.findAll", query = "SELECT s FROM Sesion s")
-    , @NamedQuery(name = "Sesion.findByHora", query = "SELECT s FROM Sesion s WHERE s.hora = :hora")
-    , @NamedQuery(name = "Sesion.findByEstado", query = "SELECT s FROM Sesion s WHERE s.estado = :estado")})
+    , @NamedQuery(name = "Sesion.findByIdSesiones", query = "SELECT s FROM Sesion s WHERE s.idSesiones = :idSesiones")
+    , @NamedQuery(name = "Sesion.findByNumeroSesiones", query = "SELECT s FROM Sesion s WHERE s.numeroSesiones = :numeroSesiones")})
 public class Sesion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @NotNull
     @Column(name = "idSesiones")
-    private int idSesiones;
-    
+    private Integer idSesiones;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "fecha")
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
-
-    
-    @Column(name = "hora")
-    @Temporal(TemporalType.TIME)
-    private Date hora;
-    
-    @Column(name = "estado")
-    private Short estado;
-    
-    @JoinColumn(name = "idPersonalMedico", referencedColumnName = "idPersonalMedico")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Personalmedico idPersonalMedico;
-    
-    @JoinColumn(name = "inscripciones_idInscripciones", referencedColumnName = "idInscripciones")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Inscripcion inscripcionesidInscripciones;
+    @Column(name = "numero_sesiones")
+    private int numeroSesiones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSesiones")
+    private List<Inscripcion> inscripcionList;
 
     public Sesion() {
     }
 
- 
-
-    public Date getHora() {
-        return hora;
-    }
-
-    public void setHora(Date hora) {
-        this.hora = hora;
-    }
-
-    public Short getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Short estado) {
-        this.estado = estado;
-    }
-
-    public Personalmedico getIdPersonalMedico() {
-        return idPersonalMedico;
-    }
-
-    public void setIdPersonalMedico(Personalmedico idPersonalMedico) {
-        this.idPersonalMedico = idPersonalMedico;
-    }
-
-    public Inscripcion getInscripcionesidInscripciones() {
-        return inscripcionesidInscripciones;
-    }
-
-    public void setInscripcionesidInscripciones(Inscripcion inscripcionesidInscripciones) {
-        this.inscripcionesidInscripciones = inscripcionesidInscripciones;
-    }
-
-    public int getIdSesiones() {
-        return idSesiones;
-    }
-
-    public void setIdSesiones(int idSesiones) {
+    public Sesion(Integer idSesiones) {
         this.idSesiones = idSesiones;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Sesion(Integer idSesiones, int numeroSesiones) {
+        this.idSesiones = idSesiones;
+        this.numeroSesiones = numeroSesiones;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public Integer getIdSesiones() {
+        return idSesiones;
+    }
+
+    public void setIdSesiones(Integer idSesiones) {
+        this.idSesiones = idSesiones;
+    }
+
+    public int getNumeroSesiones() {
+        return numeroSesiones;
+    }
+
+    public void setNumeroSesiones(int numeroSesiones) {
+        this.numeroSesiones = numeroSesiones;
+    }
+
+    @XmlTransient
+    public List<Inscripcion> getInscripcionList() {
+        return inscripcionList;
+    }
+
+    public void setInscripcionList(List<Inscripcion> inscripcionList) {
+        this.inscripcionList = inscripcionList;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + this.idSesiones;
+        int hash = 0;
+        hash += (idSesiones != null ? idSesiones.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Sesion)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Sesion other = (Sesion) obj;
-        if (this.idSesiones != other.idSesiones) {
+        Sesion other = (Sesion) object;
+        if ((this.idSesiones == null && other.idSesiones != null) || (this.idSesiones != null && !this.idSesiones.equals(other.idSesiones))) {
             return false;
         }
         return true;
@@ -143,9 +105,7 @@ public class Sesion implements Serializable {
 
     @Override
     public String toString() {
-        return "Sesion{" + "idSesiones=" + idSesiones + '}';
+        return "com.mapris.modelo.entitie.Sesion[ idSesiones=" + idSesiones + " ]";
     }
-
-  
     
 }

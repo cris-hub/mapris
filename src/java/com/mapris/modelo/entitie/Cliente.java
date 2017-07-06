@@ -7,12 +7,10 @@ package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,62 +26,62 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Entity
 @Table(name = "clientes")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
+    , @NamedQuery(name = "Cliente.findByIdClientes", query = "SELECT c FROM Cliente c WHERE c.idClientes = :idClientes")
     , @NamedQuery(name = "Cliente.findByEstado", query = "SELECT c FROM Cliente c WHERE c.estado = :estado")})
 public class Cliente implements Serializable {
 
- 
-
     private static final long serialVersionUID = 1L;
-    
-//    @Basic(optional = false)
-//    @NotNull
-//    @Column(name = "idClientes")
-//    private Long idClientes;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "idClientes")
+    private Long idClientes;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "estado")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente", fetch = FetchType.LAZY)
-    private List<Inscripcion> inscripcionList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    private List<Inscripcion> inscripciones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClientes")
+    private List<SolicitudCita> solicitudesCitas;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
     private Datoclinico datoclinico;
-    @OneToMany(mappedBy = "idcliente", fetch = FetchType.LAZY)
-    private List<Aplazamiento> aplazamientoList;
+    @OneToMany(mappedBy = "idcliente")
+    private List<Aplazamiento> aplazamientos;
     @JoinColumn(name = "idEmpresa", referencedColumnName = "idEmpresa")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Empresa idEmpresa;
-    @Id
-    @JoinColumn(name = "idClientes", referencedColumnName = "cedula")
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idClientes", referencedColumnName = "cedula", insertable = false, updatable = false)
+    @OneToOne(optional = false)
     private Usuario usuario;
 
     public Cliente() {
     }
 
-//    public Cliente(Long idClientes) {
-//        this.idClientes = idClientes;
-//    }
-//
-//    public Cliente(Long idClientes, String estado) {
-//        this.idClientes = idClientes;
-//        this.estado = estado;
-//    }
-//
-//    public Long getIdClientes() {
-//        return idClientes;
-//    }
-//
-//    public void setIdClientes(Long idClientes) {
-//        this.idClientes = idClientes;
-//    }
+    public Cliente(Long idClientes) {
+        this.idClientes = idClientes;
+    }
+
+    public Cliente(Long idClientes, String estado) {
+        this.idClientes = idClientes;
+        this.estado = estado;
+    }
+
+    public Long getIdClientes() {
+        return idClientes;
+    }
+
+    public void setIdClientes(Long idClientes) {
+        this.idClientes = idClientes;
+    }
 
     public String getEstado() {
         return estado;
@@ -94,12 +92,21 @@ public class Cliente implements Serializable {
     }
 
     @XmlTransient
-    public List<Inscripcion> getInscripcionList() {
-        return inscripcionList;
+    public List<Inscripcion> getInscripciones() {
+        return inscripciones;
     }
 
-    public void setInscripcionList(List<Inscripcion> inscripcionList) {
-        this.inscripcionList = inscripcionList;
+    public void setInscripciones(List<Inscripcion> inscripciones) {
+        this.inscripciones = inscripciones;
+    }
+
+    @XmlTransient
+    public List<SolicitudCita> getSolicitudesCitas() {
+        return solicitudesCitas;
+    }
+
+    public void setSolicitudesCitas(List<SolicitudCita> solicitudesCitas) {
+        this.solicitudesCitas = solicitudesCitas;
     }
 
     public Datoclinico getDatoclinico() {
@@ -111,12 +118,12 @@ public class Cliente implements Serializable {
     }
 
     @XmlTransient
-    public List<Aplazamiento> getAplazamientoList() {
-        return aplazamientoList;
+    public List<Aplazamiento> getAplazamientos() {
+        return aplazamientos;
     }
 
-    public void setAplazamientoList(List<Aplazamiento> aplazamientoList) {
-        this.aplazamientoList = aplazamientoList;
+    public void setAplazamientos(List<Aplazamiento> aplazamientos) {
+        this.aplazamientos = aplazamientos;
     }
 
     public Empresa getIdEmpresa() {
@@ -134,56 +141,22 @@ public class Cliente implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    
-    
-    
-
-//    @Override
-//    public int hashCode() {
-//        int hash = 0;
-//        hash += (idClientes != null ? idClientes.hashCode() : 0);
-//        return hash;
-//    }
-//
-//    @Override
-//    public boolean equals(Object object) {
-//        // TODO: Warning - this method won't work in the case the id fields are not set
-//        if (!(object instanceof Cliente)) {
-//            return false;
-//        }
-//        Cliente other = (Cliente) object;
-//        if ((this.idClientes == null && other.idClientes != null) || (this.idClientes != null && !this.idClientes.equals(other.idClientes))) {
-//            return false;
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "com.mapris.modelo.entitie.Cliente[ idClientes=" + idClientes + " ]";
-//    }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.usuario);
+        int hash = 0;
+        hash += (idClientes != null ? idClientes.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Cliente)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Cliente other = (Cliente) obj;
-        if (!Objects.equals(this.usuario, other.usuario)) {
+        Cliente other = (Cliente) object;
+        if ((this.idClientes == null && other.idClientes != null) || (this.idClientes != null && !this.idClientes.equals(other.idClientes))) {
             return false;
         }
         return true;
@@ -191,9 +164,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" + "usuario=" + usuario + '}';
+        return "com.mapris.modelo.entitie.Cliente[ idClientes=" + idClientes + " ]";
     }
-
-    
     
 }

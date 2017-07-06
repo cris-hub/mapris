@@ -6,16 +6,13 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Entity
 @Table(name = "empresa")
@@ -35,7 +32,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Empresa.findAll", query = "SELECT e FROM Empresa e")
     , @NamedQuery(name = "Empresa.findByIdEmpresa", query = "SELECT e FROM Empresa e WHERE e.idEmpresa = :idEmpresa")
-    , @NamedQuery(name = "Empresa.findByNombre", query = "SELECT e FROM Empresa e WHERE e.nombre = :nombre")})
+    , @NamedQuery(name = "Empresa.findByNombre", query = "SELECT e FROM Empresa e WHERE e.nombre = :nombre")
+    , @NamedQuery(name = "Empresa.findByDireccionP", query = "SELECT e FROM Empresa e WHERE e.direccionP = :direccionP")
+    , @NamedQuery(name = "Empresa.findByDireccionO", query = "SELECT e FROM Empresa e WHERE e.direccionO = :direccionO")
+    , @NamedQuery(name = "Empresa.findByTelefonoF", query = "SELECT e FROM Empresa e WHERE e.telefonoF = :telefonoF")
+    , @NamedQuery(name = "Empresa.findByTelefonoC", query = "SELECT e FROM Empresa e WHERE e.telefonoC = :telefonoC")})
 public class Empresa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,30 +45,22 @@ public class Empresa implements Serializable {
     @NotNull
     @Column(name = "idEmpresa")
     private Long idEmpresa;
-    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "nombre")
     private String nombre;
-   
-    @Basic(optional = false)
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "direccionP")
     private String direccionP;
-    
-    @Basic(optional = false)
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "direccionO")
     private String direccionO;
-    
     @Column(name = "telefonoF")
-    private Long telefonoF;
-    
+    private BigInteger telefonoF;
     @Column(name = "telefonoC")
-    private Long telefonoC;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpresa", fetch = FetchType.LAZY)
+    private BigInteger telefonoC;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpresa")
     private List<Cliente> clientes;
 
     public Empresa() {
@@ -77,16 +70,10 @@ public class Empresa implements Serializable {
         this.idEmpresa = idEmpresa;
     }
 
-    public Empresa(Long idEmpresa, String nombre, String direccionP, String direccionO, Long telefonoF, Long telefonoC) {
+    public Empresa(Long idEmpresa, String nombre) {
         this.idEmpresa = idEmpresa;
         this.nombre = nombre;
-        this.direccionP = direccionP;
-        this.direccionO = direccionO;
-        this.telefonoF = telefonoF;
-        this.telefonoC = telefonoC;
     }
-
-    
 
     public Long getIdEmpresa() {
         return idEmpresa;
@@ -120,23 +107,22 @@ public class Empresa implements Serializable {
         this.direccionO = direccionO;
     }
 
-    public Long getTelefonoF() {
+    public BigInteger getTelefonoF() {
         return telefonoF;
     }
 
-    public void setTelefonoF(Long telefonoF) {
+    public void setTelefonoF(BigInteger telefonoF) {
         this.telefonoF = telefonoF;
     }
 
-    public Long getTelefonoC() {
+    public BigInteger getTelefonoC() {
         return telefonoC;
     }
 
-    public void setTelefonoC(Long telefonoC) {
+    public void setTelefonoC(BigInteger telefonoC) {
         this.telefonoC = telefonoC;
     }
-    
-    
+
     @XmlTransient
     public List<Cliente> getClientes() {
         return clientes;

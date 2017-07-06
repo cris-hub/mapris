@@ -50,7 +50,7 @@ public class EditarInscripcionController implements Serializable {
             
             
             
-            inscripcionSelecionada.setNumeroSesiones(inscripcionSelecionada.getNumeroSesiones());
+            inscripcionSelecionada.setIdSesiones(inscripcionSelecionada.getIdSesiones());
             inscripcionSelecionada.setFechaInicio(inscripcionSelecionada.getFechaInicio());
             inscripcionSelecionada.setValor(inscripcionSelecionada.getValor());
 //       

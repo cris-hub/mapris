@@ -6,82 +6,121 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Entity
 @Table(name = "programas")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Programa.findAll", query = "SELECT p FROM Programa p")
-    , @NamedQuery(name = "Programa.findByIdprograma", query = "SELECT p FROM Programa p WHERE p.idprograma = :idprograma")})
+    , @NamedQuery(name = "Programa.findByIdPrograma", query = "SELECT p FROM Programa p WHERE p.idPrograma = :idPrograma")
+    , @NamedQuery(name = "Programa.findByNombre", query = "SELECT p FROM Programa p WHERE p.nombre = :nombre")
+    , @NamedQuery(name = "Programa.findByFechaRegistro", query = "SELECT p FROM Programa p WHERE p.fechaRegistro = :fechaRegistro")})
 public class Programa implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idprograma")
-    private Integer idprograma;
-    @ManyToMany(mappedBy = "programas", fetch = FetchType.LAZY)
-    private List<Actividad> Actividades;
-    @JoinColumn(name = "idprograma", referencedColumnName = "idServicio", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
-    private Servicio servicio;
+    @Column(name = "idPrograma")
+    private Integer idPrograma;
+    @Size(max = 45)
+    @Column(name = "nombre")
+    private String nombre;
+    @Column(name = "fecha_registro")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaRegistro;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPrograma")
+    private List<Inscripcion> inscripciones;
+    @JoinColumn(name = "idRutinas", referencedColumnName = "idRutinas")
+    @ManyToOne(optional = false)
+    private Rutina idRutinas;
+    @JoinColumn(name = "idSalones", referencedColumnName = "id_salones")
+    @ManyToOne(optional = false)
+    private Salon idSalones;
 
     public Programa() {
     }
 
-    public Programa(Integer idprograma) {
-        this.idprograma = idprograma;
+    public Programa(Integer idPrograma) {
+        this.idPrograma = idPrograma;
     }
 
-    public Integer getIdprograma() {
-        return idprograma;
+    public Integer getIdPrograma() {
+        return idPrograma;
     }
 
-    public void setIdprograma(Integer idprograma) {
-        this.idprograma = idprograma;
+    public void setIdPrograma(Integer idPrograma) {
+        this.idPrograma = idPrograma;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     @XmlTransient
-    public List<Actividad> getActividades() {
-        return Actividades;
+    public List<Inscripcion> getInscripciones() {
+        return inscripciones;
     }
 
-    public void setActividades(List<Actividad> Actividades) {
-        this.Actividades = Actividades;
+    public void setInscripciones(List<Inscripcion> inscripciones) {
+        this.inscripciones = inscripciones;
     }
 
-    public Servicio getServicio() {
-        return servicio;
+    public Rutina getIdRutinas() {
+        return idRutinas;
     }
 
-    public void setServicio(Servicio servicio) {
-        this.servicio = servicio;
+    public void setIdRutinas(Rutina idRutinas) {
+        this.idRutinas = idRutinas;
+    }
+
+    public Salon getIdSalones() {
+        return idSalones;
+    }
+
+    public void setIdSalones(Salon idSalones) {
+        this.idSalones = idSalones;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idprograma != null ? idprograma.hashCode() : 0);
+        hash += (idPrograma != null ? idPrograma.hashCode() : 0);
         return hash;
     }
 
@@ -92,7 +131,7 @@ public class Programa implements Serializable {
             return false;
         }
         Programa other = (Programa) object;
-        if ((this.idprograma == null && other.idprograma != null) || (this.idprograma != null && !this.idprograma.equals(other.idprograma))) {
+        if ((this.idPrograma == null && other.idPrograma != null) || (this.idPrograma != null && !this.idPrograma.equals(other.idPrograma))) {
             return false;
         }
         return true;
@@ -100,7 +139,7 @@ public class Programa implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Programa[ idprograma=" + idprograma + " ]";
+        return "com.mapris.modelo.entitie.Programa[ idPrograma=" + idPrograma + " ]";
     }
     
 }

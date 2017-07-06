@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Local
 public interface PermisoFacadeLocal {

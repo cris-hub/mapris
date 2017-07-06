@@ -6,7 +6,6 @@
 package com.mapris.usuarios.controllers;
 
 import com.mapris.modelo.dao.UsuarioFacadeLocal;
-import com.mapris.modelo.entitie.Correo;
 import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;

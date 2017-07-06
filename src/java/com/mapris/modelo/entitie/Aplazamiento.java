@@ -6,12 +6,10 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -19,13 +17,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Entity
 @Table(name = "aplazamientos")
@@ -35,22 +35,25 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Aplazamiento.findByIdaplazamiento", query = "SELECT a FROM Aplazamiento a WHERE a.idaplazamiento = :idaplazamiento")})
 public class Aplazamiento implements Serializable {
 
-    @JoinColumn(name = "servicios_idServicio", referencedColumnName = "idServicio")
-    @ManyToOne(optional = false)
-    private Servicio serviciosidServicio;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @NotNull
     @Column(name = "idaplazamiento")
     private Integer idaplazamiento;
     @Lob
     @Size(max = 65535)
     @Column(name = "motivo")
     private String motivo;
+    @Column(name = "inicio")
+    @Temporal(TemporalType.DATE)
+    private Date fechaInicio;
+    @Column(name = "fin")
+    @Temporal(TemporalType.DATE)
+    private Date fechaFin;
+    
     @JoinColumn(name = "idcliente", referencedColumnName = "idClientes")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Cliente idcliente;
 
     public Aplazamiento() {
@@ -76,6 +79,23 @@ public class Aplazamiento implements Serializable {
         this.motivo = motivo;
     }
 
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    
     public Cliente getIdcliente() {
         return idcliente;
     }
@@ -108,13 +128,5 @@ public class Aplazamiento implements Serializable {
     public String toString() {
         return "com.mapris.modelo.entitie.Aplazamiento[ idaplazamiento=" + idaplazamiento + " ]";
     }
-
-    public Servicio getServiciosidServicio() {
-        return serviciosidServicio;
-    }
-
-    public void setServiciosidServicio(Servicio serviciosidServicio) {
-        this.serviciosidServicio = serviciosidServicio;
-    }
-
+    
 }

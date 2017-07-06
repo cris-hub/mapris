@@ -12,7 +12,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Local
 public interface UsuarioFacadeLocal {
@@ -36,5 +36,4 @@ public interface UsuarioFacadeLocal {
     Usuario login(Long documento,String clave);
     
     List<Usuario>  registros(Date fechaInicio, Date fechaFin,String modo);
-    
 }

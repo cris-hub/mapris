@@ -11,7 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -25,12 +24,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Entity
 @Table(name = "rutinas")
 @XmlRootElement
-
+@NamedQueries({
+    @NamedQuery(name = "Rutina.findAll", query = "SELECT r FROM Rutina r")
+    , @NamedQuery(name = "Rutina.findByIdRutinas", query = "SELECT r FROM Rutina r WHERE r.idRutinas = :idRutinas")
+    , @NamedQuery(name = "Rutina.findByNombre", query = "SELECT r FROM Rutina r WHERE r.nombre = :nombre")})
 public class Rutina implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,7 +40,7 @@ public class Rutina implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "idRutinas")
-    private Integer idRutina;
+    private Integer idRutinas;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -50,29 +52,30 @@ public class Rutina implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRutinas", fetch = FetchType.LAZY)
-    private List<Actividad> actividades;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRutinas")
+    private List<Rutinaservicio> rutinaServicios;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRutinas")
+    private List<Programa> programas;
 
     public Rutina() {
     }
 
     public Rutina(Integer idRutinas) {
-        this.idRutina = idRutinas;
+        this.idRutinas = idRutinas;
     }
 
     public Rutina(Integer idRutinas, String nombre, String descripcion) {
-        this.idRutina = idRutinas;
+        this.idRutinas = idRutinas;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public Integer getIdRutina() {
-        return idRutina;
+    public Integer getIdRutinas() {
+        return idRutinas;
     }
 
-    public void setIdRutina(Integer idRutina) {
-        this.idRutina = idRutina;
+    public void setIdRutinas(Integer idRutinas) {
+        this.idRutinas = idRutinas;
     }
 
     public String getNombre() {
@@ -91,21 +94,28 @@ public class Rutina implements Serializable {
         this.descripcion = descripcion;
     }
 
-   
-
     @XmlTransient
-    public List<Actividad> getActividades() {
-        return actividades;
+    public List<Rutinaservicio> getRutinaServicios() {
+        return rutinaServicios;
     }
 
-    public void setActividades(List<Actividad> actividades) {
-        this.actividades = actividades;
+    public void setRutinaServicios(List<Rutinaservicio> rutinaServicios) {
+        this.rutinaServicios = rutinaServicios;
+    }
+
+    @XmlTransient
+    public List<Programa> getProgramas() {
+        return programas;
+    }
+
+    public void setProgramas(List<Programa> programas) {
+        this.programas = programas;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idRutina != null ? idRutina.hashCode() : 0);
+        hash += (idRutinas != null ? idRutinas.hashCode() : 0);
         return hash;
     }
 
@@ -116,7 +126,7 @@ public class Rutina implements Serializable {
             return false;
         }
         Rutina other = (Rutina) object;
-        if ((this.idRutina == null && other.idRutina != null) || (this.idRutina != null && !this.idRutina.equals(other.idRutina))) {
+        if ((this.idRutinas == null && other.idRutinas != null) || (this.idRutinas != null && !this.idRutinas.equals(other.idRutinas))) {
             return false;
         }
         return true;
@@ -124,7 +134,7 @@ public class Rutina implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Rutina[ idRutinas=" + idRutina + " ]";
+        return "com.mapris.modelo.entitie.Rutina[ idRutinas=" + idRutinas + " ]";
     }
     
 }

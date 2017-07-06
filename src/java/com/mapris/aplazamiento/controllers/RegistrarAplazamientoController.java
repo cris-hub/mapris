@@ -8,9 +8,10 @@ package com.mapris.aplazamiento.controllers;
 import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.AplazamientoFacadeLocal;
 import com.mapris.modelo.dao.ClienteFacadeLocal;
-import com.mapris.modelo.dao.ServicioFacadeLocal;
+import com.mapris.modelo.dao.InscripcionFacadeLocal;
+import com.mapris.modelo.dao.InscripcionFacadeLocal;
 import com.mapris.modelo.entitie.Aplazamiento;
-import com.mapris.modelo.entitie.Servicio;
+import com.mapris.modelo.entitie.Inscripcion;
 import javax.inject.Named;
 import com.mapris.util.Fecha;
 import com.mapris.util.MessageUtil;
@@ -33,14 +34,14 @@ public class RegistrarAplazamientoController implements Serializable {
     @Inject
     private SessionController sessionController;
     @EJB
-    private ServicioFacadeLocal servicioFacadeLocal;
+    private InscripcionFacadeLocal inscripcionFacadeLocal;
     @EJB
     private AplazamientoFacadeLocal aplazamientoFacadeLocal;
 
     @EJB
     private ClienteFacadeLocal clienteFacadeLocal;
 
-    private Servicio servicioSeleccionado;
+    private Inscripcion inscripcionSeleccionado;
 
     private Aplazamiento nuevoAplazamiento;
 
@@ -78,20 +79,27 @@ public class RegistrarAplazamientoController implements Serializable {
         fechaHora = getFechaHoraActual();
     }
 
-    public ServicioFacadeLocal getServicioFacadeLocal() {
-        return servicioFacadeLocal;
+    public InscripcionFacadeLocal getInscripcionFacadeLocal() {
+        return inscripcionFacadeLocal;
     }
 
-    public void setServicioFacadeLocal(ServicioFacadeLocal servicioFacadeLocal) {
-        this.servicioFacadeLocal = servicioFacadeLocal;
+    public void setInscripcionFacadeLocal(InscripcionFacadeLocal inscripcionFacadeLocal) {
+        this.inscripcionFacadeLocal = inscripcionFacadeLocal;
     }
 
-    public Servicio getServicioSeleccionado() {
-        return servicioSeleccionado;
+    public Inscripcion getInscripcionSeleccionado() {
+        return inscripcionSeleccionado;
     }
 
-    public void setServicioSeleccionado(Servicio servicioSeleccionado) {
-        this.servicioSeleccionado = servicioSeleccionado;
+    public void setInscripcionSeleccionado(Inscripcion inscripcionSeleccionado) {
+        this.inscripcionSeleccionado = inscripcionSeleccionado;
+    }
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
     }
 
     /**
@@ -99,37 +107,36 @@ public class RegistrarAplazamientoController implements Serializable {
      */
     public RegistrarAplazamientoController() {
     }
-
+     
     public Date getFechaHoraActual() {
         Fecha fecha = new Fecha();
         return fecha.getFechaActual();
     }
 
-    public void preModificar(Servicio s) {
-        setServicioSeleccionado(s);
+    public void preModificar(Inscripcion s) {
+        setInscripcionSeleccionado(s);
     }
 
-    public String existeServicioSeleccionado() {
-        if (servicioSeleccionado != null) {
+    public String existeInscripcionSeleccionado() {
+        if (inscripcionSeleccionado != null) {
             return "true";
         } else {
             return "false";
         }
     }
-    private void cambioDeFechaServicio(){
+    private void cambioDeFechaInscripcion(){
         try {
-            servicioSeleccionado.setInicio(fechaHora);
-            servicioFacadeLocal.edit(servicioSeleccionado);
-            MessageUtil.enviarMensajeInformacion("form-registrarAplazamiento", "Actualización", "Se ha cambiado la fecha del servicio.");
+            inscripcionSeleccionado.setFechaRetornoAplazamiento(fechaHora);
+            inscripcionFacadeLocal.edit(inscripcionSeleccionado);
+            MessageUtil.enviarMensajeInformacion("form-registrarAplazamiento", "Actualización", "Se ha cambiado la fecha del inscripcion.");
         } catch (Exception e) {
             e.printStackTrace();
-            MessageUtil.enviarMensajeError("form-registrarAplazamiento", "Error cambiar la fecha del servicio","");
+            MessageUtil.enviarMensajeError("form-registrarAplazamiento", "Error cambiar la fecha del inscripcion","");
         }      
     }
     public void registrar() {
-        cambioDeFechaServicio();
+        cambioDeFechaInscripcion();
         nuevoAplazamiento.setIdcliente(clienteFacadeLocal.find(sessionController.getDocumento()));
-        nuevoAplazamiento.setServiciosidServicio(servicioFacadeLocal.find(servicioSeleccionado.getIdServicio()));
         nuevoAplazamiento.setMotivo(motivo);
         if (nuevoAplazamiento != null) {
             try {
@@ -147,11 +154,5 @@ public class RegistrarAplazamientoController implements Serializable {
         }
     }
 
-    public String getMotivo() {
-        return motivo;
-    }
-
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
-    }
+   
 }

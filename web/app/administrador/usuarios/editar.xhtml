@@ -38,15 +38,13 @@
                         <h:outputText value="Documento"/>
                         <b:inputText value="#{editarUsuarioController.usuarioSelecionado.cedula}" />
                         <h:outputText value=" nombres"/>
-                        <b:inputText value="#{editarUsuarioController.usuarioSelecionado.primerNombre}"/>
+                        <b:inputText value="#{editarUsuarioController.usuarioSelecionado.nombres}"/>
                         <h:outputText value=" apellidos"/>
-                        <b:inputText value="#{editarUsuarioController.usuarioSelecionado.primerApellido}"/>
+                        <b:inputText value="#{editarUsuarioController.usuarioSelecionado.apellidos}"/>
                              <h:outputText value="Correo"/>
-                                <b:dataTable value="#{editarUsuarioController.usuarioSelecionado.correos}" var="correo">
-                                    <b:dataTableColumn >
-                                        <b:inputText col-lg="12" value="#{correo.correo}"/>
-                                    </b:dataTableColumn>
-                                </b:dataTable>
+                             <b:dataTableColumn  value="#{editarUsuarioController.usuarioSelecionado.correoElectronico}" >
+                             </b:dataTableColumn>
+                                
                         <h:outputText value="Fecha Nacimiento"/>
                         <b:datepicker  value="#{editarUsuarioController.usuarioSelecionado.fechaNaci}"  />
 

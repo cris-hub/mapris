@@ -43,7 +43,7 @@
                         <h:outputText value="Cedula cliente"/>
                         <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.cedula}" disabled="true" />
                         <h:outputText value=" Nombre del cliente"/>
-                        <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.primerNombre} #{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.primerApellido}" disabled="true"/>
+                        <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.nombres} #{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.apellidos}" disabled="true"/>
                         <h:outputText value="Valor de la inscripción"/>
                         <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.valor}">
                         <f:convertNumber  currencySymbol="$" groupingUsed="true" 
@@ -51,7 +51,7 @@
                                                   
                         </b:inputText>
                         <h:outputText value="Número de sesiones"/>
-                        <b:inputText  value="#{editarInscripcionController.inscripcionSelecionada.numeroSesiones}"  />
+                        <b:inputText  value="#{editarInscripcionController.inscripcionSelecionada.idSesiones.numeroSesiones}"  />
 
                         <h:outputText value="Fecha de inicio"/>
                         <b:datepicker value="#{editarInscripcionController.inscripcionSelecionada.fechaInicio}">

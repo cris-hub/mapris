@@ -6,24 +6,25 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Entity
 @Table(name = "salones")
@@ -31,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Salon.findAll", query = "SELECT s FROM Salon s")
     , @NamedQuery(name = "Salon.findByIdSalones", query = "SELECT s FROM Salon s WHERE s.idSalones = :idSalones")
+    , @NamedQuery(name = "Salon.findByActividad", query = "SELECT s FROM Salon s WHERE s.actividad = :actividad")
     , @NamedQuery(name = "Salon.findBySalon", query = "SELECT s FROM Salon s WHERE s.salon = :salon")})
 public class Salon implements Serializable {
 
@@ -38,9 +40,10 @@ public class Salon implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "id_salones")
-    private String idSalones;
+    private Integer idSalones;
+    @Column(name = "actividad")
+    private Integer actividad;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -50,28 +53,35 @@ public class Salon implements Serializable {
     @Size(max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
-    @JoinColumn(name = "actividad", referencedColumnName = "idadtividad")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Actividad actividad;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSalones")
+    private List<Programa> programas;
 
     public Salon() {
     }
 
-    public Salon(String idSalones) {
+    public Salon(Integer idSalones) {
         this.idSalones = idSalones;
     }
 
-    public Salon(String idSalones, String salon) {
+    public Salon(Integer idSalones, String salon) {
         this.idSalones = idSalones;
         this.salon = salon;
     }
 
-    public String getIdSalones() {
+    public Integer getIdSalones() {
         return idSalones;
     }
 
-    public void setIdSalones(String idSalones) {
+    public void setIdSalones(Integer idSalones) {
         this.idSalones = idSalones;
+    }
+
+    public Integer getActividad() {
+        return actividad;
+    }
+
+    public void setActividad(Integer actividad) {
+        this.actividad = actividad;
     }
 
     public String getSalon() {
@@ -90,12 +100,13 @@ public class Salon implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Actividad getActividad() {
-        return actividad;
+    @XmlTransient
+    public List<Programa> getProgramas() {
+        return programas;
     }
 
-    public void setActividad(Actividad actividad) {
-        this.actividad = actividad;
+    public void setProgramas(List<Programa> programas) {
+        this.programas = programas;
     }
 
     @Override

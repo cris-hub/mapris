@@ -7,11 +7,9 @@ package com.mapris.modelo.dao;
 
 import com.mapris.modelo.entitie.Usuario;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
@@ -19,7 +17,7 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
@@ -35,8 +33,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
-
-    @Override
+    
+      @Override
     public Usuario login(Long documento, String clave) {
         try {
             getEntityManager().getEntityManagerFactory().getCache().evictAll();
@@ -53,7 +51,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
     @Override
     public Usuario loginProcedure(Long documento, String clave) {
-        Usuario u = null;
+      
         try {
             getEntityManager().getEntityManagerFactory().getCache().evictAll();
 //            String sql = "CALL pr_validar_usuario( " + documento + "," + clave + ")";
@@ -63,7 +61,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
               p.setParameter("pr_cedula", documento);
               p.setParameter("pr_clave", clave);
               p.execute();
-              u =(Usuario) p.getSingleResult();
+              return (Usuario) p.getSingleResult();
 //            try {
 //                StoredProcedureQuery storedProcedure = getEntityManager().createStoredProcedureQuery("pr_validar_usuario")
 //                        .registerStoredProcedureParameter(0, Long.class, ParameterMode.IN)
@@ -105,13 +103,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 //            
 //        
 
-        
-        return u;
     }
-    catch (Exception e
-
-    
-        ) {
+    catch (Exception e) {
             System.out.println("El usuario no ingreso a la sesión");
         e.printStackTrace();
         return null;
@@ -135,5 +128,5 @@ q = getEntityManager().createNativeQuery(sql, Usuario.class
         return usuarios;
 
     }
-
+    
 }

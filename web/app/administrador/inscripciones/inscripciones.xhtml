@@ -84,7 +84,7 @@
 
                             <b:dataTableColumn label="Id Inscripcion" value="#{in.idInscripciones}"/>
                             <b:dataTableColumn label="Cedula Cliente" value="#{in.idCliente.usuario.cedula}"/>
-                            <b:dataTableColumn label="Nombre Cliente" value="#{in.idCliente.usuario.primerNombre} #{in.idCliente.usuario.primerApellido} "/>
+                            <b:dataTableColumn label="Nombre Cliente" value="#{in.idCliente.usuario.nombres} #{in.idCliente.usuario.apellidos} "/>
                             <b:dataTableColumn label="Fecha de Inicio">
                                 <h:outputText value="#{in.fechaInicio}">
                                     <f:convertDateTime pattern="dd/MM/yyyy"/>                           
@@ -96,7 +96,7 @@
                                                   maxFractionDigits="0" type="currency" locale="es_CO" />
                                 </h:outputText>
                             </b:dataTableColumn>
-                            <b:dataTableColumn label="# de sesiones" value="#{in.numeroSesiones}" />
+                            <b:dataTableColumn label="# de sesiones" value="#{in.idSesiones.numeroSesiones}" />
                            <b:dataTableColumn  label="Opciones" >
                                <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verInscripcionController.verInscripcion(in)}"/>
                                <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarInscripcionController.preModificar(in)}"/>
@@ -117,7 +117,7 @@
         </div> 
         <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
             <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>¿Está seguro de eliminar la inscripción del cliente #{listarInscripcionController.inscripcionSeleccionado.idCliente.usuario.primerNombre} #{listarInscripcionController.inscripcionSeleccionado.idCliente.usuario.primerApellido} ?  
+                <p>¿Está seguro de eliminar la inscripción del cliente #{listarInscripcionController.inscripcionSeleccionado.idCliente.usuario.nombres} #{listarInscripcionController.inscripcionSeleccionado.idCliente.usuario.apellidos} ?  
                 </p>
             </h:panelGroup>
             <f:facet name="footer">

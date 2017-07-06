@@ -21,7 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.NamedStoredProcedureQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
@@ -35,18 +34,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Entity
 @Table(name = "usuarios")
 @XmlRootElement
+
 @NamedStoredProcedureQuery(
 	name = "pr_validar_usuario", 
 	procedureName = "pr_validar_usuario", 
         resultClasses = Usuario.class,
 	parameters = { 
 		@StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "pr_cedula"), 
-		@StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "pr_clave"), 
+		@StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "pr_clave") 
 		
 	}
 )
@@ -55,17 +55,15 @@ import javax.xml.bind.annotation.XmlTransient;
     ,
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
     , @NamedQuery(name = "Usuario.findByCedula", query = "SELECT u FROM Usuario u WHERE u.cedula = :cedula")
-    , @NamedQuery(name = "Usuario.findByPrimerNombre", query = "SELECT u FROM Usuario u WHERE u.primerNombre = :primerNombre")
-    , @NamedQuery(name = "Usuario.findBySegundoNombre", query = "SELECT u FROM Usuario u WHERE u.segundoNombre = :segundoNombre")
-    , @NamedQuery(name = "Usuario.findByPrimerApellido", query = "SELECT u FROM Usuario u WHERE u.primerApellido = :primerApellido")
-    , @NamedQuery(name = "Usuario.findBySegundoApellido", query = "SELECT u FROM Usuario u WHERE u.segundoApellido = :segundoApellido")
-    , @NamedQuery(name = "Usuario.findByFechaNaci", query = "SELECT u FROM Usuario u WHERE u.fechaNaci = :fechaNaci")
+    , @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombres = :nombres")
+    , @NamedQuery(name = "Usuario.findByApellido", query = "SELECT u FROM Usuario u WHERE u.apellidos = :apellidos")
+        , @NamedQuery(name = "Usuario.findByFechaNaci", query = "SELECT u FROM Usuario u WHERE u.fechaNaci = :fechaNaci")
     , @NamedQuery(name = "Usuario.findByClave", query = "SELECT u FROM Usuario u WHERE u.clave = :clave")})
 public class Usuario implements Serializable {
 
     @Lob
-    @Column(name = "imegen_perfil")
-    private byte[] imegenPerfil;
+    @Column(name = "imagen_perfil")
+    private byte[] imagenPerfil;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -73,61 +71,45 @@ public class Usuario implements Serializable {
     @NotNull
     @Column(name = "cedula")
     private Long cedula;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
-    @Column(name = "primer_nombre")
-    private String primerNombre;
-
-    @Size(max = 20)
-    @Column(name = "segundo_nombre")
-    private String segundoNombre;
-
+    @Column(name = "nombres")
+    private String nombres;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
-    @Column(name = "primer_apellido")
-    private String primerApellido;
-
-    @Size(max = 20)
-    @Column(name = "segundo_apellido")
-    private String segundoApellido;
-
+    @Column(name = "apellidos")
+    private String apellidos;
     @Column(name = "fechaNaci")
     @Temporal(TemporalType.DATE)
     private Date fechaNaci;
-
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 200)
     @Column(name = "clave")
     private String clave;
-
     @Column(name = "fecha_registro")
     @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
-
+    @Size(max = 45)
+    @Column(name = "correoElectronico")
+    private String correoElectronico;
+    @Size(max = 7)
+    @Column(name = "telefonoFijo")
+    private String telefonoFijo;
+    @Size(max = 10)
+    @Column(name = "telefonoCelular")
+    private String telefonoCelular;
     @ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
     private List<Rol> roles;
-
-    @ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
-    private List<Telefono> telefonos;
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Personalmedico personalmedico;
-
     @JoinColumn(name = "id_estados", referencedColumnName = "id_estados")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Estado estado;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosCedula", fetch = FetchType.LAZY)
-    private List<UsuarioDireccione> direccionesUsuarios;
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Cliente cliente;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
-    private List<Correo> correos;
 
     public Usuario() {
     }
@@ -136,10 +118,10 @@ public class Usuario implements Serializable {
         this.cedula = cedula;
     }
 
-    public Usuario(Long cedula, String primerNombre, String primerApellido, String clave) {
+    public Usuario(Long cedula, String nombres, String apellidos, String clave) {
         this.cedula = cedula;
-        this.primerNombre = primerNombre;
-        this.primerApellido = primerApellido;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.clave = clave;
     }
 
@@ -151,36 +133,20 @@ public class Usuario implements Serializable {
         this.cedula = cedula;
     }
 
-    public String getPrimerNombre() {
-        return primerNombre;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setPrimerNombre(String primerNombre) {
-        this.primerNombre = primerNombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getSegundoNombre() {
-        return segundoNombre;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setSegundoNombre(String segundoNombre) {
-        this.segundoNombre = segundoNombre;
-    }
-
-    public String getPrimerApellido() {
-        return primerApellido;
-    }
-
-    public void setPrimerApellido(String primerApellido) {
-        this.primerApellido = primerApellido;
-    }
-
-    public String getSegundoApellido() {
-        return segundoApellido;
-    }
-
-    public void setSegundoApellido(String segundoApellido) {
-        this.segundoApellido = segundoApellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public Date getFechaNaci() {
@@ -199,35 +165,59 @@ public class Usuario implements Serializable {
         this.clave = clave;
     }
 
-    public byte[] getImegenPerfil() {
-        return imegenPerfil;
+    public byte[] getImagenPerfil() {
+        return imagenPerfil;
     }
 
-    public void setImegenPerfil(byte[] imegenPerfil) {
-        this.imegenPerfil = imegenPerfil;
+    public void setImagenPerfil(byte[] imagenPerfil) {
+        this.imagenPerfil = imagenPerfil;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public String getTelefonoFijo() {
+        return telefonoFijo;
+    }
+
+    public void setTelefonoFijo(String telefonoFijo) {
+        this.telefonoFijo = telefonoFijo;
+    }
+
+    public String getTelefonoCelular() {
+        return telefonoCelular;
+    }
+
+    public void setTelefonoCelular(String telefonoCelular) {
+        this.telefonoCelular = telefonoCelular;
     }
 
     @XmlTransient
-    public List<Rol> getRoles() {
+     public List<Rol> getRoles() {
         return roles;
     }
 
     public void setRoles(List<Rol> roles) {
         this.roles = roles;
-    }
-
-    @XmlTransient
-    public List<Telefono> getTelefonos() {
-        return telefonos;
-    }
-
-    public void setTelefonos(List<Telefono> telefonos) {
-        this.telefonos = telefonos;
-    }
-
+    } 
+    
     public Personalmedico getPersonalmedico() {
         return personalmedico;
     }
+
 
     public void setPersonalmedico(Personalmedico personalmedico) {
         this.personalmedico = personalmedico;
@@ -241,39 +231,12 @@ public class Usuario implements Serializable {
         this.estado = estado;
     }
 
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-    
-
-    @XmlTransient
-    public List<UsuarioDireccione> getDireccionesUsuarios() {
-        return direccionesUsuarios;
-    }
-
-    public void setDireccionesUsuarios(List<UsuarioDireccione> direccionesUsuarios) {
-        this.direccionesUsuarios = direccionesUsuarios;
-    }
-
     public Cliente getCliente() {
         return cliente;
     }
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    @XmlTransient
-    public List<Correo> getCorreos() {
-        return correos;
-    }
-
-    public void setCorreos(List<Correo> correos) {
-        this.correos = correos;
     }
 
     @Override
@@ -301,4 +264,6 @@ public class Usuario implements Serializable {
         return "com.mapris.modelo.entitie.Usuario[ cedula=" + cedula + " ]";
     }
 
+    
+    
 }

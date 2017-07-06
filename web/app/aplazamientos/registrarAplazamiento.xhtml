@@ -8,7 +8,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="titulo"> 
-        #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} 
+        #{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} 
     </ui:define>
     <ui:define name="pagetitle">
         <div class="page-head">
@@ -39,7 +39,7 @@
                 <div class="portlet-title">
                     <div class="caption font-dark">
                         <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Servicio que desea aplazar #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </span>
+                        <span class="caption-subject bold uppercase">Servicio que desea aplazar #{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} </span>
                     </div>
                     <div class="tools"> </div>
                 </div>
@@ -48,10 +48,10 @@
                         <b:panelGrid col-spans="2,8,2"   size="xs">
                             <h:outputLabel value="Nombre" />
                             <h:outputLabel value="Descripción" />
-                            <h:outputLabel value=" Fecha Inicio Servicio" />                            
-                            <h:outputLabel value="#{registrarAplazamientoController.servicioSeleccionado.nombre}" />
-                            <h:outputLabel value=" #{registrarAplazamientoController.servicioSeleccionado.descripcion}" />
-                            <h:outputLabel value=" #{registrarAplazamientoController.servicioSeleccionado.inicio}" />
+                            <h:outputLabel value=" Fecha Inicio Programa" />                            
+                            <h:outputLabel value="#{registrarAplazamientoController.inscripcionSeleccionado.idPrograma.nombre}" />
+                            <h:outputLabel value=" #{registrarAplazamientoController.inscripcionSeleccionado.estado}" />
+                            <h:outputLabel value=" #{registrarAplazamientoController.inscripcionSeleccionado.fechaInicio}" />
                         </b:panelGrid>
                     </h:form>
                 </div>
@@ -61,7 +61,7 @@
         <div class="col-sm-12">
             <div class="portlet light bordered">
                 <b:message for="form-registrarAplazamiento" showSummary="true" show-detail="true"/>
-                <b:form id="form-registrarAplazamiento" rendered="#{registrarAplazamientoController.existeServicioSeleccionado()}">
+                <b:form id="form-registrarAplazamiento" rendered="#{registrarAplazamientoController.existeInscripcionSeleccionado()}">
                     <b:formGroup>
                         <b:inputTextarea label="Motivo del Aplazamiento" placeholder="Ingrese la razon por la cual realiza el aplazamiento de su servicio" 
                                          value="#{registrarAplazamientoController.motivo}">
@@ -83,25 +83,26 @@
                 <div class="portlet-title">
                     <div class="caption font-dark">
                         <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Lista de Servicios #{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </span>
+                        <span class="caption-subject bold uppercase">Lista de Servicios #{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} </span>
                     </div>
                     <div class="tools"> </div>
                 </div>
                 <div class="portlet-body">
                     <b:message for="form-data-table-servicios" showSummary="true" showDetail="true"/>
                     <h:form id="form-data-table-servicios" prependId="false">
-                        <b:dataTable id="dtServicio" value="#{listarServiciosController.servicios}" var="servicio">
+                        <b:dataTable id="dtServicio" var="programa" value="#{listarProgramasController.programas}" >
 
 
-                            <b:dataTableColumn label="idServicio"  rendered="false" value="#{servicio.idServicio}"/>
+                            <b:dataTableColumn label="idServicio"  rendered="false" value="#{programa.idPrograma}"/>
                             <b:dataTableColumn label="Nombre" value="
-                                               #{servicio.nombre}"/>
+                                               #{programa.nombre}"/>
 
                             <b:dataTableColumn label="Descripción" >
-                                #{servicio.descripcion}
+                              #{programa.idRutinas.nombre}
                             </b:dataTableColumn>
                             <b:dataTableColumn label="Fecha Inicio Servicio" value="
-                                               #{servicio.inicio}"/>
+                                               
+                                                 #{programa.fechaRegistro}"/>
                             <b:dataTableColumn  label="Opciones">
                                 <b:commandButton look="primary" value="" iconAwesome="clock-o" action="#{registrarAplazamientoController.preModificar(servicio)}"/>
                             </b:dataTableColumn>

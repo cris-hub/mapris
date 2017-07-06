@@ -7,11 +7,9 @@ package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
@@ -26,25 +24,24 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SMEGS
+ * @author Ruben
  */
 @Entity
 @Table(name = "personalmedico")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Personalmedico.findAll", query = "SELECT p FROM Personalmedico p")
+    , @NamedQuery(name = "Personalmedico.findByIdPersonalMedico", query = "SELECT p FROM Personalmedico p WHERE p.idPersonalMedico = :idPersonalMedico")
     , @NamedQuery(name = "Personalmedico.findByPerfilProfesional", query = "SELECT p FROM Personalmedico p WHERE p.perfilProfesional = :perfilProfesional")
     , @NamedQuery(name = "Personalmedico.findByCargo", query = "SELECT p FROM Personalmedico p WHERE p.cargo = :cargo")})
 public class Personalmedico implements Serializable {
 
-
-
     private static final long serialVersionUID = 1L;
-//    @Id
-//    @Basic(optional = false)
-//    @NotNull
-//    @Column(name = "idPersonalMedico")
-//    private Long idPersonalMedico;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "idPersonalMedico")
+    private Long idPersonalMedico;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -55,33 +52,30 @@ public class Personalmedico implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "cargo")
     private String cargo;
-    @OneToMany(mappedBy = "idPersonalMedico", fetch = FetchType.LAZY)
-    private List<Sesion> sesiones;
-    @Id
-    @JoinColumn(name = "idPersonalMedico", referencedColumnName = "cedula")
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "idPersonalMedico", referencedColumnName = "cedula", insertable = false, updatable = false)
+    @OneToOne(optional = false)
     private Usuario usuario;
 
     public Personalmedico() {
     }
 
-//    public Personalmedico(Long idPersonalMedico) {
-//        this.idPersonalMedico = idPersonalMedico;
-//    }
-//
-//    public Personalmedico(Long idPersonalMedico, String perfilProfesional, String cargo) {
-//        this.idPersonalMedico = idPersonalMedico;
-//        this.perfilProfesional = perfilProfesional;
-//        this.cargo = cargo;
-//    }
-//
-//    public Long getIdPersonalMedico() {
-//        return idPersonalMedico;
-//    }
-//
-//    public void setIdPersonalMedico(Long idPersonalMedico) {
-//        this.idPersonalMedico = idPersonalMedico;
-//    }
+    public Personalmedico(Long idPersonalMedico) {
+        this.idPersonalMedico = idPersonalMedico;
+    }
+
+    public Personalmedico(Long idPersonalMedico, String perfilProfesional, String cargo) {
+        this.idPersonalMedico = idPersonalMedico;
+        this.perfilProfesional = perfilProfesional;
+        this.cargo = cargo;
+    }
+
+    public Long getIdPersonalMedico() {
+        return idPersonalMedico;
+    }
+
+    public void setIdPersonalMedico(Long idPersonalMedico) {
+        this.idPersonalMedico = idPersonalMedico;
+    }
 
     public String getPerfilProfesional() {
         return perfilProfesional;
@@ -99,15 +93,6 @@ public class Personalmedico implements Serializable {
         this.cargo = cargo;
     }
 
-    @XmlTransient
-    public List<Sesion> getSesiones() {
-        return sesiones;
-    }
-
-    public void setSesiones(List<Sesion> sesiones) {
-        this.sesiones = sesiones;
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -115,55 +100,22 @@ public class Personalmedico implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    
-
-//    @Override
-//    public int hashCode() {
-//        int hash = 0;
-//        hash += (idPersonalMedico != null ? idPersonalMedico.hashCode() : 0);
-//        return hash;
-//    }
-//
-//    @Override
-//    public boolean equals(Object object) {
-//        // TODO: Warning - this method won't work in the case the id fields are not set
-//        if (!(object instanceof Personalmedico)) {
-//            return false;
-//        }
-//        Personalmedico other = (Personalmedico) object;
-//        if ((this.idPersonalMedico == null && other.idPersonalMedico != null) || (this.idPersonalMedico != null && !this.idPersonalMedico.equals(other.idPersonalMedico))) {
-//            return false;
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "com.mapris.modelo.entitie.Personalmedico[ idPersonalMedico=" + idPersonalMedico + " ]";
-//    }
-//    
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.usuario);
+        int hash = 0;
+        hash += (idPersonalMedico != null ? idPersonalMedico.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Personalmedico)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Personalmedico other = (Personalmedico) obj;
-        if (!Objects.equals(this.usuario, other.usuario)) {
+        Personalmedico other = (Personalmedico) object;
+        if ((this.idPersonalMedico == null && other.idPersonalMedico != null) || (this.idPersonalMedico != null && !this.idPersonalMedico.equals(other.idPersonalMedico))) {
             return false;
         }
         return true;
@@ -171,9 +123,7 @@ public class Personalmedico implements Serializable {
 
     @Override
     public String toString() {
-        return "Personalmedico{" + "usuario=" + usuario + '}';
+        return "com.mapris.modelo.entitie.Personalmedico[ idPersonalMedico=" + idPersonalMedico + " ]";
     }
-
-   
-  
+    
 }
