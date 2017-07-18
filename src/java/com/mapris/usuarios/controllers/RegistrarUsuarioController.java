@@ -66,12 +66,14 @@ public class RegistrarUsuarioController {
                 if (cal.get(Calendar.YEAR) >= this.hoy.get(Calendar.YEAR) ) {
                     
                     nuevoUsuario=null;
+                    System.out.println("No paso 1");
                     MessageUtil.enviarMensajeErrorGlobal("No se puede registrar", "La fecha introducida es igual o supera el año actual.");
                     
                 }else if(cal.get(Calendar.YEAR) > (this.hoy.get(Calendar.YEAR)-18)   ){
                     
                     System.out.println("" + (this.hoy.get(Calendar.YEAR)-18) );
                     nuevoUsuario=null;
+                   System.out.println("No paso 2");
                     MessageUtil.enviarMensajeErrorGlobal("No se puede registrar", "Tu fecha de nacimiento indica que eres menor de edad");
                     
                 
@@ -81,7 +83,9 @@ public class RegistrarUsuarioController {
                 nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
                 nuevoUsuario.setEstado(estadoFacadeLocal.find(2));
                 
+                
                 usuarioFacadeLocal.create(nuevoUsuario);
+               System.out.println("Paso ome 3");
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El usuario se ha creado con exito");
                 init();
                 }

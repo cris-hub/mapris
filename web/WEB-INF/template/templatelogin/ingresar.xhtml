@@ -41,6 +41,7 @@
 
         <div>
             <b:messages  showSummary="true" showDetail="true"  globalOnly="true"/>
+            
         </div>
 
         <h:form class="login-form"  id="login" prependId="false">
@@ -70,7 +71,7 @@
                     <b:commandButton  type="submit"  action="#{sessionController.iniciarSesion()}" ><span>#{msjLogin.valueingresar}</span> </b:commandButton>
                 </div>
                 <div class="footer">
-                     <a href="#registro" type="button" >#{msjLogin.buttonRegistrar}</a>  
+                    <a href="#registro" type="button" >#{msjLogin.buttonRegistrar}</a>  
                 </div>
             </div>
         </h:form>
@@ -107,37 +108,60 @@
             </h:form>
         </div>
         <!-- Fin Div Usuario -->
-       <!--- Registrar Usuario-->
-       <div id="registro" class="form-action hide">
+        <!--- Registrar Usuario-->
+            <b:form prependId="false" id="form-4">
+        <div id="registro" class="form-action hide">
 
             <div class="form-title">
                 <span class="form-title">#{msjRegister.titleRegistrate}</span><br/><br/>
                 <span class="form-subtitle">#{msjRegister.valueRegisterWelcome}</span>
             </div>
 
-            <h:form prependId="false" id="form-4">
-                <div class="form-group col-md-5 col-lg-5">
-                    <h:inputText v:type="text"  v:name="r" id="r" required="true" maxlength="15" tabindex="1" value=""/>
-                    <label for="r">#{msjRegister.labelNombre}</label>
-                    <div class="bar"></div>
-                </div>
-                <div class="form-group col-md-5 col-lg-5">
-                    <h:inputText v:type="email"  id="e" v:name="e" required="true" value="" tabindex="2"></h:inputText> 
-                    <label for="e">#{msjRegister.labelApellido}</label>
-                    <div class="bar"></div>
+                
+                <div class=" col-md-12 col-lg-12" style="margin: none;">
+                    <div class="form-group " style="margin: none;">
+                        <b:label v:for="r" text="Número de documento"></b:label>
+                        <b:inputText  v:name="r" id="r" required="true" maxlength="15" tabindex="1" value="#{registroController.nuevoUsuario.cedula}"/>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="form-group " style="margin: none;">
+                        <b:label v:for="e" text="#{msjRegister.labelNombre}"></b:label>
+                        <b:inputText  id="e" v:name="e" required="true" value="#{registroController.nuevoUsuario.nombres}" tabindex="2"></b:inputText> 
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group ">
+                        <b:label v:for="po" text="#{msjRegister.labelApellido}"></b:label>
+                        <b:inputText v:type="text"  v:name="po" id="po" required="true" maxlength="15" tabindex="1" value="#{registroController.nuevoUsuario.apellidos}"/>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group datepicker ">
+                        <b:label v:for="y" text="#{msjRegister.labelFechaNacimiento}"></b:label>
+                        <b:datepicker  v:name="y" id="y" required="true"  changeYear="true" changeMonth="true" tabindex="1" value="#{registroController.nuevoUsuario.fechaNaci}"/>
+                        <div class="bar"></div>
+                    </div>
+
+                   <div class="form-group ">
+                       <b:label v:for="w" text="#{msjRegister.labelContraseña}"></b:label>
+                       <b:inputSecret  id="w" v:name="w" required="true" value="#{registroController.nuevoUsuario.clave}" tabindex="2"></b:inputSecret> 
+                        <div class="bar"></div>
+                    </div>
                 </div>
 
+
                 <div class="button-container">
-                    <b:commandButton type="submit"  v:target="_parent" ><span>#{msjRegister.btnRegistrar}</span></b:commandButton>
+                    
+                    <b:commandButton type="submit"  v:target="_parent" action="#{registroController.registrar()}" value="Registrar"><span>#{msjRegister.btnRegistrar}</span></b:commandButton>
 
                 </div>
                 <div class="forgot" style="margin: 30px 280px 0px 0; font-size: 20px;">
                     <a href="#usuario" type="button" ><span id="boton2">#{msjLogin.Atras}</span></a>
                 </div>
-            
 
-            </h:form>
+
         </div>
+        </b:form>
 
 
 
