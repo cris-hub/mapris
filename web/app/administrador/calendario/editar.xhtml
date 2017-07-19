@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:b="http://bootsfaces.net/ui">
+
+
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="index.html">Administrador</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <a href="/app/administrador/empresa/empresa.xhtml">Calendario</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Editar Calendario</span>
+            </li>
+        </ul>
+
+    </ui:define>
+    <ui:define name="contenido">
+
+        <div class="col-sm-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase">Editar Calendario</span>
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+                <b:messages showSummary="true" show-detail="true"/>
+               
+                <b:form id="form-editar" prependId="false">
+                    <b:panelGrid colSm="12" columns="2">
+                        <h:outputText value="Lunes"/>
+                        <b:inputText value="#{editarCalendarioController.calendarioSelecionado.lunes}"/>
+                        <h:outputText value="Martes"/>
+                        <b:inputText value="#{editarCalendarioController.calendarioSelecionado.martes}"/>
+                        <h:outputText value="Miercoles"/>
+                        <b:inputText value="#{editarCalendarioController.calendarioSelecionado.miercoles}"/>
+                        <h:outputText value="Jueves"/>
+                        <b:inputText value="#{editarCalendarioController.calendarioSelecionado.jueves}"/>
+                        <h:outputText value="Viernes"/>
+                        <b:inputText value="#{editarCalendarioController.calendarioSelecionado.viernes}"/>
+                        <h:outputText value="Sábado"/>
+                        <b:inputText value="#{editarCalendarioController.calendarioSelecionado.sabado}"/>
+                        <h:outputText value="Domingo"/>
+                        <b:inputText value="#{editarCalendarioController.calendarioSelecionado.domingo}"/>
+                         
+                         
+                             
+                    </b:panelGrid>
+                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/calendario/calendario.xhtml" value="Volver"/>
+                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarCalendarioController.actualizarDatos()}"/>
+                </b:form>
+            </div>
+        </div>
+
+
+
+    </ui:define>
+</ui:composition>
+

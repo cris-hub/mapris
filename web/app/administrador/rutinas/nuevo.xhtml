@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:b="http://bootsfaces.net/ui"
+               xmlns:p="http://primefaces.org/ui">
+
+
+   
+
+<ui:define name="breadcrumb">
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a href="index.html">Calendario</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span class="active">Nuevo</span>
+        </li>
+    </ul>
+</ui:define>
+
+<ui:define name="contenido">
+
+    <div class="col-sm-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase">Nuevo Calendario</span>
+                </div>
+                <div class="tools"> </div>
+            </div>
+            <b:messages globalOnly="true" showSummary="true" show-detail="true"/>
+            <b:message for="form-registro" showSummary="true" show-detail="true"/>
+            <b:form id="form-registro" prependId="false">
+                <b:panelGrid colSm="12" columns="2">
+
+
+                    <h:outputText value="Número de Rutina"/>
+                    
+                    <b:inputText name="document" value="#{registroRutinaController.nuevoRutina.idRutinas}" colLg="6" colMd="6" required="true"/>
+                   
+                    <h:outputText value="Nombre"/>
+                    <b:inputText      value="#{registroRutinaController.nuevoRutina.nombre}"/>
+                    <h:outputText  value="Descripción "/>
+                    <b:inputText   value="#{registroRutinaController.nuevoRutina.descripcion}"/>
+                    
+                   
+                  
+                </b:panelGrid>
+                <h:link styleClass="btn btn-primary" outcome="/app/administrador/rutinas/rutinas.xhtml" value="Volver"/>
+                <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{registroRutinaController.registrar()}"/>
+            </b:form>
+        </div>
+    </div>
+
+
+
+</ui:define>
+</ui:composition>
+
