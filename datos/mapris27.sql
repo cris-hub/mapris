@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `mapris`;
--- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mapris
 -- ------------------------------------------------------
--- Server version	5.6.20
+-- Server version	5.7.17-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -169,7 +169,7 @@ CREATE TABLE `estados` (
   `nombre` varchar(45) DEFAULT NULL,
   `descripccion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_estados`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,7 +267,7 @@ CREATE TABLE `permisos` (
 
 LOCK TABLES `permisos` WRITE;
 /*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
-INSERT INTO `permisos` VALUES (0,'inicio','/app/index.xhtml\n','fa fa-home',NULL),(1,'perfil','','fa fa-user-o',NULL),(2,'usuarios','/app/administrador/usuarios/ver.xhtml','fa fa-users',NULL),(3,'aplazamientos','','fa fa-clock-o',NULL),(4,'citas','','fa fa-calendar-check-o',NULL),(5,'agenda','','fa fa-calendar',NULL),(6,'agendar','','fa fa-calendar-check-o',NULL),(7,'inscripciones','/app/administrador/inscripciones/ver.xhtml','fa fa-list-alt',NULL),(8,'empresa','/app/administrador/empresa/ver.xhtml','fa fa-columns',NULL),(11,'miPerfil','/app/perfil/miperfil.xhtml','fa fa-user',1),(12,'cambiarDatos','/app/perfil/cambiardatos.xhtml','fa fa-pencil',1),(21,'listarUsuarios','/app/usuarios/listar.xhtml','fa fa-list',2),(22,'nuevoUsuario','/app/usuarios/nuevo.xhtml','fa fa-user-plus',2),(30,'editarAplazamiento','/app//usuarios/editar.xhtml','fa fa-pencil-square-o',2),(31,'listaAplazamientos','/app/aplazamientos/lista.xhtml','fa fa-list',3),(32,'registrarAplazamiento','/app/aplazamientos/registrarAplazamiento.xhtml','fa fa-plus',3),(61,'reservar','/app/cliente/servicios.xhtml','fa fa-pencil-square-o',6),(71,'listaInscripciones','/app/administrador/inscripciones/inscripciones.xhtml','fa fa-list-ol',7),(72,'editarIncripcion','/app/administrador/inscripciones/editar.xhtml','fa fa-pencil',7),(81,'listarEmpresas','/app/administrador/empresa/empresas.xhtml','fa fa-th-large',8),(82,'editarEmpresa','/app/administrador/empresa/editar.xhtml','fa fa-pencil',8);
+INSERT INTO `permisos` VALUES (0,'inicio','/app/index.xhtml\n','fa fa-home',NULL),(1,'perfil','','fa fa-user-o',NULL),(2,'usuarios','/app/administrador/usuarios/ver.xhtml','fa fa-users',NULL),(3,'aplazamientos','','fa fa-clock-o',NULL),(4,'citas','','fa fa-calendar-check-o',NULL),(5,'calendario','','fa fa-calendar',NULL),(6,'agendar','','fa fa-calendar-check-o',NULL),(7,'inscripciones','/app/administrador/inscripciones/ver.xhtml','fa fa-list-alt',NULL),(8,'empresa','/app/administrador/empresa/ver.xhtml','fa fa-columns',NULL),(9,'rutina','/app/administrador/rutinas/ver.xhtml','fa fa-user-plus',NULL),(11,'miPerfil','/app/perfil/miperfil.xhtml','fa fa-user',1),(12,'cambiarDatos','/app/perfil/cambiardatos.xhtml','fa fa-pencil',1),(21,'listarUsuarios','/app/usuarios/listar.xhtml','fa fa-list',2),(22,'nuevoUsuario','/app/usuarios/nuevo.xhtml','fa fa-user-plus',2),(30,'editarAplazamiento','/app//usuarios/editar.xhtml','fa fa-pencil-square-o',2),(31,'listaAplazamientos','/app/aplazamientos/lista.xhtml','fa fa-list',3),(32,'registrarAplazamiento','/app/aplazamientos/registrarAplazamiento.xhtml','fa fa-plus',3),(51,'Nuevo Calendario','/app/administrador/calendario/nuevo.xhtml','fa fa-user-plus',5),(52,'Listar Calendarios','/app/administrador/calendario/calendario.xhtml','fa fa-calendar',5),(61,'reservar','/app/cliente/servicios.xhtml','fa fa-pencil-square-o',6),(71,'listaInscripciones','/app/administrador/inscripciones/inscripciones.xhtml','fa fa-list-ol',7),(72,'editarIncripcion','/app/administrador/inscripciones/editar.xhtml','fa fa-pencil',7),(81,'listarEmpresas','/app/administrador/empresa/empresas.xhtml','fa fa-th-large',8),(82,'editarEmpresa','/app/administrador/empresa/editar.xhtml','fa fa-pencil',8),(91,'Listar Rutina','/app/administrador/rutinas/rutinas.xhtml','fa fa-th-large',9),(92,'Editar Rutina','/app/administrador/rutinas/editar.xhtml','fa fa-cog',9),(93,'Nueva Rutina','/app/administrador/rutinas/nuevo.xhtml','fa fa-th-large',9);
 /*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,7 +295,7 @@ CREATE TABLE `permisosroles` (
 
 LOCK TABLES `permisosroles` WRITE;
 /*!40000 ALTER TABLE `permisosroles` DISABLE KEYS */;
-INSERT INTO `permisosroles` VALUES (1,1),(2,1),(3,1),(7,1),(8,1),(11,1),(12,1),(21,1),(22,1),(31,1),(32,1),(71,1),(72,1),(81,1),(82,1),(1,2),(6,2),(11,2),(12,2),(61,2);
+INSERT INTO `permisosroles` VALUES (1,1),(2,1),(3,1),(5,1),(7,1),(8,1),(9,1),(11,1),(12,1),(21,1),(22,1),(31,1),(32,1),(51,1),(52,1),(71,1),(72,1),(81,1),(82,1),(91,1),(92,1),(93,1),(1,2),(6,2),(11,2),(12,2),(61,2);
 /*!40000 ALTER TABLE `permisosroles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -654,7 +654,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1111,'Paula','Mendez','0199-01-01','fceeb9b9d469401fe558062c4bd25954',NULL,1,'2017-07-04','pm@gmailcom','4312321','3104391876'),(112312,'Maria','Melendez','1999-12-22','3b2285b348e95774cb556cb36e583106',NULL,1,'2017-07-04','MM@gmaill.com',NULL,NULL);
+INSERT INTO `usuarios` VALUES (1111,'Paula','Mendez','0199-01-01','fceeb9b9d469401fe558062c4bd25954',NULL,1,'2017-07-04','pm@gmailcom','4312321','3104391876'),(81928,'Panda','En alanda','1999-11-11','de704c9bfdc9bb9105e00b77697fc73a',NULL,2,'2017-07-17',NULL,NULL,NULL),(112312,'Maria','Melendez','1999-12-22','3b2285b348e95774cb556cb36e583106',NULL,1,'2017-07-04','MM@gmaill.com',NULL,NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -772,4 +772,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-04 11:46:49
+-- Dump completed on 2017-07-19 20:19:47
