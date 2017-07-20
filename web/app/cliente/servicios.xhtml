@@ -7,7 +7,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui">
 
-    <ui:define name="titulo">#{sessionController.usuario.primerNombre}</ui:define>
+    <ui:define name="titulo">#{sessionController.usuario.nombres}</ui:define>
     <ui:define name="pagetitle">
         <div class="page-head">
             <div class="page-title">
@@ -161,15 +161,15 @@
                             </div>
                             <div class="content">
                                 <h:form>
-                                <div class="main">
-                                    <h4 class="text-center">Descripción</h4>
-                                    <p class="text-center">Ralajate</p>
-                                    <p class="profession">Masajes Prenatales: Masajes relajantes y drenajes linfáticos<br/> Spa</p>  
+                                    <div class="main">
+                                        <h4 class="text-center">Descripción</h4>
+                                        <p class="text-center">Ralajate</p>
+                                        <p class="profession">Masajes Prenatales: Masajes relajantes y drenajes linfáticos<br/> Spa</p>
 
-                                    <div class="button-container">
-                                        <b:commandButton  type="submit"><span>Reservar</span> </b:commandButton>
+                                        <div class="button-container">
+                                            <b:commandButton  type="submit"><span>Reservar</span> </b:commandButton>
+                                        </div>
                                     </div>
-                                </div>
                                 </h:form>
                             </div>
 
