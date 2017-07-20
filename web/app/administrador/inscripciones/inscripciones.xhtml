@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -12,7 +12,7 @@
 
     <ui:define name="titulo">Administrador-Inscripciones</ui:define>
     <ui:define name="pagetitle">
-        
+
     </ui:define>
 
     <ui:define name="breadcrumb">
@@ -29,105 +29,79 @@
     </ui:define>
 
     <ui:define name="contenido">
-       
 
-        <div class="col-sm-12">
-            <div class="portlet light bordered" style="border-radius: 30px;">
-                <div class="portlet-title">
-                    <div class="caption font-dark">
-                        <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Lista de Inscripciones</span>
-                    </div>
-                    <div class="tools"> </div>
-                </div>
-                <div class="portlet-body">
-                    <div class="table-toolbar">
-                        <div class="row">
-                            <h:form>
-                                <div class="col-md-6">
-                                    <div class="btn-group">
-                                        <button id="sample_editable_1_new" class="btn sbold green"> Add New
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">INSCRIPCIONES</h4>
+                                <p class="category">Lista de Inscripciones</p>
+                            </div>
+                            <div class="card-content table-responsive">
 
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <h:commandLink value="PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                            </li>
-                                        </ul>
+                                <b:messages globalOnly="true" showSummary="true" showDetail="true"/>
+                                <h:form id="form-data-table-usuarios" prependId="false">
 
-                                    </div>
-                                </div>
-                            </h:form>
+                                    <b:dataTable id="dtUsuario" value="#{listarInscripcionController.inscripciones}" var="in" >
+
+
+                                        <b:dataTableColumn label="Id Inscripcion" value="#{in.idInscripciones}"/>
+                                        <b:dataTableColumn label="Cedula Cliente" value="#{in.idCliente.usuario.cedula}"/>
+                                        <b:dataTableColumn label="Nombre Cliente" value="#{in.idCliente.usuario.nombres} #{in.idCliente.usuario.apellidos} "/>
+                                        <b:dataTableColumn label="Fecha de Inicio">
+                                            <h:outputText value="#{in.fechaInicio}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:outputText>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Valor de la inscripción">
+                                            <h:outputText value="#{in.valor}">
+                                                <f:convertNumber  currencySymbol="$" groupingUsed="true"
+                                                                  maxFractionDigits="0" type="currency" locale="es_CO" />
+                                            </h:outputText>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="# de sesiones" value="#{in.idSesiones.numeroSesiones}" />
+
+
+
+                                        <b:dataTableColumn  label="#{mensajeApp.opciones}" >
+                                            <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verInscripcionController.verInscripcion(in)}"/>
+                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarInscripcionController.preModificar(in)}"/>
+                                            <b:commandButton size="sm"  look="danger" value=""
+                                                             iconAwesome="trash" tooltip="Eliminar"
+                                                             onclick="$('.modalPseudoClass').modal();">
+                                                <f:ajax event="click" render=":message-modal-confirm"
+                                                        listener="#{listarInscripcionController.setInscripcionSeleccionado(in)}"/>
+                                            </b:commandButton>
+                                            <b:commandButton size="sm" look="default" value="" tooltip="Activar/Desactivar" iconAwesome="#{editarInscripcionController.getIconUsuarioBloqueo(in)}" action="#{editarInscripcionController.cambioDeEstado(in)}"/>
+
+                                        </b:dataTableColumn>
+                                    </b:dataTable>
+
+                                </h:form>
+                            </div>
                         </div>
                     </div>
-                    
-                    <h:form id="form-data-table-usuarios" prependId="false">
-                        <b:messages globalOnly="true" showSummary="true" showDetail="true"/>
-                        <b:dataTable id="dtUsuario" value="#{listarInscripcionController.inscripciones}" var="in" >
 
-
-                            <b:dataTableColumn label="Id Inscripcion" value="#{in.idInscripciones}"/>
-                            <b:dataTableColumn label="Cedula Cliente" value="#{in.idCliente.usuario.cedula}"/>
-                            <b:dataTableColumn label="Nombre Cliente" value="#{in.idCliente.usuario.nombres} #{in.idCliente.usuario.apellidos} "/>
-                            <b:dataTableColumn label="Fecha de Inicio">
-                                <h:outputText value="#{in.fechaInicio}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>                           
-                                </h:outputText>
-                            </b:dataTableColumn>
-                            <b:dataTableColumn label="Valor de la inscripción">
-                                <h:outputText value="#{in.valor}">
-                                <f:convertNumber  currencySymbol="$" groupingUsed="true" 
-                                                  maxFractionDigits="0" type="currency" locale="es_CO" />
-                                </h:outputText>
-                            </b:dataTableColumn>
-                            <b:dataTableColumn label="# de sesiones" value="#{in.idSesiones.numeroSesiones}" />
-                           <b:dataTableColumn  label="Opciones" >
-                               <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verInscripcionController.verInscripcion(in)}"/>
-                               <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarInscripcionController.preModificar(in)}"/>
-                                <b:commandButton size="sm"  look="danger" value=""
-                                                 iconAwesome="trash" tooltip="Eliminar"
-                                                 onclick="$('.modalPseudoClass').modal();">
-                                    <f:ajax event="click" render=":message-modal-confirm"
-                                            listener="#{listarInscripcionController.setInscripcionSeleccionado(in)}"/>
-                                </b:commandButton>
-                               <b:commandButton look="default" value="" iconAwesome="#{editarInscripcionController.getIconUsuarioBloqueo(in)}" action="#{editarInscripcionController.cambioDeEstado(in)}"/>
-
-                            </b:dataTableColumn>
-                        </b:dataTable>
-
-                    </h:form>
+                    <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
+                        <h:panelGroup id="message-modal-confirm" layout="block">
+                            <p>¿Está seguro de eliminar la inscripción del cliente #{listarInscripcionController.inscripcionSeleccionado.idCliente.usuario.nombres} #{listarInscripcionController.inscripcionSeleccionado.idCliente.usuario.apellidos} ?
+                            </p>
+                        </h:panelGroup>
+                        <f:facet name="footer">
+                            <h:form id="form-eliminar" prependId="false">
+                                <b:button value="No estoy segura" dismiss="modal" />
+                                <b:commandButton value="Estoy totalmente segura" look="primary"
+                                                 actionListener="#{listarInscripcionController.eliminarInscripcion()}"/>
+                            </h:form>
+                        </f:facet>
+                    </b:modal>
                 </div>
             </div>
-        </div> 
-        <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
-            <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>¿Está seguro de eliminar la inscripción del cliente #{listarInscripcionController.inscripcionSeleccionado.idCliente.usuario.nombres} #{listarInscripcionController.inscripcionSeleccionado.idCliente.usuario.apellidos} ?  
-                </p>
-            </h:panelGroup>
-            <f:facet name="footer">
-                <h:form id="form-eliminar" prependId="false">
-                    <b:button value="No estoy segura" dismiss="modal" />
-                    <b:commandButton value="Estoy totalmente segura" look="primary"
-                                     actionListener="#{listarInscripcionController.eliminarInscripcion()}"/>
-                </h:form>
-            </f:facet>
-        </b:modal>
+        </div>
+
+
     </ui:define>
 </ui:composition>
 

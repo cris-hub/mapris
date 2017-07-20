@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -11,159 +11,98 @@
         <title>Usuario</title>
     </ui:define>
 
-    <ui:define name="breadcrumb">
-        <ul class="page-breadcrumb breadcrumb">
-            <li>
-                <a href="index.html">Administrador</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <a href="/app/administrador/empresa/empresa.xhtml">Empresa</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <span class="active">Ver información de la empresa</span>
-            </li>
-        </ul>
 
-    </ui:define>
 
 
     <ui:define name="contenido">
-        <div class="container">
-            <div class="row">
-                
 
-                <div class=" col-md-10  toppad" >
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="blue">
+                                <i class="material-icons">info_outline</i>
+                                <h4 class="title">Edit Profile</h4>
+                                <p class="category">Complete your profile</p>
+                            </div>
+                            <div class="card-content">
+                                <b:messages showSummary="true" show-detail="true"/>
+                                <b:message for="form-editar" showSummary="true" show-detail="true"/>
+                                <h:form id="form-editar" prependId="false">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Nit de la empresa</label>
+                                                <h:outputText value="#{verEmpresaController.empresa.idEmpresa}" class="form-control"  />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Nombre de la empresa</label>
+                                                <h:outputText value="#{verEmpresaController.empresa.nombre}" class="form-control"  />
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Telefono Celular</label>
+                                                <h:outputText value="#{verEmpresaController.empresa.telefonoC}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Telefono Fijo</label>
+                                                <h:outputText value="#{verEmpresaController.empresa.telefonoF}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><h:outputText value="#{verEmpresaController.empresa.nombre}"/></h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="" class="img-circle img-responsive"/> </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Direccion sede alternativa</label>
+                                                <h:outputText value="#{verEmpresaController.empresa.direccionO}" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Direccion sede principal</label>
+                                                <h:outputText value="#{verEmpresaController.empresa.direccionP}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                           
-                                <div class=" col-md-9 col-lg-9 "> 
-                                    <table class="table table-user-information">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="Nit de la empresa"/>
-                                                </td>
-                                                <td>
-                                                    <h:outputText value="#{verEmpresaController.empresa.idEmpresa}"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="Nombre de la empresa"/>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Clientes Vinculados </label>
+                                                <b:dataTable border="false" info="false" paginated="false" searching="false" value="#{verEmpresaController.empresa.clientes}" var="cli">
+                                                    <b:dataTableColumn value="#{cli.usuario.cedula}"/>
+                                                </b:dataTable>
+                                            </div>
+                                        </div>
 
-                                                </td>
-                                                <td>
-                                                    <h:outputText value="#{verEmpresaController.empresa.nombre}"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="Telefono Fijo"/>
-
-                                                </td>
-
-                                                <td>
-                                                    
-                                                  <h:outputText value="#{verEmpresaController.empresa.telefonoF}"/>  
-                                                  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="Telefono Celular"/>
-
-                                                </td>
-
-                                                <td>
-                                                    
-                                                  <h:outputText value="#{verEmpresaController.empresa.telefonoC}"/>  
-                                                  
-                                                </td>
-                                            </tr>
-                                              <tr>
-                                                <td>
-                                                    <h:outputText value="Dirección sede principal"/>
-
-                                                </td>
-
-                                                <td>
-                                                    <h:outputText value="#{verEmpresaController.empresa.direccionP}"/>                                                    
-                                                  
-                                                </td>
-                                            </tr>
-                                             <tr>
-                                                <td>
-                                                    <h:outputText value="Dirección sede principal"/>
-
-                                                </td>
-
-                                                <td>
-                                                    <h:outputText value="#{verEmpresaController.empresa.direccionP}"/>                                                    
-                                                  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="Dirección sede alterna"/>
-
-                                                </td>
-
-                                                <td>
-                                                    
-                                                    <h:outputText value="#{verEmpresaController.empresa.direccionO}"/>                                                    
-                                                   
-                                                  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="Clientes vinculados"/>
-
-                                                </td>
-
-                                                <td>
-                                                    <b:dataTable border="false" info="false" paginated="false" searching="false" value="#{verEmpresaController.empresa.clientes}" var="cli">
-                                                        <b:dataTableColumn value="#{cli.usuario.cedula}"/>
-                                                    </b:dataTable>
-                                                    
-                                                  
-                                                </td>
-                                            </tr>
+                                    </div>
 
 
-                                        </tbody>
-                                    </table>
-                                    <!--                                    <div class="btn-group">
-                                                                            <a href="#" class=" btn-block  btn btn-primary">My Sales Performance</a>
-                                                                            <a href="#" class=" btn-block btn btn-primary">Team Sales Performance</a>
-                                                                        </div>-->
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/empresa/empresas.xhtml" value="Volver"/>
+
+                                </h:form>
+
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">local_offer</i> Maternity Club
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer">
-                            <h:link styleClass="btn btn-primary" outcome="/app/administrador/empresa/empresas.xhtml" value="Volver"/>
-                            <span class="pull-right">
-                                <a href="" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                            </span>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
-
 
 
     </ui:define>

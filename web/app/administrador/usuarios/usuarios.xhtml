@@ -39,84 +39,54 @@
             <b:messages showDetail="true" showSummary="true" globalOnly="true"/>
         </div>
 
-        <div class="col-sm-12">
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption font-dark">
-                        <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Lista de Usuarios</span>
-                    </div>
-                    <div class="tools"> </div>
-                </div>
-                <div class="portlet-body">
-                    <div class="table-toolbar">
-                        <div class="row">
-                            <h:form>
-                                <div class="col-md-6">
-                                    <div class="btn-group">
-                                        <button id="sample_editable_1_new" class="btn sbold green"> Add New
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Lista de Usuarios</h4>
+                                <p class="category">Estos son los residentes por apartamento y pago del parquedero</p>
+                            </div>
+                            <div class="card-content table-responsive">
 
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <h:commandLink value="PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                            </li>
-                                        </ul>
+                                <b:message for="form-data-table-usuarios" showSummary="true" showDetail="true"/>
+                                <h:form id="form-data-table-usuarios" prependId="false">
+                                    <b:dataTable id="dtUsuario" value="#{listarUsuaariosController.usuarios}" var="user">
 
-                                    </div>
-                                </div>
-                            </h:form>
+
+                                        <b:dataTableColumn label=" #{mensajeApp.documento}" value="#{user.cedula}"/>
+                                        <b:dataTableColumn label="#{mensajeApp.nombre}" value="
+                                                           #{user.nombres}
+                                                           #{user.apellidos}"/>
+
+                                        <b:dataTableColumn label="#{mensajeApp.roles}" >
+                                            <ui:repeat value="#{user.roles}" var="r2">
+                                                <h:outputText value="#{r2.nombre}"/><br/>
+                                            </ui:repeat>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn  label="#{mensajeApp.opciones}">
+                                            <b:commandButton look="success" value="" iconAwesome="eye" action="#{verUsuarioControoller.verUsuario(user)}"/>
+                                            <b:commandButton look="primary" value="" iconAwesome="pencil" action="#{editarUsuarioController.preModificar(user)}"/>
+                                            <b:commandButton look="danger"
+                                                             iconAwesome="trash" tooltip="Eliminar" tooltip-position="top" tooltipContainer="true"
+                                                             onclick="$('.modalPseudoClass').modal();">
+                                                <f:ajax event="click" render=":message-modal-confirm"
+                                                        listener="#{listarUsuaariosController.setUsuarioSeleccionado(user)}"/>
+                                            </b:commandButton>
+                                            <b:commandButton look="default" value="" iconAwesome="#{editarUsuarioController.getIconUsuarioBloqueo(user)}" action="#{editarUsuarioController.cambioDeEstado(user)}"/>
+                                        </b:dataTableColumn>
+                                    </b:dataTable>
+
+                                </h:form>
+                            </div>
                         </div>
                     </div>
-                    <b:message for="form-data-table-usuarios" showSummary="true" showDetail="true"/>
-                    <h:form id="form-data-table-usuarios" prependId="false">
-                        <b:dataTable id="dtUsuario" value="#{listarUsuaariosController.usuarios}" var="user">
-
-
-                            <b:dataTableColumn label="Documento" value="#{user.cedula}"/>
-                            <b:dataTableColumn label="Nombre" value="
-                                               #{user.nombres} 
-                                               #{user.apellidos} 
-                                              "/>
-
-                            <b:dataTableColumn label="Roles" >
-                                <ui:repeat value="#{user.roles}" var="r2">
-                                    <h:outputText value="#{r2.nombre}"/><br/>
-                                </ui:repeat>
-                            </b:dataTableColumn>
-                            <b:dataTableColumn  label="Opciones">
-                                <b:commandButton look="success" value="" iconAwesome="eye" action="#{verUsuarioControoller.verUsuario(user)}"/>
-                                <b:commandButton look="primary" value="" iconAwesome="pencil" action="#{editarUsuarioController.preModificar(user)}"/>
-                                <b:commandButton look="danger" value=""
-                                                 iconAwesome="trash" tooltip="Eliminar"
-                                                 onclick="$('.modalPseudoClass').modal();">
-                                    <f:ajax event="click" render=":message-modal-confirm"
-                                            listener="#{listarUsuaariosController.setUsuarioSeleccionado(user)}"/>
-                                </b:commandButton>
-                                <b:commandButton look="default" value="" iconAwesome="#{editarUsuarioController.getIconUsuarioBloqueo(user)}" action="#{editarUsuarioController.cambioDeEstado(user)}"/>
-                            </b:dataTableColumn>
-                        </b:dataTable>
-
-                    </h:form>
                 </div>
             </div>
-        </div> 
+        </div>
+
+
         <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
             <h:panelGroup id="message-modal-confirm" layout="block">
                 <p>¿Está seguro de eliminar el usuario #{listarUsuaariosController.usuarioSeleccionado.nombres} ?

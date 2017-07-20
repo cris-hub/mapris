@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -18,7 +18,7 @@
                 <a href="/app/index.xhtml">Administrador</a>
                 <i class="fa fa-circle"></i>
             </li>
-             <li>
+            <li>
                 <a href="/app/administrador/inscripciones/inscripciones.xhtml">Inscripciones</a>
                 <i class="fa fa-circle"></i>
             </li>
@@ -31,118 +31,92 @@
 
 
     <ui:define name="contenido">
-        <div class="container">
-            <div class="row">
 
-                <div class=" col-md-10  toppad" >
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="blue">
+                                <i class="material-icons">info_outline</i>
+                                <h4 class="title">Edit Profile</h4>
+                                <p class="category">Complete your profile</p>
+                            </div>
+                            <div class="card-content">
+                                <b:messages showSummary="true" show-detail="true"/>
+                                <b:message for="form-editar" showSummary="true" show-detail="true"/>
+                                <h:form id="form-editar" prependId="false">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Id Inscripcion</label>
+                                                <h:outputText value="#{verInscripcionController.inscripcion.idInscripciones}" class="form-control"  />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Cedula del cliente</label>
+                                                <h:outputText value="#{verInscripcionController.inscripcion.idCliente.usuario.cedula}" class="form-control"  />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Nombre del cliente</label>
+                                                <h:outputText value="#{verInscripcionController.inscripcion.idCliente.usuario.nombres} #{verInscripcionController.inscripcion.idCliente.usuario.apellidos}" class="form-control"/>
+                                            </div>
+                                        </div>
 
+                                    </div>
 
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><h:outputText value="Esta es la inscripción del cliente: #{verInscripcionController.inscripcion.idCliente.usuario.nombres} #{verInscripcionController.inscripcion.idCliente.usuario.apellidos} "/></h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="" class="img-circle img-responsive"/> </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Fecha de inicio</label>
+                                                <h:outputText value="#{verInscripcionController.inscripcion.fechaInicio}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                           
-                                <div class=" col-md-9 col-lg-9 "> 
-                                    <table class="table table-user-information">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="Id Inscripcion"/>
-                                                </td>
-                                                <td>
-                                                    <h:outputText value="#{verInscripcionController.inscripcion.idInscripciones}"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="Cedula del cliente"/>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Valor de la inscripcion</label>
+                                                <b:inputText value="#{verInscripcionController.inscripcion.valor}" class="form-control">
+                                                    <f:convertNumber  currencySymbol="$" groupingUsed="true"
+                                                                      maxFractionDigits="0" type="currency" locale="es_CO" />
+                                                </b:inputText>
+                                            </div>
+                                        </div>
 
-                                                </td>
-                                                <td>
-                                                    <h:outputText value="#{verInscripcionController.inscripcion.idCliente.usuario.cedula}"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="Nombre del cliente"/>
-
-                                                </td>
-
-                                                <td>
-                                                    <h:outputText value="#{verInscripcionController.inscripcion.idCliente.usuario.nombres} #{verInscripcionController.inscripcion.idCliente.usuario.apellidos}" />
-                                                                                                  
-                                                </td>
-                                            </tr>
-                                             <tr>
-                                                <td>
-                                                    <h:outputText value="Fecha de inicio"/>
-
-                                                </td>
-
-                                                <td>
-                                                    <h:outputText value="#{verInscripcionController.inscripcion.fechaInicio}" />
-                                                                                                  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="Número de sesiones"/>
-
-                                                </td>
-
-                                                <td>
-                                                    <h:outputText value="#{verInscripcionController.inscripcion.idSesiones.numeroSesiones}" />
-                                                                                                  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h:outputText value="Valor de la inscripción"/>
-
-                                                </td>
-
-                                                <td>
-                                                    <h:outputText value="#{verInscripcionController.inscripcion.valor}">
-                                                        <f:convertNumber  currencySymbol="$" groupingUsed="true" 
-                                                                          maxFractionDigits="0" type="currency" locale="es_CO" />
-                                                    </h:outputText>
-                                                                                                  
-                                                </td>
-                                            </tr>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Número de sesiones</label>
+                                                <h:outputText value="#{verInscripcionController.inscripcion.idSesiones.numeroSesiones}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
 
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/inscripciones/inscripciones.xhtml" value="Volver"/>
 
+                                </h:form>
 
-
-
-                                        </tbody>
-                                    </table>
-                                    <!--                                    <div class="btn-group">
-                                                                            <a href="#" class=" btn-block  btn btn-primary">My Sales Performance</a>
-                                                                            <a href="#" class=" btn-block btn btn-primary">Team Sales Performance</a>
-                                                                        </div>-->
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">local_offer</i> Maternity Club
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer">
-                            <h:link styleClass="btn btn-primary" outcome="/app/administrador/inscripciones/inscripciones.xhtml" value="Volver"/>
-                            <span class="pull-right">
-                                <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                            </span>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
-
 
 
     </ui:define>

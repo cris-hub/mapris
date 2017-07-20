@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -25,47 +25,82 @@
 
     </ui:define>
     <ui:define name="contenido">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Editar Inscripcion</h4>
+                                <p class="category">Complete your profile</p>
+                            </div>
+                            <div class="card-content">
+                                <b:messages showSummary="true" show-detail="true" />
+                                <b:form id="form-editar" prependId="false">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Id Inscripción</label>
+                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idInscripciones}" class="form-control" disabled="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Cedula del cliente</label>
+                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.cedula}" disabled="true" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Nombre del cliente</label>
+                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.nombres} #{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.apellidos}" disabled="true" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
 
-        <div class="col-sm-12">
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption font-dark">
-                        <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Editar Inscripción</span>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Valor inscripcion</label>
+                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.valor}" class="form-control">
+                                                    <f:convertNumber  currencySymbol="$" groupingUsed="true"
+                                                                      maxFractionDigits="0" type="currency" locale="es_CO" />
+                                                </b:inputText>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Numero de Sesiones</label>
+                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idSesiones.numeroSesiones}" class="form-control"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Fecha de inicio</label>
+                                                <b:datepicker value="#{editarInscripcionController.inscripcionSelecionada.fechaInicio}" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/inscripciones/inscripciones.xhtml" value="Volver"/>
+                                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarInscripcionController.actualizarDatos()}" class="btn btn-primary pull-right"/>
+
+                                    <div class="clearfix"></div>
+                                </b:form>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tools"> </div>
                 </div>
-                <b:messages showSummary="true" show-detail="true" />
-                <b:form id="form-editar" prependId="false">
-                    <b:panelGrid colSm="12" columns="2">
-                        <h:outputText value="Id Inscripción"/>
-                        <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idInscripciones}" disabled="true"/>
-                        <h:outputText value="Cedula cliente"/>
-                        <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.cedula}" disabled="true" />
-                        <h:outputText value=" Nombre del cliente"/>
-                        <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.nombres} #{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.apellidos}" disabled="true"/>
-                        <h:outputText value="Valor de la inscripción"/>
-                        <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.valor}">
-                        <f:convertNumber  currencySymbol="$" groupingUsed="true" 
-                           maxFractionDigits="0" type="currency" locale="es_CO" />
-                                                  
-                        </b:inputText>
-                        <h:outputText value="Número de sesiones"/>
-                        <b:inputText  value="#{editarInscripcionController.inscripcionSelecionada.idSesiones.numeroSesiones}"  />
-
-                        <h:outputText value="Fecha de inicio"/>
-                        <b:datepicker value="#{editarInscripcionController.inscripcionSelecionada.fechaInicio}">
-                            
-                        </b:datepicker>
-                       
-                        
-                    </b:panelGrid>
-                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/inscripciones/inscripciones.xhtml" value="Volver"/>
-                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarInscripcionController.actualizarDatos()}"/>
-                </b:form>
             </div>
         </div>
-
 
 
     </ui:define>
