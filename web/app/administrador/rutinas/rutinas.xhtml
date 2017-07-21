@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -12,7 +12,7 @@
 
     <ui:define name="titulo">Administrador-Empresas</ui:define>
     <ui:define name="pagetitle">
-        
+
     </ui:define>
 
     <ui:define name="breadcrumb">
@@ -21,7 +21,7 @@
                 <a href="/app/index.xhtml">Administrador</a>
                 <i class="fa fa-circle"></i>
             </li>
-                      
+
             <li>
                 <span class="active">Calendario</span>
             </li>
@@ -31,69 +31,64 @@
 
     <ui:define name="contenido">
 
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">INSCRIPCIONES</h4>
+                                <p class="category">Lista de Inscripciones</p>
+                            </div>
+                            <div class="card-content table-responsive">
 
-      
+                                <b:messages show-detail="true" show-summary="true" globalOnly="true"/>
+                                <b:form id="form-data-table-rutinas" prependId="false">
+                                    <b:dataTable value="#{listarRutinaController.rutina}" var="rutina">
+                                        <b:dataTableColumn label="Número del rutina" value="#{rutina.idRutinas}" />
+                                        <b:dataTableColumn label="Nombre" value="#{rutina.nombre}" />
+                                        <b:dataTableColumn label="Descripción" value="#{rutina.descripcion}"/>
 
-        <div class="col-sm-12">
-            <section class="panel">
-                <div class="form-group">
-                    
-                <div class="portlet-title">
-                    <div class="caption font-dark">
-                        <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Calendario</span>
+
+
+                                        <b:dataTableColumn  label="Opciones" >
+
+                                            <b:commandButton size="sm"  look="danger" value=""
+                                                             iconAwesome="trash" tooltip="Eliminar"
+                                                             onclick="$('.modalPseudoClass').modal();">
+                                                <f:ajax event="click" render=":message-modal-confirm"
+                                                        listener="#{listarRutinaController.setRutinaSeleccionada(rutina)}"/>
+                                            </b:commandButton>
+
+                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarRutinaController.preModificar(rutina)}"/>
+
+
+                                        </b:dataTableColumn>
+                                    </b:dataTable>
+
+                                </b:form>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tools"> </div>
+
+                    <b:modal id="amodal" title="Eliminar rutina" styleClass="modalPseudoClass">
+                        <h:panelGroup id="message-modal-confirm" layout="block">
+                            <p>¿Está seguro de eliminar el rutina?
+                            </p>
+                        </h:panelGroup>
+                        <f:facet name="footer">
+                            <h:form id="form-eliminar" prependId="false">
+                                <b:button value="¡Oh no me equivoque!" dismiss="modal" />
+                                <b:commandButton value="Tengo plena seguridad" look="primary"
+                                                 actionListener="#{listarRutinaController.eliminarRutina()}"/>
+                            </h:form>
+                        </f:facet>
+                    </b:modal>
                 </div>
-                </div> 
-               
-                  <b:messages show-detail="true" show-summary="true" globalOnly="true"/>
-               
-                  <b:form id="form-data-table-rutinas" prependId="false">
-                   
-                      <b:dataTable value="#{listarRutinaController.rutina}" var="rutina">
-                        <b:dataTableColumn label="Número del rutina" value="#{rutina.idRutinas}" />
-                        <b:dataTableColumn label="Nombre" value="#{rutina.nombre}" />
-                        <b:dataTableColumn label="Descripción" value="#{rutina.descripcion}"/>
-                       
-                   
-                      
-                       <b:dataTableColumn  label="Opciones" >
-                            
-                                <b:commandButton size="sm"  look="danger" value=""
-                                                 iconAwesome="trash" tooltip="Eliminar"
-                                                 onclick="$('.modalPseudoClass').modal();">
-                                    <f:ajax event="click" render=":message-modal-confirm"
-                                            listener="#{listarRutinaController.setRutinaSeleccionada(rutina)}"/>
-                                </b:commandButton>
-           
-                           <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarRutinaController.preModificar(rutina)}"/>
-
-                           
-                       </b:dataTableColumn>
-
-                    </b:dataTable>
-                </b:form>
-
-            </section>
+            </div>
         </div>
-        <b:modal id="amodal" title="Eliminar rutina" styleClass="modalPseudoClass">
-            <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>¿Está seguro de eliminar el rutina?
-                </p>
-            </h:panelGroup>
-            <f:facet name="footer">
-                <h:form id="form-eliminar" prependId="false">
-                    <b:button value="¡Oh no me equivoque!" dismiss="modal" />
-                    <b:commandButton value="Tengo plena seguridad" look="primary"
-                                     actionListener="#{listarRutinaController.eliminarRutina()}"/>
-                </h:form>
-            </f:facet>
-        </b:modal>
-
-
 
     </ui:define>
-</ui:composition> 
+</ui:composition>
 
 

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -26,33 +26,59 @@
     </ui:define>
     <ui:define name="contenido">
 
-        <div class="col-sm-12">
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption font-dark">
-                        <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Editar Rutina</span>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Editar Rutina</h4>
+                                <p class="category">Complete your profile</p>
+                            </div>
+                            <div class="card-content">
+                                <b:messages showSummary="true" show-detail="true"/>
+                                <b:form id="form-editar" prependId="false">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Id rutina</label>
+                                                <b:inputText value="#{editarRutinaController.rutinaSelecionado.idRutinas}" class="form-control" disabled="true" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Nombre</label>
+                                                <b:inputText value="#{editarRutinaController.rutinaSelecionado.nombre}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Descripcion</label>
+                                                <b:inputText value="#{editarRutinaController.rutinaSelecionado.descripcion}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/rutinas/rutinas.xhtml" value="Volver"/>
+                                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarRutinaController.actualizarDatos()}" class="btn btn-primary pull-right"/>
+
+                                    <div class="clearfix"></div>
+                                </b:form>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tools"> </div>
                 </div>
-                <b:messages showSummary="true" show-detail="true"/>
-               
-                <b:form id="form-editar" prependId="false">
-                    <b:panelGrid colSm="12" columns="2">
-                         <h:outputText value="Id Rutina"/>
-                         <b:inputText value="#{editarRutinaController.rutinaSelecionado.idRutinas}" disabled="true"/>
-                        <h:outputText value="Nombre"/>
-                        <b:inputText value="#{editarRutinaController.rutinaSelecionado.nombre}"/>
-                        <h:outputText value="Descripción"/>
-                        <b:inputText value="#{editarRutinaController.rutinaSelecionado.descripcion}"/>
-                    
-                    </b:panelGrid>
-                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/rutinas/rutinas.xhtml" value="Volver"/>
-                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarRutinaController.actualizarDatos()}"/>
-                </b:form>
             </div>
         </div>
-
 
 
     </ui:define>

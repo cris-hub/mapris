@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="./../../WEB-INF/template/templateInterfaz.xhtml"
+<ui:composition template="./../../WEB-INF/template/templateInterface.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -31,32 +31,42 @@
     </ui:define>
 
     <ui:define name="contenido">
-        <div class="col-sm-12">
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption font-dark">
-                        <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Lista de Aplazamientos #{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} </span>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Aplazamintos</h4>
+                                <p class="category">Lista de aplazamientos</p>
+                            </div>
+                            <div class="card-content table-responsive">
+
+                                <b:message for="form-data-table-aplazamientos" showSummary="true" showDetail="true"/>
+                                <h:form id="form-data-table-aplazamientos" prependId="false">
+                                    <b:dataTable id="dtServicio" value="#{listarAplazamientoController.aplazamientos}" var="aplazamiento">
+
+
+                                        <b:dataTableColumn label="Id Aplzamiento" value="#{aplazamiento.idaplazamiento}" />
+                                        <b:dataTableColumn label="Motivo" value="#{aplazamiento.motivo}" />
+                                        <b:dataTableColumn label="Clientes vinculados" >
+                                            <ui:repeat value="#{aplazamiento.idcliente}"  var="cli">
+                                                <h:outputText value="#{cli.idClientes}"/><br/>
+                                            </ui:repeat>
+                                        </b:dataTableColumn>
+
+                                    </b:dataTable>
+
+                                </h:form>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tools"> </div>
-                </div>
-                <div class="portlet-body">
-                    <b:message for="form-data-table-aplazamientos" showSummary="true" showDetail="true"/>
-                    <h:form id="form-data-table-aplazamientos" prependId="false">
-                        <b:dataTable id="dtServicio" value="#{listarAplazamientoController.aplazamientos}" var="aplazamiento">
-                            <b:dataTableColumn label="idAplazamiento"  rendered="false" value="#{aplazamiento.idaplazamiento}"/>
-                            <b:dataTableColumn label="Motivo" value="
-                                               #{aplazamiento.motivo}"/>
-                            <b:dataTableColumn label="Cliente" >
-                                #{aplazamiento.idcliente}
-                            </b:dataTableColumn>
-                            <b:dataTableColumn label="Servicio" value="
-                                               #{aplazamiento.serviciosidServicio}"/>
-                        </b:dataTable>
-                    </h:form>
                 </div>
             </div>
         </div>
+
+
     </ui:define>
 </ui:composition>
 

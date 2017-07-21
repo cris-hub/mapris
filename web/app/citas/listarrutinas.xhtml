@@ -34,49 +34,57 @@
     <ui:define name="contenido">
         <f:view>
 
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title">CITAS</h4>
+                                    <p class="category">Citas programadas</p>
+                                </div>
+                                <div class="card-content table-responsive">
 
-            <h:form>
-                <h1><h:outputText value="List"/></h1>
-                <b:dataTable value="#{listarRutinasController.rutinas}" var="item">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="IdRutinas"/>
-                        </f:facet>
-                        <h:outputText value="#{item.idRutinas}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nombre"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nombre}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Descripcion"/>
-                        </f:facet>
-                        <h:outputText value="#{item.descripcion}"/>
-                    </h:column>
-                    <b:dataTableColumn  label="Opciones">
-                        <b:commandButton 
-                            look="success" value="" iconAwesome="eye" 
+                                    <b:messages globalOnly="true" showSummary="true" showDetail="true"/>
+                                    <h:form id="form-data-table-usuarios" prependId="false">
 
-                            />
-                        <b:commandButton look="primary" value="" iconAwesome="pencil" 
+                                        <b:dataTable value="#{listarRutinasController.rutinas}" var="item">
 
-                                         />
-                        <b:commandButton look="danger" value=""
-                                         iconAwesome="trash" tooltip="Eliminar"
-                                         
-                                         >
-                            
-                        </b:commandButton>
-                        <b:commandButton look="default" value="" 
 
-                                         />
-                    </b:dataTableColumn>
-                </b:dataTable>
+                                            <b:dataTableColumn label="Id Rutinas" value="#{item.idRutinas}"/>
+                                            <b:dataTableColumn label="Nombre" value="#{item.nombre}"/>
+                                            <b:dataTableColumn label="Descripción" value="#{item.descripcion} "/>
 
-            </h:form>
+                                            <b:dataTableColumn  label="Opciones">
+                                                <b:commandButton
+                                                    look="success" value="" iconAwesome="eye"
+
+                                                    />
+                                                <b:commandButton look="primary" value="" iconAwesome="pencil"
+
+                                                                 />
+                                                <b:commandButton look="danger" value=""
+                                                                 iconAwesome="trash" tooltip="Eliminar"
+
+                                                                 >
+
+                                                </b:commandButton>
+                                                <b:commandButton look="default" value=""
+
+                                                                 />
+                                            </b:dataTableColumn>
+                                        </b:dataTable>
+
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
         </f:view>
 
     </ui:define>

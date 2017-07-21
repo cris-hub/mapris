@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -12,7 +12,7 @@
 
     <ui:define name="titulo">Administrador-Empresas</ui:define>
     <ui:define name="pagetitle">
-        
+
     </ui:define>
 
     <ui:define name="breadcrumb">
@@ -21,7 +21,7 @@
                 <a href="/app/index.xhtml">Administrador</a>
                 <i class="fa fa-circle"></i>
             </li>
-                      
+
             <li>
                 <span class="active">Calendario</span>
             </li>
@@ -31,73 +31,70 @@
 
     <ui:define name="contenido">
 
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">CALENDARIO</h4>
+                                <p class="category">Empresas vinculas con Maternity Club</p>
+                            </div>
+                            <div class="card-content table-responsive">
 
-      
+                                <b:messages show-detail="true" show-summary="true" globalOnly="true"/>
+                                <b:form id="form-data-table-calendarios" prependId="false">
+                                    <b:dataTable value="#{listarCalendarioController.calendario}" var="calendario">
 
-        <div class="col-sm-12">
-            <section class="panel">
-                <div class="form-group">
-                    
-                <div class="portlet-title">
-                    <div class="caption font-dark">
-                        <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Calendario</span>
+
+                                        <b:dataTableColumn label="Número del calendario" value="#{calendario.idCalendario}" />
+                                        <b:dataTableColumn label="Lunes" value="#{calendario.lunes}" />
+                                        <b:dataTableColumn label="Martes" value="#{calendario.martes}"/>
+                                        <b:dataTableColumn label="Miercoles" value="#{calendario.miercoles}"/>
+                                        <b:dataTableColumn label="Jueves" value="#{calendario.jueves}"/>
+                                        <b:dataTableColumn label="Viernes" value="#{calendario.viernes}"/>
+                                        <b:dataTableColumn label="Sábado" value="#{calendario.sabado}"/>
+                                        <b:dataTableColumn label="Domingo" value="#{calendario.domingo}"/>
+
+
+                                        <b:dataTableColumn  label="Opciones" >
+                                            <b:commandButton size="sm"  look="danger" value=""
+                                                             iconAwesome="trash" tooltip="Eliminar"
+                                                             onclick="$('.modalPseudoClass').modal();">
+                                                <f:ajax event="click" render=":message-modal-confirm"
+                                                        listener="#{listarCalendarioController.setCalendario(calendario)}"/>
+                                            </b:commandButton>
+                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarCalendarioController.preModificar(calendario)}"/>
+                                        </b:dataTableColumn>
+                                    </b:dataTable>
+
+                                </b:form>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tools"> </div>
+                    <b:modal id="amodal" title="Eliminar calendario" styleClass="modalPseudoClass">
+                        <h:panelGroup id="message-modal-confirm" layout="block">
+                            <p>¿Está seguro de eliminar el calendario?
+                            </p>
+                        </h:panelGroup>
+                        <f:facet name="footer">
+                            <h:form id="form-eliminar" prependId="false">
+                                <b:button value="¡Oh no me equivoque!" dismiss="modal" />
+                                <b:commandButton value="Tengo plena seguridad" look="primary"
+                                                 actionListener="#{listarCalendarioController.eliminarCalendario()}"/>
+                            </h:form>
+                        </f:facet>
+                    </b:modal>
                 </div>
-                </div> 
-               
-                  <b:messages show-detail="true" show-summary="true" globalOnly="true"/>
-               
-                  <b:form id="form-data-table-calendarios" prependId="false">
-                   
-                    <b:dataTable value="#{listarCalendarioController.calendario}" var="calendario">
-                        <b:dataTableColumn label="Número del calendario" value="#{calendario.idCalendario}" />
-                        <b:dataTableColumn label="Lunes" value="#{calendario.lunes}" />
-                        <b:dataTableColumn label="Martes" value="#{calendario.martes}"/>
-                        <b:dataTableColumn label="Miercoles" value="#{calendario.miercoles}"/>
-                        <b:dataTableColumn label="Jueves" value="#{calendario.jueves}"/>
-                        <b:dataTableColumn label="Viernes" value="#{calendario.viernes}"/>
-                        <b:dataTableColumn label="Sábado" value="#{calendario.sabado}"/>
-                        <b:dataTableColumn label="Domingo" value="#{calendario.domingo}"/>
-                   
-                      
-                       <b:dataTableColumn  label="Opciones" >
-                            
-                                <b:commandButton size="sm"  look="danger" value=""
-                                                 iconAwesome="trash" tooltip="Eliminar"
-                                                 onclick="$('.modalPseudoClass').modal();">
-                                    <f:ajax event="click" render=":message-modal-confirm"
-                                            listener="#{listarCalendarioController.setCalendario(calendario)}"/>
-                                </b:commandButton>
-           
-                           <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarCalendarioController.preModificar(calendario)}"/>
-
-                           
-                       </b:dataTableColumn>
-
-                    </b:dataTable>
-                </b:form>
-
-            </section>
+            </div>
         </div>
-        <b:modal id="amodal" title="Eliminar calendario" styleClass="modalPseudoClass">
-            <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>¿Está seguro de eliminar el calendario?
-                </p>
-            </h:panelGroup>
-            <f:facet name="footer">
-                <h:form id="form-eliminar" prependId="false">
-                    <b:button value="¡Oh no me equivoque!" dismiss="modal" />
-                    <b:commandButton value="Tengo plena seguridad" look="primary"
-                                     actionListener="#{listarCalendarioController.eliminarCalendario()}"/>
-                </h:form>
-            </f:facet>
-        </b:modal>
+
+
+
 
 
 
     </ui:define>
-</ui:composition> 
+</ui:composition>
 
 
