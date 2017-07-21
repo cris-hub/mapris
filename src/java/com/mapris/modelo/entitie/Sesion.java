@@ -107,5 +107,9 @@ public class Sesion implements Serializable {
     public String toString() {
         return "com.mapris.modelo.entitie.Sesion[ idSesiones=" + idSesiones + " ]";
     }
+
+    public void setEstado(String pendiente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
