@@ -7,6 +7,7 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:v="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
@@ -15,7 +16,6 @@
     <ui:define name="contenido">
 
         <div class="col-sm-12">
-            <b:messages showDetail="true" showSummary="true" globalOnly="true"/>
         </div>
 
         <div class="content">
@@ -52,7 +52,9 @@
                                             <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarEmpresaController.preModificar(empresa)}"/>
                                             <b:commandButton size="sm"  look="danger" value=""
                                                              iconAwesome="trash" tooltip="Eliminar"
-                                                             onclick="$('.modalPseudoClass').modal();">
+                                                             onclick="$('.modalPseudoClass').modal();
+                                                                 $('.modal-backdrop').remove();
+                                                             " >
                                                 <f:ajax event="click" render=":message-modal-confirm"
                                                         listener="#{listarEmpresaController.setEmpresaSeleccionada(empresa)}"/>
                                             </b:commandButton>
