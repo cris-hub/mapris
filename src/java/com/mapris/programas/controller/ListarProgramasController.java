@@ -24,7 +24,7 @@ import javax.inject.Named;
  */
 @Named(value = "listarProgramaController")
 @ViewScoped
-public class ListarProgramaController implements Serializable{
+public class ListarProgramasController implements Serializable{
 //    Code Dependention Injection
 
     @EJB
@@ -38,7 +38,7 @@ public class ListarProgramaController implements Serializable{
     
     
     
-    public ListarProgramaController() {
+    public ListarProgramasController() {
     }
 
     @PostConstruct
@@ -74,6 +74,13 @@ public class ListarProgramaController implements Serializable{
     
     public void eliminarPrograma(){
       
+        try {
+            programaFacadeLocal.remove(programaSeleccionado);
+            MessageUtil.enviarMensajeInformacionGlobal("Removido con exito","El programa fue removido con exito");
+        } catch (Exception e) {
+       MessageUtil.enviarMensajeInformacionGlobal("Error al eliminar","El programa no pudo ser eliminado");
+
+        }
         
     }
         
