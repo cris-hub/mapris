@@ -53,52 +53,50 @@
                                                 <h:outputText value="#{verInscripcionController.inscripcion.idInscripciones}" class="form-control"  />
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                          <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Cedula del cliente</label>
                                                 <h:outputText value="#{verInscripcionController.inscripcion.idCliente.usuario.cedula}" class="form-control"  />
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                      
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombre del cliente</label>
                                                 <h:outputText value="#{verInscripcionController.inscripcion.idCliente.usuario.nombres} #{verInscripcionController.inscripcion.idCliente.usuario.apellidos}" class="form-control"/>
                                             </div>
                                         </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fecha de inicio</label>
-                                                <h:outputText value="#{verInscripcionController.inscripcion.fechaInicio}" class="form-control"/>
+                                                <h:outputText value="#{verInscripcionController.inscripcion.fechaInicio}" class="form-control">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </h:outputText>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Valor de la inscripcion</label>
-                                                <b:inputText value="#{verInscripcionController.inscripcion.valor}" class="form-control">
+                                                <h:outputText value="#{verInscripcionController.inscripcion.valor}" class="form-control">
                                                     <f:convertNumber  currencySymbol="$" groupingUsed="true"
                                                                       maxFractionDigits="0" type="currency" locale="es_CO" />
-                                                </b:inputText>
+                                                </h:outputText>
                                             </div>
                                         </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Número de sesiones</label>
                                                 <h:outputText value="#{verInscripcionController.inscripcion.idSesiones.numeroSesiones}" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
+                                
 
 
 
@@ -107,10 +105,13 @@
                                 </h:form>
 
                             </div>
+                            <div class="row">
+                                
                             <div class="card-footer">
                                 <div class="stats">
                                     <i class="material-icons">local_offer</i> Maternity Club
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>

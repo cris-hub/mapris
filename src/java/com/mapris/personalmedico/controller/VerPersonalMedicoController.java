@@ -6,6 +6,7 @@
 package com.mapris.personalmedico.controller;
 
 import com.mapris.modelo.entitie.Personalmedico;
+import com.mapris.modelo.entitie.Usuario;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -20,6 +21,7 @@ import javax.inject.Named;
 public class VerPersonalMedicoController implements Serializable{
     
     private Personalmedico personalMedico;
+   
 
     public VerPersonalMedicoController() {
     }
@@ -35,9 +37,13 @@ public class VerPersonalMedicoController implements Serializable{
     public void setPersonalmedico(Personalmedico personalMedico) {
         this.personalMedico = personalMedico;
     }
+
+    
+    
     
     public String verPersonalmedico(Personalmedico i){
     this.personalMedico = i;
+   
     return "/app/administrador/personal/ver.xhtml?faces-redirect=true";
     }
     

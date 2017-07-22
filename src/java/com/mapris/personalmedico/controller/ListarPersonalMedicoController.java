@@ -9,6 +9,7 @@ package com.mapris.personalmedico.controller;
 
 import com.mapris.modelo.dao.PersonalmedicoFacadeLocal;
 import com.mapris.modelo.entitie.Personalmedico;
+import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
 
@@ -34,6 +35,7 @@ public class ListarPersonalMedicoController implements Serializable{
     private List<Personalmedico> personalMedico;
 
     private Personalmedico personalMedicoSeleccionado;
+    private Usuario usuarioSeleccionado;
    
 
     
@@ -72,6 +74,16 @@ public class ListarPersonalMedicoController implements Serializable{
     public Personalmedico getPersonalmedicoSeleccionado() {
         return this.personalMedicoSeleccionado;
     }
+
+    public Usuario getUsuarioSeleccionado() {
+        return usuarioSeleccionado;
+    }
+
+    public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
+        this.usuarioSeleccionado = usuarioSeleccionado;
+    }
+    
+    
     
     public void eliminarPersonalmedico(){
      
@@ -79,7 +91,7 @@ public class ListarPersonalMedicoController implements Serializable{
         try {
             if (personalMedicoSeleccionado.getUsuario().getEstado().getNombre().equalsIgnoreCase("Activo")) {
              MessageUtil.enviarMensajeErrorGlobal("Error al eliminar el Personal Medico","No se puede eliminar un personal medico activo");
-   
+             
             }else{
             personalMedicoFacadeLocal.remove(personalMedicoSeleccionado);
             MessageUtil.enviarMensajeInformacionGlobal("Eliminación correcta","Se elimino correctamente el Medico ");

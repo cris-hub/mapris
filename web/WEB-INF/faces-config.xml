@@ -9,6 +9,8 @@
             <supported-locale>es</supported-locale>
             <supported-locale>en</supported-locale>
         </locale-config>
+       
+        
         
         <resource-bundle>
             <base-name>/MyBundle</base-name>

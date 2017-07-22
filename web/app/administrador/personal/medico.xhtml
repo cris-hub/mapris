@@ -1,4 +1,3 @@
-
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition template="/WEB-INF/template/templateInterface.xhtml"
@@ -11,7 +10,7 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">Administrador-Sesiones</ui:define>
+    <ui:define name="titulo">Administrador-Personal Medico</ui:define>
     <ui:define name="pagetitle">
 
     </ui:define>
@@ -23,7 +22,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Listar sesiones</span>
+                <span class="active">Listar Personal Medico</span>
             </li>
         </ul>
 
@@ -36,25 +35,37 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header" data-background-color="purple">
-                                <h4 class="title">SESIONES</h4>
-                                <p class="category">Lista de Sesiones</p>
+                            <div class="card-header" data-background-color="pink">
+                                <h4 class="title">Personal Medico</h4>
+                                <p class="category">Lista de Personal Medico</p>
                             </div>
                             <div class="card-content table-responsive">
 
                                 <b:messages globalOnly="true" showSummary="true" showDetail="true"/>
                                 <h:form id="form-data-table-sesiones" prependId="false">
 
-                                    <b:dataTable id="dtUsuario" value="#{listarPersonalMedicoController.personalmedicoes.get()}" var="pm" >
+                                    <b:dataTable id="dtUsuario"  value="#{listarPersonalMedicoController.personalmedicoes}" var="p" >
 
 
-                                        <b:dataTableColumn label="Id Sesion" value="#{pm.IdPersonalMedico}"/>
-                                        <b:dataTableColumn label="Número de sesiones" value="#{se.numeroSesiones}"/>
+                                        <b:dataTableColumn label="Cedula" value="#{p.usuario.cedula}"/>
+                                        <b:dataTableColumn label="Nombres" value="#{p.usuario.nombres}"/>
+                                        <b:dataTableColumn label="Apellidos" value="#{p.usuario.apellidos}"/>
+                                        <b:dataTableColumn id="fecha" a:name="fecha" label="Fecha de nacimiento" >
+                                             <h:outputText value="#{p.usuario.fechaNaci}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:outputText>
+                                           
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Correo electronico" value="#{p.usuario.correoElectronico}"/>
+                                        <b:dataTableColumn label="Teléfono Fijo" value="#{p.usuario.telefonoFijo}"/>
+                                        <b:dataTableColumn label="Teléfono Celular" value="#{p.usuario.telefonoCelular}"/>
+                                        <b:dataTableColumn label="Pefil profesional" value="#{p.perfilProfesional}"/>
+                                        <b:dataTableColumn label="Cargo" value="#{p.cargo}"/>
                                       
 
                                         <b:dataTableColumn  label="#{mensajeApp.opciones}" >
-                                            <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verSesionController.verSesion(pm)}"/>
-                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarSesionController.preModificar(se)}"/>
+                                            <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verPersonalMedicoController.verPersonalmedico(p)}"/>
+                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarSesionController.preModificar(p)}"/>
                                             <b:commandButton size="sm"  look="danger" value=""
                                                              iconAwesome="trash" tooltip="Eliminar"
                                                              onclick="$('.modalPseudoClass').modal();">

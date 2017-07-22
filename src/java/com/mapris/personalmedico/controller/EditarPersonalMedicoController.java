@@ -81,8 +81,9 @@ public class EditarPersonalMedicoController implements Serializable {
 
     }
     
-    public String preModificar(Personalmedico i){
+    public String preModificar(Personalmedico i, Usuario u){
         setPersonalmedicoSelecionada(i);
+        setUsuarioSeleccionado(u);
         return "/app/administrador/personal/editar.xhtml?faces-redirect=true";
     }
     
