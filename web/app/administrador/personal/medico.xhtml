@@ -65,7 +65,7 @@
 
                                         <b:dataTableColumn  label="#{mensajeApp.opciones}" >
                                             <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verPersonalMedicoController.verPersonalmedico(p)}"/>
-                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarSesionController.preModificar(p)}"/>
+                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarPersonalMedicoController.preModificar(p, p.usuario)}"/>
                                             <b:commandButton size="sm"  look="danger" value=""
                                                              iconAwesome="trash" tooltip="Eliminar"
                                                              onclick="$('.modalPseudoClass').modal();">

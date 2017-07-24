@@ -41,23 +41,77 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Id Personal Medico</label>
-                                                <b:inputText value="#{editarSesionController.sesionSelecionada.idPersonalMedico}" class="form-control" disabled="true" />
+                                                <b:inputText value="#{editarPersonalMedicoController.usuarioSeleccionado.cedula}" class="form-control" disabled="true" />
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
+                                   
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Número de sesiones</label>
-                                                <b:inputText value="#{editarSesionController.sesionSelecionada.numeroPersonalMedico}"  class="form-control"/>
+                                                <label class="control-label">Nombres</label>
+                                                <b:inputText value="#{editarPersonalMedicoController.usuarioSeleccionado.nombres}"  class="form-control"/>
                                             </div>
                                         </div>
                                         
+                                         <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Apellidos</label>
+                                                <b:inputText value="#{editarPersonalMedicoController.usuarioSeleccionado.apellidos}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                         <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Correo Electronico</label>
+                                                <b:inputText value="#{editarPersonalMedicoController.usuarioSeleccionado.correoElectronico}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                         <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Fecha de nacimiento</label>
+                                                <b:datepicker value="#{editarPersonalMedicoController.usuarioSeleccionado.fechaNaci}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                         <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Teléfono Celular</label>
+                                                <b:inputText value="#{editarPersonalMedicoController.usuarioSeleccionado.telefonoCelular}" maxlength="10" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Teléfono Fijo</label>
+                                                <b:inputText value="#{editarPersonalMedicoController.usuarioSeleccionado.telefonoFijo}" maxlength="7" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Clave</label>
+                                                <b:inputText value="#{editarPersonalMedicoController.usuarioSeleccionado.clave}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Cargo</label>
+                                                <b:inputText value="#{editarPersonalMedicoController.personalmedicoSelecionada.cargo}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Perfil profesional</label>
+                                                <b:inputText value="#{editarPersonalMedicoController.personalmedicoSelecionada.perfilProfesional}" class="form-control"/>
+                                            </div>
+                                        </div>
                                     </div>
 
 
                                     <h:link styleClass="btn btn-primary" outcome="/app/administrador/sesiones/sesiones.xhtml" value="Volver"/>
-                                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarSesionController.actualizarDatos()}" class="btn btn-primary pull-right"/>
+                                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarPersonalMedicoController.actualizarDatos()}" class="btn btn-primary pull-right"/>
 
                                     <div class="clearfix"></div>
                                 </b:form>

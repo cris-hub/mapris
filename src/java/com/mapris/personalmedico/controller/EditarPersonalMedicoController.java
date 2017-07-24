@@ -37,6 +37,7 @@ public class EditarPersonalMedicoController implements Serializable {
     @PostConstruct
     public void init(){
     personalSeleccionado = new Personalmedico();
+    usuarioSeleccionado = new Usuario();
     }
 
     public EditarPersonalMedicoController() {

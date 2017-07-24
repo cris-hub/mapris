@@ -321,7 +321,7 @@ CREATE TABLE `personalmedico` (
 
 LOCK TABLES `personalmedico` WRITE;
 /*!40000 ALTER TABLE `personalmedico` DISABLE KEYS */;
-INSERT INTO `personalmedico` VALUES (81928,'Profesional de la salud','Fisioterapeuta');
+INSERT INTO `personalmedico` VALUES (54534,'Perfil profesional','Fisioterapeuta'),(81928,'Profesional en salud mental y espiritual','Profesor de Ioga');
 /*!40000 ALTER TABLE `personalmedico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -655,7 +655,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1111,'Paula','Mendez','0199-01-01','fceeb9b9d469401fe558062c4bd25954',NULL,1,'2017-07-04','pm@gmailcom','4312321','3104391876'),(81928,'Panda','En alanda','1999-11-11','b3d80ff388ec7b0bee1b251856ec56e8',NULL,1,'2017-07-17',NULL,NULL,NULL),(112312,'Maria','Melendez','1999-12-22','3b2285b348e95774cb556cb36e583106',NULL,1,'2017-07-04','MM@gmaill.com',NULL,NULL);
+INSERT INTO `usuarios` VALUES (1111,'Paula','Mendez','0199-01-01','fceeb9b9d469401fe558062c4bd25954',NULL,1,'2017-07-04','pm@gmailcom','4312321','3104391876'),(54534,'Kiler','Doom','1999-01-01','b3d80ff388ec7b0bee1b251856ec56e8',NULL,1,'2017-07-23','neutro@gmail.com','4334213','3182818199'),(81928,'Beltrout','Brench','1999-11-11','6d773a2bfdc47210ffb2084e92a2472f',NULL,1,'2017-07-17','Bb@gmail.com','7621371','3111111111'),(112312,'Maria','Melendez','1999-12-22','3b2285b348e95774cb556cb36e583106',NULL,1,'2017-07-04','MM@gmaill.com',NULL,NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -773,4 +773,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-22 16:47:30
+-- Dump completed on 2017-07-23 21:01:30
