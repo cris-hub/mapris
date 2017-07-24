@@ -124,76 +124,7 @@
 .card .back .content .main {
     height: 215px;
 }
-.main .button-container {
-    margin: 0;
-    text-align: center;
-}
 
-.main .button-container button {
-    outline: 0;
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-    background: 0;
-    width: 150px;
-    z: 2px solid #CAC9C9;
-    padding: 10px 0;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1;
-    text-transform: uppercase;
-    overflow: hidden;
-    -webkit-transition: .3s ease;
-    transition: .3s ease;
-}
-
-.main .button-container button span {
-    position: relative;
-    z-index: 1;
-    color: #CAC9C9;
-    -webkit-transition: .3s ease;
-    transition: .3s ease;
-}
-
-.main .button-container button:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: block;
-    background: #ed2553;
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    margin: -15px 0 0 -15px;
-    opacity: 0;
-    -webkit-transition: .3s ease;
-    transition: .3s ease;
-}
-
-.main .button-container button:hover,
-.main .button-container button:active,
-.main .button-container button:focus {
-    border-color: #ed2553;
-}
-
-.main .button-container button:hover span,
-.main .button-container button:active span,
-.main .button-container button:focus span {
-    color: #ed2553;
-}
-
-.main .button-container button:active span,
-.main .button-container button:focus span {
-    color: #ffffff;
-}
-
-.main .button-container button:active:before,
-.main .button-container button:focus:before {
-    opacity: 1;
-    -webkit-transform: scale(10);
-    transform: scale(10);
-}
 .card .name {
     font-family: 'Arima Madurai', cursive;
     font-size: 22px;

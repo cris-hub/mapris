@@ -6,7 +6,6 @@
  */
 package com.mapris.programas.controller;
 
-import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.ProgramaFacadeLocal;
 import com.mapris.modelo.entitie.Programa;
 import com.mapris.util.MessageUtil;
@@ -24,7 +23,7 @@ import javax.inject.Named;
  */
 @Named(value = "listarProgramaController")
 @ViewScoped
-public class ListarProgramasController implements Serializable{
+public class ListarProgramasController implements Serializable {
 //    Code Dependention Injection
 
     @EJB
@@ -33,25 +32,21 @@ public class ListarProgramasController implements Serializable{
     private List<Programa> programas;
 
     private Programa programaSeleccionado;
-  
 
-    
-    
-    
     public ListarProgramasController() {
     }
 
     @PostConstruct
     public void init() {
         recargarProgramas();
-       
+
     }
-    
-    private void recargarProgramas(){
+
+    private void recargarProgramas() {
         programas = programaFacadeLocal.findAll();
     }
-    
-     public ProgramaFacadeLocal getProgramaFacadeLocal() {
+
+    public ProgramaFacadeLocal getProgramaFacadeLocal() {
         return programaFacadeLocal;
     }
 
@@ -67,28 +62,20 @@ public class ListarProgramasController implements Serializable{
         this.programaSeleccionado = programaSeleccionado;
     }
 
-
     public Programa getProgramaSeleccionado() {
         return this.programaSeleccionado;
     }
-    
-    public void eliminarPrograma(){
-      
+
+    public void eliminarPrograma() {
+
         try {
             programaFacadeLocal.remove(programaSeleccionado);
-            MessageUtil.enviarMensajeInformacionGlobal("Removido con exito","El programa fue removido con exito");
+            MessageUtil.enviarMensajeInformacionGlobal("Removido con exito", "El programa fue removido con exito");
         } catch (Exception e) {
-       MessageUtil.enviarMensajeInformacionGlobal("Error al eliminar","El programa no pudo ser eliminado");
+            MessageUtil.enviarMensajeInformacionGlobal("Error al eliminar", "El programa no pudo ser eliminado");
 
         }
-        
+
     }
-        
-    
-    
-    
-
-   
-
 
 }

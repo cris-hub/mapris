@@ -6,18 +6,19 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:b="http://bootsfaces.net/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:p="http://primefaces.org/ui">
 
 
-    <ui:define name="titulo"> Registrar Usuario</ui:define>
+
+
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="#{request.contextPath}/app/index.xhtml">inicio</a>
+                <a href="index.html">Calendario</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Registrar Usuario</span>
+                <span class="active">Nuevo</span>
             </li>
         </ul>
     </ui:define>
@@ -30,7 +31,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Soicitud de Citas</h4>
+                                <h4 class="title">Nuevo Calendario</h4>
                                 <p class="category">Complete your profile</p>
                             </div>
                             <div class="card-content">
@@ -40,8 +41,8 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Id Solicitud Cita</label>
-                                                <b:inputText name="document" value="#{registrarSolicitudCitaController.nuevaSolicitudCita.idCitas}" class="form-control" a:data-mask="000" required="true"/>
+                                                <label class="control-label">Numero de Rutina</label>
+                                                <b:inputText name="document" value="#{registroRutinaController.nuevoRutina.idRutinas}"  class="form-control" required="true"/>
                                             </div>
                                         </div>
 
@@ -50,43 +51,24 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Cita</label>
-                                                <b:selectOneMenu value="#{registrarSolicitudCitaController.nuevaSolicitudCita.idServicio}" class="form-control">
-
-                                                    <f:selectItems value="#{listarServicioController.servicios}" var="s" itemLabel="#{s.nombre}"/>
-                                                </b:selectOneMenu>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Tipo de Cita</label>
-                                                <b:selectOneMenu value="#{registrarSolicitudCitaController.nuevaSolicitudCita.idServicio}" class="form-control">
-
-                                                    <f:selectItems value="#{listarRutinaController.rutina}" var="r" itemLabel="#{r.nombre}"/>
-                                                </b:selectOneMenu>
-
+                                                <label class="control-label">Nombre</label>
+                                                <b:inputText  value="#{registroRutinaController.nuevoRutina.nombre}"  class="form-control" required="true"/>
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Fecha de la Cita</label>
-                                                <b:selectOneMenu value="#{registrarSolicitudCitaController.nuevaSolicitudCita.idFecha}" class="form-control">
-
-                                                    <f:selectItems value="#{listarFechasDisponiblesController.fechasDisponibles}" var="fe" itemLabel="#{fe.fechasDisponibles}"/>
-                                                </b:selectOneMenu>
+                                                <label class="control-label">Descripcion</label>
+                                                <b:inputText  value="#{registroRutinaController.nuevoRutina.descripcion}"  class="form-control"/>
                                             </div>
                                         </div>
-
                                     </div>
 
 
-
-                                    <h:link styleClass="btn btn-primary" outcome="/app/usuarios/listar.xhtml" value="#{mensajeApp.back}"/>
-                                    <b:commandButton value="#{mensajeApp.save}" icon="floppy-disk" actionListener="#{registroController.registrar()}" class="btn btn-primary pull-right"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/rutinas/rutinas.xhtml" value="#{mensajeApp.back}"/>
+                                    <b:commandButton value="#{mensajeApp.save}" icon="floppy-disk" actionListener="#{registroRutinaController.registrar()}" class="btn btn-primary pull-right"/>
 
 
                                     <div class="clearfix"></div>
@@ -97,7 +79,6 @@
                 </div>
             </div>
         </div>
-
 
 
     </ui:define>
