@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:v="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:b="http://bootsfaces.net/ui">
+
+
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="index.xhtml">Administrador</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <a href="inscripciones.xhtml">Inscripciones</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Registrar Inscripciones</span>
+            </li>
+        </ul>
+
+    </ui:define>
+    <ui:define name="contenido">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="blue">
+                                <i class="fa fa-twitter"></i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Followers</p>
+                                <h3 class="title">+245</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">update</i> Just Updated
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-12">
+                        <div class="alert alert-primary alert-with-icon" data-notify="container">
+
+                            <i data-notify="icon" class="material-icons">assignment</i>
+                            <span data-notify="message">PROGRAMA PRENATAL<br/>A partir de la semana 14 de gestación y con autorización escrita del médico tratante</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="cardM">
+                            <div class="card-image">
+                                <img class="img-responsive" src="http://lorempixel.com/555/300/sports"></img>
+
+                            </div><!-- card image -->
+
+                            <div class="card-content">
+                                <span class="card-title">Material Cards</span>
+
+                            </div><!-- card content -->
+                            <div class="card-action">
+                                <button type="button" id="show1" >Ver mas...</button>
+
+                            </div><!-- card actions -->
+                            <div class="card-reveal">
+                                <span class="card-title">Card Title</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div><!-- card reveal -->
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="cardM">
+                            <div class="card-image">
+                                <img class="img-responsive" src="http://lorempixel.com/555/300/sports"></img>
+
+                            </div><!-- card image -->
+
+                            <div class="card-content">
+                                <span class="card-title">Material Cards</span>
+
+                            </div><!-- card content -->
+                            <div class="card-action">
+                                <button type="button" class="boton-custom" id="show2" >Ver mas...</button>
+                            </div><!-- card actions -->
+                            <div class="card-reveal">
+                                <span class="card-title">Card Title</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div><!-- card reveal -->
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="cardM">
+                            <div class="card-image">
+                                <img class="img-responsive" src="http://lorempixel.com/555/300/sports"></img>
+
+                            </div><!-- card image -->
+
+                            <div class="card-content">
+                                <span class="card-title">Material Cards</span>
+                                <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </button>
+                            </div><!-- card content -->
+                            <div class="card-action">
+                                <a href="#" target="new_blank">Link</a>
+                                <a href="#" target="new_blank">Link</a>
+                                <a href="#" target="new_blank">Link</a>
+                                <a href="#" target="new_blank">Link</a>
+                                <a href="#" target="new_blank">Link</a>
+                            </div><!-- card actions -->
+                            <div class="card-reveal">
+                                <span class="card-title">Card Title</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div><!-- card reveal -->
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="cardM">
+                            <div class="card-image">
+                                <img class="img-responsive" src="http://lorempixel.com/555/300/sports"></img>
+
+                            </div><!-- card image -->
+
+                            <div class="card-content">
+                                <span class="card-title">Material Cards</span>
+                                <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </button>
+                            </div><!-- card content -->
+                            <div class="card-action">
+                                <a href="#" target="new_blank">Link</a>
+                                <a href="#" target="new_blank">Link</a>
+                                <a href="#" target="new_blank">Link</a>
+                                <a href="#" target="new_blank">Link</a>
+                                <a href="#" target="new_blank">Link</a>
+                            </div><!-- card actions -->
+                            <div class="card-reveal">
+                                <span class="card-title">Card Title</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                            </div><!-- card reveal -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </ui:define>
+</ui:composition>
+
