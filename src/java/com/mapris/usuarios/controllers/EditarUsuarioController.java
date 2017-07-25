@@ -5,6 +5,7 @@
  */
 package com.mapris.usuarios.controllers;
 
+import com.mapris.modelo.dao.EstadoFacadeLocal;
 import com.mapris.modelo.dao.UsuarioFacadeLocal;
 import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
@@ -22,6 +23,10 @@ import javax.inject.Named;
 @SessionScoped
 public class EditarUsuarioController implements Serializable {
 
+    @EJB
+    
+    private EstadoFacadeLocal efl;
+            
     @EJB
     private UsuarioFacadeLocal ufl;
 
@@ -64,11 +69,11 @@ public class EditarUsuarioController implements Serializable {
 
     public void cambioDeEstado(Usuario u) {
         try {
-            if (u.getEstado().getNombre().equals("1")) {
-                u.getEstado().setNombre("2");
+            if (u.getEstado().getIdEstados() == 1) {
+                u.setEstado(efl.find(2));
 
             } else {
-                u.getEstado().setNombre("1");
+                u.setEstado(efl.find(1));
             }
             ufl.edit(u);
             MessageUtil.enviarMensajeInformacion("form-data-table-usuarios", "Actualización", "Se ha cambiado el estado del usuario.");
@@ -80,7 +85,7 @@ public class EditarUsuarioController implements Serializable {
     }
 
     public String getIconUsuarioBloqueo(Usuario u) {
-        return (u.getEstado().getNombre().equals("1")) ? "lock" : "unlock";
+        return (u.getEstado().getIdEstados() == 2) ? "lock" : "unlock";
     }
 
 }
