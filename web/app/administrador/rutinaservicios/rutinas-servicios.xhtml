@@ -46,8 +46,8 @@
                                 <b:form id="form-data-table-rutinasS" prependId="false">
                                     <b:dataTable value="#{listarRutinasServiviosController.rutinaServicio}" var="rutinaS">
                                         <b:dataTableColumn label="Id Rutinas Servicio" value="#{rutinaS.idRutinaServicios}" />
-                                        <b:dataTableColumn label="Id Rutinas" value="#{rutinaS.idRutinas}" />
-                                        <b:dataTableColumn label="Id Servicio" value="#{rutinaS.idServicios}"/>
+                                        <b:dataTableColumn label="Id Rutinas" value="#{rutinaS.idRutinas.nombre}" />
+                                        <b:dataTableColumn label="Id Servicio" value="#{rutinaS.idServicios.nombre}"/>
 
 
 
@@ -57,10 +57,10 @@
                                                              iconAwesome="trash" tooltip="Eliminar"
                                                              onclick="$('.modalPseudoClass').modal();">
                                                 <f:ajax event="click" render=":message-modal-confirm"
-                                                        listener="#{listarRutinaController.setRutinaSeleccionada(rutina)}"/>
+                                                        listener="#{listarRutinaController.setRutinaSeleccionada(rutinaS)}"/>
                                             </b:commandButton>
 
-                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarRutinaController.preModificar(rutina)}"/>
+                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarRutinaController.preModificar(rutinaS)}"/>
 
 
                                         </b:dataTableColumn>

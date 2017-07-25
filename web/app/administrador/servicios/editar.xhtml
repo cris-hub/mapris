@@ -11,71 +11,72 @@
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.html">Administrador</a>
+                <a href="index.xhtml">Administrador</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="/app/administrador/empresa/empresa.xhtml">Rutina</a>
+                <a href="sesiones.xhtml">Sesiones</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Editar Rutina</span>
+                <span class="active">Cambiar datos</span>
             </li>
         </ul>
 
     </ui:define>
     <ui:define name="contenido">
-
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Editar Rutina</h4>
-                                <p class="category">Complete your profile</p>
+                                <h4 class="title">Editar Sesiones</h4>
+                                <p class="category">Aquí puedes modificar las sesiones habilitadas</p>
                             </div>
                             <div class="card-content">
-                                <b:messages showSummary="true" show-detail="true"/>
+                                <b:messages showSummary="true" show-detail="true" />
                                 <b:form id="form-editar" prependId="false">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Id rutina</label>
-                                                <b:inputText value="#{editarRutinaServicioController.rutinaservicioSelecionada.idRutinaServicios}" class="form-control" disabled="true" />
+                                                <label class="control-label">Id Sesiones</label>
+                                                <b:inputText value="#{editarServicioController.servicioSelecionada.idServicio}" class="form-control" disabled="true" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Nombre</label>
-                                                 <b:selectOneMenu value="#{editarRutinaServicioController.rutinaservicioSelecionada.idRutina}" class="form-control">
-                                                
-                                                    <f:selectItems value="#{listarRutinaController.rutina}" var="ru" itemLabel="#{ru.idRutinas} - #{ru.nombre}"/>
-                                                </b:selectOneMenu> 
+                                                <label class="control-label">Número de sesiones</label>
+                                                <b:inputText value="#{editarServicioController.servicioSelecionada.nombre}"  class="form-control"/>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
+                                        
+                                         <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Descripcion</label>
-                                                <b:selectOneMenu value="#{editarRutinaServicioController.rutinaservicioSelecionada.idServicios}" class="form-control">
-                                                
-                                                    <f:selectItems value="#{listarServicioController.servicios}" var="r" itemLabel="#{r.idServicio} - #{r.nombre}"/>
-                                                </b:selectOneMenu> 
+                                                <label class="control-label">Número de sesiones</label>
+                                                <b:inputText value="#{editarServicioController.servicioSelecionada.descripcion}"  class="form-control"/>
                                             </div>
                                         </div>
+                                             
+                                              <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Número de sesiones</label>
+                                                <b:selectOneMenu value="#{editarServicioController.servicioSelecionada.idCalendario}" class="form-control">
+                                                
+                                                    <f:selectItems value="#{listarCalendarioController.calendario}" var="ru" itemLabel="#{ru.idCalendario}"/>
+                                                </b:selectOneMenu>  
+                                            </div>
+                                        </div>
+                                        
                                     </div>
 
 
-
-
-
-
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/rutinas/rutinas.xhtml" value="Volver"/>
-                                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarRutinaServicioController.actualizarDatos()}" class="btn btn-primary pull-right"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/servicios/servicios.xhtml" value="Volver"/>
+                                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarServicioController.actualizarDatos()}" class="btn btn-primary pull-right"/>
 
                                     <div class="clearfix"></div>
                                 </b:form>

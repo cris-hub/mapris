@@ -6,7 +6,8 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:b="http://bootsfaces.net/ui"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
 
@@ -41,8 +42,8 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Numero de Rutina</label>
-                                                <b:inputText name="document" value="#{registroRutinaController.nuevoRutina.idRutinas}"  class="form-control" required="true"/>
+                                                <label class="control-label">Id Rutina - Servicio</label>
+                                                <b:inputText name="document" value="#{registrarRutinaServicioController.nuevoRutinaservicio.idRutinaServicios}"  class="form-control" required="true"/>
                                             </div>
                                         </div>
 
@@ -51,24 +52,28 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Nombre</label>
-                                                <b:inputText  value="#{registroRutinaController.nuevoRutina.nombre}"  class="form-control" required="true"/>
-                                            </div>
+                                                <label class="control-label">Nombre de la Rutina</label>
+                                                <b:selectOneMenu value="#{registrarRutinaServicioController.nuevoRutinaservicio.idRutinas}" class="form-control">
+                                                
+                                                    <f:selectItems value="#{listarRutinaController.rutina}" var="ru" itemLabel="#{ru.idRutinas} - #{ru.nombre}"/>
+                                                </b:selectOneMenu>                                              </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Descripcion</label>
-                                                <b:inputText  value="#{registroRutinaController.nuevoRutina.descripcion}"  class="form-control"/>
-                                            </div>
+                                                <label class="control-label">Nombre del Servicio</label>
+                                                <b:selectOneMenu value="#{registrarRutinaServicioController.nuevoRutinaservicio.idServicios}" class="form-control">
+                                                
+                                                    <f:selectItems value="#{listarServicioController.servicios}" var="r" itemLabel="#{r.idServicio} - #{r.nombre}"/>
+                                                </b:selectOneMenu>                                            </div>
                                         </div>
                                     </div>
 
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/rutinas/rutinas.xhtml" value="#{mensajeApp.back}"/>
-                                    <b:commandButton value="#{mensajeApp.save}" icon="floppy-disk" actionListener="#{registroRutinaController.registrar()}" class="btn btn-primary pull-right"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/rutinaservicios/rutinas-servicios.xhtml" value="#{mensajeApp.back}"/>
+                                    <b:commandButton value="#{mensajeApp.save}" icon="floppy-disk" actionListener="#{registrarRutinaServicioController.registrar()}" class="btn btn-primary pull-right"/>
 
 
                                     <div class="clearfix"></div>
