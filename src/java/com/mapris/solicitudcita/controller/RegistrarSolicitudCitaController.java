@@ -1,11 +1,14 @@
 package com.mapris.solicitudcita.controller;
 
+import com.mapris.login.controller.SessionController;
+import com.mapris.modelo.dao.ClienteFacadeLocal;
 import com.mapris.modelo.dao.SolicitudCitaFacadeLocal;
 import com.mapris.modelo.entitie.SolicitudCita;
 import com.mapris.util.MessageUtil;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -16,8 +19,12 @@ import javax.inject.Named;
 @RequestScoped
 public class RegistrarSolicitudCitaController {
 
+    @Inject
+    private SessionController sessionController;
     @EJB
     private SolicitudCitaFacadeLocal sCFacadeLocal;
+    @EJB
+    private ClienteFacadeLocal clienteFacadeLocal;
     private SolicitudCita nuevaSolicitudCita;
 
     public RegistrarSolicitudCitaController() {
@@ -41,8 +48,8 @@ public class RegistrarSolicitudCitaController {
         if (nuevaSolicitudCita != null) {
             try {
                 nuevaSolicitudCita.setIdCitas(nuevaSolicitudCita.getIdCitas());
-                nuevaSolicitudCita.setEstado(nuevaSolicitudCita.getEstado());
-                nuevaSolicitudCita.setIdClientes(nuevaSolicitudCita.getIdClientes());
+                nuevaSolicitudCita.setEstado("En Espera");
+                nuevaSolicitudCita.setIdClientes(clienteFacadeLocal.find(sessionController.getDocumento()));
                 nuevaSolicitudCita.setIdServicio(nuevaSolicitudCita.getIdServicio());
                 nuevaSolicitudCita.setIdFecha(nuevaSolicitudCita.getIdFecha());
 

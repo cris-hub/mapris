@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mapris.aplazamiento.controllers;
 
 import com.mapris.login.controller.SessionController;
@@ -49,6 +44,15 @@ public class RegistrarAplazamientoController implements Serializable {
 
     private Date fechaHora;
 
+    public RegistrarAplazamientoController() {
+    }
+
+    @PostConstruct
+    public void init() {
+        nuevoAplazamiento = new Aplazamiento();
+        fechaHora = getFechaHoraActual();
+    }
+
     public Date getFechaHora() {
         return fechaHora;
     }
@@ -73,12 +77,6 @@ public class RegistrarAplazamientoController implements Serializable {
         this.nuevoAplazamiento = nuevoAplazamiento;
     }
 
-    @PostConstruct
-    public void init() {
-        nuevoAplazamiento = new Aplazamiento();
-        fechaHora = getFechaHoraActual();
-    }
-
     public InscripcionFacadeLocal getInscripcionFacadeLocal() {
         return inscripcionFacadeLocal;
     }
@@ -94,6 +92,7 @@ public class RegistrarAplazamientoController implements Serializable {
     public void setInscripcionSeleccionado(Inscripcion inscripcionSeleccionado) {
         this.inscripcionSeleccionado = inscripcionSeleccionado;
     }
+
     public String getMotivo() {
         return motivo;
     }
@@ -105,9 +104,6 @@ public class RegistrarAplazamientoController implements Serializable {
     /**
      * Creates a new instance of RegistrarSesionController
      */
-    public RegistrarAplazamientoController() {
-    }
-     
     public Date getFechaHoraActual() {
         Fecha fecha = new Fecha();
         return fecha.getFechaActual();
@@ -124,16 +120,18 @@ public class RegistrarAplazamientoController implements Serializable {
             return "false";
         }
     }
-    private void cambioDeFechaInscripcion(){
+
+    private void cambioDeFechaInscripcion() {
         try {
             inscripcionSeleccionado.setFechaRetornoAplazamiento(fechaHora);
             inscripcionFacadeLocal.edit(inscripcionSeleccionado);
             MessageUtil.enviarMensajeInformacion("form-registrarAplazamiento", "Actualización", "Se ha cambiado la fecha del inscripcion.");
         } catch (Exception e) {
             e.printStackTrace();
-            MessageUtil.enviarMensajeError("form-registrarAplazamiento", "Error cambiar la fecha del inscripcion","");
-        }      
+            MessageUtil.enviarMensajeError("form-registrarAplazamiento", "Error cambiar la fecha del inscripcion", "");
+        }
     }
+
     public void registrar() {
         cambioDeFechaInscripcion();
         nuevoAplazamiento.setIdcliente(clienteFacadeLocal.find(sessionController.getDocumento()));
@@ -150,9 +148,8 @@ public class RegistrarAplazamientoController implements Serializable {
             }
         } else {
             System.out.println("NULO aplazamiento registro");
-             MessageUtil.enviarMensajeError("form-registrarAplazamiento", "no se han diligenciado los campos ", "");
+            MessageUtil.enviarMensajeError("form-registrarAplazamiento", "no se han diligenciado los campos ", "");
         }
     }
 
-   
 }

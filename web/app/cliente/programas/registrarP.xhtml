@@ -16,25 +16,24 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="inscripciones.xhtml">Empresa</a>
+                <a href="inscripciones.xhtml">Inscripciones</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Registrar Empresa</span>
+                <span class="active">Registrar Inscripciones</span>
             </li>
         </ul>
 
     </ui:define>
     <ui:define name="contenido">
-
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Registrar Empresa</h4>
-                                <p class="category">Aquí puedes registrar las empresas</p>
+                                <h4 class="title">Registrar Inscripciones</h4>
+                                <p class="category">Aquí puedes registrar las sesiones</p>
                             </div>
                             <div class="card-content">
                                 <b:messages showSummary="true" show-detail="true" />
@@ -42,42 +41,38 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Nit de la empresa</label>
-                                                <b:inputText value="#{registrarEmpresasController.nuevoEmpresa.idEmpresa}" class="form-control"  />
+                                                <label class="control-label">Id Inscripción</label>
+                                                <b:inputText value="#{registroInscripcionClienteController.nuevoInscripcion.idInscripciones}" class="form-control"  />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Nombre de la empresa</label>
-                                                <b:inputText  value="#{registrarEmpresasController.nuevoEmpresa.nombre}"  class="form-control"/>
+                                                <label class="control-label">Fecha de inicio</label>
+                                                <b:datepicker  value="#{registroInscripcionClienteController.nuevoInscripcion.fechaInicio}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Dirección Principal(Sede Principal)</label>
-                                                <b:inputText  value="#{registrarEmpresasController.nuevoEmpresa.direccionP}"  class="form-control"/>
+                                                <label class="control-label">Número de sesiones</label>
+                                                <b:selectOneMenu value="#{registroInscripcionClienteController.nuevoInscripcion.idSesiones}" class="form-control">
 
+                                                    <f:selectItems value="#{listarSesionController.sesiones}" var="se" itemLabel="#{se.numeroSesiones}"/>
+                                                </b:selectOneMenu>
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Dirección Alterna (Sede Alterna)</label>
-                                                <b:inputText  value="#{registrarEmpresasController.nuevoEmpresa.direccionO}"  class="form-control"/>
+                                                <label class="control-label">Programa</label>
+                                                <b:selectOneMenu value="#{registroInscripcionClienteController.nuevoInscripcion.idPrograma}" class="form-control">
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Teléfono Celular</label>
-                                                <b:inputText  value="#{registrarEmpresasController.nuevoEmpresa.telefonoC}"  class="form-control"/>
-
+                                                    <f:selectItems value="#{listarProgramaController.programas}" var="p" itemLabel="#{p.nombre}"/>
+                                                </b:selectOneMenu>
                                             </div>
                                         </div>
                                     </div>
@@ -85,14 +80,14 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Teléfono Fijo</label>
-                                                <b:inputText  value="#{registrarEmpresasController.nuevoEmpresa.telefonoF}"  class="form-control"/>
+                                                <label class="control-label">Valor</label>
+                                                <b:inputText value="#{registroInscripcionClienteController.nuevoInscripcion.valor}" class="form-control" />
                                             </div>
                                         </div>
                                     </div>
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/empresa/empresas.xhtml" value="Volver"/>
-                                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{registrarEmpresasController.registrar()}" class="btn btn-primary pull-right"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/cliente/programas/programas.xhtml" value="Volver"/>
+                                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{registroInscripcionClienteController.registrar()}" class="btn btn-primary pull-right"/>
 
                                     <div class="clearfix"></div>
                                 </b:form>

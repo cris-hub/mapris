@@ -1,32 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mapris.inscripciones.controller;
 
+import com.mapris.login.controller.SessionController;
+import com.mapris.modelo.dao.ClienteFacadeLocal;
 import com.mapris.modelo.dao.InscripcionFacadeLocal;
 import com.mapris.modelo.entitie.Inscripcion;
 import com.mapris.util.MessageUtil;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
  *
- * @author SMEGS
+ * @author KoLachito
  */
-@Named(value = "registroInscripcionController")
+@Named(value = "registroInscripcionClienteController")
 @RequestScoped
-public class RegistrarInscripcionController {
+public class RegistrarInscripcionClienteController {
+
+    @Inject
+    private SessionController sessionC;
 
     @EJB
     private InscripcionFacadeLocal inscripcionFacadeLocal;
+    @EJB
+    private ClienteFacadeLocal clienteFacadeLocal;
 
     private Inscripcion nuevoInscripcion;
 
-    public RegistrarInscripcionController() {
+    public RegistrarInscripcionClienteController() {
     }
 
     @PostConstruct
@@ -51,7 +54,7 @@ public class RegistrarInscripcionController {
                 nuevoInscripcion.setEstado("activo");
                 nuevoInscripcion.setFechaInicio(nuevoInscripcion.getFechaInicio());
                 nuevoInscripcion.setIdSesiones(nuevoInscripcion.getIdSesiones());
-                nuevoInscripcion.setIdCliente(nuevoInscripcion.getIdCliente());
+                nuevoInscripcion.setIdCliente(clienteFacadeLocal.find(sessionC.getDocumento()));
                 nuevoInscripcion.setIdPrograma(nuevoInscripcion.getIdPrograma());
                 nuevoInscripcion.setValor(nuevoInscripcion.getValor());
 
