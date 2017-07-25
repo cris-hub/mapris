@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `mapris`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mapris
 -- ------------------------------------------------------
--- Server version	5.7.17-log
+-- Server version	5.6.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -71,7 +71,7 @@ CREATE TABLE `calendario` (
 
 LOCK TABLES `calendario` WRITE;
 /*!40000 ALTER TABLE `calendario` DISABLE KEYS */;
-INSERT INTO `calendario` VALUES (1,'0000-00-00 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00');
+INSERT INTO `calendario` VALUES (1,'0000-00-00 00:00:00','2017-07-04 16:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00','2017-07-04 00:00:00');
 /*!40000 ALTER TABLE `calendario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +238,7 @@ CREATE TABLE `inscripciones` (
 
 LOCK TABLES `inscripciones` WRITE;
 /*!40000 ALTER TABLE `inscripciones` DISABLE KEYS */;
-INSERT INTO `inscripciones` VALUES (1,112312,1,'2017-09-09',300000,'Activa',NULL,NULL,3),(5,112312,1,'2017-07-24',10000,'activo',NULL,NULL,1);
+INSERT INTO `inscripciones` VALUES (1,112312,1,'2017-09-09',300000,'Activa',NULL,NULL,3),(5,112312,1,'2017-07-24',100000,'Activa',NULL,NULL,1),(727,112312,81,'2017-08-01',500000,'activo',NULL,NULL,3);
 /*!40000 ALTER TABLE `inscripciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -655,7 +655,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1111,'Paula','Mendez','0199-01-01','fceeb9b9d469401fe558062c4bd25954',NULL,1,'2017-07-04','pm@gmailcom','4312321','3104391876'),(54534,'Kiler','Doom','1999-01-01','b3d80ff388ec7b0bee1b251856ec56e8',NULL,1,'2017-07-23','neutro@gmail.com','4334213','3182818199'),(81928,'Beltrout','Brench','1999-11-11','fceeb9b9d469401fe558062c4bd25954',NULL,1,'2017-07-17','Bb@gmail.com','7621371','3111111111'),(112312,'Maria','Melendez','1999-12-22','934b535800b1cba8f96a5d72f72f1611',NULL,1,'2017-07-04','MM@gmaill.com',NULL,NULL);
+INSERT INTO `usuarios` VALUES (1111,'Paula','Mendez','0199-01-01','fceeb9b9d469401fe558062c4bd25954',NULL,1,'2017-07-04','pm@gmailcom','4312321','3104391876'),(54534,'Kiler','Doom','1999-01-01','b3d80ff388ec7b0bee1b251856ec56e8',NULL,1,'2017-07-23','neutro@gmail.com','4334213','3182818199'),(81928,'Beltrout','Brench','1999-11-11','fceeb9b9d469401fe558062c4bd25954',NULL,1,'2017-07-17','Bb@gmail.com','7621371','3111111111'),(112312,'Maria','Melendez','1999-12-22','fceeb9b9d469401fe558062c4bd25954',NULL,1,'2017-07-04','MM@gmaill.com',NULL,NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -773,4 +773,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-25  3:13:02
+-- Dump completed on 2017-07-25  9:19:23

@@ -50,6 +50,7 @@
                                         <b:dataTableColumn label="Id Inscripcion" value="#{in.idInscripciones}"/>
                                         <b:dataTableColumn label="Cedula Cliente" value="#{in.idCliente.usuario.cedula}"/>
                                         <b:dataTableColumn label="Nombre Cliente" value="#{in.idCliente.usuario.nombres} #{in.idCliente.usuario.apellidos} "/>
+                                        <b:dataTableColumn label="Estado" value="#{in.estado}"/>
                                         <b:dataTableColumn label="Fecha de Inicio">
                                             <h:outputText value="#{in.fechaInicio}">
                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>

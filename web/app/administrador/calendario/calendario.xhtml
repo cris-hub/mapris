@@ -48,13 +48,49 @@
 
 
                                         <b:dataTableColumn label="Número del calendario" value="#{calendario.idCalendario}" />
-                                        <b:dataTableColumn label="Lunes" value="#{calendario.lunes}" />
-                                        <b:dataTableColumn label="Martes" value="#{calendario.martes}"/>
-                                        <b:dataTableColumn label="Miercoles" value="#{calendario.miercoles}"/>
-                                        <b:dataTableColumn label="Jueves" value="#{calendario.jueves}"/>
-                                        <b:dataTableColumn label="Viernes" value="#{calendario.viernes}"/>
-                                        <b:dataTableColumn label="Sábado" value="#{calendario.sabado}"/>
-                                        <b:dataTableColumn label="Domingo" value="#{calendario.domingo}"/>
+                                        <b:dataTableColumn label="Lunes"  >
+                                            <h:outputText value="#{calendario.lunes}">
+
+                                                <f:convertDateTime  locale="es_CO" type="both" pattern="dd/MM/yyyy HH:mm a"/>
+                                            </h:outputText>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Martes">
+                                          <h:outputText value="#{calendario.martes}">
+
+                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
+                                            </h:outputText>
+                                        </b:dataTableColumn>
+                                        
+                                        <b:dataTableColumn label="Miercoles" >
+                                                <h:outputText value="#{calendario.miercoles}">
+
+                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
+                                            </h:outputText>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Jueves" >
+                                                <h:outputText value="#{calendario.jueves}">
+
+                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
+                                            </h:outputText>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Viernes" >
+                                                <h:outputText value="#{calendario.viernes}">
+
+                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
+                                            </h:outputText>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Sábado" >
+                                                <h:outputText value="#{calendario.sabado}">
+
+                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
+                                            </h:outputText>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Domingo" >
+                                                <h:outputText value="#{calendario.domingo}">
+
+                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
+                                            </h:outputText>
+                                        </b:dataTableColumn>
 
 
                                         <b:dataTableColumn  label="Opciones" >
