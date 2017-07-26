@@ -19,7 +19,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="/app/administrador/personalmedicoes/personalmedicoes.xhtml">Personal Medico</a>
+                <a href="/app/administrador/clientees/clientees.xhtml">Personal Medico</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -51,31 +51,31 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Cedula</label>
-                                                <h:outputText value="#{verPersonalMedicoController.personalmedico.usuario.cedula}" class="form-control"  />
+                                                <h:outputText value="#{verClienteController.cliente.usuario.cedula}" class="form-control"  />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombres</label>
-                                                <h:outputText value="#{verPersonalMedicoController.personalmedico.usuario.nombres}" class="form-control"/>
+                                                <h:outputText value="#{verClienteController.cliente.usuario.nombres}" class="form-control"/>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Apellidos</label>
-                                                <h:outputText value="#{verPersonalMedicoController.personalmedico.usuario.apellidos}" class="form-control"/>
+                                                <h:outputText value="#{verClienteController.cliente.usuario.apellidos}" class="form-control"/>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Correo Electronico</label>
-                                                <h:outputText value="#{verPersonalMedicoController.personalmedico.usuario.correoElectronico}" class="form-control"/>
+                                                <h:outputText value="#{verClienteController.cliente.usuario.correoElectronico}" class="form-control"/>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fecha de nacimiento</label>
-                                                <h:outputText value="#{verPersonalMedicoController.personalmedico.usuario.fechaNaci}" class="form-control">
+                                                <h:outputText value="#{verClienteController.cliente.usuario.fechaNaci}" class="form-control">
                                                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                 </h:outputText>
                                             </div>
@@ -84,7 +84,7 @@
                                          <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono celular</label>
-                                                <h:outputText value="#{verPersonalMedicoController.personalmedico.usuario.telefonoCelular}" class="form-control"/>
+                                                <h:outputText value="#{verClienteController.cliente.usuario.telefonoCelular}" class="form-control"/>
                                               
                                             </div>
                                         </div>
@@ -92,23 +92,23 @@
                                          <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono Fijo</label>
-                                                <h:outputText value="#{verPersonalMedicoController.personalmedico.usuario.telefonoFijo}" class="form-control"/>
+                                                <h:outputText value="#{verClienteController.cliente.usuario.telefonoFijo}" class="form-control"/>
                                               
                                             </div>
                                         </div>
                                           
                                          <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Perfil Profesional</label>
-                                                <h:outputText value="#{verPersonalMedicoController.personalmedico.perfilProfesional}" class="form-control"/>
+                                                <label class="control-label">Empresa donde labora</label>
+                                                <h:outputText value="#{verClienteController.cliente.idEmpresa.nombre}" class="form-control"/>
                                               
                                             </div>
                                         </div>
                                           
                                          <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Cargo</label>
-                                                <h:outputText value="#{verPersonalMedicoController.personalmedico.cargo}" class="form-control"/>
+                                                <label class="control-label">Estado en el sistema</label>
+                                                <h:outputText value="#{verClienteController.cliente.estado}" class="form-control"/>
                                               
                                             </div>
                                         </div>
@@ -117,7 +117,7 @@
 
 
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/personal/medico.xhtml" value="Volver"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/clientes/cliente.xhtml" value="Volver"/>
 
                                 </h:form>
 
