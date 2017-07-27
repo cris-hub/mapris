@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml" 
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
- <ui:define name="titulo">#{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} </ui:define>
+    <ui:define name="titulo">#{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} </ui:define>
     <ui:define name="pagetitle">
-<!--        <div class="page-head">
-            <div class="page-title">
-                <h1> Mi Perfil
-                    <small>Mis metas</small>
-                </h1>
-            </div>
-        </div>-->
+        <!--        <div class="page-head">
+                    <div class="page-title">
+                        <h1> Mi Perfil
+                            <small>Mis metas</small>
+                        </h1>
+                    </div>
+                </div>-->
     </ui:define>
 
     <ui:define name="breadcrumb">
@@ -29,55 +29,37 @@
             </li>
         </ul>
 
-    </ui:define>    
-    
-    
- <ui:define name="contenido">
-    <div class="col-md-10 col-md-offset-1">
-        <!-- BEGIN PROFILE SIDEBAR -->
-        
-            <!-- PORTLET MAIN -->
-            <div class="portlet light profile-sidebar-portlet bordered">
-                <!-- SIDEBAR USERPIC -->
-                <div class="profile-userpic">
-                    <img src="#{request.contextPath}/files/profileimg/#{sessionController.usuario.cedula.toString()}/perfil/perfil.png" class="img-responsive" alt=""/> </div>
-                <!-- END SIDEBAR USERPIC -->
-                <!-- SIDEBAR USER TITLE -->
-                <div class="profile-usertitle">
-                    <div class="profile-usertitle-name"> #{sessionController.usuario.nombres} #{sessionController.usuario.apellidos}</div>
-                    <div class="profile-usertitle-job"> #{mensajeApp[sessionController.rolSeleccionado.nombre]} </div>
+    </ui:define>
+
+
+    <ui:define name="contenido">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-profile">
+                            <div class="card-avatar">
+                                <a href="#pablo">
+                                    <img src="#{request.contextPath}/files/profileimg/#{sessionController.usuario.cedula.toString()}/perfil/perfil.png" class="img"/>
+
+                                </a>
+                            </div>
+
+                            <div class="content">
+                                <h4 class="card-title">#{sessionController.usuario.nombres} #{sessionController.usuario.apellidos}</h4>
+                                <h6 class="category text-gray">#{sessionController.rolSeleccionado.nombre}</h6>
+                                <p class="card-content">
+                                    Programa Actual <br/>
+                                    Rutina Actual <br/>
+                                </p>
+
+                                <h:link class="btn btn-primary btn-round" outcome="/app/perfil/cambiardatos.xhtml">Cambiar datos</h:link>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- END SIDEBAR USER TITLE -->
-                <!-- SIDEBAR BUTTONS -->
-                <div class="profile-userbuttons">
-                    <button type="button" class="btn btn-circle green btn-sm">#{mensajeApp.avances}</button>
-                    <button type="button" class="btn btn-circle red btn-sm">#{mensajeApp.recomendaciones}</button>
-                </div>
-                <!-- END SIDEBAR BUTTONS -->
-                <!-- SIDEBAR MENU -->
-                <div class="profile-usermenu">
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="#{request.contextPath}/app/index.xhtml">
-                                <i class="icon-home"></i>#{mensajeApp.inicio}  </a>
-                        </li>
-                        <li>
-                            <a href="#{request.contextPath}/app/perfil/cambiardatos.xhtml">
-                                <i class="icon-settings"></i> #{mensajeApp.changeData} </a>
-                        </li>
-<!--                        <li>
-                            <a href="page_user_profile_1_help.html">
-                                <i class="icon-info"></i> Help </a>
-                        </li>-->
-                    </ul>
-                </div>
-                <!-- END MENU -->
             </div>
-            <!-- END PORTLET MAIN -->
-            
-        
-        <!-- END BEGIN PROFILE SIDEBAR -->
-       
-    </div>
-</ui:define>
-</ui:composition> 
+        </div>
+    </ui:define>
+</ui:composition>

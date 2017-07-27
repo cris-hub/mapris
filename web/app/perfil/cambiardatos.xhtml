@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/WEB-INF/template/templateInterfaz.xhtml"
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
 
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -35,226 +35,89 @@
 
     <ui:define name="contenido">
 
-        <div class="col-md-12">
-            <!-- BEGIN PROFILE SIDEBAR -->
-            <div class="profile-sidebar">
-                <!-- PORTLET MAIN -->
-                <div class="portlet light profile-sidebar-portlet bordered">
-                    <!-- SIDEBAR USERPIC -->
-                    <div class="profile-userpic">
-                        <img src="#{request.contextPath}/files/profileimg/#{sessionController.usuario.cedula.toString()}/perfil/perfil.png" class="img-responsive" alt=""/>
-                    </div>
-                    <!-- END SIDEBAR USERPIC -->
-                    <!-- SIDEBAR USER TITLE -->
-                    <div class="profile-usertitle">
-                        <div class="profile-usertitle-name"> #{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} </div>
-                        <div class="profile-usertitle-job"> #{sessionController.rolSeleccionado.nombre} </div>
-                    </div>
-                    <!-- END SIDEBAR USER TITLE -->
-                    <!-- SIDEBAR BUTTONS -->
-                    <div class="profile-userbuttons">
-                        <button type="button" class="btn btn-circle green btn-sm">#{mensajeApp.avances}</button>
-                        <button type="button" class="btn btn-circle red btn-sm">#{mensajeApp.recomendaciones}</button>
-                    </div>
-                    <!-- END SIDEBAR BUTTONS -->
-                    <!-- SIDEBAR MENU -->
-                    <div class="profile-usermenu">
-                        <ul class="nav">
-                            <li>
-                                <a href="page_user_profile_1.html">
-                                    <i class="icon-home"></i> #{mensajeApp.inicio} </a>
-                            </li>
-                            <li class="active">
-                                <a href="page_user_profile_1_account.html">
-                                    <i class="icon-settings"></i> #{mensajeApp.changeData} </a>
-                            </li>
-                            <!--                            <li>
-                                                            <a href="page_user_profile_1_help.html">
-                                                                <i class="icon-info"></i> Help </a>
-                                                        </li>-->
-                        </ul>
-                    </div>
-                    <!-- END MENU -->
-                </div>
-                <!-- END PORTLET MAIN -->
-
-                <!-- END PORTLET MAIN -->
-            </div>
-            <!-- END BEGIN PROFILE SIDEBAR -->
-            <!-- BEGIN PROFILE CONTENT -->
-            <div class="profile-content">
+        <div class="content">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="portlet light bordered">
-                            <div class="portlet-title tabbable-line">
-                                <div class="caption caption-md">
-                                    <i class="icon-globe theme-font hide"></i>
-                                    <span class="caption-subject font-blue-madison bold uppercase">#{msjPerfil.txtcuentaperfil}</span>
-                                </div>
-                                <ul class="nav nav-tabs">
-                                    <li class="active">
-                                        <a href="#tab_1_1" data-toggle="tab">#{mensajeApp.datosPersonales}</a>
-                                    </li>
-                                    <li>
-                                        <a href="#tab_1_2" data-toggle="tab">#{mensajeApp.cambiarFotoPerfil}</a>
-                                    </li>
-                                    <li>
-                                        <a href="#tab_1_3" data-toggle="tab">#{mensajeApp.cambiarContraseña}</a>
-                                    </li>
-                                    <li>
-                                        <a href="#tab_1_4" data-toggle="tab">#{mensajeApp.configuracionPrivacidad}</a>
-                                    </li>
-                                </ul>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Editar Perfil</h4>
+                                <p class="category">Completa tu perfil</p>
                             </div>
-                            <div class="portlet-body">
-                                <div class="tab-content">
-                                    <!-- PERSONAL INFO TAB -->
-                                    <div class="tab-pane active" id="tab_1_1">
-                                        <h:form role="form" >
-                                            <b:messages showDetail="true" showSummary="true" globalOnly="true"/>
-                                            <div class="form-group">
-                                                <label class="control-label">#{mensajeApp.firtsName}</label>
-                                                <h:inputText  value="#{sessionController.usuario.nombres}" class="form-control" /> 
+                            <div class="card-content">
+                                <h:form role="form">
+                                    <b:messages showDetail="true" showSummary="true" globalOnly="true"/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Documento de Identidad</label>
+                                                <h:inputText  value="#{sessionController.usuario.cedula}" class="form-control" disabled="true" />
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label">#{mensajeApp.firtsLastName}</label>
-                                                <h:inputText  value="#{sessionController.usuario.apellidos}"  class="form-control" /> 
-                                                </div>
-                                            <div class="margiv-top-10">
-                                                <h:commandButton action="#{modificarPerfilController.actualizarPerfil()}" value="Modificar Datos" class="btn green"/>
-                                                <a href="javascript:;" class="btn default"> #{mensajeApp.changeProfileBtn} </a>
-                                            </div>
-                                        </h:form>
+                                        </div>
                                     </div>
-                                    <!-- END PERSONAL INFO TAB -->
-                                    <!-- CHANGE AVATAR TAB -->
-                                    <div class="tab-pane" id="tab_1_2">
-                                        <p>#{mensajeApp.textCambiarFoto} </p>
-                                        <h:form  role="form" enctype="multipart/form-data" prependId="false">
-                                            <b:messages global-only="true"   showSummary="true" showDetail="true" />
-                                            <div  class="form-group">
-                                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
-                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
-                                                    <div>
-                                                        <span class="btn default btn-file">
-                                                            <span class="fileinput-new"> Selecciona tu fotografía  </span>
-                                                            <span class="fileinput-exists"> Cambiar </span>
-                                                            <h:inputFile id = "fileUpload" />
-                                                            <b:message for="fileUpload" show-detail="true" show-summary="true"/>
-                                                        </span>
-                                                        <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
-                                                    </div>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Nombres</label>
+                                                <h:inputText  value="#{sessionController.usuario.nombres}" class="form-control"/>
                                             </div>
-                                            <div class="margin-top-10">
-                                                <h:commandButton value="update progres" id="upload" class="btn default " actionListener="#{cargarArchivoController.uploadProfileImage}"/>
-                                                <a href="javascript:;" class="btn default"> Cancel </a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Apellidos</label>
+                                                <h:inputText  value="#{sessionController.usuario.apellidos}" class="form-control" />
                                             </div>
-                                        </h:form>
+                                        </div>
                                     </div>
-                                    <!-- END CHANGE AVATAR TAB -->
-                                    <!-- CHANGE PASSWORD TAB -->
-                                    <div class="tab-pane" id="tab_1_3">
-                                        <h:form >
-                                            <div class="form-group">
-                                                <label class="control-label">Current Password</label>
-                                                <h:inputSecret  class="form-control" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">New Password</label>
-                                                <h:inputSecret  class="form-control" /> </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Re-type New Password</label>
-                                                <h:inputSecret  class="form-control" /> </div>
-                                            <div class="margin-top-10">
-                                                <a href="javascript:;" class="btn green"> Change Password </a>
-                                                <a href="javascript:;" class="btn default"> Cancel </a>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Correo</label>
+                                                <h:inputText  value="#{sessionController.usuario.correoElectronico}" class="form-control" />
                                             </div>
-                                        </h:form>
-                                    </div>
-                                    <!-- END CHANGE PASSWORD TAB -->
-                                    <!-- PRIVACY SETTINGS TAB -->
-                                    <div class="tab-pane" id="tab_1_4">
-                                        <h:form >
-                                            <table class="table table-light table-hover">
-                                                <tr>
-                                                    <td> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.. </td>
-                                                    <td>
-                                                        <div class="mt-radio-inline">
-                                                            <label class="mt-radio">
-                                                                <h:selectBooleanCheckbox  value="option1" /> Yes
-                                                                <span></span>
-                                                            </label>
-                                                            <label class="mt-radio">
-                                                                <h:selectBooleanCheckbox  value="option2" /> No
-                                                                <span></span>
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                    <td>
-                                                        <div class="mt-radio-inline">
-                                                            <label class="mt-radio">
-                                                                <h:selectBooleanCheckbox value="option1" /> Yes
-                                                                <span></span>
-                                                            </label>
-                                                            <label class="mt-radio">
-                                                                <h:selectBooleanCheckbox  value="option2" /> No
-                                                                <span></span>
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                    <td>
-                                                        <div class="mt-radio-inline">
-                                                            <label class="mt-radio">
-                                                                <h:selectBooleanCheckbox value="option1" /> Yes
-                                                                <span></span>
-                                                            </label>
-                                                            <label class="mt-radio">
-                                                                <h:selectBooleanCheckbox value="option2"/> No
-                                                                <span></span>
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                    <td>
-                                                        <div class="mt-radio-inline">
-                                                            <label class="mt-radio">
-                                                                <h:selectBooleanCheckbox   value="option1" /> Yes
-                                                                <span></span>
-                                                            </label>
-                                                            <label class="mt-radio">
-                                                                <h:selectBooleanCheckbox   value="option2" /> No
-                                                                <span></span>
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <!--end profile-settings-->
-                                            <div class="margin-top-10">
-                                                <a href="javascript:;" class="btn red"> Save Changes </a>
-                                                <a href="javascript:;" class="btn default"> Cancel </a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Fecha de Nacimiento</label>
+                                                <h:inputText  value="#{sessionController.usuario.fechaNaci}" class="form-control" />
                                             </div>
-                                        </h:form>
+                                        </div>
                                     </div>
-                                    <!-- END PRIVACY SETTINGS TAB -->
-                                </div>
+                                    <h:commandButton action="#{modificarPerfilController.actualizarPerfil()}" value="Modificar Datos" class="btn btn-primary pull-right"/>
+                                    <div class="clearfix"></div>
+                                </h:form>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <h:form role="form" enctype="multipart/form-data" prependId="false">
+                            <div class="card card-profile">
+                                <div class="card-avatar">
+                                    <a href="#pablo">
+                                        <img src="#{request.contextPath}/files/profileimg/#{sessionController.usuario.cedula.toString()}/perfil/perfil.png" class="img"/>
+
+                                    </a>
+                                </div>
+
+                                <div class="content">
+                                    <h4 class="card-title">#{sessionController.usuario.nombres} #{sessionController.usuario.apellidos}</h4>
+                                    <h6 class="category text-gray">#{sessionController.rolSeleccionado.nombre}</h6>
+                                    <p class="card-content">
+                                        Programa Actual <br/>
+                                        Rutina Actual <br/>
+                                    </p>
+                                    <h:inputFile id="fileUpload" class="btn btn-primary btn-round" value="Cambiar foto" />
+                                    <h:commandButton value="Cambiar foto" id="upload" class="btn default " actionListener="#{cargarArchivoController.uploadProfileImage}"/>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
                 </div>
             </div>
-            <!-- END PROFILE CONTENT -->
         </div>
+
+
     </ui:define>
 
-</ui:composition> 
+</ui:composition>
