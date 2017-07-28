@@ -1,10 +1,8 @@
-$(function() {
-
-    $('.boton-custom').on('click', function() {
-        $('.card-reveal').slideToggle('slow');
-    });
-
-    $('.card-reveal .close').on('click', function() {
-        $('.card-reveal').slideToggle('slow');
-    });
+$(window).load(function() {
+  $('.post-module').hover(function() {
+    $(this).find('.description').stop().animate({
+      height: "toggle",
+      opacity: "toggle"
+    }, 300);
+  });
 });
