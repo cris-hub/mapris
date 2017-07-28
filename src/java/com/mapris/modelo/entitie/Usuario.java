@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -101,8 +102,11 @@ public class Usuario implements Serializable {
     @Size(max = 10)
     @Column(name = "telefonoCelular")
     private String telefonoCelular;
-    @ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
-    private List<Rol> roles;
+   @JoinTable(name = "rolesusuarios", joinColumns ={
+        @JoinColumn(name = "idUsuarios", referencedColumnName = "cedula")} , inverseJoinColumns = {
+        @JoinColumn(name = "idRoles", referencedColumnName = "idRoles")})
+    @ManyToMany(fetch = FetchType.LAZY) 
+    private List<Rol> role;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Personalmedico personalmedico;
     @JoinColumn(name = "id_estados", referencedColumnName = "id_estados")
@@ -207,11 +211,11 @@ public class Usuario implements Serializable {
 
     @XmlTransient
      public List<Rol> getRoles() {
-        return roles;
+        return role;
     }
 
-    public void setRoles(List<Rol> roles) {
-        this.roles = roles;
+    public void setRoles(List<Rol> role) {
+        this.role = role;
     } 
     
     public Personalmedico getPersonalmedico() {

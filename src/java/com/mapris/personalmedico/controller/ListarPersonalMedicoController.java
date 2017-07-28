@@ -18,6 +18,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+
 
 /**
  *
@@ -36,7 +38,7 @@ public class ListarPersonalMedicoController implements Serializable{
 
     private Personalmedico personalMedicoSeleccionado;
     private Usuario usuarioSeleccionado;
-   
+   private EntityManager em;
 
     
     
@@ -51,7 +53,12 @@ public class ListarPersonalMedicoController implements Serializable{
     }
     
     private void recargarPersonalmedicoes(){
+        getEntityManager().getEntityManagerFactory().getCache().evictAll();
         personalMedico = personalMedicoFacadeLocal.findAll();
+    }
+    
+    private EntityManager getEntityManager() {
+        return em;
     }
     
      public PersonalmedicoFacadeLocal getPersonalmedicoFacadeLocal() {

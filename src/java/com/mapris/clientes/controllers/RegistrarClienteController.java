@@ -52,6 +52,8 @@ public class RegistrarClienteController {
     private Cliente nuevoCliente;
     
     private Usuario nuevoUsuario;
+    
+ 
    
 
     public RegistrarClienteController() {
@@ -108,7 +110,7 @@ public class RegistrarClienteController {
                 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("No paso pez" + e.getMessage());
+               
             }
         } else {
             MessageUtil.enviarMensajeInformacionGlobal( "Error al registrar el usuario", "No se pudo registrar el usuario");

@@ -46,7 +46,7 @@ public class VerClienteController implements Serializable{
     public String verCliente(Cliente i){
     this.cliente = i;
    
-    return "/app/administrador/cliente/ver.xhtml?faces-redirect=true";
+    return "/app/administrador/clientes/ver.xhtml?faces-redirect=true";
     }
     
     

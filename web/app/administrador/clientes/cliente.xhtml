@@ -10,7 +10,7 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">Administrador-Personal Medico</ui:define>
+    <ui:define name="titulo">Administrador-Cliente</ui:define>
     <ui:define name="pagetitle">
 
     </ui:define>
@@ -37,7 +37,7 @@
                         <div class="card">
                             <div class="card-header" data-background-color="pink">
                                 <h4 class="title">Personal Medico</h4>
-                                <p class="category">Lista de Personal Medico</p>
+                                <p class="category">Lista de Personal Medico de Maternity Club</p>
                             </div>
                             <div class="card-content table-responsive">
 
@@ -82,7 +82,7 @@
 
                     <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
                         <h:panelGroup id="message-modal-confirm" layout="block">
-                            <p>¿Está seguro de eliminar las sesiones?
+                            <p>¿Está seguro de eliminar el cliente #{c.usuario.nombres} #{c.usuario.apellidos}?
                             </p>
                         </h:panelGroup>
                         <f:facet name="footer">

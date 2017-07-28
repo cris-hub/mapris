@@ -83,7 +83,7 @@ public class EditarClienteController implements Serializable {
     public String preModificar(Cliente i, Usuario u){
         setClienteSelecionada(i);
         setUsuarioSeleccionado(u);
-        return "/app/administrador/cliente/editar.xhtml?faces-redirect=true";
+        return "/app/administrador/clientes/editar.xhtml?faces-redirect=true";
     }
     
    
