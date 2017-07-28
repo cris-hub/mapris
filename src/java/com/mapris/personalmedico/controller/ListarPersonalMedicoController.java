@@ -38,7 +38,7 @@ public class ListarPersonalMedicoController implements Serializable{
 
     private Personalmedico personalMedicoSeleccionado;
     private Usuario usuarioSeleccionado;
-   private EntityManager em;
+  
 
     
     
@@ -53,13 +53,10 @@ public class ListarPersonalMedicoController implements Serializable{
     }
     
     private void recargarPersonalmedicoes(){
-        getEntityManager().getEntityManagerFactory().getCache().evictAll();
+       
         personalMedico = personalMedicoFacadeLocal.findAll();
     }
-    
-    private EntityManager getEntityManager() {
-        return em;
-    }
+   
     
      public PersonalmedicoFacadeLocal getPersonalmedicoFacadeLocal() {
         return personalMedicoFacadeLocal;
