@@ -89,7 +89,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fecha De Nacimiento</label>
-                                                <b:datepicker   value="#{registroClienteController.nuevoUsuario.fechaNaci}"  class="form-control"/>
+                                                <b:datepicker changeYear="true" changeMonth="true"  value="#{registroClienteController.nuevoUsuario.fechaNaci}"  class="form-control"/>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
@@ -107,7 +107,7 @@
                                     </div>
 
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/personal/medico.xhtml" value="Volver"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/clientes/cliente.xhtml" value="Volver"/>
                                     <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{registroClienteController.registrar()}" class="btn btn-primary pull-right"/>
 
                                     <div class="clearfix"></div>

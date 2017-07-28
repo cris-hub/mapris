@@ -12,31 +12,56 @@
 
 
     <ui:define name="contenido">
-    <b:carousel id="tiovivo" style="width:800px" interval="2500">
+        
+        
+        <div style="margin: 60px;">
+               
+    <b:carousel id="tiovivo" style="width:1000px; border-radius: 90px;" interval="5500">
+  
+        <b:carouselItem caption=" &bull; &hearts; Bienvenida a   Maternity Club &copy; Gym &amp; Spa. &hearts; &bull; #{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} ¡Empecemos! "  >
+       <img src="#{request.contextPath}/resources/img/io.png" alt="Valladolid" style="width: 1000px; height: 320px;" />
+   </b:carouselItem>
+     
+   
+        
+   <b:carouselItem caption="Etapas que cambian nuestra vida y traen felicidad. Maternity Club te acompaña en cada una">
+     <img src="#{request.contextPath}/resources/img/imghome/programas/prenatal-reco.jpg" alt="Valladolid" style="width: 1000px; height: 320px;" />
+   </b:carouselItem>
+        
+           <b:carouselItem >
+     <img src="#{request.contextPath}/resources/img/imghome/galeria/maternity-taller-para-padres-min.png" alt="Valladolid" style="width: 1000px; height: 320px;" />
+   </b:carouselItem>
+   
    <b:carouselItem >
-     <img src="Valladolid1.png" alt="Valladolid" style="width: 800px; height: 600px" />
-     <b:carouselCaption>
-       <h3>You'll love Valladolid!</h3>
-       <p>The band reads <a style="color:#fff" href="http://www.vanderkrogt.net/statues/object.php?webpage=CO&record=escl010">"Non plus ultra"</a>, being Spains' motto in 1492, when Columbus made his discoveries.</p>
-     </b:carouselCaption>
+     <img src="#{request.contextPath}/resources/img/imghome/galeria/maternity-baby-rumba.png" alt="Valladolid" style="width: 1000px; height: 320px; " />
    </b:carouselItem>
-   <b:carouselItem caption="Valladolid has a nice central park.">
-     <img src="Valladolid2.png" alt="Valladolid" style="width: 800px; height: 600px" />
-   </b:carouselItem>
-   <b:carouselItem caption="Ain't he a beauty?">
-     <img src="Valladolid3.png" alt="Valladolid" style="width: 800px; height: 600px" />
-   </b:carouselItem>
-   <b:carouselItem>
-     <img src="Valladolid4.png" alt="Valladolid" style="width: 800px; height: 600px" />
-     <b:carouselCaption>
-       <h3>Fountains</h3>
-       <p>In Spain, dry as it is, people love to play with water.</p>
-     </b:carouselCaption>
-   </b:carouselItem>
-   <b:carouselItem caption="Valladolid - a city with a lot of history">
-     <img src="Valladolid5.png" alt="Valladolid" style="width: 800px; height: 600px" />
+        <b:carouselItem caption="&hearts; ¡Ven! y tomate un descanso. Relajate en nuestro Spa &hearts; ">
+     <img src="#{request.contextPath}/resources/img/imghome/programas/spa-reco.jpg" alt="Valladolid" style="width: 1000px; height: 320px; " />
    </b:carouselItem>
  </b:carousel>
+            <div class="row" style="margin-top: 10px; margin-left: 2px;">
+                
+                <b:carousel id="tioviva" style="width:1000px; border-radius: 90px;" interval="5500" >
+  
+   <b:carouselItem  >
+     <img src="#{request.contextPath}/resources/img/banners/landing-page-instalaciones.jpg" alt="Valladolid" style="width: 1000px; height: 200px; " />
+   </b:carouselItem>
+        <b:carouselItem >
+     <img src="#{request.contextPath}/resources/img/banners/header-posparto.jpg" alt="Valladolid" style="width: 1000px; height: 200px;" />
+   </b:carouselItem>
+   <b:carouselItem >
+     <img src="#{request.contextPath}/resources/img/banners/header-prenatal.jpg" alt="Valladolid" style="width: 1000px; height: 200px;" />
+   </b:carouselItem>
+   
+   <b:carouselItem >
+     <img src="#{request.contextPath}/resources/img/banners/header-club-del-bebe.jpg" alt="Valladolid" style="width: 1000px; height: 200px; " />
+   </b:carouselItem>
+ </b:carousel>
+            </div>
+         
+            
+             </div>   
+                   
     </ui:define>
 </ui:composition>
 
