@@ -11,7 +11,21 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    <ui:define name="titulo">Administrador-Empresas</ui:define>
+   <ui:define name="titulo">Administrador-Empresas</ui:define>
+    
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="/app/index.xhtml">Administrador</a>
+                <i class="fa fa-circle"></i>
+            </li>
+
+            <li>
+                <span class="active">Empresas</span>
+            </li>
+        </ul>
+
+    </ui:define>
 
     <ui:define name="contenido">
 
@@ -24,7 +38,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">EMPRESAS</h4>
+                                <h4 class="title">Empresas</h4>
                                 <p class="category">Empresas vinculas con Maternity Club</p>
                             </div>
                             <div class="card-content table-responsive">

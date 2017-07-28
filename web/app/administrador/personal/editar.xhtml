@@ -7,6 +7,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui">
 
+    <ui:define name="titulo">Administrador- Editar Personal Medico</ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
@@ -15,7 +16,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="sesiones.xhtml">Personal Medico</a>
+                <a href="/app/administrador/personal/medico.xhtml">Personal Medico</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -32,7 +33,7 @@
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
                                 <h4 class="title">Editar Personal Medico</h4>
-                                <p class="category">Aquí puedes modificar el personal medico habilitadas</p>
+                                <p class="category">Aquí puedes modificar el personal medico habilitado en Maternity Club</p>
                             </div>
                             <div class="card-content">
                                 <b:messages showSummary="true" show-detail="true" />
@@ -110,7 +111,7 @@
                                     </div>
 
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/sesiones/sesiones.xhtml" value="Volver"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/personal/medico.xhtml" value="Volver"/>
                                     <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarPersonalMedicoController.actualizarDatos()}" class="btn btn-primary pull-right"/>
 
                                     <div class="clearfix"></div>

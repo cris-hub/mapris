@@ -7,11 +7,11 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui">
 
-
+  <ui:define name="titulo">Administrador-Editar Usuarios</ui:define>
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="#{request.contextPath}/app/index.xhtml">inicio</a>
+                <a href="#{request.contextPath}/app/index.xhtml">Administrador</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -19,7 +19,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Modificar información</span>
+                <span class="active">Cambiar Datos</span>
 
             </li>
         </ul>
@@ -33,8 +33,8 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Edit Profile</h4>
-                                <p class="category">Complete your profile</p>
+                                <h4 class="title">Editar Usuario</h4>
+                                <p class="category">Aquí puedes editar la información del usuario que haz seleccionado</p>
                             </div>
                             <div class="card-content">
                                 <b:messages showSummary="true" show-detail="true"/>

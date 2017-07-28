@@ -7,15 +7,16 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui">
 
+    <ui:define name="titulo">Administrador-Programas</ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.xhtml">Administrador</a>
+                <a href="/app/index.xhtml">Administrador</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="sesiones.xhtml">Programas</a>
+                <a href="/app/administrador/programas/programas.xhtml">Programas</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -32,7 +33,7 @@
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
                                 <h4 class="title">Editar Programas</h4>
-                                <p class="category">Aquí puedes modificar las sesiones habilitadas</p>
+                                <p class="category">Aquí puedes modificar los programas habilitados en Maternity Club</p>
                             </div>
                             <div class="card-content">
                                 <b:messages showSummary="true" show-detail="true" />

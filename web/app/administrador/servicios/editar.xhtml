@@ -6,16 +6,17 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui">
+        <ui:define name="titulo">Personal Medico-Editar Servicios</ui:define>
 
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.xhtml">Administrador</a>
+                <a href="/app/index.xhtml">Personal Medico</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="sesiones.xhtml">Sesiones</a>
+                <a href="/app/administrador/servicios/servicios.xhtml">Servicios</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -31,8 +32,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Editar Sesiones</h4>
-                                <p class="category">Aquí puedes modificar las sesiones habilitadas</p>
+                                <h4 class="title">Editar Servicios</h4>
+                                <p class="category">Aquí puedes modificar los servicios habilitados</p>
                             </div>
                             <div class="card-content">
                                 <b:messages showSummary="true" show-detail="true" />
@@ -40,7 +41,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Id Sesiones</label>
+                                                <label class="control-label">Id Servicio</label>
                                                 <b:inputText value="#{editarServicioController.servicioSelecionada.idServicio}" class="form-control" disabled="true" />
                                             </div>
                                         </div>
@@ -48,7 +49,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Número de sesiones</label>
+                                                <label class="control-label">Nombre</label>
                                                 <b:inputText value="#{editarServicioController.servicioSelecionada.nombre}"  class="form-control"/>
                                             </div>
                                         </div>
@@ -56,7 +57,7 @@
                                          <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Número de sesiones</label>
+                                                <label class="control-label">Descripción</label>
                                                 <b:inputText value="#{editarServicioController.servicioSelecionada.descripcion}"  class="form-control"/>
                                             </div>
                                         </div>
@@ -64,7 +65,7 @@
                                               <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Número de sesiones</label>
+                                                <label class="control-label">Calendario </label>
                                                 <b:selectOneMenu value="#{editarServicioController.servicioSelecionada.idCalendario}" class="form-control">
                                                 
                                                     <f:selectItems value="#{listarCalendarioController.calendario}" var="ru" itemLabel="#{ru.idCalendario}"/>

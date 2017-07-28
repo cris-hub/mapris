@@ -9,19 +9,25 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+        <ui:define name="titulo">Administrador-Registrar Rutinas-Servicios</ui:define>
 
 
 
-    <ui:define name="breadcrumb">
+   <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.html">Calendario</a>
+                <a href="/app/index.html">Administrador</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Nuevo</span>
+                <a href="/app/administrador/rutinaservicios/rutinas-servicios.xhtml">Rutinas-Servicios</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Registrar Rutinas - Servicios</span>
             </li>
         </ul>
+
     </ui:define>
 
     <ui:define name="contenido">
@@ -32,8 +38,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Nuevo Calendario</h4>
-                                <p class="category">Complete your profile</p>
+                                <h4 class="title">Registrar Rutina - Servicio</h4>
+                                <p class="category">Aquí puedes asígnar el servicio a la respectiva rutina</p>
                             </div>
                             <div class="card-content">
                                 <b:messages globalOnly="true" showSummary="true" show-detail="true"/>

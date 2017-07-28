@@ -7,19 +7,20 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui">
 
+        <ui:define name="titulo">Administrador-Editar Rutinas-Servicios</ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.html">Administrador</a>
+                <a href="/app/index.html">Administrador</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="/app/administrador/empresa/empresa.xhtml">Rutina</a>
+                <a href="/app/administrador/rutinaservicios/rutinas-servicios.xhtml">Rutinas-Servicios</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Editar Rutina</span>
+                <span class="active">Editar Rutinas - Servicios</span>
             </li>
         </ul>
 
@@ -32,8 +33,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Editar Rutina</h4>
-                                <p class="category">Complete your profile</p>
+                                <h4 class="title">Editar Rutina - Servicio</h4>
+                                <p class="category">Aquí puedes editar el servicio que corresponde a su rutina</p>
                             </div>
                             <div class="card-content">
                                 <b:messages showSummary="true" show-detail="true"/>
@@ -74,7 +75,7 @@
 
 
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/rutinas/rutinas.xhtml" value="Volver"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/rutinaservicios/rutinas-servicios.xhtml" value="Volver"/>
                                     <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarRutinaServicioController.actualizarDatos()}" class="btn btn-primary pull-right"/>
 
                                     <div class="clearfix"></div>

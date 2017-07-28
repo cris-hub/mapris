@@ -10,10 +10,8 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    <ui:define name="titulo">Administrador-Empresas</ui:define>
-    <ui:define name="pagetitle">
-
-    </ui:define>
+    <ui:define name="titulo">Administrador-Rutinas - Servicio</ui:define>
+   
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
@@ -23,7 +21,7 @@
             </li>
 
             <li>
-                <span class="active">Calendario</span>
+                <span class="active">Lista de Rutinas - Servicios</span>
             </li>
         </ul>
 
@@ -37,8 +35,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">RUTINAS SERVICIOS</h4>
-                                <p class="category">Lista de Inscripciones</p>
+                                <h4 class="title">Rutinas - Servicios</h4>
+                                <p class="category">Lista de Rutinas y sus respectivos Servicio</p>
                             </div>
                             <div class="card-content table-responsive">
 
@@ -46,8 +44,8 @@
                                 <b:form id="form-data-table-rutinasS" prependId="false">
                                     <b:dataTable value="#{listarRutinasServiviosController.rutinaServicio}" var="rutinaS">
                                         <b:dataTableColumn label="Id Rutinas Servicio" value="#{rutinaS.idRutinaServicios}" />
-                                        <b:dataTableColumn label="Id Rutinas" value="#{rutinaS.idRutinas.nombre}" />
-                                        <b:dataTableColumn label="Id Servicio" value="#{rutinaS.idServicios.nombre}"/>
+                                        <b:dataTableColumn label="Rutinas" value="#{rutinaS.idRutinas.nombre}" />
+                                        <b:dataTableColumn label="Servicio" value="#{rutinaS.idServicios.nombre}"/>
 
 
 

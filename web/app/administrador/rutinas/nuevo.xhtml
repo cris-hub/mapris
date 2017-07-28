@@ -8,17 +8,22 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui">
 
+    <ui:define name="titulo">Personal Medico-Registrar Rutinas</ui:define>
 
 
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.html">Calendario</a>
+                <a href="/app/index.html">Personal Medico</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Nuevo</span>
+                <a href="/app/administrador/rutinas/rutinas.html">Rutinas</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Registrar Rutina</span>
             </li>
         </ul>
     </ui:define>
@@ -31,8 +36,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Nuevo Calendario</h4>
-                                <p class="category">Complete your profile</p>
+                                <h4 class="title">Registrar Rutinas</h4>
+                                <p class="category">Aquí puedes registrar nuevas rutinas que se van a dictar en Maternity Club</p>
                             </div>
                             <div class="card-content">
                                 <b:messages globalOnly="true" showSummary="true" show-detail="true"/>
