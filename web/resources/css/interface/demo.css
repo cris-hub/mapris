@@ -13,49 +13,7 @@
     }
 }
 
-/* Let's get this party started */
-::-webkit-scrollbar {
-    width: 9px;
-}
- 
-/* Track */
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: #9412B2; 
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-}
-::-webkit-scrollbar-thumb:window-inactive {
-	background: #9412B2; 
-}
-::-webkit-scrollbar:horizontal {
-   height: 9px;
-}
-
-body{
-   overflow-y: hidden;
-  
-    
-
-}
-
-#fondo{
-    background-image: url(../img/master-plan-towers.png);
-    background-attachment: fixed;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    
-}
 #map{
-    
     position:relative;
     width:100%;
     height: calc(100% - 60px);
