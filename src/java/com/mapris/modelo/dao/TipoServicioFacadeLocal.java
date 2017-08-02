@@ -5,7 +5,7 @@
  */
 package com.mapris.modelo.dao;
 
-import com.mapris.modelo.entitie.Cliente;
+import com.mapris.modelo.entitie.TipoServicio;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author APRENDIZ
  */
 @Local
-public interface ClienteFacadeLocal {
+public interface TipoServicioFacadeLocal {
 
-    void create(Cliente cliente);
+    void create(TipoServicio tipoServicio);
 
-    void edit(Cliente cliente);
+    void edit(TipoServicio tipoServicio);
 
-    void remove(Cliente cliente);
+    void remove(TipoServicio tipoServicio);
 
-    Cliente find(Object id);
+    TipoServicio find(Object id);
 
-    List<Cliente> findAll();
+    List<TipoServicio> findAll();
 
-    List<Cliente> findRange(int[] range);
+    List<TipoServicio> findRange(int[] range);
 
     int count();
     

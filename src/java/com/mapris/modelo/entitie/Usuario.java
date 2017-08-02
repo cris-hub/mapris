@@ -13,6 +13,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -35,12 +37,11 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Ruben
+ * @author APRENDIZ
  */
 @Entity
 @Table(name = "usuarios")
 @XmlRootElement
-
 @NamedStoredProcedureQuery(
 	name = "pr_validar_usuario", 
 	procedureName = "pr_validar_usuario", 
@@ -55,23 +56,29 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findLogin", query = "SELECT u FROM Usuario u WHERE u.cedula = :doc AND u.clave = :clv")
     ,
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
+    , @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
     , @NamedQuery(name = "Usuario.findByCedula", query = "SELECT u FROM Usuario u WHERE u.cedula = :cedula")
-    , @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombres = :nombres")
-    , @NamedQuery(name = "Usuario.findByApellido", query = "SELECT u FROM Usuario u WHERE u.apellidos = :apellidos")
-        , @NamedQuery(name = "Usuario.findByFechaNaci", query = "SELECT u FROM Usuario u WHERE u.fechaNaci = :fechaNaci")
-    , @NamedQuery(name = "Usuario.findByClave", query = "SELECT u FROM Usuario u WHERE u.clave = :clave")})
+    , @NamedQuery(name = "Usuario.findByNombres", query = "SELECT u FROM Usuario u WHERE u.nombres = :nombres")
+    , @NamedQuery(name = "Usuario.findByApellidos", query = "SELECT u FROM Usuario u WHERE u.apellidos = :apellidos")
+    , @NamedQuery(name = "Usuario.findByClave", query = "SELECT u FROM Usuario u WHERE u.clave = :clave")
+    , @NamedQuery(name = "Usuario.findByFechaNaci", query = "SELECT u FROM Usuario u WHERE u.fechaNaci = :fechaNaci")
+    , @NamedQuery(name = "Usuario.findByCorreoElectronico", query = "SELECT u FROM Usuario u WHERE u.correoElectronico = :correoElectronico")
+    , @NamedQuery(name = "Usuario.findByTelefonoFijo", query = "SELECT u FROM Usuario u WHERE u.telefonoFijo = :telefonoFijo")
+    , @NamedQuery(name = "Usuario.findByTelefonoCelular", query = "SELECT u FROM Usuario u WHERE u.telefonoCelular = :telefonoCelular")
+    , @NamedQuery(name = "Usuario.findByFechaRegistro", query = "SELECT u FROM Usuario u WHERE u.fechaRegistro = :fechaRegistro")})
 public class Usuario implements Serializable {
-
-    @Lob
-    @Column(name = "imagen_perfil")
-    private byte[] imagenPerfil;
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "cedula")
-    private Long cedula;
+    private String cedula;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -82,17 +89,17 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "apellidos")
     private String apellidos;
-    @Column(name = "fechaNaci")
-    @Temporal(TemporalType.DATE)
-    private Date fechaNaci;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "clave")
     private String clave;
-    @Column(name = "fecha_registro")
+    @Column(name = "fechaNaci")
     @Temporal(TemporalType.DATE)
-    private Date fechaRegistro;
+    private Date fechaNaci;
+    @Lob
+    @Column(name = "imagen_perfil")
+    private byte[] imagenPerfil;
     @Size(max = 45)
     @Column(name = "correoElectronico")
     private String correoElectronico;
@@ -102,38 +109,50 @@ public class Usuario implements Serializable {
     @Size(max = 10)
     @Column(name = "telefonoCelular")
     private String telefonoCelular;
-   @JoinTable(name = "rolesusuarios", joinColumns ={
-        @JoinColumn(name = "idUsuarios", referencedColumnName = "cedula")} , inverseJoinColumns = {
-        @JoinColumn(name = "idRoles", referencedColumnName = "idRoles")})
+    @Column(name = "fecha_registro")
+    @Temporal(TemporalType.DATE)
+    private Date fechaRegistro;
+     @JoinTable(name = "rolesusuarios", joinColumns ={
+        @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")} , inverseJoinColumns = {
+        @JoinColumn(name = "fk_id_roles", referencedColumnName = "idRoles")})
     @ManyToMany(fetch = FetchType.LAZY) 
-    private List<Rol> role;
+    private List<Rol> roles;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Personalmedico personalmedico;
-    @JoinColumn(name = "id_estados", referencedColumnName = "id_estados")
-    @ManyToOne
-    private Estado estado;
+    @JoinColumn(name = "fk_id_estados", referencedColumnName = "id_estados")
+    @ManyToOne(optional = false)
+    private Estado estados;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Cliente cliente;
 
     public Usuario() {
     }
 
-    public Usuario(Long cedula) {
-        this.cedula = cedula;
+    public Usuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Usuario(Long cedula, String nombres, String apellidos, String clave) {
+    public Usuario(Integer idUsuario, String cedula, String nombres, String apellidos, String clave) {
+        this.idUsuario = idUsuario;
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.clave = clave;
     }
 
-    public Long getCedula() {
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(Long cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
@@ -153,14 +172,6 @@ public class Usuario implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public Date getFechaNaci() {
-        return fechaNaci;
-    }
-
-    public void setFechaNaci(Date fechaNaci) {
-        this.fechaNaci = fechaNaci;
-    }
-
     public String getClave() {
         return clave;
     }
@@ -169,20 +180,20 @@ public class Usuario implements Serializable {
         this.clave = clave;
     }
 
+    public Date getFechaNaci() {
+        return fechaNaci;
+    }
+
+    public void setFechaNaci(Date fechaNaci) {
+        this.fechaNaci = fechaNaci;
+    }
+
     public byte[] getImagenPerfil() {
         return imagenPerfil;
     }
 
     public void setImagenPerfil(byte[] imagenPerfil) {
         this.imagenPerfil = imagenPerfil;
-    }
-
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
     }
 
     public String getCorreoElectronico() {
@@ -209,30 +220,37 @@ public class Usuario implements Serializable {
         this.telefonoCelular = telefonoCelular;
     }
 
-    @XmlTransient
-     public List<Rol> getRoles() {
-        return role;
+    public Date getFechaRegistro() {
+        return fechaRegistro;
     }
 
-    public void setRoles(List<Rol> role) {
-        this.role = role;
-    } 
-    
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    @XmlTransient
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
+    }
+
     public Personalmedico getPersonalmedico() {
         return personalmedico;
     }
-
 
     public void setPersonalmedico(Personalmedico personalmedico) {
         this.personalmedico = personalmedico;
     }
 
-    public Estado getEstado() {
-        return estado;
+    public Estado getEstados() {
+        return estados;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public void setEstados(Estado estados) {
+        this.estados = estados;
     }
 
     public Cliente getCliente() {
@@ -246,7 +264,7 @@ public class Usuario implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cedula != null ? cedula.hashCode() : 0);
+        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
         return hash;
     }
 
@@ -257,7 +275,7 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.cedula == null && other.cedula != null) || (this.cedula != null && !this.cedula.equals(other.cedula))) {
+        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
             return false;
         }
         return true;
@@ -265,9 +283,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Usuario[ cedula=" + cedula + " ]";
+        return "com.mapris.modelo.entitie.Usuario[ idUsuario=" + idUsuario + " ]";
     }
-
-    
     
 }

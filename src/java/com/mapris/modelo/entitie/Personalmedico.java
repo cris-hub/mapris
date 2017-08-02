@@ -6,7 +6,6 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,24 +13,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Ruben
+ * @author APRENDIZ
  */
 @Entity
 @Table(name = "personalmedico")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Personalmedico.findAll", query = "SELECT p FROM Personalmedico p")
-    , @NamedQuery(name = "Personalmedico.findByIdPersonalMedico", query = "SELECT p FROM Personalmedico p WHERE p.idPersonalMedico = :idPersonalMedico")
+    , @NamedQuery(name = "Personalmedico.findByFkIdUsuario", query = "SELECT p FROM Personalmedico p WHERE p.fkIdUsuario = :fkIdUsuario")
     , @NamedQuery(name = "Personalmedico.findByPerfilProfesional", query = "SELECT p FROM Personalmedico p WHERE p.perfilProfesional = :perfilProfesional")
     , @NamedQuery(name = "Personalmedico.findByCargo", query = "SELECT p FROM Personalmedico p WHERE p.cargo = :cargo")})
 public class Personalmedico implements Serializable {
@@ -40,8 +37,8 @@ public class Personalmedico implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idPersonalMedico")
-    private Long idPersonalMedico;
+    @Column(name = "fk_id_usuario")
+    private Integer idPersonalMedico;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -52,28 +49,28 @@ public class Personalmedico implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "cargo")
     private String cargo;
-    @JoinColumn(name = "idPersonalMedico", referencedColumnName = "cedula", insertable = false, updatable = false)
+    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Usuario usuario;
 
     public Personalmedico() {
     }
 
-    public Personalmedico(Long idPersonalMedico) {
-        this.idPersonalMedico = idPersonalMedico;
+    public Personalmedico(Integer fkIdUsuario) {
+        this.idPersonalMedico = fkIdUsuario;
     }
 
-    public Personalmedico(Long idPersonalMedico, String perfilProfesional, String cargo) {
-        this.idPersonalMedico = idPersonalMedico;
+    public Personalmedico(Integer fkIdUsuario, String perfilProfesional, String cargo) {
+        this.idPersonalMedico = fkIdUsuario;
         this.perfilProfesional = perfilProfesional;
         this.cargo = cargo;
     }
 
-    public Long getIdPersonalMedico() {
+    public Integer getIdPersonalMedico() {
         return idPersonalMedico;
     }
 
-    public void setIdPersonalMedico(Long idPersonalMedico) {
+    public void setIdPersonalMedico(Integer idPersonalMedico) {
         this.idPersonalMedico = idPersonalMedico;
     }
 
@@ -123,7 +120,7 @@ public class Personalmedico implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Personalmedico[ idPersonalMedico=" + idPersonalMedico + " ]";
+        return "com.mapris.modelo.entitie.Personalmedico[ fkIdUsuario=" + idPersonalMedico + " ]";
     }
     
 }

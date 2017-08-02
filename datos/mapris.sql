@@ -1,6 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.20, for Win32 (x86)
+CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `mapris`;
+-- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: mapris
+-- Host: 127.0.0.1    Database: mapris
 -- ------------------------------------------------------
 -- Server version	5.6.20
 
@@ -104,10 +106,12 @@ DROP TABLE IF EXISTS `datosclinicos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `datosclinicos` (
+  `id_datos_clinicos` int(11) NOT NULL AUTO_INCREMENT,
   `rh` char(2) DEFAULT NULL COMMENT 'Este campo almacena el tipo de sangre del cliente',
   `datosPosparto` int(11) DEFAULT NULL COMMENT 'Este campo almacena el archivo correspondiente al dato clinico del programa Posparto',
   `datosPrenatales` int(11) DEFAULT NULL COMMENT 'Este campo almacena el archivo correspondiente al dato clinico del programa Prenatal',
   `fk_id_usuario` int(11) NOT NULL,
+  PRIMARY KEY (`id_datos_clinicos`),
   KEY `fk_datosclinicos_clientes1_idx` (`fk_id_usuario`),
   CONSTRAINT `fk_datosclinicos_clientes1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `clientes` (`fk_id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -241,7 +245,6 @@ CREATE TABLE `inscripciones` (
   `fk_id_curso` int(11) NOT NULL,
   `fk_id_usuario` int(11) NOT NULL,
   `estado` varchar(45) DEFAULT NULL,
-  `inscripcionescol` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_inscripcion`),
   KEY `fk_clientes_has_cursos_cursos1_idx` (`fk_id_curso`),
   KEY `fk_inscripciones_clientes1_idx` (`fk_id_usuario`),
@@ -476,58 +479,6 @@ LOCK TABLES `servicios` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tg_registro_usuarios`
---
-
-DROP TABLE IF EXISTS `tg_registro_usuarios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tg_registro_usuarios` (
-  `fecha_registro` date DEFAULT NULL,
-  `hora_registro` time DEFAULT NULL,
-  `id_nuevo_usuario` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tg_registro_usuarios`
---
-
-LOCK TABLES `tg_registro_usuarios` WRITE;
-/*!40000 ALTER TABLE `tg_registro_usuarios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tg_registro_usuarios` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tg_roles_usuarios_after_update`
---
-
-DROP TABLE IF EXISTS `tg_roles_usuarios_after_update`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tg_roles_usuarios_after_update` (
-  `id_actualizacion_rol` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` date DEFAULT NULL,
-  `hora` time DEFAULT NULL,
-  `actualiza_id` bigint(20) DEFAULT NULL,
-  `actualizo_id` bigint(20) DEFAULT NULL,
-  `id_rol` int(11) DEFAULT NULL,
-  `anterior_usuario` bigint(20) DEFAULT NULL,
-  `anterior_rol` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_actualizacion_rol`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tg_roles_usuarios_after_update`
---
-
-LOCK TABLES `tg_roles_usuarios_after_update` WRITE;
-/*!40000 ALTER TABLE `tg_roles_usuarios_after_update` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tg_roles_usuarios_after_update` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tipos_servicios`
 --
 
@@ -623,6 +574,74 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Dumping events for database 'mapris'
+--
+
+--
+-- Dumping routines for database 'mapris'
+--
+/*!50003 DROP FUNCTION IF EXISTS `fc_descencriptar` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `fc_descencriptar`(`clave_codificada` VARCHAR(10)) RETURNS varchar(10) CHARSET latin1
+BEGIN
+DECLARE var VARCHAR(10);
+SET var = (SELECT decode(clave_codificada,255));
+RETURN var;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `fc_encriptar` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `fc_encriptar`(`clave` VARCHAR(35) CHARSET utf8) RETURNS varchar(35) CHARSET utf8
+BEGIN
+DECLARE var VARCHAR(35);
+SET var = (SELECT MD5(clave));
+return var;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `pr_validar_usuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pr_validar_usuario`(IN `pr_cedula` BIGINT(20), IN `pr_clave` VARCHAR(20))
+    NO SQL
+SELECT * FROM usuarios WHERE cedula = pr_cedula AND  clave = fc_encriptar(pr_clave) ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -633,4 +652,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-02 15:13:26
+-- Dump completed on 2017-08-02 17:01:20

@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -26,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Ruben
+ * @author APRENDIZ
  */
 @Entity
 @Table(name = "servicios")
@@ -35,14 +37,15 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Servicio.findAll", query = "SELECT s FROM Servicio s")
     , @NamedQuery(name = "Servicio.findByIdServicio", query = "SELECT s FROM Servicio s WHERE s.idServicio = :idServicio")
     , @NamedQuery(name = "Servicio.findByNombre", query = "SELECT s FROM Servicio s WHERE s.nombre = :nombre")
-})
+    , @NamedQuery(name = "Servicio.findByValor", query = "SELECT s FROM Servicio s WHERE s.valor = :valor")
+    , @NamedQuery(name = "Servicio.findBySesiones", query = "SELECT s FROM Servicio s WHERE s.sesiones = :sesiones")})
 public class Servicio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "idServicio")
+    @Column(name = "id_servicio")
     private Integer idServicio;
     @Size(max = 20)
     @Column(name = "nombre")
@@ -51,13 +54,29 @@ public class Servicio implements Serializable {
     @Size(max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(mappedBy = "idServicios")
-    private List<Rutinaservicio> rutinaServicios;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idServicio")
-    private List<SolicitudCita> solicitudesCitas;
-    @JoinColumn(name = "idCalendario", referencedColumnName = "idCalendario")
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "valor")
+    private Double valor;
+    @Lob
+    @Size(max = 65535)
+    @Column(name = "objetivo")
+    private String objetivo;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "sesiones")
+    private int sesiones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkIdServicio")
+    private List<Curso> cursos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "servicio")
+    private List<SalonHasServicio> salonesServicios;
+    @OneToMany(mappedBy = "subServicios")
+    private List<Servicio> servicios;
+    @JoinColumn(name = "fk_sub_servicios", referencedColumnName = "id_servicio")
+    @ManyToOne
+    private Servicio subServicios;
+    @JoinColumn(name = "fk_tipo_servicio", referencedColumnName = "id_tipo_servicio")
     @ManyToOne(optional = false)
-    private Calendario idCalendario;
+    private TipoServicio idTipoServicio;
 
     public Servicio() {
     }
@@ -65,7 +84,12 @@ public class Servicio implements Serializable {
     public Servicio(Integer idServicio) {
         this.idServicio = idServicio;
     }
-    
+
+    public Servicio(Integer idServicio, int sesiones) {
+        this.idServicio = idServicio;
+        this.sesiones = sesiones;
+    }
+
     public Integer getIdServicio() {
         return idServicio;
     }
@@ -90,30 +114,71 @@ public class Servicio implements Serializable {
         this.descripcion = descripcion;
     }
 
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    public String getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
+    }
+
+    public int getSesiones() {
+        return sesiones;
+    }
+
+    public void setSesiones(int sesiones) {
+        this.sesiones = sesiones;
+    }
+
     @XmlTransient
-    public List<Rutinaservicio> getRutinaServicios() {
-        return rutinaServicios;
+    public List<Curso> getCursos() {
+        return cursos;
     }
 
-    public void setRutinaServicios(List<Rutinaservicio> rutinaServicios) {
-        this.rutinaServicios = rutinaServicios;
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
     }
 
     @XmlTransient
-    public List<SolicitudCita> getSolicitudesCitas() {
-        return solicitudesCitas;
+    public List<SalonHasServicio> getSalonesServicios() {
+        return salonesServicios;
     }
 
-    public void setSolicitudesCitas(List<SolicitudCita> solicitudesCitas) {
-        this.solicitudesCitas = solicitudesCitas;
+    public void setSalonesServicios(List<SalonHasServicio> salonesServicios) {
+        this.salonesServicios = salonesServicios;
     }
 
-    public Calendario getIdCalendario() {
-        return idCalendario;
+    @XmlTransient
+    public List<Servicio> getServicios() {
+        return servicios;
     }
 
-    public void setIdCalendario(Calendario idCalendario) {
-        this.idCalendario = idCalendario;
+    public void setServicios(List<Servicio> servicios) {
+        this.servicios = servicios;
+    }
+
+    public Servicio getSubServicios() {
+        return subServicios;
+    }
+
+    public void setSubServicios(Servicio subServicios) {
+        this.subServicios = subServicios;
+    }
+
+    public TipoServicio getIdTipoServicio() {
+        return idTipoServicio;
+    }
+
+    public void setIdTipoServicio(TipoServicio idTipoServicio) {
+        this.idTipoServicio = idTipoServicio;
     }
 
     @Override

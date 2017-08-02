@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Ruben
+ * @author APRENDIZ
  */
 @Stateless
 public class AplazamientoFacade extends AbstractFacade<Aplazamiento> implements AplazamientoFacadeLocal {

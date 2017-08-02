@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 
 /**
  *
- * @author Ruben
+ * @author APRENDIZ
  */
 public abstract class AbstractFacade<T> {
 
@@ -46,6 +46,7 @@ public abstract class AbstractFacade<T> {
     }
 
     public List<T> findRange(int[] range) {
+        getEntityManager().getEntityManagerFactory().getCache().evictAll();
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
@@ -55,6 +56,7 @@ public abstract class AbstractFacade<T> {
     }
 
     public int count() {
+        getEntityManager().getEntityManagerFactory().getCache().evictAll();
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));

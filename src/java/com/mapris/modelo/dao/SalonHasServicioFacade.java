@@ -5,7 +5,7 @@
  */
 package com.mapris.modelo.dao;
 
-import com.mapris.modelo.entitie.Empresa;
+import com.mapris.modelo.entitie.SalonHasServicio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author APRENDIZ
  */
 @Stateless
-public class EmpresaFacade extends AbstractFacade<Empresa> implements EmpresaFacadeLocal {
+public class SalonHasServicioFacade extends AbstractFacade<SalonHasServicio> implements SalonHasServicioFacadeLocal {
 
     @PersistenceContext(unitName = "maprisPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class EmpresaFacade extends AbstractFacade<Empresa> implements EmpresaFac
         return em;
     }
 
-    public EmpresaFacade() {
-        super(Empresa.class);
+    public SalonHasServicioFacade() {
+        super(SalonHasServicio.class);
     }
     
 }

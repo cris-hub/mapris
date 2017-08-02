@@ -85,14 +85,14 @@ public class RegistrarPersonalMedicoController {
         try{
                 
                 
-               
+               nuevoUsuario.setIdUsuario(Integer.MIN_VALUE);
                 nuevoUsuario.setCedula(nuevoUsuario.getCedula());
                 nuevoUsuario.setFechaRegistro(hoy);
                 nuevoUsuario.setRoles(new ArrayList<Rol>());
                 nuevoUsuario.getRoles().add(rolFacedaLocal.find(3));
                 nuevoUsuario.setEstado(estadoFacadeLocal.find(1));
                 
-                nuevoPersonalMedico.setIdPersonalMedico(nuevoUsuario.getCedula());
+                nuevoPersonalMedico.set(nuevoUsuario.getIdUsuario());
                 
                 usuarioFacadeLocal.create(nuevoUsuario);
                 personalMedicoFacadeLocal.create(nuevoPersonalMedico);

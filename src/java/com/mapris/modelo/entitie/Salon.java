@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -24,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Ruben
+ * @author APRENDIZ
  */
 @Entity
 @Table(name = "salones")
@@ -32,18 +34,16 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Salon.findAll", query = "SELECT s FROM Salon s")
     , @NamedQuery(name = "Salon.findByIdSalones", query = "SELECT s FROM Salon s WHERE s.idSalones = :idSalones")
-    , @NamedQuery(name = "Salon.findByActividad", query = "SELECT s FROM Salon s WHERE s.actividad = :actividad")
-    , @NamedQuery(name = "Salon.findBySalon", query = "SELECT s FROM Salon s WHERE s.salon = :salon")})
+    , @NamedQuery(name = "Salon.findBySalon", query = "SELECT s FROM Salon s WHERE s.salon = :salon")
+    , @NamedQuery(name = "Salon.findByEstado", query = "SELECT s FROM Salon s WHERE s.estado = :estado")})
 public class Salon implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id_salones")
     private Integer idSalones;
-    @Column(name = "actividad")
-    private Integer actividad;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -53,8 +53,11 @@ public class Salon implements Serializable {
     @Size(max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSalones")
-    private List<Programa> programas;
+    @Size(max = 45)
+    @Column(name = "estado")
+    private String estado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "salon")
+    private List<SalonHasServicio> salonesServicios;
 
     public Salon() {
     }
@@ -76,14 +79,6 @@ public class Salon implements Serializable {
         this.idSalones = idSalones;
     }
 
-    public Integer getActividad() {
-        return actividad;
-    }
-
-    public void setActividad(Integer actividad) {
-        this.actividad = actividad;
-    }
-
     public String getSalon() {
         return salon;
     }
@@ -100,13 +95,21 @@ public class Salon implements Serializable {
         this.descripcion = descripcion;
     }
 
-    @XmlTransient
-    public List<Programa> getProgramas() {
-        return programas;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setProgramas(List<Programa> programas) {
-        this.programas = programas;
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    @XmlTransient
+    public List<SalonHasServicio> getSalonesServicios() {
+        return salonesServicios;
+    }
+
+    public void setSalonesServicios(List<SalonHasServicio> salonesServicios) {
+        this.salonesServicios = salonesServicios;
     }
 
     @Override

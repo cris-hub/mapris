@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Ruben
+ * @author APRENDIZ
  */
 @Entity
 @Table(name = "roles")
@@ -54,7 +54,7 @@ public class Rol implements Serializable {
     private String descripcion;
     @ManyToMany(mappedBy = "roles")
     private List<Permiso> permisos;
-    @ManyToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private List<Usuario> usuarios;
 
     public Rol() {

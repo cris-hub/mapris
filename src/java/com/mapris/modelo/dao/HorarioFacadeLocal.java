@@ -5,7 +5,7 @@
  */
 package com.mapris.modelo.dao;
 
-import com.mapris.modelo.entitie.Cliente;
+import com.mapris.modelo.entitie.Horario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author APRENDIZ
  */
 @Local
-public interface ClienteFacadeLocal {
+public interface HorarioFacadeLocal {
 
-    void create(Cliente cliente);
+    void create(Horario horario);
 
-    void edit(Cliente cliente);
+    void edit(Horario horario);
 
-    void remove(Cliente cliente);
+    void remove(Horario horario);
 
-    Cliente find(Object id);
+    Horario find(Object id);
 
-    List<Cliente> findAll();
+    List<Horario> findAll();
 
-    List<Cliente> findRange(int[] range);
+    List<Horario> findRange(int[] range);
 
     int count();
     
