@@ -37,7 +37,7 @@ public class SessionController implements Serializable {
     private SessionRule sr;
     
     private String clave;
-    private Long documento;
+    private String documento;
     private Rol rolSeleccionado;
     private Usuario usuario;
     private Locale seleccionarLenguaje = new Locale("es");
@@ -73,11 +73,11 @@ public class SessionController implements Serializable {
         return clave;
     }
 
-    public Long getDocumento() {
+    public String getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Long documento) {
+    public void setDocumento(String documento) {
         this.documento = documento;
     }
 

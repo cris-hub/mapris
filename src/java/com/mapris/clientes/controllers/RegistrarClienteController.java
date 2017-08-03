@@ -96,9 +96,9 @@ public class RegistrarClienteController {
                 nuevoUsuario.setFechaRegistro(hoy);
                 nuevoUsuario.setRoles(new ArrayList<Rol>());
                 nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
-                nuevoUsuario.setEstado(estadoFacadeLocal.find(2));
-                
-                nuevoCliente.setIdClientes(nuevoUsuario.getCedula());
+//                nuevoUsuario.setEstado(estadoFacadeLocal.find(2));
+//                
+//                nuevoCliente.setIdClientes(nuevoUsuario.getCedula());
                 nuevoCliente.setEstado("Habilitado");
                 
                 usuarioFacadeLocal.create(nuevoUsuario);
@@ -120,13 +120,13 @@ public class RegistrarClienteController {
     
    public void cambioDeEstado(Usuario u, Cliente c) {
         try {
-            if (u.getEstado().getIdEstados() == 1 && c.getEstado().equalsIgnoreCase("Habilitado")) {
-                u.setEstado(efl.find(2));
+            if (u.getEstados().getIdEstados() == 1 && c.getEstado().equalsIgnoreCase("Habilitado")) {
+                u.setEstados(efl.find(2));
                 c.setEstado("Deshabilitado");
                 
 
             } else {
-                u.setEstado(efl.find(1));
+                u.setEstados(efl.find(1));
                 c.setEstado("Habilitado");
             }
             usuarioFacadeLocal.edit(u);
@@ -140,6 +140,6 @@ public class RegistrarClienteController {
     }
 
     public String getIconUsuarioBloqueo(Usuario u, Cliente c) {
-        return (u.getEstado().getIdEstados() == 2 && c.getEstado().equalsIgnoreCase("Deshablitado")) ? "lock" : "unlock";
+        return (u.getEstados().getIdEstados() == 2 && c.getEstado().equalsIgnoreCase("Deshablitado")) ? "lock" : "unlock";
     }
 }

@@ -5,9 +5,7 @@
  */
 package com.mapris.calendario.controllers;
 
-import com.mapris.modelo.dao.CalendarioFacadeLocal;
-import com.mapris.modelo.dao.RolFacadeLocal;
-import com.mapris.modelo.entitie.Calendario;
+
 import com.mapris.modelo.entitie.Rol;
 
 import com.mapris.util.MessageUtil;
@@ -25,11 +23,7 @@ import javax.inject.Named;
 @RequestScoped
 public class RegistrarCalendario {
     
-    @EJB
-    private CalendarioFacadeLocal cfl;
     
-    
-    private Calendario nuevoCalendario;
 
     public RegistrarCalendario() {
     }
@@ -37,21 +31,16 @@ public class RegistrarCalendario {
     
     @PostConstruct
     public void  init(){
-        nuevoCalendario  = new Calendario();
+        
     }
 
-    public Calendario getNuevoCalendario() {
-        return nuevoCalendario;
-    }
-
-    public void setNuevoCalendario(Calendario nuevoUsuario) {
-        this.nuevoCalendario = nuevoUsuario;
-    }
+    
     
     public void registrar(){
-        if (nuevoCalendario != null) {
+        String pollo="cucua";
+        if (pollo.equals("1")) {
      
-            cfl.create(nuevoCalendario);
+           
             MessageUtil.enviarMensajeInformacion("form-registro", "Registro satisfactorio del calendario", "");
             
             init();

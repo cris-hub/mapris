@@ -67,7 +67,7 @@ public class Empresa implements Serializable {
     private BigInteger telefonoF;
     @Column(name = "telefonoC")
     private BigInteger telefonoC;
-    @OneToMany(mappedBy = "fkIdEmpresa")
+    @OneToMany(mappedBy = "idEmpresa")
     private List<Cliente> clientes;
 
     public Empresa() {

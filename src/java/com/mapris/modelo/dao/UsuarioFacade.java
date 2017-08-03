@@ -46,7 +46,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     }
 
     @Override
-    public Usuario loginProcedure(Long documento, String clave) {
+    public Usuario loginProcedure(String documento, String clave) {
       
         try {
             getEntityManager().getEntityManagerFactory().getCache().evictAll();

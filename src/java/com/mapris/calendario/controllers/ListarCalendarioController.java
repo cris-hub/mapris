@@ -5,14 +5,7 @@
  */
 package com.mapris.calendario.controllers;
 
-import com.mapris.login.controller.SessionController;
-import com.mapris.modelo.dao.CalendarioFacadeLocal;
-import com.mapris.modelo.dao.ClienteFacadeLocal;
-import com.mapris.modelo.entitie.Calendario;
 
-import com.mapris.modelo.entitie.Cliente;
-
-import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
 import java.util.List;
@@ -32,13 +25,7 @@ import javax.inject.Named;
 public class ListarCalendarioController implements Serializable{
 //    cdi 
 
-
-    @EJB
-    private CalendarioFacadeLocal cfl;
-
-    private List<Calendario> calendario;
-    
-    private Calendario calendarioSeleccionado;
+;
     
     
     public ListarCalendarioController() {
@@ -46,20 +33,10 @@ public class ListarCalendarioController implements Serializable{
 
     @PostConstruct
     public void init() {
-        recargarCalendario();
+        
     }
     
-    private void recargarCalendario(){
-        calendario =  cfl.findAll();
-    }
-
-    public List<Calendario> getCalendario() {
-        return calendario;
-    }
-
-    public void setCalendario(List<Calendario> calendario) {
-        this.calendario = calendario;
-    }
+   
     
     public void versionMojarra(){
     
@@ -70,10 +47,10 @@ public class ListarCalendarioController implements Serializable{
     public void eliminarCalendario(){
         
       
-            cfl.remove(calendarioSeleccionado);
+           
             MessageUtil.enviarMensajeInformacionGlobal("Calendario eliminada con exito", "La empresa se ha eliminado correctamente");
             
-            recargarCalendario();
+            
      
       
     }

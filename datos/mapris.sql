@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `mapris`;
--- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mapris
 -- ------------------------------------------------------
--- Server version	5.6.20
+-- Server version	5.7.17-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -203,6 +203,7 @@ CREATE TABLE `estados` (
 
 LOCK TABLES `estados` WRITE;
 /*!40000 ALTER TABLE `estados` DISABLE KEYS */;
+INSERT INTO `estados` VALUES (1,'Activo','Activo en el sistema'),(2,'Bloqueado','Bloqueado del sistema'),(3,'Sin Rol','Sin rol asignado en el sistema');
 /*!40000 ALTER TABLE `estados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -363,6 +364,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'Administrador','Encargado primordial del sistema'),(2,'Cliente','Usuario recurrente del sistema'),(3,'Personal Medico','Personal involucrado del gimnasio');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -389,6 +391,7 @@ CREATE TABLE `rolesusuarios` (
 
 LOCK TABLES `rolesusuarios` WRITE;
 /*!40000 ALTER TABLE `rolesusuarios` DISABLE KEYS */;
+INSERT INTO `rolesusuarios` VALUES (1,2);
 /*!40000 ALTER TABLE `rolesusuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,7 +529,7 @@ CREATE TABLE `usuarios` (
   UNIQUE KEY `cedula_UNIQUE` (`cedula`),
   KEY `fk_usuarios_estados_idx` (`fk_id_estados`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`fk_id_estados`) REFERENCES `estados` (`id_estados`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -535,6 +538,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (2,'1111','Lola','Martinez','fceeb9b9d469401fe558062c4bd25954','1999-01-01',NULL,'','0000000','310000000','2017-08-02',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -632,9 +636,9 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pr_validar_usuario`(IN `pr_cedula` BIGINT(20), IN `pr_clave` VARCHAR(20))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pr_validar_usuario`(IN `pr_cedula` VARCHAR(20), IN `pr_clave` VARCHAR(20))
     NO SQL
 SELECT * FROM usuarios WHERE cedula = pr_cedula AND  clave = fc_encriptar(pr_clave) ;;
 DELIMITER ;
@@ -652,4 +656,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-02 17:01:20
+-- Dump completed on 2017-08-02 23:42:22

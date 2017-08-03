@@ -65,7 +65,7 @@ public class Servicio implements Serializable {
     @NotNull
     @Column(name = "sesiones")
     private int sesiones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkIdServicio")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idServicio")
     private List<Curso> cursos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "servicio")
     private List<SalonHasServicio> salonesServicios;

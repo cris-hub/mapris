@@ -7,8 +7,6 @@
 package com.mapris.calendario.controllers;
 
 
-import com.mapris.modelo.dao.CalendarioFacadeLocal;
-import com.mapris.modelo.entitie.Calendario;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -24,42 +22,27 @@ import javax.inject.Named;
 @SessionScoped
 public class EditarCalendarioController implements Serializable {
 
-    @EJB
-    private CalendarioFacadeLocal cfl;
     
-    private Calendario calendarioSeleccionado;
     
     @PostConstruct
     public void init(){
     //Instancia una nueva empresa, para que pueda modificar la seleccionada
-    calendarioSeleccionado = new Calendario();
+   
     }
 
     public EditarCalendarioController() {
     }
 
-    public Calendario getCalendarioSelecionado() {
-        return calendarioSeleccionado;
-    }
-
-    public void setCalendarioSelecionada(Calendario calendarioSeleccionado) {
-        this.calendarioSeleccionado = calendarioSeleccionado;
-    }
+   
 
     public void actualizarDatos() {
         try {
             
             
-            calendarioSeleccionado.setLunes(calendarioSeleccionado.getLunes());
-            calendarioSeleccionado.setMartes(calendarioSeleccionado.getMartes());
-            calendarioSeleccionado.setMiercoles(calendarioSeleccionado.getMiercoles());
-            calendarioSeleccionado.setJueves(calendarioSeleccionado.getJueves());
-            calendarioSeleccionado.setViernes(calendarioSeleccionado.getViernes());
-            calendarioSeleccionado.setSabado(calendarioSeleccionado.getSabado());
-            calendarioSeleccionado.setDomingo(calendarioSeleccionado.getDomingo());
+           
             //Datos modificados
             
-            cfl.edit(calendarioSeleccionado);//Codigo de modificación de la empresa
+//            cfl.edit(calendarioSeleccionado);//Codigo de modificación de la empresa
             MessageUtil.enviarMensajeInformacion("form-editar", "Actualizacion", "los datos fueron actualizados");
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,9 +51,8 @@ public class EditarCalendarioController implements Serializable {
 
     }
     
-    public String preModificar(Calendario e){
-        
-        setCalendarioSelecionada(e);//Datos de la empresa que se selecciono
+    public String preModificar(int e){
+       
         return "/app/administrador/calendario/editar.xhtml?faces-redirect=true";
     }
     

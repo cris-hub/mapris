@@ -90,9 +90,9 @@ public class RegistrarPersonalMedicoController {
                 nuevoUsuario.setFechaRegistro(hoy);
                 nuevoUsuario.setRoles(new ArrayList<Rol>());
                 nuevoUsuario.getRoles().add(rolFacedaLocal.find(3));
-                nuevoUsuario.setEstado(estadoFacadeLocal.find(1));
+                nuevoUsuario.setEstados(estadoFacadeLocal.find(1));
                 
-                nuevoPersonalMedico.set(nuevoUsuario.getIdUsuario());
+//                nuevoPersonalMedico.set(nuevoUsuario.getIdUsuario());
                 
                 usuarioFacadeLocal.create(nuevoUsuario);
                 personalMedicoFacadeLocal.create(nuevoPersonalMedico);

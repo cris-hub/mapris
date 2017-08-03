@@ -3,7 +3,7 @@ package com.mapris.aplazamiento.controllers;
 import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.AplazamientoFacadeLocal;
 import com.mapris.modelo.dao.ClienteFacadeLocal;
-import com.mapris.modelo.dao.InscripcionFacadeLocal;
+
 import com.mapris.modelo.dao.InscripcionFacadeLocal;
 import com.mapris.modelo.entitie.Aplazamiento;
 import com.mapris.modelo.entitie.Inscripcion;
@@ -123,7 +123,7 @@ public class RegistrarAplazamientoController implements Serializable {
 
     private void cambioDeFechaInscripcion() {
         try {
-            inscripcionSeleccionado.setFechaRetornoAplazamiento(fechaHora);
+            
             inscripcionFacadeLocal.edit(inscripcionSeleccionado);
             MessageUtil.enviarMensajeInformacion("form-registrarAplazamiento", "Actualización", "Se ha cambiado la fecha del inscripcion.");
         } catch (Exception e) {
@@ -134,7 +134,7 @@ public class RegistrarAplazamientoController implements Serializable {
 
     public void registrar() {
         cambioDeFechaInscripcion();
-        nuevoAplazamiento.setIdcliente(clienteFacadeLocal.find(sessionController.getDocumento()));
+        
         nuevoAplazamiento.setMotivo(motivo);
         if (nuevoAplazamiento != null) {
             try {

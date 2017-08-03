@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
-    , @NamedQuery(name = "Cliente.findByFkIdUsuario", query = "SELECT c FROM Cliente c WHERE c.fkIdUsuario = :fkIdUsuario")
+    , @NamedQuery(name = "Cliente.findByFkIdUsuario", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente")
     , @NamedQuery(name = "Cliente.findByEstado", query = "SELECT c FROM Cliente c WHERE c.estado = :estado")})
 public class Cliente implements Serializable {
 
@@ -48,10 +48,10 @@ public class Cliente implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "estado")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkIdUsuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarios")
     private List<Inscripcion> inscripciones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkIdUsuario")
-    private List<DatoClinico> datosClinicos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    private List<Datoclinico> datosClinicos;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
     private Aplazamiento aplazamiento;
     @JoinColumn(name = "fk_id_empresa", referencedColumnName = "id_empresa")
@@ -73,11 +73,11 @@ public class Cliente implements Serializable {
         this.estado = estado;
     }
 
-    public Integer getFkIdUsuario() {
+    public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setFkIdUsuario(Integer fkIdUsuario) {
+    public void setIdCliente(Integer fkIdUsuario) {
         this.idCliente = fkIdUsuario;
     }
 
@@ -99,11 +99,11 @@ public class Cliente implements Serializable {
     }
 
     @XmlTransient
-    public List<DatoClinico> getDatosClinicos() {
+    public List<Datoclinico> getDatosClinicos() {
         return datosClinicos;
     }
 
-    public void setDatosClinicos(List<DatoClinico> datosClinicos) {
+    public void setDatosClinicos(List<Datoclinico> datosClinicos) {
         this.datosClinicos = datosClinicos;
     }
 

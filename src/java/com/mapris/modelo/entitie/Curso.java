@@ -55,9 +55,9 @@ public class Curso implements Serializable {
     @JoinColumn(name = "fk_id_servicio", referencedColumnName = "id_servicio")
     @ManyToOne(optional = false)
     private Servicio idServicio;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkIdCurso")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCursos")
     private List<Inscripcion> inscripciones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkIdCurso")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCursos")
     private List<Horario> horarios;
 
     public Curso() {

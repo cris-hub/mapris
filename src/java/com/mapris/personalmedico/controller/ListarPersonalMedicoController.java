@@ -93,7 +93,7 @@ public class ListarPersonalMedicoController implements Serializable{
      
         
         try {
-            if (personalMedicoSeleccionado.getUsuario().getEstado().getNombre().equalsIgnoreCase("Activo")) {
+            if (personalMedicoSeleccionado.getUsuario().getEstados().getNombre().equalsIgnoreCase("Activo")) {
              MessageUtil.enviarMensajeErrorGlobal("Error al eliminar el Personal Medico","No se puede eliminar un personal medico activo");
              
             }else{

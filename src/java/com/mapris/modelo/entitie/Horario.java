@@ -52,8 +52,8 @@ public class Horario implements Serializable {
     @Column(name = "fechaFin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "horariosIdHorario")
-    private List<DetalleHorario> detalleHorarioList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHorarios")
+    private List<DetalleHorario> detalleHorarios;
     @JoinColumn(name = "fk_id_curso", referencedColumnName = "id_curso")
     @ManyToOne(optional = false)
     private Curso idCursos;
@@ -90,12 +90,12 @@ public class Horario implements Serializable {
     }
 
     @XmlTransient
-    public List<DetalleHorario> getDetalleHorarioList() {
-        return detalleHorarioList;
+    public List<DetalleHorario> getDetalleHorarios() {
+        return detalleHorarios;
     }
 
-    public void setDetalleHorarioList(List<DetalleHorario> detalleHorarioList) {
-        this.detalleHorarioList = detalleHorarioList;
+    public void setDetalleHorarios(List<DetalleHorario> detalleHorarios) {
+        this.detalleHorarios = detalleHorarios;
     }
 
     public Curso getIdCursos() {

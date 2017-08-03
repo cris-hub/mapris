@@ -48,7 +48,7 @@ public class Estado implements Serializable {
     @Size(max = 45)
     @Column(name = "descripccion")
     private String descripccion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkIdEstados")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estados")
     private List<Usuario> usuarios;
 
     public Estado() {

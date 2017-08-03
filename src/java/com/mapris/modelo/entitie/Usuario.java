@@ -47,7 +47,7 @@ import javax.xml.bind.annotation.XmlTransient;
 	procedureName = "pr_validar_usuario", 
         resultClasses = Usuario.class,
 	parameters = { 
-		@StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "pr_cedula"), 
+		@StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "pr_cedula"), 
 		@StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "pr_clave") 
 		
 	}

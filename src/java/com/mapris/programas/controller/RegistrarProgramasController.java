@@ -6,10 +6,6 @@
 package com.mapris.programas.controller;
 
 
-import com.mapris.modelo.dao.ProgramaFacadeLocal;
-
-
-import com.mapris.modelo.entitie.Programa;
 import com.mapris.util.MessageUtil;
 
 import java.util.Calendar;
@@ -27,11 +23,7 @@ import javax.inject.Named;
 @RequestScoped
 public class RegistrarProgramasController {
 
-    @EJB
-    private ProgramaFacadeLocal programaFacadeLocal;
 
-
-    private Programa nuevoPrograma;
 
 
     public RegistrarProgramasController() {
@@ -39,47 +31,40 @@ public class RegistrarProgramasController {
 
     @PostConstruct
     public void init() {
-        nuevoPrograma = new Programa();
+      
 
     }
 
-    public Programa getNuevoPrograma() {
-        return nuevoPrograma;
-    }
-
-    public void setNuevoPrograma(Programa nuevoPrograma) {
-        this.nuevoPrograma = nuevoPrograma;
-    }
-
+  
     public void registrar() {
         
         Date hoy = new Date();
-        if (nuevoPrograma != null) {
-        
-        
-        try{
-                
-                nuevoPrograma.setIdPrograma(nuevoPrograma.getIdPrograma());
-               
-                nuevoPrograma.setFechaRegistro(hoy);
-                nuevoPrograma.setNombre(nuevoPrograma.getNombre());
-                nuevoPrograma.setIdRutinas(nuevoPrograma.getIdRutinas());
-                nuevoPrograma.setIdSalones(nuevoPrograma.getIdSalones());
-                
-                
-                programaFacadeLocal.create(nuevoPrograma);
-               
-                MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El salón se ha creado con exito");
-                init();
-                
-                
-                
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            MessageUtil.enviarMensajeInformacionGlobal( "Error al registrar el salón", "No se pudo registrar el salón");
-        }
+//        if (nuevoPrograma != null) {
+//        
+//        
+//        try{
+//                
+//                nuevoPrograma.setIdPrograma(nuevoPrograma.getIdPrograma());
+//               
+//                nuevoPrograma.setFechaRegistro(hoy);
+//                nuevoPrograma.setNombre(nuevoPrograma.getNombre());
+//                nuevoPrograma.setIdRutinas(nuevoPrograma.getIdRutinas());
+//                nuevoPrograma.setIdSalones(nuevoPrograma.getIdSalones());
+//                
+//                
+//                programaFacadeLocal.create(nuevoPrograma);
+//               
+//                MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El salón se ha creado con exito");
+//                init();
+//                
+//                
+//                
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            MessageUtil.enviarMensajeInformacionGlobal( "Error al registrar el salón", "No se pudo registrar el salón");
+//        }
     }
 
 }

@@ -31,7 +31,7 @@ public interface UsuarioFacadeLocal {
     int count();
     
     
-    public Usuario loginProcedure(Long documento, String clave);
+    public Usuario loginProcedure(String documento, String clave);
     
     Usuario login(Long documento,String clave);
 }

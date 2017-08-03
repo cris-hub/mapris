@@ -5,8 +5,7 @@
  */
 package com.mapris.citas.controllers;
 
-import com.mapris.modelo.dao.RutinaFacadeLocal;
-import com.mapris.modelo.entitie.Rutina;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -23,41 +22,17 @@ import javax.inject.Named;
 public class ListarRutinaController implements Serializable
 {
 
-    @EJB
-    private RutinaFacadeLocal rutinaFacadeLocal;
-
-    private List<Rutina> rutinas;
-    
-    private Rutina rutina;
+   
 
     public ListarRutinaController() {
     }
 
     @PostConstruct
     public void init() {
-        recargarRutinas();
+       
     }
 
-    private void recargarRutinas() {
-        rutinas = rutinaFacadeLocal.findAll();
-    }
-
-    public void eliminarRutina() {
-            rutinaFacadeLocal.remove(rutina);
-        }
-
-    public Rutina getRutina() {
-        return rutina;
-    }
-
-    public void setRutina(Rutina rutina) {
-        this.rutina = rutina;
-    }
-
-    public List<Rutina> getRutinas() {
-        return rutinas;
-    }
-    
+   
     
     
     }

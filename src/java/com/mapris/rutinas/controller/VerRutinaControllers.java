@@ -5,7 +5,7 @@
  */
 package com.mapris.rutinas.controller;
 
-import com.mapris.modelo.entitie.Rutina;
+
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -19,7 +19,7 @@ import javax.inject.Named;
 @SessionScoped
 public class VerRutinaControllers implements Serializable{
     
-    private Rutina rutina;
+
 
     public VerRutinaControllers() {
     }
@@ -28,16 +28,9 @@ public class VerRutinaControllers implements Serializable{
     public void init(){
     }
 
-    public Rutina getRutina() {
-        return rutina;
-    }
-
-    public void setRutina(Rutina rutina) {
-        this.rutina = rutina;
-    }
     
-    public String verRutina(Rutina e){
-    this.rutina = e;
+    public String verRutina(){
+   
     return "/app/administrador/rutinas/ver.xhtml?faces-redirect=true";
     }
     

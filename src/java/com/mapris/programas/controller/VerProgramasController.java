@@ -5,7 +5,6 @@
  */
 package com.mapris.programas.controller;
 
-import com.mapris.modelo.entitie.Programa;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -19,7 +18,7 @@ import javax.inject.Named;
 @SessionScoped
 public class VerProgramasController implements Serializable{
     
-    private Programa programa;
+  
 
     public VerProgramasController() {
     }
@@ -28,16 +27,10 @@ public class VerProgramasController implements Serializable{
     public void init(){
     }
 
-    public Programa getPrograma() {
-        return programa;
-    }
-
-    public void setPrograma(Programa programa) {
-        this.programa = programa;
-    }
+  
     
-    public String verPrograma(Programa i){
-    this.programa = i;
+    public String verPrograma(){
+    
     return "/app/administrador/programas/ver.xhtml?faces-redirect=true";
     }
     

@@ -26,7 +26,7 @@ public class ControllerEmailContrasena {
 
     @EJB
     private UsuarioFacadeLocal ufl;
-    private Long cedula;
+    private String cedula;
     private String email;
     private Usuario usuarioBuscar;
     private String asuntoA;
@@ -57,11 +57,11 @@ public class ControllerEmailContrasena {
         this.usuarioBuscar = usuarioBuscar;
     }
 
-    public Long getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(Long cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 

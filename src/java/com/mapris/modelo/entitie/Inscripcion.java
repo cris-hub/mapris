@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Inscripcion.findAll", query = "SELECT i FROM Inscripcion i")
     , @NamedQuery(name = "Inscripcion.findByIdInscripcion", query = "SELECT i FROM Inscripcion i WHERE i.idInscripcion = :idInscripcion")
     , @NamedQuery(name = "Inscripcion.findByEstado", query = "SELECT i FROM Inscripcion i WHERE i.estado = :estado")
-    , @NamedQuery(name = "Inscripcion.findByInscripcionescol", query = "SELECT i FROM Inscripcion i WHERE i.inscripcionescol = :inscripcionescol")})
+    })
 public class Inscripcion implements Serializable {
 
     private static final long serialVersionUID = 1L;
