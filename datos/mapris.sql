@@ -57,7 +57,7 @@ CREATE TABLE `clientes` (
   PRIMARY KEY (`fk_id_usuario`),
   KEY `fk_clientes_empresas2_idx` (`fk_id_empresa`),
   CONSTRAINT `fk_clientes_empresas2` FOREIGN KEY (`fk_id_empresa`) REFERENCES `empresas` (`id_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_clientes_usuarios2` FOREIGN KEY (`fk_id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_clientes_usuarios2` FOREIGN KEY (`fk_id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -170,7 +170,7 @@ CREATE TABLE `empresas` (
   `telefonoF` bigint(20) DEFAULT NULL,
   `telefonoC` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id_empresa`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,6 +179,7 @@ CREATE TABLE `empresas` (
 
 LOCK TABLES `empresas` WRITE;
 /*!40000 ALTER TABLE `empresas` DISABLE KEYS */;
+INSERT INTO `empresas` VALUES (1,'123111','Cafam','Cll 54 # 32 - 53','Cra 182 # 45 - 31',1231231,4123123123);
 /*!40000 ALTER TABLE `empresas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,6 +289,7 @@ CREATE TABLE `permisos` (
 
 LOCK TABLES `permisos` WRITE;
 /*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
+INSERT INTO `permisos` VALUES (0,'inicio','/app/index.xhtml\n','fa fa-home',NULL),(1,'perfil','','perm identity',NULL),(2,'usuarios','/app/administrador/usuarios/ver.xhtml','group',NULL),(3,'aplazamientos','','fa fa-clock-o',NULL),(4,'citas','','fa fa-calendar-check-o',NULL),(5,'calendario','','fa fa-calendar',NULL),(6,'agendar','','fa fa-calendar-check-o',NULL),(7,'inscripciones','/app/administrador/inscripciones/ver.xhtml','fa fa-list-alt',NULL),(8,'empresa','/app/administrador/empresa/ver.xhtml','fa fa-columns',NULL),(9,'rutina','/app/administrador/rutinas/ver.xhtml','fa fa-user-plus',NULL),(10,'sesiones','/app/administrador/sesiones/ver.xhtml','fa fa-cog',NULL),(11,'miPerfil','/app/perfil/miperfil.xhtml','fa fa-user',1),(12,'cambiarDatos','/app/perfil/cambiardatos.xhtml','fa fa-pencil',1),(13,'programas',NULL,NULL,NULL),(21,'listarUsuarios','/app/usuarios/listar.xhtml','fa fa-list',2),(22,'nuevoUsuario','/app/usuarios/nuevo.xhtml','fa fa-user-plus',2),(30,'editarAplazamiento','/app//usuarios/editar.xhtml','fa fa-pencil-square-o',2),(31,'listaAplazamientos','/app/aplazamientos/lista.xhtml','fa fa-list',3),(32,'registrarAplazamiento','/app/aplazamientos/registrarAplazamiento.xhtml','fa fa-plus',3),(41,'misProgramas','/app/cliente/programas/programas.xhtml',NULL,13),(51,'nuevoCalendario','/app/administrador/calendario/nuevo.xhtml','fa fa-user-plus',5),(52,'listarCalendario','/app/administrador/calendario/calendario.xhtml','fa fa-calendar',5),(61,'reservar','/app/cliente/servicios/servicios.xhtml','fa fa-pencil-square-o',6),(71,'listaInscripciones','/app/administrador/inscripciones/inscripciones.xhtml','fa fa-list-ol',7),(72,'editarIncripcion','/app/administrador/inscripciones/editar.xhtml','fa fa-pencil',7),(73,'nuevaInscripcion','/app/administrador/inscripciones/registrar.xhtml','fa fa-user-plus',7),(81,'listarEmpresas','/app/administrador/empresa/empresas.xhtml','fa fa-th-large',8),(82,'editarEmpresa','/app/administrador/empresa/editar.xhtml','fa fa-pencil',8),(83,'nuevaEmpresa','/app/administrador/empresa/registrar.xhtml','fa fa-user-plus',8),(91,'listarRutina','/app/administrador/rutinas/rutinas.xhtml','fa fa-th-large',9),(92,'editarRutina','/app/administrador/rutinas/editar.xhtml','fa fa-cog',9),(93,'nuevaRutina','/app/administrador/rutinas/nuevo.xhtml','fa fa-th-large',9),(101,'nuevaSesion','/app/administrador/sesiones/registrar.xhtml','fa fa-user-plus',10),(102,'listarSesiones','/app/administrador/sesiones/sesiones.xhtml','fa fa-th-large',10),(103,'editarSesiones','/app/administrador/sesiones/editar.xhtml','fa fa-cog',10),(111,'salones','/app/administrador/salones/ver.xhtml','fa fa-cog',NULL),(112,'registrarSalones','/app/administrador/salones/registrar.xhtml','fa fa-user',111),(113,'listarSalones','/app/administrador/salones/salones.xhtml','fa fa-user',111),(114,'editarSalones','/app/administrador/salones/editar.xhtml','fa fa-user',111),(222,'programas','/app/administrador/programas/ver.xhtml','fa fa-user',NULL),(223,'listarProgramas','/app/administrador/programas/programas.xhtml','fa fa-th-large',222),(224,'registrarProgramas','/app/administrador/programas/registrar.xhtml','fa fa-cog',222),(225,'editarProgramas','/app/administrador/programas/editar.xhtml','fa fa-user',222),(333,'personalMedico','/app/administrador/personal/ver.xhtml','fa fa-user',NULL),(334,'listarPersonal','/app/administrador/personal/medico.xhtml','fa fa-th-large',333),(335,'nuevoPersonal','/app/administrador/personal/registrar.xhtml','fa fa-user-plus',333),(444,'rutinaServicio','/app/administrador/rutinaservicios/editar.xhtml','fa fa-user',NULL),(445,'listarRutinaServicio','/app/administrador/rutinaservicios/rutinas-servicios.xhtml','fa fa-th-large',444),(446,'nuevoRutinaServicio','/app/administrador/rutinaservicios/nuevo.xhtml','fa fa-user',444),(555,'servicio','/app/administrador/servicios/ver.xhtml','fa fa-user',NULL),(556,'listarServicio','/app/administrador/servicios/servicios.xhtml','fa fa-th-large',555),(557,'registrarServicio','/app/administrador/servicios/registrar.xhtml','fa fa-th-large',555),(558,'editarServicio','/app/administrador/servicios/editar.xhtml','fa fa-th-large',555),(666,'cliente','/app/administrador/clientes/ver.xhtml','fa fa-th-large',NULL),(667,'listarCliente','/app/administrador/clientes/cliente.xhtml','fa fa-user',666),(668,'editarCliente','/app/administrador/clientes/editar.xhtml','fa fa-user',666),(669,'registrarCliente','/app/administrador/clientes/registrar.xhtml','fa fa-user',666);
 /*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,6 +317,7 @@ CREATE TABLE `permisosroles` (
 
 LOCK TABLES `permisosroles` WRITE;
 /*!40000 ALTER TABLE `permisosroles` DISABLE KEYS */;
+INSERT INTO `permisosroles` VALUES (1,1),(2,1),(3,1),(5,1),(7,1),(8,1),(10,1),(11,1),(12,1),(21,1),(22,1),(31,1),(32,1),(51,1),(52,1),(71,1),(72,1),(73,1),(81,1),(82,1),(83,1),(101,1),(102,1),(333,1),(334,1),(335,1),(666,1),(667,1),(668,1),(669,1),(1,2),(6,2),(11,2),(12,2),(13,2),(41,2),(61,2),(9,3),(91,3),(92,3),(93,3),(111,3),(112,3),(113,3),(114,3),(222,3),(223,3),(224,3),(225,3),(444,3),(445,3),(446,3),(555,3),(556,3),(557,3),(558,3),(666,3),(667,3),(668,3),(669,3);
 /*!40000 ALTER TABLE `permisosroles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,7 +333,7 @@ CREATE TABLE `personalmedico` (
   `perfilProfesional` varchar(45) NOT NULL COMMENT 'Este campo almacena la especialidad que tiene cada Personal Medico ',
   `cargo` varchar(20) NOT NULL COMMENT 'Este campo almacena el tipo de cargo que tiene el personal Medico (Prenatal o Posnatal)',
   PRIMARY KEY (`fk_id_usuario`),
-  CONSTRAINT `fk_personalmedico_usuarios1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_personalmedico_usuarios1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -391,7 +394,7 @@ CREATE TABLE `rolesusuarios` (
 
 LOCK TABLES `rolesusuarios` WRITE;
 /*!40000 ALTER TABLE `rolesusuarios` DISABLE KEYS */;
-INSERT INTO `rolesusuarios` VALUES (1,2);
+INSERT INTO `rolesusuarios` VALUES (1,2),(2,3);
 /*!40000 ALTER TABLE `rolesusuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -529,7 +532,7 @@ CREATE TABLE `usuarios` (
   UNIQUE KEY `cedula_UNIQUE` (`cedula`),
   KEY `fk_usuarios_estados_idx` (`fk_id_estados`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`fk_id_estados`) REFERENCES `estados` (`id_estados`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -538,7 +541,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (2,'1111','Lola','Martinez','fceeb9b9d469401fe558062c4bd25954','1999-01-01',NULL,'','0000000','310000000','2017-08-02',1);
+INSERT INTO `usuarios` VALUES (2,'1111','Lola','Martinez','fceeb9b9d469401fe558062c4bd25954','1999-01-01',NULL,'','0000000','310000000','2017-08-02',1),(3,'7777','Maria','Loaiza','fceeb9b9d469401fe558062c4bd25954','1999-08-10',NULL,'mari@gmail.com','5019230','3109230182','2017-08-03',2);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -656,4 +659,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-02 23:42:22
+-- Dump completed on 2017-08-03 22:34:06

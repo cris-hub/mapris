@@ -59,7 +59,8 @@ public class RegistrarEmpresasController {
         
         try{
                 
-                nuevaEmpresa.setIdEmpresa(nuevaEmpresa.getIdEmpresa());
+                nuevaEmpresa.setIdEmpresa(Integer.BYTES);
+                nuevaEmpresa.setNit(nuevaEmpresa.getNit());
                
                 nuevaEmpresa.setNombre(nuevaEmpresa.getNombre());
                 nuevaEmpresa.setDireccionP(nuevaEmpresa.getDireccionP());

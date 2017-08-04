@@ -91,19 +91,19 @@ public class RegistrarClienteController {
         try{
                 
                 
-               
+                nuevoUsuario.setIdUsuario(Integer.MIN_VALUE);
                 nuevoUsuario.setCedula(nuevoUsuario.getCedula());
                 nuevoUsuario.setFechaRegistro(hoy);
                 nuevoUsuario.setRoles(new ArrayList<Rol>());
                 nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
-//                nuevoUsuario.setEstado(estadoFacadeLocal.find(2));
-//                
-//                nuevoCliente.setIdClientes(nuevoUsuario.getCedula());
+                nuevoUsuario.setEstados(estadoFacadeLocal.find(2));
+                
+                nuevoCliente.setIdCliente(nuevoUsuario.getIdUsuario());
                 nuevoCliente.setEstado("Habilitado");
                 
                 usuarioFacadeLocal.create(nuevoUsuario);
                 cfl.create(nuevoCliente);
-                MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El personal medico se ha creado con exito");
+                MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El cliente se ha creado con exito");
                 init();
                 
                 
@@ -113,7 +113,7 @@ public class RegistrarClienteController {
                
             }
         } else {
-            MessageUtil.enviarMensajeInformacionGlobal( "Error al registrar el usuario", "No se pudo registrar el usuario");
+            MessageUtil.enviarMensajeInformacionGlobal( "Error al registrar el usuario", "No se pudo registrar el cliente");
         }
     }
     
