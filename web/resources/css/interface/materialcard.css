@@ -1,3 +1,5 @@
+
+
 .square, .btn {
     border-radius: 0px!important;
 }
@@ -135,7 +137,7 @@ div.user-menu div.user-menu-content:not(.active){
 }
 
 .user-details {
-    background: #eee;
+    background: #fff;
     min-height: 333px;
 }
 
