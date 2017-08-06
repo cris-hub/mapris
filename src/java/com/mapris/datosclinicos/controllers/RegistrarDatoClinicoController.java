@@ -78,8 +78,8 @@ public class RegistrarDatoClinicoController {
         try{
                 
                 
-                Long document = Long.valueOf(sc.getUsuario().getIdUsuario());
-                nuevoDatoclinico.setIdCliente(document);
+                Integer document = sc.getUsuario().getIdUsuario();
+                nuevoDatoclinico.setIdDatosClinicos(document);
                 dcfl.create(nuevoDatoclinico);
                 
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El cliente se ha creado con exito");

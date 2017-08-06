@@ -64,7 +64,8 @@
 
                                         <b:dataTableColumn  label="#{mensajeApp.opciones}" >
                                             <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verClienteController.verCliente(c)}"/>
-                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarClienteController.preModificar(c, c.usuario)}"/>
+                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarClienteController.preModificar(c)}"/>
+                                            <b:commandButton size="sm" look="primary" value="" tooltip="Cambiar Estado" iconAwesome="#{registroClienteController.getIconUsuarioBloqueo(c)}" action="#{registroClienteController.cambioDeEstado(c)}"/>
                                             <b:commandButton size="sm"  look="danger" value=""
                                                              iconAwesome="trash" tooltip="Eliminar"
                                                              onclick="$('.modalPseudoClass').modal();">

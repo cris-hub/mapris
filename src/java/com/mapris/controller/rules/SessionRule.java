@@ -30,13 +30,13 @@ public class SessionRule {
                 && clave != null && clave.length() > 0) {
             u = ufl.loginProcedure(documento, clave);
             if (u != null) {
-                if (u.getEstados().getIdEstados() == 2) {
+                if (u.getIdEstados().getIdEstados() == 2) {
                     u = null;
                     MessageUtil.enviarMensajeErrorGlobal(
                             "Usuario bloqueado",
                             "Contacte al administrador par que solucione el incoveniente.");
 
-                }else if (u.getEstados().getIdEstados()==3) {
+                }else if (u.getIdEstados().getIdEstados()==3) {
                     
                     u = null;
                     MessageUtil.enviarMensajeErrorGlobal(

@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "cursos")
@@ -54,7 +54,7 @@ public class Curso implements Serializable {
     private Integer valor;
     @JoinColumn(name = "fk_id_servicio", referencedColumnName = "id_servicio")
     @ManyToOne(optional = false)
-    private Servicio idServicio;
+    private Servicio idServicios;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCursos")
     private List<Inscripcion> inscripciones;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCursos")
@@ -99,12 +99,12 @@ public class Curso implements Serializable {
         this.valor = valor;
     }
 
-    public Servicio getIdServicio() {
-        return idServicio;
+    public Servicio getIdServicios() {
+        return idServicios;
     }
 
-    public void setIdServicio(Servicio idServicio) {
-        this.idServicio = idServicio;
+    public void setIdServicios(Servicio idServicios) {
+        this.idServicios = idServicios;
     }
 
     @XmlTransient

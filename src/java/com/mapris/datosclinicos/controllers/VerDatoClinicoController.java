@@ -7,6 +7,7 @@ package com.mapris.datosclinicos.controllers;
 
 import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.DatoclinicoFacadeLocal;
+import com.mapris.modelo.entitie.Cliente;
 import com.mapris.modelo.entitie.Datoclinico;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
@@ -33,6 +34,8 @@ public class VerDatoClinicoController implements Serializable{
     
     private Datoclinico datoClinico;
     
+    private Datoclinico datoClinicoCliente;
+    
    
 
     public VerDatoClinicoController() {
@@ -52,6 +55,19 @@ public class VerDatoClinicoController implements Serializable{
         this.datoClinico = datoClinico;
     }
 
+    public Datoclinico getDatoClinicoCliente() {
+        return datoClinicoCliente;
+    }
+
+    public void setDatoClinicoCliente(Datoclinico datoClinicoCliente) {
+          Cliente clienteSesion = sc.getUsuario().getCliente();
+     
+          Datoclinico hj = dcfl.find(clienteSesion);
+     
+         this.datoClinicoCliente = hj;
+    }
+
+    
     
     
     
@@ -62,15 +78,6 @@ public class VerDatoClinicoController implements Serializable{
     }
     
     
-    public String verDatoClinicoCliente (){
-        
-     Long document = Long.valueOf(sc.getUsuario().getIdUsuario());
-     Datoclinico busqueda = null;
-     busqueda.setIdCliente(document);
-     dcfl.find(busqueda);
-    
-    return "/app/administrador/datoClinicos/ver.xhtml?faces-redirect=true";
-    }
     
     
     

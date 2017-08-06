@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "empresas")
@@ -67,7 +67,7 @@ public class Empresa implements Serializable {
     private BigInteger telefonoF;
     @Column(name = "telefonoC")
     private BigInteger telefonoC;
-    @OneToMany(mappedBy = "idEmpresa")
+    @OneToMany(mappedBy = "idEmpresas")
     private List<Cliente> clientes;
 
     public Empresa() {

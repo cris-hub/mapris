@@ -12,7 +12,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "usuarios")
@@ -112,16 +111,16 @@ public class Usuario implements Serializable {
     @Column(name = "fecha_registro")
     @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
-     @JoinTable(name = "rolesusuarios", joinColumns ={
-        @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")} , inverseJoinColumns = {
-        @JoinColumn(name = "fk_id_roles", referencedColumnName = "idRoles")})
-    @ManyToMany(fetch = FetchType.LAZY) 
+    @JoinTable(name = "rolesusuarios", joinColumns = {
+         @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
+       @JoinColumn(name = "fk_id_roles", referencedColumnName = "idRoles")})
+    @ManyToMany
     private List<Rol> roles;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Personalmedico personalmedico;
     @JoinColumn(name = "fk_id_estados", referencedColumnName = "id_estados")
     @ManyToOne(optional = false)
-    private Estado estados;
+    private Estado idEstados;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Cliente cliente;
 
@@ -245,12 +244,12 @@ public class Usuario implements Serializable {
         this.personalmedico = personalmedico;
     }
 
-    public Estado getEstados() {
-        return estados;
+    public Estado getIdEstados() {
+        return idEstados;
     }
 
-    public void setEstados(Estado estados) {
-        this.estados = estados;
+    public void setIdEstados(Estado idEstados) {
+        this.idEstados = idEstados;
     }
 
     public Cliente getCliente() {

@@ -78,23 +78,21 @@ public class RegistrarPersonalMedicoController {
     
     public void registrar() {
        Date hoy = new Date();
-        System.out.println("cedula: " + nuevoUsuario.getCedula());
         if (nuevoUsuario != null && nuevoPersonalMedico != null) {
         
         
         try{
                 
                 
-                 nuevoUsuario.setIdUsuario(Integer.MIN_VALUE);
+               
                 nuevoUsuario.setCedula(nuevoUsuario.getCedula());
                 nuevoUsuario.setFechaRegistro(hoy);
                 nuevoUsuario.setRoles(new ArrayList<Rol>());
                 nuevoUsuario.getRoles().add(rolFacedaLocal.find(3));
-                nuevoUsuario.setEstados(estadoFacadeLocal.find(1));
+                nuevoUsuario.setIdEstados(estadoFacadeLocal.find(1));
                 
-                nuevoPersonalMedico.setIdPersonalMedico(nuevoUsuario.getIdUsuario());
-                
-                usuarioFacadeLocal.create(nuevoUsuario);
+                nuevoPersonalMedico.setUsuario(nuevoUsuario);
+            
                 personalMedicoFacadeLocal.create(nuevoPersonalMedico);
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El personal medico se ha creado con exito");
                 init();
@@ -104,6 +102,8 @@ public class RegistrarPersonalMedicoController {
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("No se puedo registrar" + e.getMessage());
+                System.out.println("cedula: " + nuevoUsuario.getIdUsuario() + "Id Usuario " + nuevoPersonalMedico.getUsuario().getIdUsuario());
+
             }
         } else {
             MessageUtil.enviarMensajeInformacionGlobal( "Error al registrar el usuario", "No se pudo registrar el personal medico");

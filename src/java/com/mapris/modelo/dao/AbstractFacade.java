@@ -7,6 +7,8 @@ package com.mapris.modelo.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -23,11 +25,17 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
-        getEntityManager().persist(entity);
+      
+         
+            getEntityManager().persist(entity);
+        
     }
 
     public void edit(T entity) {
-        getEntityManager().merge(entity);
+        
+         
+            getEntityManager().merge(entity);
+        
     }
 
     public void remove(T entity) {

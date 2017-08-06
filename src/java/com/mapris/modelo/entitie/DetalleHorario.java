@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "detalle_horario")

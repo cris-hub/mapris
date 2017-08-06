@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "estados")
@@ -48,7 +48,7 @@ public class Estado implements Serializable {
     @Size(max = 45)
     @Column(name = "descripccion")
     private String descripccion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estados")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEstados")
     private List<Usuario> usuarios;
 
     public Estado() {

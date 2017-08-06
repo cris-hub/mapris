@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "salones")
@@ -57,7 +57,7 @@ public class Salon implements Serializable {
     @Column(name = "estado")
     private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "salon")
-    private List<SalonHasServicio> salonesServicios;
+    private List<SalonHasServicio> salonesHasServicios;
 
     public Salon() {
     }
@@ -104,12 +104,12 @@ public class Salon implements Serializable {
     }
 
     @XmlTransient
-    public List<SalonHasServicio> getSalonesServicios() {
-        return salonesServicios;
+    public List<SalonHasServicio> getSalonesHasServicios() {
+        return salonesHasServicios;
     }
 
-    public void setSalonesServicios(List<SalonHasServicio> salonesServicios) {
-        this.salonesServicios = salonesServicios;
+    public void setSalonesHasServicios(List<SalonHasServicio> salonesHasServicios) {
+        this.salonesHasServicios = salonesHasServicios;
     }
 
     @Override

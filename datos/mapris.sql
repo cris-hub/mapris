@@ -107,10 +107,11 @@ DROP TABLE IF EXISTS `datosclinicos`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `datosclinicos` (
   `id_datos_clinicos` int(11) NOT NULL AUTO_INCREMENT,
-  `rh` char(2) DEFAULT NULL COMMENT 'Este campo almacena el tipo de sangre del cliente',
-  `datosPosparto` int(11) DEFAULT NULL COMMENT 'Este campo almacena el archivo correspondiente al dato clinico del programa Posparto',
-  `datosPrenatales` int(11) DEFAULT NULL COMMENT 'Este campo almacena el archivo correspondiente al dato clinico del programa Prenatal',
+  `tipo_sangre` varchar(3) DEFAULT NULL COMMENT 'Este campo almacena el tipo de sangre del cliente',
+  `alergias` varchar(20) DEFAULT NULL COMMENT 'Este campo almacena el archivo correspondiente al dato clinico del programa Posparto',
+  `url` int(11) DEFAULT NULL COMMENT 'Este campo almacena el archivo correspondiente al dato clinico del programa Prenatal',
   `fk_id_usuario` int(11) NOT NULL,
+  `patologia` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_datos_clinicos`),
   KEY `fk_datosclinicos_clientes1_idx` (`fk_id_usuario`),
   CONSTRAINT `fk_datosclinicos_clientes1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `clientes` (`fk_id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -170,7 +171,7 @@ CREATE TABLE `empresas` (
   `telefonoF` bigint(20) DEFAULT NULL,
   `telefonoC` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id_empresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +180,7 @@ CREATE TABLE `empresas` (
 
 LOCK TABLES `empresas` WRITE;
 /*!40000 ALTER TABLE `empresas` DISABLE KEYS */;
-INSERT INTO `empresas` VALUES (1,'123111','Cafam','Cll 54 # 32 - 53','Cra 182 # 45 - 31',1231231,4123123123);
+INSERT INTO `empresas` VALUES (1,'8192','Cafam','Cll 54 # 32 - 53','Cra 182 # 45 - 31',1231231,4123123123),(2,'9178293','Exito','Cll 54 # 32 - 53','Cra 182 # 45 - 31',5019230,3109230182);
 /*!40000 ALTER TABLE `empresas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -659,4 +660,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-03 22:34:06
+-- Dump completed on 2017-08-05 23:17:34

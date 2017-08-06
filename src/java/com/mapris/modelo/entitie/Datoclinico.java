@@ -9,13 +9,14 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,80 +29,93 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Datoclinico.findAll", query = "SELECT d FROM Datoclinico d")
-    , @NamedQuery(name = "Datoclinico.findByIdCliente", query = "SELECT d FROM Datoclinico d WHERE d.idCliente = :idCliente")
-    , @NamedQuery(name = "Datoclinico.findByRh", query = "SELECT d FROM Datoclinico d WHERE d.rh = :rh")
-    , @NamedQuery(name = "Datoclinico.findByDatosPosparto", query = "SELECT d FROM Datoclinico d WHERE d.datosPosparto = :datosPosparto")
-    , @NamedQuery(name = "Datoclinico.findByDatosPrenatales", query = "SELECT d FROM Datoclinico d WHERE d.datosPrenatales = :datosPrenatales")})
+    , @NamedQuery(name = "Datoclinico.findByIdDatosClinicos", query = "SELECT d FROM Datoclinico d WHERE d.idDatosClinicos = :idDatosClinicos")
+    , @NamedQuery(name = "Datoclinico.findByTipoSangre", query = "SELECT d FROM Datoclinico d WHERE d.tipoSangre = :tipoSangre")
+    , @NamedQuery(name = "Datoclinico.findByAlergias", query = "SELECT d FROM Datoclinico d WHERE d.alergias = :alergias")
+    , @NamedQuery(name = "Datoclinico.findByUrl", query = "SELECT d FROM Datoclinico d WHERE d.url = :url")})
 public class Datoclinico implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "idCliente")
-    private Long idCliente;
-    @Size(max = 2)
-    @Column(name = "rh")
-    private String rh;
-    @Column(name = "datosPosparto")
-    private Integer datosPosparto;
-    @Column(name = "datosPrenatales")
-    private Integer datosPrenatales;
-    @JoinColumn(name = "idCliente", referencedColumnName = "idClientes", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Cliente cliente;
+    @Column(name = "id_datos_clinicos")
+    private Integer idDatosClinicos;
+    @Size(max = 3)
+    @Column(name = "tipo_sangre")
+    private String tipoSangre;
+    @Size(max = 20)
+    @Column(name = "alergias")
+    private String alergias;
+    @Column(name = "url")
+    private String url;
+    @Column(name = "patologia")
+    private String patologia;
+    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "fk_id_usuario")
+    @ManyToOne(optional = false)
+    private Cliente idUsuarios;
 
     public Datoclinico() {
     }
 
-    public Datoclinico(Long idCliente) {
-        this.idCliente = idCliente;
+    public Datoclinico(Integer idDatosClinicos) {
+        this.idDatosClinicos = idDatosClinicos;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
+    public Integer getIdDatosClinicos() {
+        return idDatosClinicos;
     }
 
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
+    public void setIdDatosClinicos(Integer idDatosClinicos) {
+        this.idDatosClinicos = idDatosClinicos;
     }
 
-    public String getRh() {
-        return rh;
+    public String getTipoSangre() {
+        return tipoSangre;
     }
 
-    public void setRh(String rh) {
-        this.rh = rh;
+    public void setTipoSangre(String tipoSangre) {
+        this.tipoSangre = tipoSangre;
     }
 
-    public Integer getDatosPosparto() {
-        return datosPosparto;
+    public String getAlergias() {
+        return alergias;
     }
 
-    public void setDatosPosparto(Integer datosPosparto) {
-        this.datosPosparto = datosPosparto;
+    public String getPatologia() {
+        return patologia;
     }
 
-    public Integer getDatosPrenatales() {
-        return datosPrenatales;
+    public void setPatologia(String patologia) {
+        this.patologia = patologia;
+    }
+    
+
+    public void setAlergias(String alergias) {
+        this.alergias = alergias;
+    }
+    
+
+    public String getUrl() {
+        return url;
     }
 
-    public void setDatosPrenatales(Integer datosPrenatales) {
-        this.datosPrenatales = datosPrenatales;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Cliente getIdUsuarios() {
+        return idUsuarios;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setIdUsuarios(Cliente idUsuarios) {
+        this.idUsuarios = idUsuarios;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idCliente != null ? idCliente.hashCode() : 0);
+        hash += (idDatosClinicos != null ? idDatosClinicos.hashCode() : 0);
         return hash;
     }
 
@@ -112,7 +126,7 @@ public class Datoclinico implements Serializable {
             return false;
         }
         Datoclinico other = (Datoclinico) object;
-        if ((this.idCliente == null && other.idCliente != null) || (this.idCliente != null && !this.idCliente.equals(other.idCliente))) {
+        if ((this.idDatosClinicos == null && other.idDatosClinicos != null) || (this.idDatosClinicos != null && !this.idDatosClinicos.equals(other.idDatosClinicos))) {
             return false;
         }
         return true;
@@ -120,7 +134,7 @@ public class Datoclinico implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Datoclinico[ idCliente=" + idCliente + " ]";
+        return "com.mapris.modelo.entitie.Datoclinico[ idDatosClinicos=" + idDatosClinicos + " ]";
     }
     
 }

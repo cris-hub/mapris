@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "horarios")
@@ -53,7 +53,7 @@ public class Horario implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHorarios")
-    private List<DetalleHorario> detalleHorarios;
+    private List<DetalleHorario> detallesHorarios;
     @JoinColumn(name = "fk_id_curso", referencedColumnName = "id_curso")
     @ManyToOne(optional = false)
     private Curso idCursos;
@@ -90,12 +90,12 @@ public class Horario implements Serializable {
     }
 
     @XmlTransient
-    public List<DetalleHorario> getDetalleHorarios() {
-        return detalleHorarios;
+    public List<DetalleHorario> getDetallesHorarios() {
+        return detallesHorarios;
     }
 
-    public void setDetalleHorarios(List<DetalleHorario> detalleHorarios) {
-        this.detalleHorarios = detalleHorarios;
+    public void setDetallesHorarios(List<DetalleHorario> detallesHorarios) {
+        this.detallesHorarios = detallesHorarios;
     }
 
     public Curso getIdCursos() {

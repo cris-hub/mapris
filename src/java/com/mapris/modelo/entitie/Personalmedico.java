@@ -21,14 +21,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "personalmedico")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Personalmedico.findAll", query = "SELECT p FROM Personalmedico p")
-    , @NamedQuery(name = "Personalmedico.findByFkIdUsuario", query = "SELECT p FROM Personalmedico p WHERE p.idPersonalMedico = :idPersonalMedico")
+    , @NamedQuery(name = "Personalmedico.findByIdUsuario", query = "SELECT p FROM Personalmedico p WHERE p.idUsuario = :idUsuario")
     , @NamedQuery(name = "Personalmedico.findByPerfilProfesional", query = "SELECT p FROM Personalmedico p WHERE p.perfilProfesional = :perfilProfesional")
     , @NamedQuery(name = "Personalmedico.findByCargo", query = "SELECT p FROM Personalmedico p WHERE p.cargo = :cargo")})
 public class Personalmedico implements Serializable {
@@ -38,7 +38,7 @@ public class Personalmedico implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "fk_id_usuario")
-    private Integer idPersonalMedico;
+    private Integer idUsuario;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -56,22 +56,22 @@ public class Personalmedico implements Serializable {
     public Personalmedico() {
     }
 
-    public Personalmedico(Integer fkIdUsuario) {
-        this.idPersonalMedico = fkIdUsuario;
+    public Personalmedico(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Personalmedico(Integer fkIdUsuario, String perfilProfesional, String cargo) {
-        this.idPersonalMedico = fkIdUsuario;
+    public Personalmedico(Integer idUsuario, String perfilProfesional, String cargo) {
+        this.idUsuario = idUsuario;
         this.perfilProfesional = perfilProfesional;
         this.cargo = cargo;
     }
 
-    public Integer getIdPersonalMedico() {
-        return idPersonalMedico;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdPersonalMedico(Integer idPersonalMedico) {
-        this.idPersonalMedico = idPersonalMedico;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getPerfilProfesional() {
@@ -101,7 +101,7 @@ public class Personalmedico implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idPersonalMedico != null ? idPersonalMedico.hashCode() : 0);
+        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
         return hash;
     }
 
@@ -112,7 +112,7 @@ public class Personalmedico implements Serializable {
             return false;
         }
         Personalmedico other = (Personalmedico) object;
-        if ((this.idPersonalMedico == null && other.idPersonalMedico != null) || (this.idPersonalMedico != null && !this.idPersonalMedico.equals(other.idPersonalMedico))) {
+        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
             return false;
         }
         return true;
@@ -120,7 +120,7 @@ public class Personalmedico implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Personalmedico[ fkIdUsuario=" + idPersonalMedico + " ]";
+        return "com.mapris.modelo.entitie.Personalmedico[ idUsuario=" + idUsuario + " ]";
     }
     
 }

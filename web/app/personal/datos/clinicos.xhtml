@@ -11,17 +11,17 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-   <ui:define name="titulo">Administrador-Empresas</ui:define>
+   <ui:define name="titulo">Administrador-Datos Clinicos</ui:define>
     
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="/app/index.xhtml">Administrador</a>
+                <a href="/app/index.xhtml">Cliente</a>
                 <i class="fa fa-circle"></i>
             </li>
 
             <li>
-                <span class="active">Empresas</span>
+                <span class="active">Datos Clinicos</span>
             </li>
         </ul>
 
@@ -38,39 +38,35 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Empresas</h4>
-                                <p class="category">Empresas vinculas con Maternity Club</p>
+                                <h4 class="title">Datos Clinicos</h4>
+                                <p class="category">Datos Clinicos de los clientes de Maternity Club</p>
                             </div>
                             <div class="card-content table-responsive">
 
                                 <b:messages show-detail="true" class="animated flipInX"  show-summary="true" globalOnly="true"/>
-                                <b:form id="form-data-table-empresas" prependId="false">
-                                    <b:dataTable value="#{listarEmpresaController.empresa}" var="empresa">
+                                <b:form id="form-data-table-datos" prependId="false">
+                                    <b:dataTable value="#{listarDatoClinicoController.datoclinicoes}" var="dato">
 
 
-                                        <b:dataTableColumn label="Nit de la empresa" value="#{empresa.nit}" />
-                                        <b:dataTableColumn label="Nombre de la empresa" value="#{empresa.nombre}" />
-                                        <b:dataTableColumn label="Dirección sede principal" value="#{empresa.direccionP}"/>
-                                        <b:dataTableColumn label="Dirección sede alterna" value="#{empresa.direccionO}"/>
-                                        <b:dataTableColumn label="Telefono fijo" value="#{empresa.telefonoF}"/>
-                                        <b:dataTableColumn label="Telefono celular" value="#{empresa.telefonoC}"/>
-                                        <b:dataTableColumn label="Clientes vinculados" >
-                                            <ui:repeat value="#{empresa.clientes}"  var="dir">
-                                                <h:outputText value="#{dir.usuario.cedula}"/><br/>
-                                            </ui:repeat>
-                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="# Dato Clinico" value="#{dato.idDatosClinicos}" />
+                                        <b:dataTableColumn label="Tipo de Sangre" value="#{dato.tipoSangre}" />
+                                        <b:dataTableColumn label="Alergias" value="#{dato.alergias}"/>
+                                        <b:dataTableColumn label="Ubicación del archivo" value="#{dato.url}"/>
+                                        <b:dataTableColumn label="Cedula del Cliente" value="#{dato.idUsuarios.cedula}"/>
+                                        <b:dataTableColumn label="Nombre del cliente" value="#{dato.idUsuarios.nombre}"/>
+                                        <b:dataTableColumn label="Patologia" value="#{dato.patologia}"/>
+                                       
 
 
                                         <b:dataTableColumn  label="#{mensajeApp.opciones}" >
-                                            <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verEmpresaController.verEmpresa(empresa)}"/>
-                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarEmpresaController.preModificar(empresa)}"/>
+                                            <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verDatoClinicoController.verDatoclinico(dato)}"/>
                                             <b:commandButton size="sm"  look="danger" value=""
                                                              iconAwesome="trash" tooltip="Eliminar"
                                                              onclick="$('.modalPseudoClass').modal();
                                                                  $('.modal-backdrop').remove();
                                                              " >
                                                 <f:ajax event="click" render=":message-modal-confirm"
-                                                        listener="#{listarEmpresaController.setEmpresaSeleccionada(empresa)}"/>
+                                                        listener="#{listarDatoClinicoController.setDatoclinicoSeleccionado(dato)}"/>
                                             </b:commandButton>
                                         </b:dataTableColumn>
                                     </b:dataTable>
@@ -83,16 +79,16 @@
             </div>
         </div>
 
-        <b:modal id="amodal" title="Eliminar empresa" styleClass="modalPseudoClass">
+        <b:modal id="amodal" title="Eliminar dato" styleClass="modalPseudoClass">
             <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>¿Está seguro de eliminar la empresa?
+                <p>¿Está seguro de eliminar la dato clinico del paciente ?
                 </p>
             </h:panelGroup>
             <f:facet name="footer">
                 <h:form id="form-eliminar" prependId="false">
                     <b:button value="¡Oh no me equivoque!" dismiss="modal" />
                     <b:commandButton value="Tengo plena seguridad" look="primary"
-                                     actionListener="#{listarEmpresaController.eliminarEmpresa()}"/>
+                                     actionListener="#{listarDatoClinicoController.eliminarDatoclinico()}"/>
                 </h:form>
             </f:facet>
         </b:modal>

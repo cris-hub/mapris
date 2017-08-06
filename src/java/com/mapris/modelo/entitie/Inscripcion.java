@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "inscripciones")
@@ -30,8 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Inscripcion.findAll", query = "SELECT i FROM Inscripcion i")
     , @NamedQuery(name = "Inscripcion.findByIdInscripcion", query = "SELECT i FROM Inscripcion i WHERE i.idInscripcion = :idInscripcion")
-    , @NamedQuery(name = "Inscripcion.findByEstado", query = "SELECT i FROM Inscripcion i WHERE i.estado = :estado")
-    })
+    , @NamedQuery(name = "Inscripcion.findByEstado", query = "SELECT i FROM Inscripcion i WHERE i.estado = :estado")})
 public class Inscripcion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,13 +42,12 @@ public class Inscripcion implements Serializable {
     @Size(max = 45)
     @Column(name = "estado")
     private String estado;
-    
     @JoinColumn(name = "fk_id_curso", referencedColumnName = "id_curso")
     @ManyToOne(optional = false)
     private Curso idCursos;
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "fk_id_usuario")
     @ManyToOne(optional = false)
-    private Cliente idUsuarios;
+    private Cliente idUsuario;
 
     public Inscripcion() {
     }
@@ -74,22 +72,20 @@ public class Inscripcion implements Serializable {
         this.estado = estado;
     }
 
-   
-
-    public Curso getIdCursos() {
+    public Curso getFkIdCurso() {
         return idCursos;
     }
 
-    public void setIdCursos(Curso idCursos) {
+    public void setFkIdCurso(Curso idCursos) {
         this.idCursos = idCursos;
     }
 
-    public Cliente getIdUsuarios() {
-        return idUsuarios;
+    public Cliente getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdUsuarios(Cliente idUsuarios) {
-        this.idUsuarios = idUsuarios;
+    public void setIdUsuario(Cliente idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override

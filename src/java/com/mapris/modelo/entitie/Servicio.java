@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "servicios")
@@ -65,10 +65,10 @@ public class Servicio implements Serializable {
     @NotNull
     @Column(name = "sesiones")
     private int sesiones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idServicio")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idServicios")
     private List<Curso> cursos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "servicio")
-    private List<SalonHasServicio> salonesServicios;
+    private List<SalonHasServicio> salonesHasServicios;
     @OneToMany(mappedBy = "subServicios")
     private List<Servicio> servicios;
     @JoinColumn(name = "fk_sub_servicios", referencedColumnName = "id_servicio")
@@ -76,7 +76,7 @@ public class Servicio implements Serializable {
     private Servicio subServicios;
     @JoinColumn(name = "fk_tipo_servicio", referencedColumnName = "id_tipo_servicio")
     @ManyToOne(optional = false)
-    private TipoServicio idTipoServicio;
+    private TipoServicio tiposServicios;
 
     public Servicio() {
     }
@@ -148,12 +148,12 @@ public class Servicio implements Serializable {
     }
 
     @XmlTransient
-    public List<SalonHasServicio> getSalonesServicios() {
-        return salonesServicios;
+    public List<SalonHasServicio> getSalonesHasServicios() {
+        return salonesHasServicios;
     }
 
-    public void setSalonesServicios(List<SalonHasServicio> salonesServicios) {
-        this.salonesServicios = salonesServicios;
+    public void setSalonesHasServicios(List<SalonHasServicio> salonesHasServicios) {
+        this.salonesHasServicios = salonesHasServicios;
     }
 
     @XmlTransient
@@ -173,12 +173,12 @@ public class Servicio implements Serializable {
         this.subServicios = subServicios;
     }
 
-    public TipoServicio getIdTipoServicio() {
-        return idTipoServicio;
+    public TipoServicio getTiposServicios() {
+        return tiposServicios;
     }
 
-    public void setIdTipoServicio(TipoServicio idTipoServicio) {
-        this.idTipoServicio = idTipoServicio;
+    public void setTiposServicios(TipoServicio tiposServicios) {
+        this.tiposServicios = tiposServicios;
     }
 
     @Override

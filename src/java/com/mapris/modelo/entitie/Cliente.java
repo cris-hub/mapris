@@ -26,14 +26,14 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "clientes")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
-    , @NamedQuery(name = "Cliente.findByFkIdUsuario", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente")
+    , @NamedQuery(name = "Cliente.findByIdUsuario", query = "SELECT c FROM Cliente c WHERE c.idUsuario = :idUsuario")
     , @NamedQuery(name = "Cliente.findByEstado", query = "SELECT c FROM Cliente c WHERE c.estado = :estado")})
 public class Cliente implements Serializable {
 
@@ -42,21 +42,21 @@ public class Cliente implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "fk_id_usuario")
-    private Integer idCliente;
+    private Integer idUsuario;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "estado")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarios")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Inscripcion> inscripciones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarios")
     private List<Datoclinico> datosClinicos;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
     private Aplazamiento aplazamiento;
     @JoinColumn(name = "fk_id_empresa", referencedColumnName = "id_empresa")
     @ManyToOne
-    private Empresa idEmpresa;
+    private Empresa idEmpresas;
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Usuario usuario;
@@ -64,21 +64,21 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Integer fkIdUsuario) {
-        this.idCliente = fkIdUsuario;
+    public Cliente(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Cliente(Integer fkIdUsuario, String estado) {
-        this.idCliente = fkIdUsuario;
+    public Cliente(Integer idUsuario, String estado) {
+        this.idUsuario = idUsuario;
         this.estado = estado;
     }
 
-    public Integer getIdCliente() {
-        return idCliente;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdCliente(Integer fkIdUsuario) {
-        this.idCliente = fkIdUsuario;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getEstado() {
@@ -115,12 +115,12 @@ public class Cliente implements Serializable {
         this.aplazamiento = aplazamiento;
     }
 
-    public Empresa getIdEmpresa() {
-        return idEmpresa;
+    public Empresa getIdEmpresas() {
+        return idEmpresas;
     }
 
-    public void setIdEmpresa(Empresa idEmpresa) {
-        this.idEmpresa = idEmpresa;
+    public void setIdEmpresas(Empresa idEmpresas) {
+        this.idEmpresas = idEmpresas;
     }
 
     public Usuario getUsuario() {
@@ -134,7 +134,7 @@ public class Cliente implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idCliente != null ? idCliente.hashCode() : 0);
+        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
         return hash;
     }
 
@@ -145,7 +145,7 @@ public class Cliente implements Serializable {
             return false;
         }
         Cliente other = (Cliente) object;
-        if ((this.idCliente == null && other.idCliente != null) || (this.idCliente != null && !this.idCliente.equals(other.idCliente))) {
+        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
             return false;
         }
         return true;
@@ -153,7 +153,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Cliente[ fkIdUsuario=" + idCliente + " ]";
+        return "com.mapris.modelo.entitie.Cliente[ idUsuario=" + idUsuario + " ]";
     }
     
 }

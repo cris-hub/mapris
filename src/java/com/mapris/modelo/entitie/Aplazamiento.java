@@ -25,14 +25,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author APRENDIZ
+ * @author Ruben
  */
 @Entity
 @Table(name = "aplazamientos")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Aplazamiento.findAll", query = "SELECT a FROM Aplazamiento a")
-    , @NamedQuery(name = "Aplazamiento.findByFkIdUsuario", query = "SELECT a FROM Aplazamiento a WHERE a.fkIdUsuario = :fkIdUsuario")
+    , @NamedQuery(name = "Aplazamiento.findByidUsuario", query = "SELECT a FROM Aplazamiento a WHERE a.idUsuario = :idUsuario")
     , @NamedQuery(name = "Aplazamiento.findByInicio", query = "SELECT a FROM Aplazamiento a WHERE a.inicio = :inicio")
     , @NamedQuery(name = "Aplazamiento.findByFin", query = "SELECT a FROM Aplazamiento a WHERE a.fin = :fin")})
 public class Aplazamiento implements Serializable {
@@ -42,7 +42,7 @@ public class Aplazamiento implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "fk_id_usuario")
-    private Integer fkIdUsuario;
+    private Integer idUsuario;
     @Lob
     @Size(max = 65535)
     @Column(name = "motivo")
@@ -60,16 +60,16 @@ public class Aplazamiento implements Serializable {
     public Aplazamiento() {
     }
 
-    public Aplazamiento(Integer fkIdUsuario) {
-        this.fkIdUsuario = fkIdUsuario;
+    public Aplazamiento(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Integer getFkIdUsuario() {
-        return fkIdUsuario;
+    public Integer getidUsuario() {
+        return idUsuario;
     }
 
-    public void setFkIdUsuario(Integer fkIdUsuario) {
-        this.fkIdUsuario = fkIdUsuario;
+    public void setidUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getMotivo() {
@@ -107,7 +107,7 @@ public class Aplazamiento implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (fkIdUsuario != null ? fkIdUsuario.hashCode() : 0);
+        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
         return hash;
     }
 
@@ -118,7 +118,7 @@ public class Aplazamiento implements Serializable {
             return false;
         }
         Aplazamiento other = (Aplazamiento) object;
-        if ((this.fkIdUsuario == null && other.fkIdUsuario != null) || (this.fkIdUsuario != null && !this.fkIdUsuario.equals(other.fkIdUsuario))) {
+        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
             return false;
         }
         return true;
@@ -126,7 +126,7 @@ public class Aplazamiento implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Aplazamiento[ fkIdUsuario=" + fkIdUsuario + " ]";
+        return "com.mapris.modelo.entitie.Aplazamiento[ idUsuario=" + idUsuario + " ]";
     }
     
 }
