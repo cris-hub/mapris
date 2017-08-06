@@ -48,11 +48,13 @@
                                     <b:dataTable id="dtServicio" value="#{listarAplazamientoController.aplazamientos}" var="aplazamiento">
 
 
-                                        <b:dataTableColumn label="Id Aplzamiento" value="#{aplazamiento.idaplazamiento}" />
+                                        <b:dataTableColumn label="Id Aplzamiento" value="#{aplazamiento.idUsuario}" />
                                         <b:dataTableColumn label="Motivo" value="#{aplazamiento.motivo}" />
-                                        <b:dataTableColumn label="Clientes vinculados" >
-                                            <ui:repeat value="#{aplazamiento.idcliente}"  var="cli">
-                                                <h:outputText value="#{cli.idClientes}"/><br/>
+                                        <b:dataTableColumn label="Fecha Inicio" value="#{aplazamiento.inicio}" />
+                                        <b:dataTableColumn label="Fecha Fin" value="#{aplazamiento.fin}" />
+                                        <b:dataTableColumn label="Cedula del cliente" >
+                                            <ui:repeat value="#{aplazamiento.cliente}"  var="cli">
+                                                <h:outputText value="#{cli.idUsuario}"/><br/>
                                             </ui:repeat>
                                         </b:dataTableColumn>
 

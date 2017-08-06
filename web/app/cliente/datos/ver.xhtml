@@ -44,46 +44,23 @@
                             <div class="card-content">
                                 <b:messages showSummary="true" show-detail="true"/>
                                 <b:message for="form-editar" showSummary="true" show-detail="true"/>
-                                <h:form id="form-editar" prependId="false">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Tipo de sangre</label>
-                                                <h:outputText value="#{verDatoClinicoController.datoClinicoCliente.tipoSangre}" class="form-control"  />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Alergias</label>
-                                                <h:outputText value="#{verDatoClinicoController.datoClinicoCliente.alergias}" class="form-control"  />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                   
-                                        <div class="col-md-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Patologia</label>
-                                                <h:outputText value="#{verDatoClinicoController.datoClinicoCliente.patologia}" class="form-control"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group label-floating">
-                                               
-                                                <iframe ></iframe>
-                                            </div>
-                                        </div>
-                                  
+                                  <b:form id="form-data-table-datos" prependId="false">
+                                      <b:dataTable value="#{verDatoClinicoController.datoClinicoCliente}" var="dato">
 
 
+                                        <b:dataTableColumn label="Tipo de Sangre" value="#{dato.tipoSangre}" />
+                                        <b:dataTableColumn label="Alergias" value="#{dato.alergias}"/>
+                                        <b:dataTableColumn label="Patologia" value="#{dato.patologia}"/>
+                                        <b:dataTableColumn label="Ubicación del archivo" value="">
+                                            <iframe src="#{dato.url}"></iframe>
+                                        </b:dataTableColumn>
+                                       
 
-                                    </div>
 
+                                        
+                                    </b:dataTable>
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/index.xhtml" value="Volver"/>
-
-                                </h:form>
-
+                                </b:form>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">

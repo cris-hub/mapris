@@ -11,6 +11,7 @@ import com.mapris.modelo.entitie.Cliente;
 import com.mapris.modelo.entitie.Datoclinico;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -34,7 +35,7 @@ public class VerDatoClinicoController implements Serializable{
     
     private Datoclinico datoClinico;
     
-    private Datoclinico datoClinicoCliente;
+    private List<Datoclinico> datoClinicoCliente;
     
    
 
@@ -55,18 +56,17 @@ public class VerDatoClinicoController implements Serializable{
         this.datoClinico = datoClinico;
     }
 
-    public Datoclinico getDatoClinicoCliente() {
+    public List<Datoclinico> getDatoClinicoCliente() {
         return datoClinicoCliente;
     }
 
-    public void setDatoClinicoCliente(Datoclinico datoClinicoCliente) {
-          Cliente clienteSesion = sc.getUsuario().getCliente();
-     
-          Datoclinico hj = dcfl.find(clienteSesion);
-     
-         this.datoClinicoCliente = hj;
+    public void setDatoClinicoCliente(List<Datoclinico> datoClinicoCliente) {
+         List<Datoclinico> datoClinico1 = sc.getUsuario().getCliente().getDatosClinicos();
+         this.datoClinicoCliente = datoClinico1;
     }
 
+    
+    
     
     
     

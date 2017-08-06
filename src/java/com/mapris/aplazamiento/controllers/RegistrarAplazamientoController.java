@@ -33,16 +33,11 @@ public class RegistrarAplazamientoController implements Serializable {
     @EJB
     private AplazamientoFacadeLocal aplazamientoFacadeLocal;
 
-    @EJB
-    private ClienteFacadeLocal clienteFacadeLocal;
 
     private Inscripcion inscripcionSeleccionado;
 
     private Aplazamiento nuevoAplazamiento;
 
-    private String motivo;
-
-    private Date fechaHora;
 
     public RegistrarAplazamientoController() {
     }
@@ -50,39 +45,7 @@ public class RegistrarAplazamientoController implements Serializable {
     @PostConstruct
     public void init() {
         nuevoAplazamiento = new Aplazamiento();
-        fechaHora = getFechaHoraActual();
-    }
-
-    public Date getFechaHora() {
-        return fechaHora;
-    }
-
-    public void setFechaHora(Date fechaHora) {
-        this.fechaHora = fechaHora;
-    }
-
-    public AplazamientoFacadeLocal getAplazamientoFacadeLocal() {
-        return aplazamientoFacadeLocal;
-    }
-
-    public void setAplazamientoFacadeLocal(AplazamientoFacadeLocal aplazamientoFacadeLocal) {
-        this.aplazamientoFacadeLocal = aplazamientoFacadeLocal;
-    }
-
-    public Aplazamiento getNuevoAplazamiento() {
-        return nuevoAplazamiento;
-    }
-
-    public void setNuevoAplazamiento(Aplazamiento nuevoAplazamiento) {
-        this.nuevoAplazamiento = nuevoAplazamiento;
-    }
-
-    public InscripcionFacadeLocal getInscripcionFacadeLocal() {
-        return inscripcionFacadeLocal;
-    }
-
-    public void setInscripcionFacadeLocal(InscripcionFacadeLocal inscripcionFacadeLocal) {
-        this.inscripcionFacadeLocal = inscripcionFacadeLocal;
+     
     }
 
     public Inscripcion getInscripcionSeleccionado() {
@@ -93,21 +56,20 @@ public class RegistrarAplazamientoController implements Serializable {
         this.inscripcionSeleccionado = inscripcionSeleccionado;
     }
 
-    public String getMotivo() {
-        return motivo;
+    public Aplazamiento getNuevoAplazamiento() {
+        return nuevoAplazamiento;
     }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
+    public void setNuevoAplazamiento(Aplazamiento nuevoAplazamiento) {
+        this.nuevoAplazamiento = nuevoAplazamiento;
     }
+    
+    
 
     /**
      * Creates a new instance of RegistrarSesionController
      */
-    public Date getFechaHoraActual() {
-        Fecha fecha = new Fecha();
-        return fecha.getFechaActual();
-    }
+    
 
     public void preModificar(Inscripcion s) {
         setInscripcionSeleccionado(s);
@@ -133,11 +95,11 @@ public class RegistrarAplazamientoController implements Serializable {
     }
 
     public void registrar() {
-        cambioDeFechaInscripcion();
+       
         
-        nuevoAplazamiento.setMotivo(motivo);
         if (nuevoAplazamiento != null) {
             try {
+                nuevoAplazamiento.getidUsuario();
                 aplazamientoFacadeLocal.create(nuevoAplazamiento);
                 init();
                 MessageUtil.enviarMensajeInformacion("form-registrarAplazamiento", "Registro satisfactorio", "");
