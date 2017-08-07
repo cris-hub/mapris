@@ -12,6 +12,7 @@ import com.mapris.util.Fecha;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.*;
@@ -33,11 +34,10 @@ public class RegistrarAplazamientoController implements Serializable {
     @EJB
     private AplazamientoFacadeLocal aplazamientoFacadeLocal;
 
-
     private Inscripcion inscripcionSeleccionado;
+   
 
     private Aplazamiento nuevoAplazamiento;
-
 
     public RegistrarAplazamientoController() {
     }
@@ -45,7 +45,7 @@ public class RegistrarAplazamientoController implements Serializable {
     @PostConstruct
     public void init() {
         nuevoAplazamiento = new Aplazamiento();
-     
+
     }
 
     public Inscripcion getInscripcionSeleccionado() {
@@ -63,44 +63,36 @@ public class RegistrarAplazamientoController implements Serializable {
     public void setNuevoAplazamiento(Aplazamiento nuevoAplazamiento) {
         this.nuevoAplazamiento = nuevoAplazamiento;
     }
-    
-    
 
     /**
      * Creates a new instance of RegistrarSesionController
      */
     
 
-    public void preModificar(Inscripcion s) {
-        setInscripcionSeleccionado(s);
-    }
-
-    public String existeInscripcionSeleccionado() {
-        if (inscripcionSeleccionado != null) {
-            return "true";
+    public Boolean existeInscripcionSeleccionado() {
+        if (sessionController.getUsuario().getCliente().getInscripciones() != null ) {
+            return true;
         } else {
-            return "false";
+            return false;
         }
     }
 
-    private void cambioDeFechaInscripcion() {
-        try {
-            
-            inscripcionFacadeLocal.edit(inscripcionSeleccionado);
-            MessageUtil.enviarMensajeInformacion("form-registrarAplazamiento", "Actualización", "Se ha cambiado la fecha del inscripcion.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            MessageUtil.enviarMensajeError("form-registrarAplazamiento", "Error cambiar la fecha del inscripcion", "");
-        }
+    public List<Inscripcion> getInscripcionesCliente() {
+        return sessionController.getUsuario().getCliente().getInscripciones();
     }
 
     public void registrar() {
+
+        if (existeInscripcionSeleccionado() == true) {
+            
        
-        
         if (nuevoAplazamiento != null) {
             try {
-                nuevoAplazamiento.getidUsuario();
+                
+                inscripcionSeleccionado.setEstado("Aplazado");
+                nuevoAplazamiento.setidUsuario(sessionController.getUsuario().getIdUsuario());
                 aplazamientoFacadeLocal.create(nuevoAplazamiento);
+                inscripcionFacadeLocal.edit(inscripcionSeleccionado);
                 init();
                 MessageUtil.enviarMensajeInformacion("form-registrarAplazamiento", "Registro satisfactorio", "");
             } catch (Exception e) {
@@ -112,6 +104,13 @@ public class RegistrarAplazamientoController implements Serializable {
             System.out.println("NULO aplazamiento registro");
             MessageUtil.enviarMensajeError("form-registrarAplazamiento", "no se han diligenciado los campos ", "");
         }
-    }
+    } else {
+        
+      MessageUtil.enviarMensajeError("form-registrarAplazamiento", "No se puede completar el aplazamiento ", " Debido a que no esta inscrito a ningun servicio");
+
+        
+        
+        }
+  }
 
 }

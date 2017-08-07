@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mapris.salones.controller;
+package com.mapris.salonesservicios.controller;
 
 
 import com.mapris.modelo.dao.SalonFacadeLocal;
@@ -20,9 +20,9 @@ import javax.inject.Named;
  *
  * @author Ruben
  */
-@Named(value = "editarSalonesController")
+@Named(value = "editarSalonesHasServiciosController")
 @SessionScoped
-public class EditarSalonesController implements Serializable {
+public class EditarSalonesHasServiciosController implements Serializable {
 
     @EJB
     private SalonFacadeLocal sfl;
@@ -36,7 +36,7 @@ public class EditarSalonesController implements Serializable {
     salonSeleccionado = new Salon();
     }
 
-    public EditarSalonesController() {
+    public EditarSalonesHasServiciosController() {
     }
 
     public Salon getSalonSeleccionado() {

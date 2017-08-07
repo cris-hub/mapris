@@ -6,7 +6,10 @@
 package com.mapris.aplazamiento.controllers;
 
 import com.mapris.modelo.dao.AplazamientoFacadeLocal;
+import com.mapris.modelo.dao.InscripcionFacadeLocal;
 import com.mapris.modelo.entitie.Aplazamiento;
+import com.mapris.modelo.entitie.Inscripcion;
+import com.mapris.util.MessageUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -25,8 +28,12 @@ public class ListarAplazamientoController implements Serializable{
     
     @EJB
     private AplazamientoFacadeLocal aplazamientoFacadeLocal;
+    @EJB
+    private InscripcionFacadeLocal ifc;
     
     private List<Aplazamiento> aplazamientos;
+    
+    private Inscripcion inscripcionSeleccionada;
     
     private Aplazamiento aplazamientoSeleccionado;
 
@@ -43,7 +50,19 @@ public class ListarAplazamientoController implements Serializable{
     }
     
     public void eliminarAplazamiento(){
-    aplazamientoFacadeLocal.remove(aplazamientoSeleccionado);
+    
+        try {
+            
+            this.inscripcionSeleccionada = aplazamientoSeleccionado.getCliente().getInscripciones().get(0);
+            inscripcionSeleccionada.setEstado("Activa");
+            ifc.edit(inscripcionSeleccionada);
+            aplazamientoFacadeLocal.remove(aplazamientoSeleccionado);
+            MessageUtil.enviarMensajeInformacionGlobal("Se elimino exitosamente el aplazamiento", "El aplazamiento del cliente se elimino exitosamente");
+
+        } catch (Exception e) {
+            e.getStackTrace();
+            MessageUtil.enviarMensajeErrorGlobal("No se pudo eliminar el aplazamiento", "El aplazamiento del cliente no se pudo eliminar");
+        }
     }
     
     public List<Aplazamiento> getAplazamientos() {

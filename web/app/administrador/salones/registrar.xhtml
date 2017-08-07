@@ -39,21 +39,7 @@
                                 <b:messages showSummary="true" class="animated flipInX"  show-detail="true" />
                                 <b:form id="form-editar" prependId="false">
                                     <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Id Salones</label>
-                                                <b:inputText value="#{registrarSalonesController.nuevoSalon.idSalones}" class="form-control" />
-                                            </div>
-                                        </div>
-                                   
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Actividad</label>
-                                                <b:inputText value="#{registrarSalonesController.nuevoSalon.actividad}"  class="form-control"/>
-                                            </div>
-                                        </div>
                                         
-                                    
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                 <label class="control-label"># De Salón</label>
@@ -65,6 +51,13 @@
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Descripción</label>
                                                 <b:inputText value="#{registrarSalonesController.nuevoSalon.descripcion}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Actividad</label>
+                                                <b:inputText value="#{registrarSalonesController.nuevoSalon.estado}"  class="form-control"/>
                                             </div>
                                         </div>
                                         

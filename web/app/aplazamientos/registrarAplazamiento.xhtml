@@ -31,32 +31,7 @@
 
     </ui:define>
     <ui:define name="contenido">
-        <!--        <div class="col-sm-12">
-                    <b:messages showDetail="true" showSummary="true" globalOnly="true"/>
-                </div>
-                <div class="col-sm-12">
-                    <div class="portlet light bordered">
-                        <div class="portlet-title">
-                            <div class="caption font-dark">
-                                <i class="icon-settings font-dark"></i>
-                                <span class="caption-subject bold uppercase">Servicio que desea aplazar #{sessionController.usuario.nombres} #{sessionController.usuario.apellidos} </span>
-                            </div>
-                            <div class="tools"> </div>
-                        </div>
-                        <div class="portlet-body">
-                            <h:form>
-                                <b:panelGrid col-spans="2,8,2"   size="xs">
-                                    <h:outputLabel value="Nombre" />
-                                    <h:outputLabel value="Descripción" />
-                                    <h:outputLabel value=" Fecha Inicio Programa" />
-                                    <h:outputLabel value="#{registrarAplazamientoController.inscripcionSeleccionado.idPrograma.nombre}" />
-                                    <h:outputLabel value=" #{registrarAplazamientoController.inscripcionSeleccionado.estado}" />
-                                    <h:outputLabel value=" #{registrarAplazamientoController.inscripcionSeleccionado.fechaInicio}" />
-                                </b:panelGrid>
-                            </h:form>
-                        </div>
-                    </div>
-                </div>-->
+       
 
         <div class="content">
             <div class="container-fluid">
@@ -74,7 +49,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fecha Inicio</label>
-                                                <b:datepicker value="#{registrarAplazamientoController.fechaHora}" class="form-control"></b:datepicker>
+                                                <b:inputText value="#{registrarAplazamientoController.nuevoAplazamiento.motivo}" class="form-control"></b:inputText>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Fecha Inicio</label>
+                                                <b:datepicker value="#{registrarAplazamientoController.nuevoAplazamiento.inicio}" class="form-control"></b:datepicker>
 
                                             </div>
                                         </div>
@@ -82,7 +64,16 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fecha Fin</label>
-                                                <b:datepicker value="#{registrarAplazamientoController.fechaHora}" class="form-control"></b:datepicker>
+                                                <b:datepicker value="#{registrarAplazamientoController.nuevoAplazamiento.fin}" class="form-control"></b:datepicker>
+                                            </div>
+                                        </div>
+                                         <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Inscripción para aplazar</label>
+                                                <b:selectOneMenu value="#{registrarAplazamientoController.inscripcionSeleccionado}" class="form-control">
+
+                                                    <f:selectItems value="#{registrarAplazamientoController.inscripcionesCliente}" var="i" itemLabel=" # De inscripción: #{i.idInscripcion}- Estado: #{i.estado}"/>
+                                                </b:selectOneMenu>
                                             </div>
                                         </div>
                                     </div>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mapris.salones.controller;
+package com.mapris.salonesservicios.controller;
 
 
 import com.mapris.modelo.dao.SalonFacadeLocal;
@@ -22,9 +22,9 @@ import javax.inject.Named;
  *
  * @author SMEGS
  */
-@Named(value = "registrarSalonesController")
+@Named(value = "registrarSalonesHasServiciosController")
 @RequestScoped
-public class RegistrarSalonesController {
+public class RegistrarSalonesHasServiciosController {
 
     @EJB
     private SalonFacadeLocal salonFacadeLocal;
@@ -33,7 +33,7 @@ public class RegistrarSalonesController {
     private Salon nuevoSalon;
 
 
-    public RegistrarSalonesController() {
+    public RegistrarSalonesHasServiciosController() {
     }
 
     @PostConstruct

@@ -7,6 +7,7 @@
 package com.mapris.aplazamiento.controllers;
 
 import com.mapris.login.controller.SessionController;
+import com.mapris.modelo.entitie.Aplazamiento;
 
 import java.io.Serializable;
 import java.util.List;
@@ -20,24 +21,45 @@ import javax.inject.Named;
 
 @Named(value = "listarProgramasController")
 @ViewScoped
-public class ListarProgramasController implements Serializable{
+public class VerAplazamientoController implements Serializable{
 //    cdi 
-
-    @Inject
-    private SessionController sessionController;
-
-  
-
     
     
+     private Aplazamiento aplazamiento;
+   
+
     
-    public ListarProgramasController() {
+    public VerAplazamientoController() {
     }
 
     @PostConstruct
     public void init() {
        
     }
+    
+    public Aplazamiento getAplazamiento() {
+        return aplazamiento;
+    }
+
+    public void setAplazamiento(Aplazamiento aplazamiento) {
+        this.aplazamiento = aplazamiento;
+    }
+
+ 
+    
+    
+    public String verAplazamiento(Aplazamiento a){
+    this.aplazamiento = a;
+   
+    return "/app/administrador/aplazamientos/ver.xhtml?faces-redirect=true";
+    }
+
+  
+
+    
+    
+    
+  
     
     
    

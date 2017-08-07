@@ -4,7 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mapris.salones.controller;
+package com.mapris.salonesservicios.controller;
 
 
 import com.mapris.modelo.dao.SalonFacadeLocal;
@@ -22,9 +22,9 @@ import javax.inject.Named;
  *
  * @author Ruben
  */
-@Named(value = "listarSalonesController")
+@Named(value = "listarSalonesHasServiciosController")
 @ViewScoped
-public class ListarSalonesController implements Serializable{
+public class ListarSalonesHasServiciosController implements Serializable{
 //    Code Dependention Injection
 
 
@@ -39,7 +39,7 @@ public class ListarSalonesController implements Serializable{
     
     
     
-    public ListarSalonesController() {
+    public ListarSalonesHasServiciosController() {
     }
 
     @PostConstruct

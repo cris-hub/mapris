@@ -8,22 +8,20 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
- 
-    <ui:define name="titulo">Personal Medico-Ver Salones</ui:define>
-
+   <ui:define name="titulo">Administrador - Ver Aplazamiento</ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="/app/index.xhtml">Personal Medico</a>
+                <a href="/app/index.xhtml">Aplazamiento</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="/app/administrador/salones/salones.xhtml">Salones</a>
+                <a href="">Aplazamiento</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Ver datos</span>
+                <span class="active">Ver Aplazamiento</span>
             </li>
         </ul>
 
@@ -39,48 +37,44 @@
                         <div class="card">
                             <div class="card-header" data-background-color="blue">
                                 <i class="material-icons">info_outline</i>
-                                <h4 class="title">Editar Salones</h4>
-                                <p class="category">Aquí puedes editar la información de los salones disponibles en Maternity Club</p>
+                                <h4 class="title">Ver Aplazamiento</h4>
+                                <p class="category">Aquí puedes ver la información de tus aplazamientos</p>
                             </div>
                             <div class="card-content">
-                             
+                                <b:messages showSummary="true" show-detail="true"/>
+                                <b:message for="form-editar" showSummary="true" show-detail="true"/>
                                 <h:form id="form-editar" prependId="false">
                                     
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Id Sesiones</label>
-                                                <h:outputText value="#{verSalonesController.salon.idSalones}" class="form-control"  />
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Número de salones</label>
-                                                <h:outputText value="#{verSalonesController.salon.salon}" class="form-control"/>
+                                                <label class="control-label">Cedula</label>
+                                                <h:outputText value="#{verAplazamientoClienteController.aplazamiento.motivo}" class="form-control"  />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Número de salones</label>
-                                                <h:outputText value="#{verSalonesController.salon.descripcion}" class="form-control"/>
+                                                <label class="control-label">Nombres</label>
+                                                <h:outputText value="#{verAplazamientoClienteController.aplazamiento.inicio}" class="form-control">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </h:outputText>
                                             </div>
                                         </div>
-                                        
-                                        <div class="col-md-6">
+                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Número de salones</label>
-                                                <h:outputText value="#{verSalonesController.salon.estado}" class="form-control"/>
+                                                <label class="control-label">Apellidos</label>
+                                                <h:outputText value="#{verAplazamientoClienteController.aplazamiento.fin}" class="form-control">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </h:outputText>
                                             </div>
                                         </div>
-                                        
-
+                                      
                                     </div>
 
 
 
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/salones/salones.xhtml" value="Volver"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/index.xhtml" value="Volver"/>
 
                                 </h:form>
 
