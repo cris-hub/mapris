@@ -7,8 +7,8 @@
 package com.mapris.salonesservicios.controller;
 
 
-import com.mapris.modelo.dao.SalonFacadeLocal;
-import com.mapris.modelo.entitie.Salon;
+import com.mapris.modelo.dao.SalonHasServicioFacadeLocal;
+import com.mapris.modelo.entitie.SalonHasServicio;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
 
@@ -29,11 +29,11 @@ public class ListarSalonesHasServiciosController implements Serializable{
 
 
     @EJB
-    private SalonFacadeLocal sfl;
+    private SalonHasServicioFacadeLocal sfl;
 
-    private List<Salon> salones;
+    private List<SalonHasServicio> salonesHasServicios;
 
-    private Salon salonesSelecionados;
+    private SalonHasServicio salonesHasServiciosSelecionados;
    
 
     
@@ -49,38 +49,38 @@ public class ListarSalonesHasServiciosController implements Serializable{
     }
     
     private void recargarSalones(){
-        salones = sfl.findAll();
+        salonesHasServicios = sfl.findAll();
     }
     
-     public SalonFacadeLocal getSalonFacadeLocal() {
+     public SalonHasServicioFacadeLocal getSalonHasServicioFacadeLocal() {
         return sfl;
     }
 
-    public void setSalonFacadeLocal(SalonFacadeLocal sfl) {
+    public void setSalonHasServicioFacadeLocal(SalonHasServicioFacadeLocal sfl) {
         this.sfl = sfl;
     }
 
-    public List<Salon> getSalones() {
-        return salones;
+    public List<SalonHasServicio> getSalones() {
+        return salonesHasServicios;
     }
 
-    public void setSalonSeleccionado(Salon salonesSelecionados) {
-        this.salonesSelecionados = salonesSelecionados;
+    public void setSalonSeleccionado(SalonHasServicio salonesHasServiciosSelecionados) {
+        this.salonesHasServiciosSelecionados = salonesHasServiciosSelecionados;
     }
 
 
-    public Salon getSalonSeleccionado() {
-        return this.salonesSelecionados;
+    public SalonHasServicio getSalonSeleccionado() {
+        return this.salonesHasServiciosSelecionados;
     }
     
-    public void eliminarSalon(){
+    public void eliminarSalonHasServicios(){
      
         
         try {
-            sfl.remove(salonesSelecionados);
-            MessageUtil.enviarMensajeInformacionGlobal("Eliminación correcta","Se elimino correctamente las salones ");
+            sfl.remove(salonesHasServiciosSelecionados);
+            MessageUtil.enviarMensajeInformacionGlobal("Eliminación correcta","Se elimino correctamente las salonesHasServicios ");
         } catch (Exception e) {
-            MessageUtil.enviarMensajeErrorGlobal("Error al eliminar las salones","No se puede eliminar las salones");
+            MessageUtil.enviarMensajeErrorGlobal("Error al eliminar las salonesHasServicios","No se puede eliminar las salonesHasServicios");
         }
         
     }

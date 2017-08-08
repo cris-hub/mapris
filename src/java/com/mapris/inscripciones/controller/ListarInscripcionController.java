@@ -7,6 +7,8 @@
 package com.mapris.inscripciones.controller;
 
 import com.mapris.login.controller.SessionController;
+import com.mapris.modelo.dao.InscripcionFacadeLocal;
+import com.mapris.modelo.entitie.Inscripcion;
 
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
@@ -34,6 +36,13 @@ public class ListarInscripcionController implements Serializable{
     private SessionController sessionController;
 
   
+    @EJB
+    private InscripcionFacadeLocal ifl;
+    
+    private List<Inscripcion> inscripciones;
+    
+    private Inscripcion inscripcionSeleccionado;
+    
     private Calendar hoy;
 
     
@@ -56,7 +65,7 @@ public class ListarInscripcionController implements Serializable{
     public void eliminarInscripcion(){
         System.out.println("DIA=" + this.hoy.get(Calendar.DAY_OF_MONTH)+ "MES: "+ (this.hoy.get(Calendar.MONTH)+1)+ "AÑO" + this.hoy.get(Calendar.YEAR));
         Calendar cal = Calendar.getInstance();
-//        cal.setTime(inscripcionSeleccionado.getFechaInicio());
+        cal.setTime(inscripcionSeleccionado.getFkIdCurso().getHorarios().get(0).getFechaInicio());
         System.out.println("DIA= " + cal.get(Calendar.DAY_OF_MONTH)+ " MES: "+ (cal.get(Calendar.MONTH)+1)+ " AÑO " + cal.get(Calendar.YEAR));
        
         

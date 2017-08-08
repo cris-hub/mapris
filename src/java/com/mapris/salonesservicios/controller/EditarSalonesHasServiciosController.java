@@ -6,8 +6,8 @@
 package com.mapris.salonesservicios.controller;
 
 
-import com.mapris.modelo.dao.SalonFacadeLocal;
-import com.mapris.modelo.entitie.Salon;
+import com.mapris.modelo.dao.SalonHasServicioFacadeLocal;
+import com.mapris.modelo.entitie.SalonHasServicio;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
 
@@ -25,25 +25,25 @@ import javax.inject.Named;
 public class EditarSalonesHasServiciosController implements Serializable {
 
     @EJB
-    private SalonFacadeLocal sfl;
+    private SalonHasServicioFacadeLocal sfl;
     
-    private Salon salonSeleccionado;
+    private SalonHasServicio salonSeleccionado;
 
    
     
     @PostConstruct
     public void init(){
-    salonSeleccionado = new Salon();
+    salonSeleccionado = new SalonHasServicio();
     }
 
     public EditarSalonesHasServiciosController() {
     }
 
-    public Salon getSalonSeleccionado() {
+    public SalonHasServicio getSalonHasServicioSeleccionado() {
         return salonSeleccionado;
     }
 
-    public void setSalonSeleccionado(Salon salonSeleccionado) {
+    public void setSalonHasServicioSeleccionado(SalonHasServicio salonSeleccionado) {
         this.salonSeleccionado = salonSeleccionado;
     }
 
@@ -51,9 +51,7 @@ public class EditarSalonesHasServiciosController implements Serializable {
         try {
             
        
-            salonSeleccionado.setSalon(salonSeleccionado.getSalon());
-            salonSeleccionado.setDescripcion(salonSeleccionado.getDescripcion());
-            salonSeleccionado.setEstado(salonSeleccionado.getEstado());
+            
 //       
             
             sfl.edit(salonSeleccionado);
@@ -65,8 +63,8 @@ public class EditarSalonesHasServiciosController implements Serializable {
 
     }
     
-    public String preModificar(Salon i){
-        setSalonSeleccionado(i);
+    public String preModificar(SalonHasServicio i){
+        setSalonHasServicioSeleccionado(i);
         return "/app/administrador/salones/editar.xhtml?faces-redirect=true";
     }
     

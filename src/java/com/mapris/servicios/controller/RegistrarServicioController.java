@@ -5,7 +5,8 @@
  */
 package com.mapris.servicios.controller;
 
-
+import com.mapris.modelo.entitie.Servicio;
+import com.mapris.modelo.dao.ServicioFacadeLocal;
 import com.mapris.util.MessageUtil;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -14,12 +15,17 @@ import javax.inject.Named;
 
 /**
  *
- * @author KoLachito
+ * @author Ruben
  */
 @Named(value = "registrarServicioController")
 @RequestScoped
 public class RegistrarServicioController {
-
+    
+    @EJB
+    private ServicioFacadeLocal servicioFacadeLocal;
+    
+    private Servicio nuevoServicio;
+    
   
 
     public RegistrarServicioController() {
@@ -27,30 +33,36 @@ public class RegistrarServicioController {
 
     @PostConstruct
     public void init() {
-      
+      nuevoServicio = new Servicio();
 
     }
 
+    public Servicio getNuevoServicio() {
+        return nuevoServicio;
+    }
+
+    public void setNuevoServicio(Servicio nuevoServicio) {
+        this.nuevoServicio = nuevoServicio;
+    }
+
+    
 
     public void registrar() {
-//        if (nuevoServicio != null) {
-//            try {
-//                nuevoServicio.setIdServicio(nuevoServicio.getIdServicio());
-//                nuevoServicio.setNombre(nuevoServicio.getNombre());
-//                nuevoServicio.setDescripcion(nuevoServicio.getDescripcion());
-//                nuevoServicio.setIdCalendario(nuevoServicio.getIdCalendario());
-//
-//                servicioFacadeLocal.create(nuevoServicio);
-//
-//                MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El Servicio se ha registrado Correctamete");
-//                init();
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            MessageUtil.enviarMensajeInformacionGlobal("Error al registrar el Servicio", "No se pudo registrar el Servicio");
-//        }
+        if (nuevoServicio != null) {
+            try {
+               
+
+                servicioFacadeLocal.create(nuevoServicio);
+
+                MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El servicio se ha registrado correctamete");
+                init();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            MessageUtil.enviarMensajeInformacionGlobal("Error al registrar el Servicio", "No se pudo registrar el Servicio");
+        }
     }
 
 }

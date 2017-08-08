@@ -6,10 +6,10 @@
 package com.mapris.salonesservicios.controller;
 
 
-import com.mapris.modelo.dao.SalonFacadeLocal;
+import com.mapris.modelo.dao.SalonHasServicioFacadeLocal;
 
 
-import com.mapris.modelo.entitie.Salon;
+import com.mapris.modelo.entitie.SalonHasServicio;
 import com.mapris.util.MessageUtil;
 
 import java.util.Calendar;
@@ -27,10 +27,10 @@ import javax.inject.Named;
 public class RegistrarSalonesHasServiciosController {
 
     @EJB
-    private SalonFacadeLocal salonFacadeLocal;
+    private SalonHasServicioFacadeLocal sfl;
 
 
-    private Salon nuevoSalon;
+    private SalonHasServicio nshs;
 
 
     public RegistrarSalonesHasServiciosController() {
@@ -38,34 +38,27 @@ public class RegistrarSalonesHasServiciosController {
 
     @PostConstruct
     public void init() {
-        nuevoSalon = new Salon();
+        nshs = new SalonHasServicio ();
 
     }
 
-    public Salon getNuevoSalon() {
-        return nuevoSalon;
+    public SalonHasServicio  getNuevoSalon() {
+        return nshs;
     }
 
-    public void setNuevoSalon(Salon nuevoSalon) {
-        this.nuevoSalon = nuevoSalon;
+    public void setNuevoSalon(SalonHasServicio  nshs) {
+        this.nshs = nshs;
     }
 
     public void registrar() {
-        if (nuevoSalon != null) {
+        if (nshs != null) {
         
         
         try{
-                
-                nuevoSalon.setIdSalones(nuevoSalon.getIdSalones());
-               
-              
-                nuevoSalon.setSalon(nuevoSalon.getSalon());
-                nuevoSalon.setDescripcion(nuevoSalon.getDescripcion());
-                nuevoSalon.setEstado(nuevoSalon.getEstado());
+                             
                 
                 
-                
-                salonFacadeLocal.create(nuevoSalon);
+                sfl.create(nshs);
                
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El salón se ha creado con exito");
                 init();

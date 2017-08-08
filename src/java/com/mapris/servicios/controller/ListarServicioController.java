@@ -58,7 +58,7 @@ public class ListarServicioController implements Serializable {
         return servicios;
     }
 
-    public void setSesionSeleccionado(Servicio servicioSeleccionado) {
+    public void setServicioSeleccionado(Servicio servicioSeleccionado) {
         this.servicioSeleccionado = servicioSeleccionado;
     }
 
