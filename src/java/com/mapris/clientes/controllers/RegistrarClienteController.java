@@ -101,6 +101,7 @@ public class RegistrarClienteController {
                 
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("Empresa: " + nuevoCliente.getIdEmpresas().getIdEmpresa());
                 
             }
         } else {

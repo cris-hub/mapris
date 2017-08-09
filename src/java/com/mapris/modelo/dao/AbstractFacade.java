@@ -43,6 +43,7 @@ public abstract class AbstractFacade<T> {
     }
 
     public T find(Object id) {
+        getEntityManager().getEntityManagerFactory().getCache().evictAll();
         return getEntityManager().find(entityClass, id);
     }
 

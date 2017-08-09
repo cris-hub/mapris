@@ -7,15 +7,20 @@ package com.mapris.salonesservicios.controller;
 
 
 import com.mapris.modelo.dao.SalonHasServicioFacadeLocal;
+import com.mapris.modelo.entitie.Salon;
 
 
 import com.mapris.modelo.entitie.SalonHasServicio;
+import com.mapris.modelo.entitie.SalonHasServicioPK;
+import com.mapris.modelo.entitie.Servicio;
 import com.mapris.util.MessageUtil;
+import java.io.Serializable;
 
 import java.util.Calendar;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 /**
@@ -23,14 +28,20 @@ import javax.inject.Named;
  * @author SMEGS
  */
 @Named(value = "registrarSalonesHasServiciosController")
-@RequestScoped
-public class RegistrarSalonesHasServiciosController {
+@SessionScoped
+public class RegistrarSalonesHasServiciosController implements Serializable{
 
     @EJB
     private SalonHasServicioFacadeLocal sfl;
 
 
     private SalonHasServicio nshs;
+    
+    private Salon salon;
+    
+    private Servicio servicio;
+            
+    private SalonHasServicioPK shspk;
 
 
     public RegistrarSalonesHasServiciosController() {
@@ -39,6 +50,9 @@ public class RegistrarSalonesHasServiciosController {
     @PostConstruct
     public void init() {
         nshs = new SalonHasServicio ();
+        salon = new Salon();
+        servicio = new Servicio();
+        shspk = new SalonHasServicioPK();
 
     }
 
@@ -50,12 +64,36 @@ public class RegistrarSalonesHasServiciosController {
         this.nshs = nshs;
     }
 
+    public Salon getSalon() {
+        return salon;
+    }
+
+    public void setSalon(Salon salon) {
+        this.salon = salon;
+    }
+
+    public Servicio getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
+    }
+    
+    
+
     public void registrar() {
+          
         if (nshs != null) {
         
         
         try{
-                             
+                   this.salon = getSalon();
+                   this.servicio = getServicio();
+                   shspk.setSalonesIdSalones(getSalon().getIdSalones());
+                   shspk.setServiciosIdServicio(getServicio().getIdServicio());
+                   nshs.setSalonHasServicioPK(shspk);
+                   nshs.setEstado("Vinculado");
                 
                 
                 sfl.create(nshs);
@@ -67,6 +105,8 @@ public class RegistrarSalonesHasServiciosController {
                 
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("Salon: " + getSalon().getIdSalones());
+                System.out.println("Salon: " + getServicio().getIdServicio());
             }
         } else {
             MessageUtil.enviarMensajeInformacionGlobal( "Error al registrar el salón", "No se pudo registrar el salón");

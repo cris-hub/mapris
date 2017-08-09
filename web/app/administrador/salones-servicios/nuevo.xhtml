@@ -46,29 +46,22 @@
                               
                                 <b:form id="form-registro" prependId="false">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Id Rutina - Servicio</label>
-                                                <b:inputText name="document" value="#{registrarSalonesHasServiciosController.nuevoSalon.estado}"  class="form-control" required="true"/>
-                                            </div>
-                                        </div>
-
-                                   
-                                        <div class="col-md-4">
+                                                                           
+                                        <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombre de la Rutina</label>
-                                                <b:selectOneMenu value="#{registrarSalonesHasServiciosController.nuevoSalon.salonHasServicioPK.salonesIdSalones}" class="form-control">
+                                                <b:selectOneMenu value="#{registrarSalonesHasServiciosController.nuevoSalon.salon}" class="form-control">
                                                 
-                                                    <f:selectItems value="#{listarRutinaController.rutina}" var="ru" itemLabel="#{ru.idRutinas} - #{ru.nombre}"/>
+                                                    <f:selectItems value="#{listarSalonesController.salones}"  var="s" itemLabel="#{s.salon} - #{s.descripcion}"/>
                                                 </b:selectOneMenu>                                              </div>
                                         </div>
                                     
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombre del Servicio</label>
-                                                <b:selectOneMenu value="#{registrarSalonesHasServiciosController.nuevoSalon.salonHasServicioPK.serviciosIdServicio}" class="form-control">
+                                                <b:selectOneMenu value="#{registrarSalonesHasServiciosController.nuevoSalon.servicio}" class="form-control">
                                                 
-                                                    <f:selectItems value="#{listarServicioController.servicios}" var="r" itemLabel="#{r.idServicio} - #{r.nombre}"/>
+                                                    <f:selectItems value="#{listarServicioController.servicios}"var="r" itemLabel="#{r.idServicio} - #{r.nombre}"/>
                                                 </b:selectOneMenu>                                            </div>
                                         </div>
                                     </div>
