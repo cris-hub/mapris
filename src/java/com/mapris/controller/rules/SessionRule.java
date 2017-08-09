@@ -24,19 +24,19 @@ public class SessionRule {
     @EJB
     private UsuarioFacadeLocal ufl;
 
-    public Usuario iniciar(Long documento, String clave) {
+    public Usuario iniciar(String documento, String clave) {
         Usuario u = null;
-        if (documento != null && documento > 0
+        if (documento != null && documento.length()> 0
                 && clave != null && clave.length() > 0) {
             u = ufl.loginProcedure(documento, clave);
             if (u != null) {
-                if (u.getEstado().getIdEstados() == 2) {
+                if (u.getIdEstados().getIdEstados() == 2) {
                     u = null;
                     MessageUtil.enviarMensajeErrorGlobal(
                             "Usuario bloqueado",
                             "Contacte al administrador par que solucione el incoveniente.");
 
-                }else if (u.getEstado().getIdEstados()==3) {
+                }else if (u.getIdEstados().getIdEstados()==3) {
                     
                     u = null;
                     MessageUtil.enviarMensajeErrorGlobal(

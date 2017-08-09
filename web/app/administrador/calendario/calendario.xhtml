@@ -38,59 +38,29 @@
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
                                 <h4 class="title">Calendario</h4>
-                                <p class="category">Fechas de los servicios de Maternity Club</p>
+                                <p class="category">Horas, duración y días de la semana de los servicios de Maternity Club</p>
                             </div>
                             <div class="card-content table-responsive">
 
                                 <b:messages show-detail="true" class="animated flipInX"  show-summary="true" globalOnly="true"/>
-                                <b:form id="form-data-table-calendarios" prependId="false">
-                                    <b:dataTable value="#{listarCalendarioController.calendario}" var="calendario">
+                                <b:form id="form-data-table-detalleHorarios" prependId="false">
+                                    <b:dataTable value="#{listarDetalleHorarioController.detalleHorario}" var="detalleHorario">
 
 
-                                        <b:dataTableColumn label="Número del calendario" value="#{calendario.idCalendario}" />
-                                        <b:dataTableColumn label="Lunes"  >
-                                            <h:outputText value="#{calendario.lunes}">
+                                        <b:dataTableColumn label="Número del calendario" value="#{detalleHorario.iddetalleHorario}" />
+                                        <b:dataTableColumn label="Hora de inicio"  >
+                                            <h:outputText value="#{detalleHorario.horaInicio}">
 
-                                                <f:convertDateTime  locale="es_CO" type="both" pattern="dd/MM/yyyy HH:mm a"/>
+                                                <f:convertDateTime  locale="es_CO" type="both" pattern="HH:mm a"/>
                                             </h:outputText>
                                         </b:dataTableColumn>
-                                        <b:dataTableColumn label="Martes">
-                                          <h:outputText value="#{calendario.martes}">
-
-                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
-                                            </h:outputText>
-                                        </b:dataTableColumn>
+                                       
+                                        <b:dataTableColumn label="Duración" value="#{detalleHorario.duracion}" />
+                                         
+                                        <b:dataTableColumn label="Día de la semana" value="#{detalleHorario.diaSemana}"/>
+                                        <b:dataTableColumn label="Servicio al que pertenece" value="#{detalleHorario.idHorarios.idCursos.idServicios.nombre}"/>
+                                               
                                         
-                                        <b:dataTableColumn label="Miercoles" >
-                                                <h:outputText value="#{calendario.miercoles}">
-
-                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
-                                            </h:outputText>
-                                        </b:dataTableColumn>
-                                        <b:dataTableColumn label="Jueves" >
-                                                <h:outputText value="#{calendario.jueves}">
-
-                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
-                                            </h:outputText>
-                                        </b:dataTableColumn>
-                                        <b:dataTableColumn label="Viernes" >
-                                                <h:outputText value="#{calendario.viernes}">
-
-                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
-                                            </h:outputText>
-                                        </b:dataTableColumn>
-                                        <b:dataTableColumn label="Sábado" >
-                                                <h:outputText value="#{calendario.sabado}">
-
-                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
-                                            </h:outputText>
-                                        </b:dataTableColumn>
-                                        <b:dataTableColumn label="Domingo" >
-                                                <h:outputText value="#{calendario.domingo}">
-
-                                                <f:convertDateTime  locale="es_CO" type="both"  pattern="dd/MM/yyyy HH:mm a" />
-                                            </h:outputText>
-                                        </b:dataTableColumn>
 
 
                                         <b:dataTableColumn  label="Opciones" >
@@ -98,9 +68,9 @@
                                                              iconAwesome="trash" tooltip="Eliminar"
                                                              onclick="$('.modalPseudoClass').modal();">
                                                 <f:ajax event="click" render=":message-modal-confirm"
-                                                        listener="#{listarCalendarioController.setCalendario(calendario)}"/>
+                                                        listener="#{listarDetalleHorarioController.setDetalleHorarioSeleccionado(detalleHorario)}"/>
                                             </b:commandButton>
-                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarCalendarioController.preModificar(calendario)}"/>
+                                            <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarDetalleHorarioController.preModificar(detalleHorario)}"/>
                                         </b:dataTableColumn>
                                     </b:dataTable>
 
@@ -108,16 +78,16 @@
                             </div>
                         </div>
                     </div>
-                    <b:modal id="amodal" title="Eliminar calendario" styleClass="modalPseudoClass">
+                    <b:modal id="amodal" title="Eliminar detalleHorario" styleClass="modalPseudoClass">
                         <h:panelGroup id="message-modal-confirm" layout="block">
-                            <p>¿Está seguro de eliminar el calendario?
+                            <p>¿Está seguro de eliminar el calendario seleccionado?
                             </p>
                         </h:panelGroup>
                         <f:facet name="footer">
                             <h:form id="form-eliminar" prependId="false">
                                 <b:button value="¡Oh no me equivoque!" dismiss="modal" />
                                 <b:commandButton value="Tengo plena seguridad" look="primary"
-                                                 actionListener="#{listarCalendarioController.eliminarCalendario()}"/>
+                                                 actionListener="#{listarDetalleHorarioController.eliminarDetalleHorario()}"/>
                             </h:form>
                         </f:facet>
                     </b:modal>

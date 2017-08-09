@@ -55,76 +55,61 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Número de servicioes</label>
+                                                <label class="control-label">Nombre del servicio</label>
                                                 <h:outputText value="#{verServicioController.servicio.nombre}" class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Número de servicioes</label>
+                                                <label class="control-label">Descripción</label>
                                                 <h:outputText value="#{verServicioController.servicio.descripcion}" class="form-control"/>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-3">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Calendario</label>
-                                                <h:outputText value="#{verServicioController.servicio.idCalendario}" class="form-control"/>
+                                                <label class="control-label">Valor</label>
+                                              <h:outputText value="#{verServicioController.servicio.valor}" class="form-control">
+                                                <f:convertNumber  currencySymbol="$" groupingUsed="true"
+                                                                  maxFractionDigits="0" type="currency" locale="es_CO" />
+                                            </h:outputText>
                                             </div>
                                         </div>
                                         
                                          <div class="col-md-3">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Calendario</label>
-                                                <h:outputText value="#{verServicioController.servicio.idCalendario.lunes}" class="form-control"/>
+                                                <label class="control-label">Objetivo</label>
+                                                <h:outputText value="#{verServicioController.servicio.objetivo}" class="form-control"/>
                                             </div>
                                         </div>
                                         
                                          <div class="col-md-3">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Calendario</label>
-                                                <h:outputText value="#{verServicioController.servicio.idCalendario.martes}" class="form-control"/>
+                                                <label class="control-label">Sesiones</label>
+                                                <h:outputText value="#{verServicioController.servicio.sesiones}" class="form-control"/>
                                             </div>
                                         </div>
                                         
                                          <div class="col-md-3">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Calendario</label>
-                                                <h:outputText value="#{verServicioController.servicio.idCalendario.miercoles}" class="form-control"/>
+                                                <label class="control-label">Plan o Programa al que pertenece</label>
+                                                <h:outputText value="#{verServicioController.servicio.subServicios.nombre}" class="form-control"/>
                                             </div>
                                         </div>
                                         
                                          <div class="col-md-3">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Calendario</label>
-                                                <h:outputText value="#{verServicioController.servicio.idCalendario.jueves}" class="form-control"/>
+                                                <label class="control-label">Tipo de servicio</label>
+                                                <h:outputText value="#{verServicioController.servicio.tiposServicios.tiposServicio}" class="form-control"/>
                                             </div>
                                         </div>
-                                         <div class="col-md-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Calendario</label>
-                                                <h:outputText value="#{verServicioController.servicio.idCalendario.viernes}" class="form-control"/>
-                                            </div>
-                                        </div>
-                                         <div class="col-md-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Calendario</label>
-                                                <h:outputText value="#{verServicioController.servicio.idCalendario.sabado}" class="form-control"/>
-                                            </div>
-                                        </div>
-                                         <div class="col-md-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Calendario</label>
-                                                <h:outputText value="#{verServicioController.servicio.idCalendario.domingo}" class="form-control"/>
-                                            </div>
-                                        </div>
-                                    </div>
+                                         </div>
 
 
 
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/servicioes/servicioes.xhtml" value="Volver"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/servicios/servicios.xhtml" value="Volver"/>
 
                                 </h:form>
 

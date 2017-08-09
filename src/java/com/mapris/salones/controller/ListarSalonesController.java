@@ -29,7 +29,7 @@ public class ListarSalonesController implements Serializable{
 
 
     @EJB
-    private SalonFacadeLocal sesionFacadeLocal;
+    private SalonFacadeLocal sfl;
 
     private List<Salon> salones;
 
@@ -49,15 +49,15 @@ public class ListarSalonesController implements Serializable{
     }
     
     private void recargarSalones(){
-        salones = sesionFacadeLocal.findAll();
+        salones = sfl.findAll();
     }
     
      public SalonFacadeLocal getSalonFacadeLocal() {
-        return sesionFacadeLocal;
+        return sfl;
     }
 
-    public void setSalonFacadeLocal(SalonFacadeLocal sesionFacadeLocal) {
-        this.sesionFacadeLocal = sesionFacadeLocal;
+    public void setSalonFacadeLocal(SalonFacadeLocal sfl) {
+        this.sfl = sfl;
     }
 
     public List<Salon> getSalones() {
@@ -77,7 +77,7 @@ public class ListarSalonesController implements Serializable{
      
         
         try {
-            sesionFacadeLocal.remove(salonesSelecionados);
+            sfl.remove(salonesSelecionados);
             MessageUtil.enviarMensajeInformacionGlobal("Eliminación correcta","Se elimino correctamente las salones ");
         } catch (Exception e) {
             MessageUtil.enviarMensajeErrorGlobal("Error al eliminar las salones","No se puede eliminar las salones");

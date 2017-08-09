@@ -8,6 +8,7 @@ package com.mapris.modelo.entitie;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +48,7 @@ public class Estado implements Serializable {
     @Size(max = 45)
     @Column(name = "descripccion")
     private String descripccion;
-    @OneToMany(mappedBy = "estado")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEstados")
     private List<Usuario> usuarios;
 
     public Estado() {

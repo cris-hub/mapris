@@ -63,7 +63,7 @@ public class ListarUsuariosController implements Serializable {
         Usuario uS = sc.getUsuario();
         System.out.println("El usuario que inicio sesión es: " + uS.getNombres());
         System.out.println("Voy a eliminar el usuario: " + usuarioSeleccionado.getApellidos());
-        if (uS.getCedula().intValue() != usuarioSeleccionado.getCedula()) {
+        if (uS.getCedula() != usuarioSeleccionado.getCedula()) {
             usuarioFacadeLocal.remove(usuarioSeleccionado);
             recargarUsuarios();
         } else {

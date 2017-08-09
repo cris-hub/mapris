@@ -13,9 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,43 +32,44 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Aplazamiento.findAll", query = "SELECT a FROM Aplazamiento a")
-    , @NamedQuery(name = "Aplazamiento.findByIdaplazamiento", query = "SELECT a FROM Aplazamiento a WHERE a.idaplazamiento = :idaplazamiento")})
+    , @NamedQuery(name = "Aplazamiento.findByidUsuario", query = "SELECT a FROM Aplazamiento a WHERE a.idUsuario = :idUsuario")
+    , @NamedQuery(name = "Aplazamiento.findByInicio", query = "SELECT a FROM Aplazamiento a WHERE a.inicio = :inicio")
+    , @NamedQuery(name = "Aplazamiento.findByFin", query = "SELECT a FROM Aplazamiento a WHERE a.fin = :fin")})
 public class Aplazamiento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idaplazamiento")
-    private Integer idaplazamiento;
+    @Column(name = "fk_id_usuario")
+    private Integer idUsuario;
     @Lob
     @Size(max = 65535)
     @Column(name = "motivo")
     private String motivo;
     @Column(name = "inicio")
-    @Temporal(TemporalType.DATE)
-    private Date fechaInicio;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date inicio;
     @Column(name = "fin")
-    @Temporal(TemporalType.DATE)
-    private Date fechaFin;
-    
-    @JoinColumn(name = "idcliente", referencedColumnName = "idClientes")
-    @ManyToOne
-    private Cliente idcliente;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fin;
+    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "fk_id_usuario", insertable = false, updatable = false)
+    @OneToOne(optional = false)
+    private Cliente cliente;
 
     public Aplazamiento() {
     }
 
-    public Aplazamiento(Integer idaplazamiento) {
-        this.idaplazamiento = idaplazamiento;
+    public Aplazamiento(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Integer getIdaplazamiento() {
-        return idaplazamiento;
+    public Integer getidUsuario() {
+        return idUsuario;
     }
 
-    public void setIdaplazamiento(Integer idaplazamiento) {
-        this.idaplazamiento = idaplazamiento;
+    public void setidUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getMotivo() {
@@ -79,35 +80,34 @@ public class Aplazamiento implements Serializable {
         this.motivo = motivo;
     }
 
-    public Date getFechaInicio() {
-        return fechaInicio;
+    public Date getInicio() {
+        return inicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
     }
 
-    public Date getFechaFin() {
-        return fechaFin;
+    public Date getFin() {
+        return fin;
     }
 
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFin(Date fin) {
+        this.fin = fin;
     }
 
-    
-    public Cliente getIdcliente() {
-        return idcliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdcliente(Cliente idcliente) {
-        this.idcliente = idcliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idaplazamiento != null ? idaplazamiento.hashCode() : 0);
+        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
         return hash;
     }
 
@@ -118,7 +118,7 @@ public class Aplazamiento implements Serializable {
             return false;
         }
         Aplazamiento other = (Aplazamiento) object;
-        if ((this.idaplazamiento == null && other.idaplazamiento != null) || (this.idaplazamiento != null && !this.idaplazamiento.equals(other.idaplazamiento))) {
+        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
             return false;
         }
         return true;
@@ -126,7 +126,7 @@ public class Aplazamiento implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Aplazamiento[ idaplazamiento=" + idaplazamiento + " ]";
+        return "com.mapris.modelo.entitie.Aplazamiento[ idUsuario=" + idUsuario + " ]";
     }
     
 }

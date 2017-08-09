@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
-    , @NamedQuery(name = "Cliente.findByIdClientes", query = "SELECT c FROM Cliente c WHERE c.idClientes = :idClientes")
+    , @NamedQuery(name = "Cliente.findByIdUsuario", query = "SELECT c FROM Cliente c WHERE c.idUsuario = :idUsuario")
     , @NamedQuery(name = "Cliente.findByEstado", query = "SELECT c FROM Cliente c WHERE c.estado = :estado")})
 public class Cliente implements Serializable {
 
@@ -41,46 +41,44 @@ public class Cliente implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idClientes")
-    private Long idClientes;
+    @Column(name = "fk_id_usuario")
+    private Integer idUsuario;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "estado")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Inscripcion> inscripciones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClientes")
-    private List<SolicitudCita> solicitudesCitas;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarios")
+    private List<Datoclinico> datosClinicos;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private Datoclinico datoclinico;
-    @OneToMany(mappedBy = "idcliente")
-    private List<Aplazamiento> aplazamientos;
-    @JoinColumn(name = "idEmpresa", referencedColumnName = "idEmpresa")
-    @ManyToOne(optional = false)
-    private Empresa idEmpresa;
-    @JoinColumn(name = "idClientes", referencedColumnName = "cedula", insertable = false, updatable = false)
+    private Aplazamiento aplazamiento;
+    @JoinColumn(name = "fk_id_empresa", referencedColumnName = "id_empresa")
+    @ManyToOne
+    private Empresa idEmpresas;
+    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Usuario usuario;
 
     public Cliente() {
     }
 
-    public Cliente(Long idClientes) {
-        this.idClientes = idClientes;
+    public Cliente(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Cliente(Long idClientes, String estado) {
-        this.idClientes = idClientes;
+    public Cliente(Integer idUsuario, String estado) {
+        this.idUsuario = idUsuario;
         this.estado = estado;
     }
 
-    public Long getIdClientes() {
-        return idClientes;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdClientes(Long idClientes) {
-        this.idClientes = idClientes;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getEstado() {
@@ -101,37 +99,28 @@ public class Cliente implements Serializable {
     }
 
     @XmlTransient
-    public List<SolicitudCita> getSolicitudesCitas() {
-        return solicitudesCitas;
+    public List<Datoclinico> getDatosClinicos() {
+        return datosClinicos;
     }
 
-    public void setSolicitudesCitas(List<SolicitudCita> solicitudesCitas) {
-        this.solicitudesCitas = solicitudesCitas;
+    public void setDatosClinicos(List<Datoclinico> datosClinicos) {
+        this.datosClinicos = datosClinicos;
     }
 
-    public Datoclinico getDatoclinico() {
-        return datoclinico;
+    public Aplazamiento getAplazamiento() {
+        return aplazamiento;
     }
 
-    public void setDatoclinico(Datoclinico datoclinico) {
-        this.datoclinico = datoclinico;
+    public void setAplazamiento(Aplazamiento aplazamiento) {
+        this.aplazamiento = aplazamiento;
     }
 
-    @XmlTransient
-    public List<Aplazamiento> getAplazamientos() {
-        return aplazamientos;
+    public Empresa getIdEmpresas() {
+        return idEmpresas;
     }
 
-    public void setAplazamientos(List<Aplazamiento> aplazamientos) {
-        this.aplazamientos = aplazamientos;
-    }
-
-    public Empresa getIdEmpresa() {
-        return idEmpresa;
-    }
-
-    public void setIdEmpresa(Empresa idEmpresa) {
-        this.idEmpresa = idEmpresa;
+    public void setIdEmpresas(Empresa idEmpresas) {
+        this.idEmpresas = idEmpresas;
     }
 
     public Usuario getUsuario() {
@@ -145,7 +134,7 @@ public class Cliente implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idClientes != null ? idClientes.hashCode() : 0);
+        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
         return hash;
     }
 
@@ -156,7 +145,7 @@ public class Cliente implements Serializable {
             return false;
         }
         Cliente other = (Cliente) object;
-        if ((this.idClientes == null && other.idClientes != null) || (this.idClientes != null && !this.idClientes.equals(other.idClientes))) {
+        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
             return false;
         }
         return true;
@@ -164,7 +153,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Cliente[ idClientes=" + idClientes + " ]";
+        return "com.mapris.modelo.entitie.Cliente[ idUsuario=" + idUsuario + " ]";
     }
     
 }

@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Ruben
+ * @author APRENDIZ
  */
 @Local
 public interface ServicioFacadeLocal {

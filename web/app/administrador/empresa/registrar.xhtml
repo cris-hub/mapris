@@ -24,6 +24,7 @@
                 <span class="active">Registrar Empresa</span>
             </li>
         </ul>
+        
 
     </ui:define>
     <ui:define name="contenido">
@@ -44,7 +45,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nit de la empresa</label>
-                                                <b:inputText value="#{registrarEmpresasController.nuevoEmpresa.idEmpresa}" class="form-control"  />
+                                                <b:inputText value="#{registrarEmpresasController.nuevoEmpresa.nit}" class="form-control"  />
                                             </div>
                                         </div>
                                    
@@ -73,7 +74,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono Celular</label>
-                                                <b:inputText  value="#{registrarEmpresasController.nuevoEmpresa.telefonoC}"  class="form-control"/>
+                                                <b:inputText maxlength="20"  value="#{registrarEmpresasController.nuevoEmpresa.telefonoC}"  class="form-control"/>
 
                                             </div>
                                         </div>
@@ -81,7 +82,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono Fijo</label>
-                                                <b:inputText  value="#{registrarEmpresasController.nuevoEmpresa.telefonoF}"  class="form-control"/>
+                                                <b:inputText maxlength="20" value="#{registrarEmpresasController.nuevoEmpresa.telefonoF}"  class="form-control"/>
                                             </div>
                                         </div>
                                     </div>

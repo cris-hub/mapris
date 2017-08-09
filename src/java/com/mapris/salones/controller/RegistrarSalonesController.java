@@ -58,9 +58,11 @@ public class RegistrarSalonesController {
                 
                 nuevoSalon.setIdSalones(nuevoSalon.getIdSalones());
                
-                nuevoSalon.setActividad(nuevoSalon.getActividad());
+              
                 nuevoSalon.setSalon(nuevoSalon.getSalon());
                 nuevoSalon.setDescripcion(nuevoSalon.getDescripcion());
+                nuevoSalon.setEstado(nuevoSalon.getEstado());
+                
                 
                 
                 salonFacadeLocal.create(nuevoSalon);

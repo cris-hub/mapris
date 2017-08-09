@@ -45,8 +45,7 @@
                                                 <b:inputText value="#{editarServicioController.servicioSelecionada.idServicio}" class="form-control" disabled="true" />
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
+                                    
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombre</label>
@@ -54,26 +53,57 @@
                                             </div>
                                         </div>
                                         
-                                         <div class="row">
+                                        
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Descripción</label>
                                                 <b:inputText value="#{editarServicioController.servicioSelecionada.descripcion}"  class="form-control"/>
                                             </div>
                                         </div>
-                                             
-                                              <div class="row">
+                                               
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Calendario </label>
-                                                <b:selectOneMenu value="#{editarServicioController.servicioSelecionada.idCalendario}" class="form-control">
-                                                
-                                                    <f:selectItems value="#{listarCalendarioController.calendario}" var="ru" itemLabel="#{ru.idCalendario}"/>
+                                                <label class="control-label">Valor</label>
+                                                <b:inputText value="#{editarServicioController.servicioSelecionada.valor}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                               
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Objetivo</label>
+                                                <b:inputText value="#{editarServicioController.servicioSelecionada.objetivo}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                             
+                                          
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Sesiones</label>
+                                                <b:inputText value="#{editarServicioController.servicioSelecionada.sesiones}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                             
+                                              
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Plan o Programa al que pertenece </label>
+                                                <b:selectOneMenu value="#{editarServicioController.servicioSelecionada.subServicios}" class="form-control">
+                                                    <f:selectItem value="" itemLabel="Ninguno"/>
+                                                    <f:selectItems value="#{listarTipoServicioController.servicios}" var="s" itemLabel="#{s.nombre}"/>
                                                 </b:selectOneMenu>  
                                             </div>
                                         </div>
-                                        
-                                    </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Tipo de servicio</label>
+                                                <b:selectOneMenu value="#{editarServicioController.servicioSelecionada.tiposServicios}" class="form-control">
+                                                    <f:selectItem value="" itemLabel="Ninguno"/>
+                                                    <f:selectItems value="#{listarTipoServicioController.tipoServicio}" var="tp" itemLabel="Tipo de servicio: #{tp.tiposServicio} - Descripción #{tp.descripcion}"/>
+                                                </b:selectOneMenu>  
+                                            </div>
+                                        </div>
+                                        </div>
+                                    
 
 
                                     <h:link styleClass="btn btn-primary" outcome="/app/administrador/servicios/servicios.xhtml" value="Volver"/>

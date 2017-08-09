@@ -47,13 +47,8 @@ public class RegistrarInscripcionController {
         if (nuevoInscripcion != null) {
             try {
 
-                nuevoInscripcion.setIdInscripciones(nuevoInscripcion.getIdInscripciones());
-                nuevoInscripcion.setEstado("activo");
-                nuevoInscripcion.setFechaInicio(nuevoInscripcion.getFechaInicio());
-                nuevoInscripcion.setIdSesiones(nuevoInscripcion.getIdSesiones());
-                nuevoInscripcion.setIdCliente(nuevoInscripcion.getIdCliente());
-                nuevoInscripcion.setIdPrograma(nuevoInscripcion.getIdPrograma());
-                nuevoInscripcion.setValor(nuevoInscripcion.getValor());
+                nuevoInscripcion.setEstado("Activa");
+
 
                 inscripcionFacadeLocal.create(nuevoInscripcion);
 

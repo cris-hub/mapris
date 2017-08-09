@@ -5,6 +5,7 @@
  */
 package com.mapris.salones.controller;
 
+
 import com.mapris.modelo.dao.SalonFacadeLocal;
 import com.mapris.modelo.entitie.Salon;
 import com.mapris.util.MessageUtil;
@@ -49,12 +50,10 @@ public class EditarSalonesController implements Serializable {
    public void actualizarDatos() {
         try {
             
-            
-            
-            salonSeleccionado.setActividad(salonSeleccionado.getActividad());
+       
             salonSeleccionado.setSalon(salonSeleccionado.getSalon());
             salonSeleccionado.setDescripcion(salonSeleccionado.getDescripcion());
-           
+            salonSeleccionado.setEstado(salonSeleccionado.getEstado());
 //       
             
             sfl.edit(salonSeleccionado);

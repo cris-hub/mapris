@@ -39,38 +39,64 @@
                                 <b:messages showSummary="true" class="animated flipInX"  show-detail="true" />
                                 <b:form id="form-editar" prependId="false">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Id Servicio</label>
-                                                <b:inputText value="#{registrarServicioController.nuevoServicio.idServicio}" class="form-control"  />
-                                            </div>
-                                        </div>
-                                   
+                                                                            
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombre</label>
                                                 <b:inputText value="#{registrarServicioController.nuevoServicio.nombre}"  class="form-control"/>
                                             </div>
                                         </div>
-                                         <div class="col-md-6">
+                                        
+                                        
+                                        <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Descripción</label>
                                                 <b:inputText value="#{registrarServicioController.nuevoServicio.descripcion}"  class="form-control"/>
                                             </div>
                                         </div>
-                                        
+                                               
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Id Calendario</label>
-                                                <b:selectOneMenu value="#{editarServicioController.servicioSelecionada.idCalendario}" class="form-control">
-                                                
-                                                    <f:selectItems value="#{listarCalendarioController.calendario}" var="ru" itemLabel="#{ru.idCalendario}"/>
-                                                </b:selectOneMenu>                                              
+                                                <label class="control-label">Valor</label>
+                                                <b:inputText value="#{registrarServicioController.nuevoServicio.valor}"  class="form-control"/>
                                             </div>
                                         </div>
-                                        
-                                        
-                                    </div>
+                                               
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Objetivo</label>
+                                                <b:inputText value="#{registrarServicioController.nuevoServicio.objetivo}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                             
+                                          
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Sesiones</label>
+                                                <b:inputText value="#{registrarServicioController.nuevoServicio.sesiones}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                             
+                                              
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Plan o Programa al que pertenece </label>
+                                                <b:selectOneMenu value="#{registrarServicioController.nuevoServicio.subServicios}" class="form-control">
+                                                    <f:selectItem value="" itemLabel="Ninguno"/>
+                                                    <f:selectItems value="#{listarTipoServicioController.servicios}" var="s" itemLabel="#{s.nombre}"/>
+                                                </b:selectOneMenu>  
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Tipo de servicio</label>
+                                                <b:selectOneMenu value="#{registrarServicioController.nuevoServicio.tiposServicios}" class="form-control">
+                                                    <f:selectItem value="" itemLabel="Ninguno"/>
+                                                    <f:selectItems value="#{listarTipoServicioController.tipoServicio}" var="tp" itemLabel="Tipo de servicio: #{tp.tiposServicio} - Descripción #{tp.descripcion}"/>
+                                                </b:selectOneMenu>  
+                                            </div>
+                                        </div>
+                                        </div>
 
 
                                     <h:link styleClass="btn btn-primary" outcome="/app/administrador/servicios/servicios.xhtml" value="Volver"/>

@@ -50,6 +50,18 @@
                                         <b:dataTableColumn label="Id Servicio" value="#{se.idServicio}"/>
                                         <b:dataTableColumn label="Nombre del servicio" value="#{se.nombre}"/>
                                         <b:dataTableColumn label="Descripción del servicio" value="#{se.descripcion}"/>
+                                        <b:dataTableColumn label="Valor del servicio">
+                                            <h:outputText value="#{se.valor}">
+                                                <f:convertNumber  currencySymbol="$" groupingUsed="true"
+                                                                  maxFractionDigits="0" type="currency" locale="es_CO" />
+                                            </h:outputText>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Objetivo" value="#{se.objetivo}"/>
+                                        <b:dataTableColumn label="Sesiones" value="#{se.sesiones}"/>
+                                        <b:dataTableColumn label="Plan o Programa al que pertenece" value="#{se.subServicios.nombre}"/>
+                                        <b:dataTableColumn label="Tipo de servicio" value="#{se.tiposServicios.tiposServicio}"/>
+                                        
+
                                         
                                       
 
@@ -60,23 +72,13 @@
                                                              iconAwesome="trash" tooltip="Eliminar"
                                                              onclick="$('.modalPseudoClass').modal();">
                                                 <f:ajax event="click" render=":message-modal-confirm"
-                                                        listener="#{listarServicioController.setSesionSeleccionado(se)}"/>
+                                                        listener="#{listarServicioController.setServicioSeleccionado(se)}"/>
                                             </b:commandButton>
 
                                         </b:dataTableColumn>
                                     
                                     </b:dataTable>
                                     
-                                    <b:dataTable id="dtCalendar"  value="#{listarServicioController.servicios}"  var="s">
-                                          <b:dataTableColumn label="Lunes" value="#{s.idCalendario.lunes}"/>
-                                          <b:dataTableColumn label="Martes" value="#{s.idCalendario.martes}"/>
-                                          <b:dataTableColumn label="Miercoles" value="#{s.idCalendario.miercoles}"/>
-                                          <b:dataTableColumn label="Jueves" value="#{s.idCalendario.jueves}"/>
-                                          <b:dataTableColumn label="Viernes" value="#{s.idCalendario.viernes}"/>
-                                          <b:dataTableColumn label="Sabado" value="#{s.idCalendario.sabado}"/>
-                                          <b:dataTableColumn label="Domingo" value="#{s.idCalendario.domingo}"/>
-                                        
-                                    </b:dataTable>
 
                                 </h:form>
                             </div>

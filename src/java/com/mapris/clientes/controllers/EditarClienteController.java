@@ -67,10 +67,10 @@ public class EditarClienteController implements Serializable {
             
             
             
-//       
-            
+//        
             cfl.edit(clienteSelecionado);
-            ufl.edit(usuarioSeleccionado);
+
+
             
             MessageUtil.enviarMensajeInformacionGlobal("Actualizacion", "los datos fueron actualizados");
         } catch (Exception e) {
@@ -80,9 +80,9 @@ public class EditarClienteController implements Serializable {
 
     }
     
-    public String preModificar(Cliente i, Usuario u){
+    public String preModificar(Cliente i){
         setClienteSelecionada(i);
-        setUsuarioSeleccionado(u);
+     
         return "/app/administrador/clientes/editar.xhtml?faces-redirect=true";
     }
     

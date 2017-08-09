@@ -56,8 +56,8 @@ public class Permiso implements Serializable {
     @Column(name = "icon")
     private String icon;
     @JoinTable(name = "permisosroles", joinColumns = {
-        @JoinColumn(name = "permisos_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "roles_idRoles", referencedColumnName = "idRoles")})
+        @JoinColumn(name = "fk_id_permiso", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "fk_id_rol", referencedColumnName = "idRoles")})
     @ManyToMany
     private List<Rol> roles;
     @OneToMany(mappedBy = "permisosPadre")

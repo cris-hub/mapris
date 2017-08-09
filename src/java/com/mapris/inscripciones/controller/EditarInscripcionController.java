@@ -5,6 +5,7 @@
  */
 package com.mapris.inscripciones.controller;
 
+
 import com.mapris.modelo.dao.InscripcionFacadeLocal;
 import com.mapris.modelo.entitie.Inscripcion;
 import com.mapris.util.MessageUtil;
@@ -23,10 +24,10 @@ import javax.inject.Named;
 @SessionScoped
 public class EditarInscripcionController implements Serializable {
 
-    @EJB
-    private InscripcionFacadeLocal ifl;
-    
-    private Inscripcion inscripcionSelecionada;
+   @EJB
+   private InscripcionFacadeLocal ifl;
+   
+   private Inscripcion inscripcionSelecionada;
    
     
     @PostConstruct
@@ -44,15 +45,14 @@ public class EditarInscripcionController implements Serializable {
     public void setInscripcionSelecionada(Inscripcion inscripcionSelecionada) {
         this.inscripcionSelecionada = inscripcionSelecionada;
     }
+    
+    
 
+ 
    public void actualizarDatos() {
         try {
             
-            
-            
-            inscripcionSelecionada.setIdSesiones(inscripcionSelecionada.getIdSesiones());
-            inscripcionSelecionada.setFechaInicio(inscripcionSelecionada.getFechaInicio());
-            inscripcionSelecionada.setValor(inscripcionSelecionada.getValor());
+           
 //       
             
             ifl.edit(inscripcionSelecionada);
@@ -65,7 +65,7 @@ public class EditarInscripcionController implements Serializable {
     }
     
     public String preModificar(Inscripcion i){
-        setInscripcionSelecionada(i);
+        this.inscripcionSelecionada = i;
         return "/app/administrador/inscripciones/editar.xhtml?faces-redirect=true";
     }
     

@@ -42,7 +42,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Id Inscripción</label>
-                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idInscripciones}" class="form-control" disabled="" />
+                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idInscripciones}" class="form-control" disabled="true" />
                                             </div>
                                         </div>
                                     </div>
@@ -50,28 +50,25 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Cedula del cliente</label>
-                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.cedula}" disabled="true" class="form-control"/>
+                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idUsuario.usuario.cedula}" disabled="true" class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombre del cliente</label>
-                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.nombres} #{editarInscripcionController.inscripcionSelecionada.idCliente.usuario.apellidos}" disabled="true" class="form-control"/>
+                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idUsuario.usuario.nombres} #{editarInscripcionController.inscripcionSelecionada.idUsuario.usuario.apellidos}" disabled="true" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                         <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Nombre del cliente</label>
+                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idUsuario.usuario.nombres} #{editarInscripcionController.inscripcionSelecionada.idUsuario.usuario.apellidos}" disabled="true" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Valor inscripcion</label>
-                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.valor}" class="form-control">
-                                                    <f:convertNumber  currencySymbol="$" groupingUsed="true"
-                                                                      maxFractionDigits="0" type="currency" locale="es_CO" />
-                                                </b:inputText>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">

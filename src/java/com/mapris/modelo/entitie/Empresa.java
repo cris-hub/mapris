@@ -9,9 +9,10 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,11 +28,12 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Ruben
  */
 @Entity
-@Table(name = "empresa")
+@Table(name = "empresas")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Empresa.findAll", query = "SELECT e FROM Empresa e")
     , @NamedQuery(name = "Empresa.findByIdEmpresa", query = "SELECT e FROM Empresa e WHERE e.idEmpresa = :idEmpresa")
+    , @NamedQuery(name = "Empresa.findByNit", query = "SELECT e FROM Empresa e WHERE e.nit = :nit")
     , @NamedQuery(name = "Empresa.findByNombre", query = "SELECT e FROM Empresa e WHERE e.nombre = :nombre")
     , @NamedQuery(name = "Empresa.findByDireccionP", query = "SELECT e FROM Empresa e WHERE e.direccionP = :direccionP")
     , @NamedQuery(name = "Empresa.findByDireccionO", query = "SELECT e FROM Empresa e WHERE e.direccionO = :direccionO")
@@ -41,10 +43,15 @@ public class Empresa implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_empresa")
+    private Integer idEmpresa;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idEmpresa")
-    private Long idEmpresa;
+    @Size(min = 1, max = 20)
+    @Column(name = "NIT")
+    private String nit;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -60,27 +67,36 @@ public class Empresa implements Serializable {
     private BigInteger telefonoF;
     @Column(name = "telefonoC")
     private BigInteger telefonoC;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpresa")
+    @OneToMany(mappedBy = "idEmpresas")
     private List<Cliente> clientes;
 
     public Empresa() {
     }
 
-    public Empresa(Long idEmpresa) {
+    public Empresa(Integer idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
 
-    public Empresa(Long idEmpresa, String nombre) {
+    public Empresa(Integer idEmpresa, String nit, String nombre) {
         this.idEmpresa = idEmpresa;
+        this.nit = nit;
         this.nombre = nombre;
     }
 
-    public Long getIdEmpresa() {
+    public Integer getIdEmpresa() {
         return idEmpresa;
     }
 
-    public void setIdEmpresa(Long idEmpresa) {
+    public void setIdEmpresa(Integer idEmpresa) {
         this.idEmpresa = idEmpresa;
+    }
+
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
     }
 
     public String getNombre() {

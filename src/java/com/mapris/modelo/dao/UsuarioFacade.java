@@ -6,18 +6,15 @@
 package com.mapris.modelo.dao;
 
 import com.mapris.modelo.entitie.Usuario;
-import java.util.Date;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 
 /**
  *
- * @author Ruben
+ * @author APRENDIZ
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
@@ -33,8 +30,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
-    
-      @Override
+     @Override
     public Usuario login(Long documento, String clave) {
         try {
             getEntityManager().getEntityManagerFactory().getCache().evictAll();
@@ -50,7 +46,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     }
 
     @Override
-    public Usuario loginProcedure(Long documento, String clave) {
+    public Usuario loginProcedure(String documento, String clave) {
       
         try {
             getEntityManager().getEntityManagerFactory().getCache().evictAll();
@@ -111,22 +107,4 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     }
 }
 
-public List<Usuario> registros(Date fechaInicio, Date fechaFin, String modo) {
-        List<Usuario> usuarios = null;
-        String sql = "SELECT ?(cedula),YEAR(fechaNaci) FROM usuarios WHERE usuarios.fechaNaci BETWEEN   ? AND ? GROUP BY ?(fechaNaci)";
-
-        Query 
-
-q = getEntityManager().createNativeQuery(sql, Usuario.class
-);
-        q.setParameter(1, modo);
-        q.setParameter(2, fechaFin);
-        q.setParameter(3, fechaFin);
-        q.setParameter(4, modo);
-        usuarios = q.getResultList();
-
-        return usuarios;
-
-    }
-    
 }

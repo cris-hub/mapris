@@ -7,10 +7,12 @@ package com.mapris.modelo.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
- * @author Ruben
+ * @author APRENDIZ
  */
 public abstract class AbstractFacade<T> {
 
@@ -23,11 +25,17 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
-        getEntityManager().persist(entity);
+      
+         
+            getEntityManager().persist(entity);
+        
     }
 
     public void edit(T entity) {
-        getEntityManager().merge(entity);
+        
+         
+            getEntityManager().merge(entity);
+        
     }
 
     public void remove(T entity) {
@@ -35,6 +43,7 @@ public abstract class AbstractFacade<T> {
     }
 
     public T find(Object id) {
+        getEntityManager().getEntityManagerFactory().getCache().evictAll();
         return getEntityManager().find(entityClass, id);
     }
 
@@ -46,6 +55,7 @@ public abstract class AbstractFacade<T> {
     }
 
     public List<T> findRange(int[] range) {
+        getEntityManager().getEntityManagerFactory().getCache().evictAll();
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
@@ -55,6 +65,7 @@ public abstract class AbstractFacade<T> {
     }
 
     public int count() {
+        getEntityManager().getEntityManagerFactory().getCache().evictAll();
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));

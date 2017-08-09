@@ -6,7 +6,6 @@
 package com.mapris.modelo.entitie;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,13 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Personalmedico.findAll", query = "SELECT p FROM Personalmedico p")
-    , @NamedQuery(name = "Personalmedico.findByIdPersonalMedico", query = "SELECT p FROM Personalmedico p WHERE p.idPersonalMedico = :idPersonalMedico")
+    , @NamedQuery(name = "Personalmedico.findByIdUsuario", query = "SELECT p FROM Personalmedico p WHERE p.idUsuario = :idUsuario")
     , @NamedQuery(name = "Personalmedico.findByPerfilProfesional", query = "SELECT p FROM Personalmedico p WHERE p.perfilProfesional = :perfilProfesional")
     , @NamedQuery(name = "Personalmedico.findByCargo", query = "SELECT p FROM Personalmedico p WHERE p.cargo = :cargo")})
 public class Personalmedico implements Serializable {
@@ -40,8 +37,8 @@ public class Personalmedico implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idPersonalMedico")
-    private Long idPersonalMedico;
+    @Column(name = "fk_id_usuario")
+    private Integer idUsuario;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -52,29 +49,29 @@ public class Personalmedico implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "cargo")
     private String cargo;
-    @JoinColumn(name = "idPersonalMedico", referencedColumnName = "cedula", insertable = false, updatable = false)
+    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Usuario usuario;
 
     public Personalmedico() {
     }
 
-    public Personalmedico(Long idPersonalMedico) {
-        this.idPersonalMedico = idPersonalMedico;
+    public Personalmedico(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Personalmedico(Long idPersonalMedico, String perfilProfesional, String cargo) {
-        this.idPersonalMedico = idPersonalMedico;
+    public Personalmedico(Integer idUsuario, String perfilProfesional, String cargo) {
+        this.idUsuario = idUsuario;
         this.perfilProfesional = perfilProfesional;
         this.cargo = cargo;
     }
 
-    public Long getIdPersonalMedico() {
-        return idPersonalMedico;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdPersonalMedico(Long idPersonalMedico) {
-        this.idPersonalMedico = idPersonalMedico;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getPerfilProfesional() {
@@ -104,7 +101,7 @@ public class Personalmedico implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idPersonalMedico != null ? idPersonalMedico.hashCode() : 0);
+        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
         return hash;
     }
 
@@ -115,7 +112,7 @@ public class Personalmedico implements Serializable {
             return false;
         }
         Personalmedico other = (Personalmedico) object;
-        if ((this.idPersonalMedico == null && other.idPersonalMedico != null) || (this.idPersonalMedico != null && !this.idPersonalMedico.equals(other.idPersonalMedico))) {
+        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
             return false;
         }
         return true;
@@ -123,7 +120,7 @@ public class Personalmedico implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mapris.modelo.entitie.Personalmedico[ idPersonalMedico=" + idPersonalMedico + " ]";
+        return "com.mapris.modelo.entitie.Personalmedico[ idUsuario=" + idUsuario + " ]";
     }
     
 }
