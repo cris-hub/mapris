@@ -1,4 +1,5 @@
 /*CSS PANELS*/
+@import url('https://fonts.googleapis.com/css?family=Merienda+One');
 
 .panel-image {
     position: relative;
@@ -47,17 +48,13 @@
     color: rgb(100, 100, 100);
 }
 .jumbotron{
-    border-radius:0px!important;
     box-shadow:1px 1px 4px rgba(0,0,0,0.4);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-image: url(../..//img/imglogin/morado-oscuro.jpg);
-    position: relative;
-    height: 100%;
+    background-color: #9c27b0;
+
 }
 .jumbotron h1{
-    font-size: 16px;
+    font-size: 40px;
     color: #fff;
+    font-family: 'Merienda One', cursive;
 
 }
