@@ -57,9 +57,29 @@ public class ListarInscripcionController implements Serializable{
         this.hoy = Calendar.getInstance();
     }
     
+    
+    
     private void recargarInscripcions(){
-//        inscripciones = inscripcionFacadeLocal.findAll();
+       inscripciones = ifl.findAll();
     }
+
+    public List<Inscripcion> getInscripciones() {
+        return inscripciones;
+    }
+
+    public void setInscripciones(List<Inscripcion> inscripciones) {
+        this.inscripciones = inscripciones;
+    }
+
+    public Inscripcion getInscripcionSeleccionado() {
+        return inscripcionSeleccionado;
+    }
+
+    public void setInscripcionSeleccionado(Inscripcion inscripcionSeleccionado) {
+        this.inscripcionSeleccionado = inscripcionSeleccionado;
+    }
+    
+    
     
   
     public void eliminarInscripcion(){

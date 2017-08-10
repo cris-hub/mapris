@@ -39,33 +39,33 @@
                             <div class="card-content">
                                 <b:messages showSummary="true" class="animated flipInX"  show-detail="true"/>
                                 <b:form id="form-editar" prependId="false">
+                                   
+                                       
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Id rutina</label>
-                                                <b:inputText value="#{editarSalonesHasServiciosController.salonHasServicioSeleccionado.estado}" class="form-control" disabled="true" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-5">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombre</label>
-                                                <b:selectOneMenu value="#{editarSalonesHasServiciosController.salonHasServicioSeleccionado.salonHasServicioPK.serviciosIdServicio}" class="form-control">
+                                                <b:selectOneMenu value="#{editarSalonesHasServiciosController.salonHasServicioSeleccionado.salon}" class="form-control">
                                                 
-                                                    <f:selectItems value="#{listarRutinaController.rutina}" var="ru" itemLabel="#{ru.idRutinas} - #{ru.nombre}"/>
+                                                    <f:selectItems value="#{listarSalonesController.salones}"  var="s" itemLabel="#{s.salon} - #{s.descripcion}" />
                                                 </b:selectOneMenu> 
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                        
+                                    
+                                        <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Descripcion</label>
-                                                <b:selectOneMenu value="#{editarSalonesHasServiciosController.salonHasServicioSeleccionado.salonHasServicioPK.salonesIdSalones}" class="form-control">
+                                                <b:selectOneMenu value="#{editarSalonesHasServiciosController.salonHasServicioSeleccionado.servicio}" class="form-control">
                                                 
-                                                    <f:selectItems value="#{listarServicioController.servicios}" var="r" itemLabel="#{r.idServicio} - #{r.nombre}"/>
+                                                    <f:selectItems value="#{listarServicioController.servicios}" var="r" itemLabel="#{r.idServicio} - #{r.nombre}" />
                                                 </b:selectOneMenu> 
+                                            </div>
+                                        </div>
+                                         <div class="col-md-3">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Estado</label>
+                                                <b:inputText value="#{editarSalonesHasServiciosController.salonHasServicioSeleccionado.estado}" class="form-control"  />
                                             </div>
                                         </div>
                                     </div>

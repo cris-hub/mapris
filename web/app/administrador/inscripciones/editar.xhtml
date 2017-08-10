@@ -42,7 +42,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Id Inscripción</label>
-                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idInscripciones}" class="form-control" disabled="true" />
+                                                <b:inputText value="#{editarInscripcionController.inscripcionSelecionada.idInscripcion}" class="form-control" disabled="true" />
                                             </div>
                                         </div>
                                     </div>
@@ -79,14 +79,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Fecha de inicio</label>
-                                                <b:datepicker value="#{editarInscripcionController.inscripcionSelecionada.fechaInicio}" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <h:link styleClass="btn btn-primary" outcome="/app/administrador/inscripciones/inscripciones.xhtml" value="Volver"/>
                                     <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarInscripcionController.actualizarDatos()}" class="btn btn-primary pull-right"/>

@@ -49,19 +49,19 @@
                                                                            
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Nombre de la Rutina</label>
-                                                <b:selectOneMenu value="#{registrarSalonesHasServiciosController.nuevoSalon.salon}" class="form-control">
+                                                <label class="control-label">Nombre del Salón</label>
+                                                <b:selectOneMenu value="#{registrarSalonesHasServiciosController.salon}" class="form-control">
                                                 
-                                                    <f:selectItems value="#{listarSalonesController.salones}"  var="s" itemLabel="#{s.salon} - #{s.descripcion}"/>
+                                                    <f:selectItems value="#{listarSalonesController.salones}"  var="s" itemLabel="#{s.salon} - #{s.descripcion}" />
                                                 </b:selectOneMenu>                                              </div>
                                         </div>
                                     
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombre del Servicio</label>
-                                                <b:selectOneMenu value="#{registrarSalonesHasServiciosController.nuevoSalon.servicio}" class="form-control">
+                                                <b:selectOneMenu value="#{registrarSalonesHasServiciosController.servicio}" class="form-control">
                                                 
-                                                    <f:selectItems value="#{listarServicioController.servicios}"var="r" itemLabel="#{r.idServicio} - #{r.nombre}"/>
+                                                    <f:selectItems value="#{listarServicioController.servicios}" var="r" itemLabel="#{r.idServicio} - #{r.nombre}" />
                                                 </b:selectOneMenu>                                            </div>
                                         </div>
                                     </div>

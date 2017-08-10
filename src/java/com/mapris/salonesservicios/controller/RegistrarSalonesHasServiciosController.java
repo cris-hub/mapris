@@ -87,12 +87,12 @@ public class RegistrarSalonesHasServiciosController implements Serializable{
         if (nshs != null) {
         
         
-        try{
-                   this.salon = getSalon();
-                   this.servicio = getServicio();
+        try{       
                    shspk.setSalonesIdSalones(getSalon().getIdSalones());
                    shspk.setServiciosIdServicio(getServicio().getIdServicio());
                    nshs.setSalonHasServicioPK(shspk);
+                   nshs.setSalon(salon);
+                   nshs.setServicio(servicio);
                    nshs.setEstado("Vinculado");
                 
                 
@@ -105,8 +105,8 @@ public class RegistrarSalonesHasServiciosController implements Serializable{
                 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("Salon: " + getSalon().getIdSalones());
-                System.out.println("Salon: " + getServicio().getIdServicio());
+                System.out.println("Salon: " + getSalon().getIdSalones() );
+                System.out.println("Servicio: " + getServicio().getIdServicio());
             }
         } else {
             MessageUtil.enviarMensajeInformacionGlobal( "Error al registrar el salón", "No se pudo registrar el salón");
