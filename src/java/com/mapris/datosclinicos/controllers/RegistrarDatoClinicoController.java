@@ -6,6 +6,7 @@
 package com.mapris.datosclinicos.controllers;
 
 
+import com.mapris.archivos.controller.CargarArchivosController;
 import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.EstadoFacadeLocal;
 import com.mapris.modelo.dao.ClienteFacadeLocal;
@@ -35,6 +36,9 @@ import javax.inject.Named;
 @RequestScoped
 public class RegistrarDatoClinicoController {
 
+    @Inject
+    CargarArchivosController ca;
+    
     @Inject
     private SessionController sc;
     
@@ -73,13 +77,12 @@ public class RegistrarDatoClinicoController {
     
        
         if (nuevoDatoclinico != null) {
-        
+        nuevoDatoclinico.setIdUsuarios(sc.getUsuario().getCliente());
         
         try{
+                ca.uploadProfileClinicalData();
+                nuevoDatoclinico.setUrl(ca.getRuta());
                 
-                
-                Integer document = sc.getUsuario().getIdUsuario();
-                nuevoDatoclinico.setIdDatosClinicos(document);
                 dcfl.create(nuevoDatoclinico);
                 
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El cliente se ha creado con exito");

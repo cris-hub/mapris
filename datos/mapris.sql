@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `mapris`;
--- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mapris
 -- ------------------------------------------------------
--- Server version	5.6.20
+-- Server version	5.7.17-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -57,7 +57,7 @@ CREATE TABLE `clientes` (
   PRIMARY KEY (`fk_id_usuario`),
   KEY `fk_clientes_empresas2_idx` (`fk_id_empresa`),
   CONSTRAINT `fk_clientes_empresas2` FOREIGN KEY (`fk_id_empresa`) REFERENCES `empresas` (`id_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_clientes_usuarios2` FOREIGN KEY (`fk_id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_clientes_usuarios2` FOREIGN KEY (`fk_id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -67,6 +67,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (4,'Activa',1);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +87,7 @@ CREATE TABLE `cursos` (
   PRIMARY KEY (`id_curso`),
   KEY `fk_cursos_servicios1_idx` (`fk_id_servicio`),
   CONSTRAINT `fk_cursos_servicios1` FOREIGN KEY (`fk_id_servicio`) REFERENCES `servicios` (`id_servicio`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +96,7 @@ CREATE TABLE `cursos` (
 
 LOCK TABLES `cursos` WRITE;
 /*!40000 ALTER TABLE `cursos` DISABLE KEYS */;
+INSERT INTO `cursos` VALUES (1,1,'En proceso',8,100000);
 /*!40000 ALTER TABLE `cursos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +255,7 @@ CREATE TABLE `inscripciones` (
   KEY `fk_inscripciones_clientes1_idx` (`fk_id_usuario`),
   CONSTRAINT `fk_clientes_has_cursos_cursos1` FOREIGN KEY (`fk_id_curso`) REFERENCES `cursos` (`id_curso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_inscripciones_clientes1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `clientes` (`fk_id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,6 +264,7 @@ CREATE TABLE `inscripciones` (
 
 LOCK TABLES `inscripciones` WRITE;
 /*!40000 ALTER TABLE `inscripciones` DISABLE KEYS */;
+INSERT INTO `inscripciones` VALUES (1,1,4,'Activa');
 /*!40000 ALTER TABLE `inscripciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -451,6 +454,7 @@ CREATE TABLE `salones_has_servicios` (
 
 LOCK TABLES `salones_has_servicios` WRITE;
 /*!40000 ALTER TABLE `salones_has_servicios` DISABLE KEYS */;
+INSERT INTO `salones_has_servicios` VALUES (1,1,'Vinculado'),(1,2,'Vinculado');
 /*!40000 ALTER TABLE `salones_has_servicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -475,7 +479,7 @@ CREATE TABLE `servicios` (
   KEY `fk_servicios_tipos_servicios1_idx` (`fk_tipo_servicio`),
   CONSTRAINT `fk_servicios_subservicios` FOREIGN KEY (`fk_sub_servicios`) REFERENCES `servicios` (`id_servicio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_servicios_tipos_servicios1` FOREIGN KEY (`fk_tipo_servicio`) REFERENCES `tipos_servicios` (`id_tipo_servicio`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -484,7 +488,7 @@ CREATE TABLE `servicios` (
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
-INSERT INTO `servicios` VALUES (1,'Yoga','Clase de relajación orientada a las artes orientales del Yoga',100000,'Relajación',4,NULL,3);
+INSERT INTO `servicios` VALUES (1,'Yoga','Clase de relajación orientada a las artes orientales del Yoga',100000,'Relajación',4,NULL,3),(2,'Pilates','Clase de acondicionamiento fisico',90000,'Acondicionamiento fisico',3,NULL,3);
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -537,7 +541,7 @@ CREATE TABLE `usuarios` (
   UNIQUE KEY `cedula_UNIQUE` (`cedula`),
   KEY `fk_usuarios_estados_idx` (`fk_id_estados`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`fk_id_estados`) REFERENCES `estados` (`id_estados`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -546,7 +550,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (2,'1111','Lola','Martinez','fceeb9b9d469401fe558062c4bd25954','1999-01-01',NULL,'','0000000','310000000','2017-08-02',1),(3,'7777','Maria','Loaiza','fceeb9b9d469401fe558062c4bd25954','1999-08-10',NULL,'mari@gmail.com','5019230','3109230182','2017-08-03',1);
+INSERT INTO `usuarios` VALUES (2,'1111','Lola','Martinez','fceeb9b9d469401fe558062c4bd25954','1999-01-01',NULL,'','0000000','310000000','2017-08-02',1),(3,'7777','Maria','Loaiza','fceeb9b9d469401fe558062c4bd25954','1999-08-10',NULL,'mari@gmail.com','5019230','3109230182','2017-08-03',1),(4,'9999','Sandra','Paez','fceeb9b9d469401fe558062c4bd25954','1999-01-01',NULL,'mari@gmail.com','3123123','3123123123','2017-08-09',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -664,4 +668,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-09 11:54:11
+-- Dump completed on 2017-08-09 22:35:29

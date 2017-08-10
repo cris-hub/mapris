@@ -29,25 +29,21 @@ import javax.inject.Named;
  */
 @Named(value = "listarInscripcionController")
 @ViewScoped
-public class ListarInscripcionController implements Serializable{
+public class ListarInscripcionController implements Serializable {
 //    Code Dependention Injection
 
     @Inject
     private SessionController sessionController;
 
-  
     @EJB
     private InscripcionFacadeLocal ifl;
-    
+
     private List<Inscripcion> inscripciones;
-    
+
     private Inscripcion inscripcionSeleccionado;
-    
+
     private Calendar hoy;
 
-    
-    
-    
     public ListarInscripcionController() {
     }
 
@@ -56,12 +52,13 @@ public class ListarInscripcionController implements Serializable{
         recargarInscripcions();
         this.hoy = Calendar.getInstance();
     }
+
     
     
     
     private void recargarInscripcions(){
-       inscripciones = ifl.findAll();
-    }
+       inscripciones = ifl.findAll();}
+
 
     public List<Inscripcion> getInscripciones() {
         return inscripciones;
@@ -78,34 +75,29 @@ public class ListarInscripcionController implements Serializable{
     public void setInscripcionSeleccionado(Inscripcion inscripcionSeleccionado) {
         this.inscripcionSeleccionado = inscripcionSeleccionado;
     }
-    
+
+  
+
     
     
   
-    public void eliminarInscripcion(){
-        System.out.println("DIA=" + this.hoy.get(Calendar.DAY_OF_MONTH)+ "MES: "+ (this.hoy.get(Calendar.MONTH)+1)+ "AÑO" + this.hoy.get(Calendar.YEAR));
+    public void eliminarInscripcion() {
+        System.out.println("DIA=" + this.hoy.get(Calendar.DAY_OF_MONTH) + "MES: " + (this.hoy.get(Calendar.MONTH) + 1) + "AÑO" + this.hoy.get(Calendar.YEAR));
+
         Calendar cal = Calendar.getInstance();
         cal.setTime(inscripcionSeleccionado.getFkIdCurso().getHorarios().get(0).getFechaInicio());
-        System.out.println("DIA= " + cal.get(Calendar.DAY_OF_MONTH)+ " MES: "+ (cal.get(Calendar.MONTH)+1)+ " AÑO " + cal.get(Calendar.YEAR));
-       
-        
-       //Si la fecha de hoy coincide con la fecha de la cita a eliminar no se podría eliminar porque entra en vigencia *Bussiness Rules*
-        if(cal.get(Calendar.DAY_OF_MONTH) == this.hoy.get(Calendar.DAY_OF_MONTH) && 
-                (cal.get(Calendar.MONTH)+1) == (this.hoy.get(Calendar.MONTH)+1) &&
-                cal.get(Calendar.YEAR) == this.hoy.get(Calendar.YEAR)){
+        System.out.println("DIA= " + cal.get(Calendar.DAY_OF_MONTH) + " MES: " + (cal.get(Calendar.MONTH) + 1) + " AÑO " + cal.get(Calendar.YEAR));
+
+        //Si la fecha de hoy coincide con la fecha de la cita a eliminar no se podría eliminar porque entra en vigencia *Bussiness Rules*
+        if (cal.get(Calendar.DAY_OF_MONTH) == this.hoy.get(Calendar.DAY_OF_MONTH)
+                && (cal.get(Calendar.MONTH) + 1) == (this.hoy.get(Calendar.MONTH) + 1)
+                && cal.get(Calendar.YEAR) == this.hoy.get(Calendar.YEAR)) {
             MessageUtil.enviarMensajeError(null, "Error al eliminar", "No se puede eliminar una inscripción que entra el mismo día de vigencia");
-        } else{
+        } else {
 //            inscripcionFacadeLocal.remove(inscripcionSeleccionado);
             recargarInscripcions();
         }
-        
+
     }
-        
-    
-    
-    
-
-   
-
 
 }

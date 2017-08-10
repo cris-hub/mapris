@@ -96,9 +96,9 @@ public class Usuario implements Serializable {
     @Column(name = "fechaNaci")
     @Temporal(TemporalType.DATE)
     private Date fechaNaci;
-    @Lob
+    
     @Column(name = "imagen_perfil")
-    private byte[] imagenPerfil;
+    private String imagenPerfil;
     @Size(max = 45)
     @Column(name = "correoElectronico")
     private String correoElectronico;
@@ -187,11 +187,11 @@ public class Usuario implements Serializable {
         this.fechaNaci = fechaNaci;
     }
 
-    public byte[] getImagenPerfil() {
+    public String getImagenPerfil() {
         return imagenPerfil;
     }
 
-    public void setImagenPerfil(byte[] imagenPerfil) {
+    public void setImagenPerfil(String imagenPerfil) {
         this.imagenPerfil = imagenPerfil;
     }
 
