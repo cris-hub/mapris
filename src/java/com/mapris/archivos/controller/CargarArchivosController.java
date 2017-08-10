@@ -7,6 +7,8 @@ package com.mapris.archivos.controller;
 
 import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.FileBean;
+import com.mapris.modelo.dao.UsuarioFacadeLocal;
+import com.mapris.modelo.entitie.Datoclinico;
 import com.mapris.util.MessageUtil;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -36,9 +39,12 @@ public class CargarArchivosController implements Serializable {
 
     @Inject
     private SessionController sc;
+    @EJB
+    private UsuarioFacadeLocal ufl;
     //Ruta en built de donde se guardara el archivo
-    private final static String UPLOAD_DIR = "/files/profileimg/";
+    private final  String UPLOAD_DIR = "/files/users/";
     private String extension;
+    private String ruta ;
 
     /**
      * Creates a new instance of FileUploadController
@@ -54,15 +60,38 @@ public class CargarArchivosController implements Serializable {
     public void setExtension(String extension) {
         this.extension = extension;
     }
-    
 
     @PostConstruct
     public void init() {
+
     }
 
     public static ExternalContext getExternalContext() {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         return ec;
+    }
+
+    public void uploadProfileClinicalData() {
+        try {
+            List<FileBean> filesBeans = getFilesUpload(CargarArchivosController.getExternalContext());
+
+            for (FileBean filesBean : filesBeans) {
+                if (filesBean.getExtension().equals("PDF") || filesBean.getExtension().equals("pdf")) {
+                    setExtension(filesBean.getExtension()); 
+                    deleteFile(CargarArchivosController.getExternalContext(), "perfil." + extension);
+                    savePartProfileClinicalData(CargarArchivosController.getExternalContext(), filesBean);
+                 MessageUtil.enviarMensajeInformacion(null, "Formato correcto", "La imagen ha sido cargada satisfactoriamente");
+                }
+                else{
+                 MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg' ");
+                }
+            }
+        } catch (IOException e) {
+        MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg'");
+            e.printStackTrace();
+        } catch (ServletException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void uploadProfileImage() {
@@ -71,16 +100,17 @@ public class CargarArchivosController implements Serializable {
             List<FileBean> filesBeans = getFilesUpload(CargarArchivosController.getExternalContext());
 
             for (FileBean fileBean : filesBeans) {
-                if (fileBean.getExtension().equals("png")) {
-                    setExtension(fileBean.getExtension()) ;
-                    extension = fileBean.getExtension();
+                if (fileBean.getExtension().equals("png") || fileBean.getExtension().equals("PNG")
+                        || fileBean.getExtension().equals("JPG") || fileBean.getExtension().equals("jpg")) {
+                    setExtension(fileBean.getExtension());
+                    deleteFile(CargarArchivosController.getExternalContext(), "perfil." + extension);
                     savePartProfileimg(CargarArchivosController.getExternalContext(), fileBean);
                     MessageUtil.enviarMensajeInformacion(null, "Formato correcto", "La imagen ha sido cargada satisfactoriamente");
                 } else {
-                    MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir imagenes te tipo 'png' ");
+                    MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg' ");
                 }
             }
-            deleteFile(CargarArchivosController.getExternalContext(), "perfil." + extension);
+
         } catch (IOException ex) {
             MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg'");
             ex.printStackTrace();
@@ -109,12 +139,36 @@ public class CargarArchivosController implements Serializable {
 
     }
 
-    private void savePartProfileimg(ExternalContext ec, FileBean fileBean) throws IOException {
-        File dir = new File(ec.getRealPath("") + UPLOAD_DIR + sc.getUsuario().getCedula().toString() + "/perfil/");
+    public void savePartProfileClinicalData(ExternalContext ec, FileBean fileBean) throws IOException {
+        File dir = new File(ec.getRealPath("") + UPLOAD_DIR + sc.getUsuario().getCedula() + "/profile_clinical_data/");
         dir.mkdirs();
-        File file = new File(dir, "perfil."+extension);
+        File file = new File(dir,fileBean.getFileNameFull());
+        System.out.println(fileBean.getFileNameFull());
         file.createNewFile();
+        setRuta( UPLOAD_DIR + sc.getUsuario().getCedula() + "/profile_clinical_data/"+fileBean.getFileNameFull());
+         FileOutputStream outputStream = new FileOutputStream(file);
 
+        InputStream inputStream = fileBean.getPart().getInputStream();
+
+        byte[] buffer = new byte[1024];
+        int length;
+
+        while ((length = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, length);
+        }
+        outputStream.close();
+        inputStream.close();
+        
+        
+    }
+
+    private void savePartProfileimg(ExternalContext ec, FileBean fileBean) throws IOException {
+        File dir = new File(ec.getRealPath("") + UPLOAD_DIR + sc.getUsuario().getCedula().toString() + "/profile_img/");
+        dir.mkdirs();
+        File file = new File(dir, "perfil." + getExtension());
+        file.createNewFile();
+        sc.getUsuario().setImagenPerfil(UPLOAD_DIR + sc.getUsuario().getCedula().toString()+ "/profile_img/"+ "perfil." + getExtension());
+        ufl.edit(sc.getUsuario());
         FileOutputStream outputStream = new FileOutputStream(file);
 
         InputStream inputStream = fileBean.getPart().getInputStream();
@@ -135,4 +189,13 @@ public class CargarArchivosController implements Serializable {
         File file = new File(dir, name);
         file.delete();
     }
+
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
+    
 }

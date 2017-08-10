@@ -8,8 +8,8 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui">
 
-    
-<ui:define name="titulo">Administrador-Registrar Dato Clinico</ui:define>
+
+    <ui:define name="titulo">Administrador-Registrar Dato Clinico</ui:define>
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
@@ -24,7 +24,7 @@
                 <span class="active">Registrar Dato Clinico</span>
             </li>
         </ul>
-        
+
 
     </ui:define>
     <ui:define name="contenido">
@@ -40,7 +40,7 @@
                             </div>
                             <div class="card-content">
                                 <b:messages class="animated flipInX"  showSummary="true" show-detail="true" />
-                                <b:form id="form-editar" prependId="false">
+                                <b:form id="form-editar" role="form" enctype="multipart/form-data" prependId="false">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
@@ -55,9 +55,9 @@
                                                     <f:selectItem itemValue="AB+" itemLabel="AB+"/> 
                                                     <f:selectItem itemValue="AB-" itemLabel="AB-"/>                                                    
                                                 </b:selectOneMenu>
-                                                </div>
+                                            </div>
                                         </div>
-                                   
+
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Alergias</label>
@@ -67,10 +67,10 @@
                                                     <f:selectItem itemValue="Alergia al polvo" itemLabel="Alergia al polvo"/> 
                                                     <f:selectItem itemValue="Alergia a un medicamento" itemLabel="Alergia a un medicamento"/> 
                                                     <f:selectItem itemValue="Alergia cambios climaticos" itemLabel="Alergia a cambios climaticos"/> 
-                                                                                                     
+
                                                 </b:selectOneMenu>
-                                                
-                                                
+
+
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -84,22 +84,24 @@
                                                     <f:selectItem itemValue="Vascular" itemLabel="Vascular"/> 
                                                     <f:selectItem itemValue="Pulmonar" itemLabel="Pulmonar"/> 
                                                     <f:selectItem itemValue="Digestiva" itemLabel="Digestiva"/> 
-                                                                                                     
+
                                                 </b:selectOneMenu>
-                                                
+
                                             </div>
                                         </div>
-                                    
+                                        
                                         <div class="col-md-4">
-                                            <div class="form-group label-floating">
+                                            
                                                 <label class="control-label">Subir Dato Clinico</label>
-                                            <h:commandButton value="Subir" id="upload" class="btn default " actionListener="#{cargarArchivoController.uploadProfileImage}"/>
-                                            </div>
+                                                <h:inputFile id="fileUpload" class="btn btn-primary btn-round" value="subir datos clinicos" ></h:inputFile>
+                                                <h:commandButton value="Subir" id="upload" class="btn default " actionListener="#{cargarArchivoController.uploadProfileClinicalData()}"/>
+
                                         </div>
-                                   
                                         
-                                   
-                                        
+
+
+
+
                                     </div>
 
                                     <h:link styleClass="btn btn-primary" outcome="/app/index.xhtml" value="Volver"/>
