@@ -76,10 +76,19 @@ public class RegistrarDatoClinicoController {
     public void registrar() {
     
        
-        if (nuevoDatoclinico != null) {
-        nuevoDatoclinico.setIdUsuarios(sc.getUsuario().getCliente());
+        if (sc.getUsuario().getCliente().getDatosClinicos() != null) {
+            
+            
+            MessageUtil.enviarMensajeErrorGlobal("Error al registrar un dato clinico", "Ya tienes un dato clinico registrado. Eliminalo primero, para poder registrar uno nuevo");
+            System.out.println("Datos Clinicos: " + sc.getUsuario().getCliente().getDatosClinicos());
+        }else {
         
+        if (nuevoDatoclinico != null) {
+       
         try{
+                
+                nuevoDatoclinico.setIdUsuarios(sc.getUsuario().getCliente());
+            
                 ca.uploadProfileClinicalData();
                 nuevoDatoclinico.setUrl(ca.getRuta());
                 
@@ -92,11 +101,17 @@ public class RegistrarDatoClinicoController {
                 
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("id cliente: " + sc.getUsuario().getCliente());
                
             }
         } else {
             MessageUtil.enviarMensajeInformacionGlobal( "Error al registrar el usuario", "No se pudo registrar el cliente");
         }
+        
+        }
+        
+        
+        
     }
     
    

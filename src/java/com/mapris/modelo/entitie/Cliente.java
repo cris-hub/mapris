@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -50,7 +51,7 @@ public class Cliente implements Serializable {
     private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Inscripcion> inscripciones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarios")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarios",fetch = FetchType.EAGER)
     private List<Datoclinico> datosClinicos;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
     private Aplazamiento aplazamiento;

@@ -67,7 +67,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (4,'Activa',1);
+INSERT INTO `clientes` VALUES (3,'Activa',1),(4,'Activa',1);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,14 +110,14 @@ DROP TABLE IF EXISTS `datosclinicos`;
 CREATE TABLE `datosclinicos` (
   `id_datos_clinicos` int(11) NOT NULL AUTO_INCREMENT,
   `tipo_sangre` varchar(3) DEFAULT NULL COMMENT 'Este campo almacena el tipo de sangre del cliente',
-  `alergias` varchar(20) DEFAULT NULL COMMENT 'Este campo almacena el archivo correspondiente al dato clinico del programa Posparto',
-  `url` int(11) DEFAULT NULL COMMENT 'Este campo almacena el archivo correspondiente al dato clinico del programa Prenatal',
+  `alergias` varchar(45) DEFAULT NULL COMMENT 'Este campo almacena el archivo correspondiente al dato clinico del programa Posparto',
+  `url` varchar(80) DEFAULT NULL COMMENT 'Este campo almacena el archivo correspondiente al dato clinico del programa Prenatal',
   `fk_id_usuario` int(11) NOT NULL,
   `patologia` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_datos_clinicos`),
   KEY `fk_datosclinicos_clientes1_idx` (`fk_id_usuario`),
   CONSTRAINT `fk_datosclinicos_clientes1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `clientes` (`fk_id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -399,7 +399,7 @@ CREATE TABLE `rolesusuarios` (
 
 LOCK TABLES `rolesusuarios` WRITE;
 /*!40000 ALTER TABLE `rolesusuarios` DISABLE KEYS */;
-INSERT INTO `rolesusuarios` VALUES (1,2),(2,3),(3,3);
+INSERT INTO `rolesusuarios` VALUES (1,2),(2,3);
 /*!40000 ALTER TABLE `rolesusuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -531,7 +531,7 @@ CREATE TABLE `usuarios` (
   `apellidos` varchar(20) NOT NULL,
   `clave` varchar(200) NOT NULL,
   `fechaNaci` date DEFAULT NULL COMMENT 'Este campo almacena la fecha de nacimineto de cada usuario',
-  `imagen_perfil` blob,
+  `imagen_perfil` varchar(45) DEFAULT NULL,
   `correoElectronico` varchar(45) DEFAULT NULL,
   `telefonoFijo` varchar(7) DEFAULT '0000000',
   `telefonoCelular` varchar(10) DEFAULT '310000000',
@@ -668,4 +668,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-09 22:35:29
+-- Dump completed on 2017-08-10 22:27:57
