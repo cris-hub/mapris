@@ -43,9 +43,9 @@
                                 <b:messages show-detail="true" class="animated flipInX"  show-summary="true" globalOnly="true"/>
                                 <b:form id="form-data-table-rutinasS" prependId="false">
                                     <b:dataTable value="#{listarSalonesHasServiciosController.salones}" var="saloneS">
-                                        <b:dataTableColumn label="Id Rutinas Servicio" value="#{saloneS.SalonHasServicioPK.SalonesIdSalones}" />
-                                        <b:dataTableColumn label="Rutinas" value="#{saloneS.SalonHasServicioPK.ServiciosIdServicio}}" />
-                                        <b:dataTableColumn label="Servicio" value="#{saloneS.estado}"/>
+                                        <b:dataTableColumn label="Salón" value="#{saloneS.salon.salon}" />
+                                        <b:dataTableColumn label="Servicio" value="#{saloneS.servicio.nombre}" />
+                                        <b:dataTableColumn label="Estado" value="#{saloneS.estado}"/>
 
 
 

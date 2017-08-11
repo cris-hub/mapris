@@ -32,7 +32,8 @@
 
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
+                <b:row>
+
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
@@ -47,13 +48,13 @@
                                     <b:dataTable id="dtUsuario" value="#{listarInscripcionController.inscripciones}" var="in" >
 
 
-                                        <b:dataTableColumn label="Id Inscripcion" value="#{in.idInscripciones}"/>
+                                        <b:dataTableColumn label="Id Inscripcion" value="#{in.idInscripcion}"/>
                                         <b:dataTableColumn label="Cedula Cliente" value="#{in.idUsuario.usuario.cedula}"/>
                                         <b:dataTableColumn label="Nombre Cliente" value="#{in.idUsuario.usuario.nombres} #{in.idUsuario.usuario.apellidos} "/>
                                         <b:dataTableColumn label="Estado" value="#{in.estado}"/>
                                      
-                                        <b:dataTableColumn label="Servicio" value="#{in.idCurso.idServicio.nombre}" />
-                                        <b:dataTableColumn label="Valor" value="#{in.idCurso.valor}" />
+                                        <b:dataTableColumn label="Servicio" value="#{in.fkIdCurso.idServicios.nombre}" />
+                                        <b:dataTableColumn label="Valor" value="#{in.fkIdCurso.valor}" />
 
 
 
@@ -89,7 +90,7 @@
                             </h:form>
                         </f:facet>
                     </b:modal>
-                </div>
+                </b:row>
             </div>
         </div>
 

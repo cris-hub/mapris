@@ -41,10 +41,10 @@ public class Datoclinico implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_datos_clinicos")
     private Integer idDatosClinicos;
-    @Size(max = 3)
+    
     @Column(name = "tipo_sangre")
     private String tipoSangre;
-    @Size(max = 20)
+   
     @Column(name = "alergias")
     private String alergias;
     @Column(name = "url")

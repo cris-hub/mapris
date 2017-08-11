@@ -51,8 +51,8 @@ public class EditarSalonesHasServiciosController implements Serializable {
         try {
             
        
-            
-//       
+           salonSeleccionado.getSalonHasServicioPK().setSalonesIdSalones(salonSeleccionado.getSalon().getIdSalones());
+           salonSeleccionado.getSalonHasServicioPK().setServiciosIdServicio(salonSeleccionado.getServicio().getIdServicio());
             
             sfl.edit(salonSeleccionado);
             MessageUtil.enviarMensajeInformacionGlobal("Actualizacion", "los datos fueron actualizados");
@@ -65,7 +65,7 @@ public class EditarSalonesHasServiciosController implements Serializable {
     
     public String preModificar(SalonHasServicio i){
         setSalonHasServicioSeleccionado(i);
-        return "/app/administrador/salones/editar.xhtml?faces-redirect=true";
+        return "/app/administrador/salones-servicios/editar.xhtml?faces-redirect=true";
     }
     
    
