@@ -58,8 +58,8 @@ public class Cliente implements Serializable {
     @JoinColumn(name = "fk_id_empresa", referencedColumnName = "id_empresa")
     @ManyToOne
     private Empresa idEmpresas;
-    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
-    @OneToOne(optional = false)
+    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario",  updatable = false)
+    @OneToOne(cascade = CascadeType.ALL,optional = false)
     private Usuario usuario;
 
     public Cliente() {
