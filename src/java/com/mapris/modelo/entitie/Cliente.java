@@ -51,7 +51,7 @@ public class Cliente implements Serializable {
     private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Inscripcion> inscripciones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarios",fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarios")
     private List<Datoclinico> datosClinicos;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
     private Aplazamiento aplazamiento;

@@ -93,8 +93,10 @@ public class RegistrarClienteController {
                 nuevoCliente.setEstado("Habilitado");
                 nuevoCliente.setIdEmpresas(nuevoCliente.getIdEmpresas());
                 nuevoCliente.setUsuario(nuevoUsuario);
+                nuevoUsuario.setCliente(nuevoCliente);
                 
-                cfl.create(nuevoCliente);
+                usuarioFacadeLocal.create(nuevoUsuario);
+                //cfl.create(nuevoCliente);
                 
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El cliente se ha creado con exito");
                 init();

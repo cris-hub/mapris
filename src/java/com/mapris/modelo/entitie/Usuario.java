@@ -121,7 +121,7 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "fk_id_estados", referencedColumnName = "id_estados")
     @ManyToOne(optional = false)
     private Estado idEstados;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "usuario")
     private Cliente cliente;
 
     public Usuario() {
