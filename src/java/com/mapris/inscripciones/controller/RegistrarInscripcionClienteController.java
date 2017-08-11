@@ -1,7 +1,11 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.mapris.inscripciones.controller;
 
 import com.mapris.login.controller.SessionController;
-import com.mapris.modelo.dao.ClienteFacadeLocal;
 import com.mapris.modelo.dao.InscripcionFacadeLocal;
 import com.mapris.modelo.entitie.Inscripcion;
 import com.mapris.util.MessageUtil;
@@ -13,19 +17,17 @@ import javax.inject.Named;
 
 /**
  *
- * @author KoLachito
+ * @author Kolchito
  */
-@Named(value = "registroInscripcionClienteController")
+@Named(value = "registroClienteInscripcionController")
 @RequestScoped
 public class RegistrarInscripcionClienteController {
 
     @Inject
-    private SessionController sessionC;
-
+    private SessionController sessionCliente;
+   
     @EJB
     private InscripcionFacadeLocal inscripcionFacadeLocal;
-    @EJB
-    private ClienteFacadeLocal clienteFacadeLocal;
 
     private Inscripcion nuevoInscripcion;
 
@@ -51,6 +53,7 @@ public class RegistrarInscripcionClienteController {
             try {
 
                 nuevoInscripcion.setEstado("Activa");
+                nuevoInscripcion.setIdUsuario(sessionCliente.getUsuario().getCliente());
 
 
                 inscripcionFacadeLocal.create(nuevoInscripcion);
@@ -67,3 +70,4 @@ public class RegistrarInscripcionClienteController {
     }
 
 }
+

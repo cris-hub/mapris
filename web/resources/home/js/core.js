@@ -111,9 +111,10 @@ $(document).ready(function() {
   $(function(){
     jQuery(document).ready(function() {
     $('#banner').backstretch([
-       "resources/img/club bebe.jpg", 
-       "resources/img/esferodinamia.jpg",
-       "resources/img/gym.jpg"
+        
+       "resources/img/relaxxx.jpg", 
+       "resources/img/io.png",
+       "resources/img/yoga.jpg"
         ],  {duration: 3000, fade: 900});
     });
   });
