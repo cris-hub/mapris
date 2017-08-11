@@ -27,6 +27,7 @@ public class MessageUtil {
     public static void enviarMensajeInformacionGlobal(String summary, String detail){
         enviarMensajeComun(FacesMessage.SEVERITY_INFO, null, summary, detail);
     }
+   
     
     private static void enviarMensajeComun(FacesMessage.Severity severity, String idClient, String summary, String detail){
         FacesMessage fm = new FacesMessage(severity, summary, detail);

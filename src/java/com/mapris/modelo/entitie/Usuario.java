@@ -15,9 +15,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -40,6 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "usuarios")
+@Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 @XmlRootElement
 @NamedStoredProcedureQuery(
 	name = "pr_validar_usuario", 
@@ -116,12 +118,12 @@ public class Usuario implements Serializable {
        @JoinColumn(name = "fk_id_roles", referencedColumnName = "idRoles")})
     @ManyToMany
     private List<Rol> roles;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToOne( mappedBy = "usuario")
     private Personalmedico personalmedico;
     @JoinColumn(name = "fk_id_estados", referencedColumnName = "id_estados")
     @ManyToOne(optional = false)
     private Estado idEstados;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToOne( cascade = CascadeType.PERSIST,mappedBy = "usuario")
     private Cliente cliente;
 
     public Usuario() {

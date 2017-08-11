@@ -6,6 +6,7 @@
 package com.mapris.modelo.dao;
 
 import com.mapris.modelo.entitie.Datoclinico;
+import com.mapris.modelo.entitie.Cliente;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface DatoclinicoFacadeLocal {
     List<Datoclinico> findRange(int[] range);
 
     int count();
+    
+    List<Datoclinico> buscarDato(Cliente idCliente);
     
 }

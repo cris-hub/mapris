@@ -83,17 +83,16 @@ public class RegistrarClienteController {
             
             try {
                 
-                nuevoUsuario.setCedula(nuevoUsuario.getCedula());
+                
+                nuevoCliente.setIdUsuario(null);
                 nuevoUsuario.setFechaRegistro(hoy);
                 nuevoUsuario.setRoles(new ArrayList<Rol>());
                 nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
                 nuevoUsuario.setIdEstados(estadoFacadeLocal.find(2));
-                
-                
-                nuevoCliente.setEstado("Habilitado");
-                nuevoCliente.setIdEmpresas(nuevoCliente.getIdEmpresas());
                 nuevoCliente.setUsuario(nuevoUsuario);
                 
+                
+               
                 cfl.create(nuevoCliente);
                 
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El cliente se ha creado con exito");

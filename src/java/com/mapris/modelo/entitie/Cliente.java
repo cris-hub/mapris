@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "clientes")
+
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
@@ -49,17 +50,17 @@ public class Cliente implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "estado")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    @OneToMany(mappedBy = "idUsuario")
     private List<Inscripcion> inscripciones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarios",fetch = FetchType.EAGER)
+    @OneToMany( mappedBy = "idUsuarios")
     private List<Datoclinico> datosClinicos;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
+    @OneToOne( mappedBy = "cliente")
     private Aplazamiento aplazamiento;
     @JoinColumn(name = "fk_id_empresa", referencedColumnName = "id_empresa")
     @ManyToOne
     private Empresa idEmpresas;
-    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario",  updatable = false)
-    @OneToOne(cascade = CascadeType.ALL,optional = false)
+    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
+    @OneToOne( cascade = CascadeType.ALL, optional = false)
     private Usuario usuario;
 
     public Cliente() {
@@ -155,6 +156,10 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "com.mapris.modelo.entitie.Cliente[ idUsuario=" + idUsuario + " ]";
+    }
+
+    public void getIdUsuario(Integer idUsuario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
