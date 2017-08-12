@@ -14,7 +14,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -23,8 +24,8 @@ import javax.inject.Named;
  * @author Ruben
  */
 @Named(value="verDatoClinicoController")
-@SessionScoped
-public class VerDatoClinicoController implements Serializable{
+@RequestScoped
+public class VerDatoClinicoController {
     
     @Inject
     private SessionController sc;
@@ -35,7 +36,7 @@ public class VerDatoClinicoController implements Serializable{
     
     private Datoclinico datoClinico;
     
-    private List<Datoclinico> datoClinicoCliente;
+    private Datoclinico datoClinicoCliente;
     
    
 
@@ -45,9 +46,16 @@ public class VerDatoClinicoController implements Serializable{
     
     @PostConstruct
     public void init(){
+      
+       ver();
         
     }
-
+    
+    public void ver()
+    {
+        
+        this.datoClinicoCliente = sc.getUsuario().getCliente().getDatosClinicos().get(0);
+    }
     public Datoclinico getDatoclinico() {
         return datoClinico;
     }
@@ -56,13 +64,15 @@ public class VerDatoClinicoController implements Serializable{
         this.datoClinico = datoClinico;
     }
 
-    public List<Datoclinico> getDatoClinicoCliente() {
+    public Datoclinico getDatoClinicoCliente() {
+       
+       
         return datoClinicoCliente;
     }
 
-    public void setDatoClinicoCliente(List<Datoclinico> datoClinicoCliente) {
-         List<Datoclinico> datoClinico1 = sc.getUsuario().getCliente().getDatosClinicos();
-         this.datoClinicoCliente = datoClinico1;
+    public void setDatoClinicoCliente(Datoclinico datoClinicoCliente) {
+         
+         this.datoClinicoCliente = datoClinicoCliente;
     }
 
     
