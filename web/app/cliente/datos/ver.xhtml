@@ -65,14 +65,14 @@
                                                 <h:outputText value="#{verDatoClinicoController.datoClinicoCliente.patologia}" class="form-control"/>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Sesiones</label>
                                                 
 
 
-                                                <h3>PDF</h3><object type="application/pdf" data="#{request.contextPath}#{verDatoClinicoController.datoClinicoCliente.url}?pfdrid_c=true" height="300px" width="100%" internalinstanceid="3">
-                                                    Your browser can't display pdf, <a href="#{request.contextPath}/#{verDatoClinicoController.datoClinicoCliente.url}?pfdrid_c=true">click</a> to download pdf instead.
+                                               <object type="application/pdf" data="#{request.contextPath}#{verDatoClinicoController.datoClinicoCliente.url}?pfdrid_c=true" height="900px" width="100%" internalinstanceid="3">
+                                                    <a href="#{request.contextPath}/#{verDatoClinicoController.datoClinicoCliente.url}?pfdrid_c=true">click</a> to download pdf instead.
                                                 </object>
                                             </div>
                                         </div>

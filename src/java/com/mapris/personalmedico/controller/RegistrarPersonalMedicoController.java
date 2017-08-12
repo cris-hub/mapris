@@ -90,8 +90,13 @@ public class RegistrarPersonalMedicoController {
                 nuevoUsuario.setRoles(new ArrayList<Rol>());
                 nuevoUsuario.getRoles().add(rolFacedaLocal.find(3));
                 nuevoUsuario.setIdEstados(estadoFacadeLocal.find(1));
+                usuarioFacadeLocal.create(nuevoUsuario);
                 
-                nuevoPersonalMedico.setUsuario(nuevoUsuario);
+                Usuario user = usuarioFacadeLocal.buscarIdUsuario(nuevoUsuario.getCedula());
+                
+                nuevoPersonalMedico.setIdUsuario(user.getIdUsuario());
+                nuevoPersonalMedico.setPerfilProfesional(nuevoPersonalMedico.getPerfilProfesional());
+                nuevoPersonalMedico.setCargo(nuevoPersonalMedico.getCargo());
             
                 personalMedicoFacadeLocal.create(nuevoPersonalMedico);
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El personal medico se ha creado con exito");
