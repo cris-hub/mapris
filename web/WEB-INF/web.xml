@@ -10,6 +10,10 @@
     <param-value>true</param-value>
 </context-param>
 
+<listener>
+<listener-class>com.mapris.quartz.schedule.QuartzServlet</listener-class>
+</listener>
+
 
 
     <servlet>

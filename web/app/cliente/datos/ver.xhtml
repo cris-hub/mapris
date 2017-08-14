@@ -7,8 +7,8 @@
                 xmlns:ps="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-  
-<ui:define name="titulo">Administrador-Ver Dato Clinico</ui:define>
+
+    <ui:define name="titulo">Administrador-Ver Dato Clinico</ui:define>
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
@@ -42,23 +42,46 @@
                                 <p class="category">Aquí puedes ver la información de la empresa registrada en Maternity Club</p>
                             </div>
                             <div class="card-content">
-                                <b:messages showSummary="true" show-detail="true"/>
-                                <b:message for="form-editar" showSummary="true" show-detail="true"/>
-                                  <b:form id="form-data-table-datos" prependId="false">
-                                      <b:dataTable value="#{verDatoClinicoController.datoClinicoCliente}" var="dato">
+                                <b:messages showSummary="true" show-detail="true" globalOnly="true"/>
+
+                                <b:form id="form-data-table-datos" prependId="false">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Numero del curso</label>
+                                                <h:outputText value="#{verDatoClinicoController.datoClinicoCliente.tipoSangre}" class="form-control"  />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Estado</label>
+                                                <h:outputText value="#{verDatoClinicoController.datoClinicoCliente.alergias}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Sesiones</label>
+                                                <h:outputText value="#{verDatoClinicoController.datoClinicoCliente.patologia}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Sesiones</label>
+                                                
 
 
-                                        <b:dataTableColumn label="Tipo de Sangre" value="#{dato.tipoSangre}" />
-                                        <b:dataTableColumn label="Alergias" value="#{dato.alergias}"/>
-                                        <b:dataTableColumn label="Patologia" value="#{dato.patologia}"/>
-                                        <b:dataTableColumn label="Ubicación del archivo" value="">
-                                            <iframe src="#{dato.url}"></iframe>
-                                        </b:dataTableColumn>
-                                       
+                                               <object type="application/pdf" data="#{request.contextPath}#{verDatoClinicoController.datoClinicoCliente.url}?pfdrid_c=true" height="900px" width="100%" internalinstanceid="3">
+                                                    <a href="#{request.contextPath}/#{verDatoClinicoController.datoClinicoCliente.url}?pfdrid_c=true">click</a> to download pdf instead.
+                                                </object>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-                                        
-                                    </b:dataTable>
+
+
+
 
                                 </b:form>
                             </div>

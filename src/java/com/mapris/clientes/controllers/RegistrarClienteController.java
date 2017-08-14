@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mapris.clientes.controllers;
 
 import com.mapris.modelo.dao.EstadoFacadeLocal;
@@ -89,10 +84,17 @@ public class RegistrarClienteController {
                 nuevoUsuario.setRoles(new ArrayList<Rol>());
                 nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
                 nuevoUsuario.setIdEstados(estadoFacadeLocal.find(2));
-                nuevoCliente.setUsuario(nuevoUsuario);
+                usuarioFacadeLocal.create(nuevoUsuario);
                 
                 
-               
+                Usuario user = usuarioFacadeLocal.buscarIdUsuario(nuevoUsuario.getCedula());
+                
+                nuevoCliente.setIdUsuario(user.getIdUsuario());
+                nuevoCliente.setEstado("Habilitado");
+                nuevoCliente.setIdEmpresas(nuevoCliente.getIdEmpresas());
+                
+                
+
                 cfl.create(nuevoCliente);
                 
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El cliente se ha creado con exito");

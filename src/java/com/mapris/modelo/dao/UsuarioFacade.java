@@ -63,6 +63,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 //                        .registerStoredProcedureParameter(0, Long.class, ParameterMode.IN)
 //                        .registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
 //
+
 //                storedProcedure.setParameter(0, documento)
 //                        .setParameter(1, clave);
 //                        
@@ -106,5 +107,23 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         return null;
     }
 }
+
+    @Override
+    public Usuario buscarIdUsuario(String cedula) {
+        
+        try {
+            getEntityManager().getEntityManagerFactory().getCache().evictAll();
+            TypedQuery<Usuario> q = getEntityManager().createNamedQuery("Usuario.findByCedula", Usuario.class);
+            q.setParameter("cedula", cedula);
+            
+            return q.getSingleResult();
+        } catch (Exception e) {
+            System.out.println("El no se encontro en la bd");
+            e.printStackTrace();
+            return null;
+        }
+    }
+        
+    
 
 }

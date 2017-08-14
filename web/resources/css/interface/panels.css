@@ -48,7 +48,7 @@
     color: rgb(100, 100, 100);
 }
 .jumbotron{
-    box-shadow:1px 1px 4px rgba(0,0,0,0.4);
+    box-shadow:2px 2px 9px rgba(0,0,0,0.4);
     background-color: #9c27b0;
 
 }
