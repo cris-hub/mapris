@@ -17,7 +17,14 @@ public class QuartzTest implements Job {
 
     @Override
     public void execute(JobExecutionContext ctx) throws JobExecutionException {
-        System.out.println("Hola mundo Quartz");
+        try {
+            
+        System.out.println("Se pudo enviar los email");
+        } catch (Exception e) {
+            e.printStackTrace();
+        System.out.println("Nos se pudo enviar el email");
+        }
+        
     }
 
 }
