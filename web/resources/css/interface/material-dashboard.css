@@ -414,6 +414,7 @@ h2.title {
     position: relative;
     top: 0;
     height: 100vh;
+    overflow-y: hidden;
 }
 
 .sidebar,
@@ -1454,37 +1455,37 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
+    width: 9px;
+    height: 9px;
 }
 ::-webkit-scrollbar-button {
-  width: 11px;
-  height: 11px;
+    width: 11px;
+    height: 11px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #e1e1e1;
-  border: 13px solid #9931b1;
-  border-radius: 50px;
+    background: #e1e1e1;
+    border: 13px solid #9931b1;
+    border-radius: 50px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffffff;
+    background: #ffffff;
 }
 ::-webkit-scrollbar-thumb:active {
-  background: #9931b1;
+    background: #9931b1;
 }
 ::-webkit-scrollbar-track {
-  background: #d7dbd7;
-  border: 24px none #9931b1;
-  border-radius: 50px;
+    background: #d7dbd7;
+    border: 24px none #9931b1;
+    border-radius: 50px;
 }
 ::-webkit-scrollbar-track:hover {
-  background: #dbdbdb;
+    background: #dbdbdb;
 }
 ::-webkit-scrollbar-track:active {
-  background: #dddbd9;
+    background: #dddbd9;
 }
 ::-webkit-scrollbar-corner {
-  background: transparent;
+    background: transparent;
 }
 
 

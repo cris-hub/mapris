@@ -1,88 +1,88 @@
 /* Page Loader
-    -----------------------------------------------*/
+ -----------------------------------------------*/
 
 if ((".loader").length) {
-      // show Preloader until the website ist loaded
-      $(window).on('load', function () {
+    // show Preloader until the website ist loaded
+    $(window).on('load', function() {
         $(".loader").fadeOut("slow");
-      });
-    }
+    });
+}
 
 
 /* Nivo lightbox
-    -----------------------------------------------*/
-  $('#hotels .col-md-4 a').nivoLightbox({
-        effect: 'fadeScale',
-    });
+ -----------------------------------------------*/
+$('#hotels .col-md-4 a').nivoLightbox({
+    effect: 'fadeScale',
+});
 
 
 /* Istope Portfolio
------------------------------------------------*/
-jQuery(document).ready(function($){
+ -----------------------------------------------*/
+jQuery(document).ready(function($) {
 
-  if ( $('.iso-box-wrapper').length > 0 ) { 
+    if ($('.iso-box-wrapper').length > 0) {
 
-      var $container  = $('.iso-box-wrapper'), 
-        $imgs     = $('.iso-box img');
+        var $container = $('.iso-box-wrapper'),
+                $imgs = $('.iso-box img');
 
-      $container.imagesLoaded(function () {
+        $container.imagesLoaded(function() {
 
-        $container.isotope({
-        layoutMode: 'fitRows',
-        itemSelector: '.iso-box'
+            $container.isotope({
+                layoutMode: 'fitRows',
+                itemSelector: '.iso-box'
+            });
+
+            $imgs.load(function() {
+                $container.isotope('reLayout');
+            })
+
         });
 
-        $imgs.load(function(){
-          $container.isotope('reLayout');
-        })
+        //filter items on button click
 
-      });
+        $('.filter-wrapper li a').click(function() {
 
-      //filter items on button click
+            var $this = $(this), filterValue = $this.attr('data-filter');
 
-      $('.filter-wrapper li a').click(function(){
+            $container.isotope({
+                filter: filterValue,
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false,
+                }
+            });
 
-          var $this = $(this), filterValue = $this.attr('data-filter');
+            // don't proceed if already selected
 
-      $container.isotope({ 
-        filter: filterValue,
-        animationOptions: { 
-            duration: 750, 
-            easing: 'linear', 
-            queue: false, 
-        }                
-      });             
+            if ($this.hasClass('selected')) {
+                return false;
+            }
 
-      // don't proceed if already selected 
+            var filter_wrapper = $this.closest('.filter-wrapper');
+            filter_wrapper.find('.selected').removeClass('selected');
+            $this.addClass('selected');
 
-      if ( $this.hasClass('selected') ) { 
-        return false; 
-      }
+            return false;
+        });
 
-      var filter_wrapper = $this.closest('.filter-wrapper');
-      filter_wrapper.find('.selected').removeClass('selected');
-      $this.addClass('selected');
-
-        return false;
-      }); 
-
-  }
+    }
 
 });
 
 
 $(document).ready(function() {
 
-  /* Hide mobile menu after clicking on a link
-    -----------------------------------------------*/
-    $('.navbar-collapse a').click(function(){
+    /* Hide mobile menu after clicking on a link
+     -----------------------------------------------*/
+    $('.navbar-collapse a').click(function() {
         $(".navbar-collapse").collapse('hide');
     });
 
 
-  /*  smoothscroll
-  ----------------------------------------------*/
-   $(function() {
+    /*  smoothscroll
+     ----------------------------------------------*/
+    $(function() {
         $('#banner a, .navbar-default a').bind('click', function(event) {
             var $anchor = $(this);
             $('html, body').stop().animate({
@@ -91,58 +91,58 @@ $(document).ready(function() {
             event.preventDefault();
         });
     });
-  
+
 
     /* Magnific Popup
------------------------------------------------*/
-$(document).ready(function() {
-    $('.popup-youtube').magnificPopup({
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 160,
-        preloader: false,
-         fixedContentPos: false,
+     -----------------------------------------------*/
+    $(document).ready(function() {
+        $('.popup-youtube').magnificPopup({
+            type: 'iframe',
+            mainClass: 'mfp-fade',
+            removalDelay: 160,
+            preloader: false,
+            fixedContentPos: false,
+        });
     });
+
+
+    /* home slideshow section
+     -----------------------------------------------*/
+    $(function() {
+        jQuery(document).ready(function() {
+            $('#banner').backstretch([
+
+                "resources/img/esferodinamia.jpg",
+                "resources/img/io.png",
+                "resources/img/imghome/programas/spa-reco.jpg"
+            ], {duration: 3000, fade: 900});
+        });
+    });
+
+
+
+
+    /* Parallax section
+     -----------------------------------------------*/
+    function initParallax() {
+        $('#about').parallax("100%", 0.1);
+        $('#todo').parallax("100%", 0.3);
+        $('#about').parallax("100%", 0.1);
+        $('#video-sec').parallax("100%", 0.2);
+        $('#location').parallax("100%", 0.3);
+        $('#team').parallax("100%", 0.3);
+        $('#hotels').parallax("100%", 0.1);
+        $('#contact').parallax("100%", 0.2);
+    }
+    initParallax();
+
+
+
+
+
+    /* wow
+     -------------------------------*/
+    new WOW({mobile: false}).init();
+
 });
-    
-
-  /* home slideshow section
-  -----------------------------------------------*/
-  $(function(){
-    jQuery(document).ready(function() {
-    $('#banner').backstretch([
-        
-       "resources/img/relaxxx.jpg", 
-       "resources/img/io.png",
-       "resources/img/yoga.jpg"
-        ],  {duration: 3000, fade: 900});
-    });
-  });
-
-
-   
-
-  /* Parallax section
-    -----------------------------------------------*/
-  function initParallax() {
-    $('#about').parallax("100%", 0.1);
-    $('#todo').parallax("100%", 0.3);
-    $('#about').parallax("100%", 0.1);
-    $('#video-sec').parallax("100%", 0.2);
-    $('#location').parallax("100%", 0.3);
-    $('#team').parallax("100%", 0.3);
-    $('#hotels').parallax("100%", 0.1);
-    $('#contact').parallax("100%", 0.2);
-  }
-  initParallax();
-
-
-  
-
-
-  /* wow
-  -------------------------------*/
-  new WOW({ mobile: false }).init();
-
-  });
 
