@@ -5,6 +5,8 @@
  */
 package com.mapris.quartz.schedule;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import org.quartz.CronScheduleBuilder;
@@ -40,7 +42,7 @@ public class QuartzServlet implements ServletContextListener {
                         // Create a Trigger that fires every 5 minutes.
                         Trigger trigger = newTrigger()
                         .withIdentity("TriggerName", "Group")
-                        .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?"))
+                        .withSchedule(CronScheduleBuilder.cronSchedule("0,30 * * * * ?"))
                         .build();
 
                         // Setup the Job and Trigger with Scheduler & schedule jobs
@@ -48,8 +50,13 @@ public class QuartzServlet implements ServletContextListener {
                         scheduler.start();
                         scheduler.scheduleJob(job, trigger);
                 }
-                catch (SchedulerException e) {
+                catch (Exception e) {
                         e.printStackTrace();
+                    try {
+                        scheduler.shutdown();
+                    } catch (SchedulerException ex) {
+                        Logger.getLogger(QuartzServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
         }
 

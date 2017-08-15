@@ -71,7 +71,7 @@ public class EnviarMailContrasena {
             
             propierties.setProperty("mail.smtp.host", HOST_EMAIL_GMAIL);
             propierties.setProperty("mail.smtp.starttls.enable", "true");
-            propierties.setProperty("mail.smtp.port", "25"); //587-25
+            propierties.setProperty("mail.smtp.port", "587"); //587-25
             propierties.setProperty("mail.smtp.user", getEmailRemitente());
             propierties.setProperty("mail.smtp.auth", "true");
             
@@ -92,7 +92,7 @@ public class EnviarMailContrasena {
             
             propierties.setProperty("mail.smtp.host", HOST_EMAIL_GMAIL);
             propierties.setProperty("mail.smtp.starttls.enable", "true");
-            propierties.setProperty("mail.smtp.port", "25"); //587-25
+            propierties.setProperty("mail.smtp.port", "587"); //587-25
             propierties.setProperty("mail.smtp.user", getEmailRemitente());
             propierties.setProperty("mail.smtp.auth", "true");
             
