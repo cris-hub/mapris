@@ -36,4 +36,6 @@ public interface UsuarioFacadeLocal {
     Usuario login(Long documento,String clave);
     
     Usuario buscarIdUsuario(String cedula);
+    
+//    List<Usuario> usuariosRegistro();
 }

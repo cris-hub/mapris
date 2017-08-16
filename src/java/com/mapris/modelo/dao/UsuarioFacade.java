@@ -123,7 +123,23 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
             return null;
         }
     }
-        
+    
+//    
+//    @Override
+//    public List<Usuario> usuariosRegistro() {
+//        
+//        try {
+//            getEntityManager().getEntityManagerFactory().getCache().evictAll();
+//            TypedQuery<Usuario> q = getEntityManager().createNativeQuery("SELECT count(id_usuario), MONTH(fecha_registro) FROM usuarios GROUP BY MONTH(fecha_registro);")
+//            
+//            return q.getResultList();
+//        } catch (Exception e) {
+//            System.out.println("El no se encontro en la bd");
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+//        
     
 
 }

@@ -6,7 +6,12 @@
 package com.mapris.util;
 
 
+import com.mapris.modelo.dao.UsuarioFacadeLocal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import javax.ejb.EJB;
+import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -20,6 +25,7 @@ import javax.mail.internet.MimeMessage;
  */
 public class EnviarMail {
     
+   
    public final static String HOST_EMAIL_GMAIL = "smtp.gmail.com";
    private String nombresyAp;
    private String telefono;
@@ -32,6 +38,7 @@ public class EnviarMail {
    private String  emailRemitente;
    private String  passRemitente;
    private String emailDestinatario;
+   
     
     private Session session;
     private MimeMessage mimeMessage;
@@ -49,6 +56,11 @@ public class EnviarMail {
         this.emailDestinatario = emailDestinatario;
        
     }
+
+   
+    
+   
+    
 
     
     
@@ -163,6 +175,7 @@ public class EnviarMail {
     
         try {
              Properties propierties = new Properties();
+                          
             
             propierties.setProperty("mail.smtp.host", HOST_EMAIL_GMAIL);
             propierties.setProperty("mail.smtp.starttls.enable", "true");
@@ -174,6 +187,7 @@ public class EnviarMail {
             mimeMessage = new MimeMessage(session);
             mimeMessage.setFrom(new InternetAddress(getEmailRemitente()));
             mimeMessage.setRecipients(Message.RecipientType.TO, getEmailDestinatario());
+            
         
         } catch (MessagingException messagingException) {
             

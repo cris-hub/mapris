@@ -8,7 +8,7 @@ import com.mapris.modelo.dao.InscripcionFacadeLocal;
 import com.mapris.modelo.entitie.Aplazamiento;
 import com.mapris.modelo.entitie.Inscripcion;
 import javax.inject.Named;
-import com.mapris.util.Fecha;
+
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
 import java.util.Date;
