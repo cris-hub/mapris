@@ -46,7 +46,7 @@
 
                                         <h:panelGrid columnClasses="value">
 
-                                            <p:schedule id="schedule" showWeekends="true" value="#{scheduleView.eventModel}" widgetVar="myschedule" timeZone="GMT+2">
+                                            <p:schedule id="schedule" view="agendaWeek"   value="#{scheduleView.eventModel}" timeZone="GMT+2">
 
                                                 <p:ajax event="dateSelect" listener="#{scheduleView.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
                                                 <p:ajax event="eventSelect" listener="#{scheduleView.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
