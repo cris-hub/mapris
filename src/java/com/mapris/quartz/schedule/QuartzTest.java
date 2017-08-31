@@ -8,14 +8,13 @@ package com.mapris.quartz.schedule;
 import com.mapris.modelo.dao.UsuarioFacadeLocal;
 import com.mapris.modelo.entitie.Usuario;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
+
 import javax.ejb.Stateless;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import javax.inject.Inject;
+
+
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -30,7 +29,7 @@ public class QuartzTest implements Job {
     
     private EnviarMensajesQuartzController email;
     
-    @EJB
+    @Inject
     private UsuarioFacadeLocal ufl;
    
     private List<Usuario> usuarios;
@@ -49,8 +48,9 @@ public class QuartzTest implements Job {
     public void execute(JobExecutionContext ctx) throws JobExecutionException {
         try {
           
-        
-        email.enviarMassive(usuarios);
+        String asunto = "Tenemos una promoción espectacular para ti";
+        String contenido  = "<img src=\"/resources/img/pagesError/errorpage.png\">";
+        email.enviarMassive(usuarios,asunto,contenido);
         System.out.println("Se pudo enviar los email");
             
         } catch (Exception e) {

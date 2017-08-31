@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,8 +42,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "usuarios")
-@Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 @XmlRootElement
+
 @NamedStoredProcedureQuery(
 	name = "pr_validar_usuario", 
 	procedureName = "pr_validar_usuario", 

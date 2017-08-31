@@ -43,6 +43,13 @@ public class SessionRule {
                             "Usuario sin rol asignado",
                             "Debe esperar 24 horas para hacer efectivo el acceso al sistema de información");
                     
+                }else if (u.getIdEstados().getIdEstados()==4) {
+                    
+                    u = null;
+                    MessageUtil.enviarMensajeErrorGlobal(
+                            "El usuario aplazó",
+                            "El usuario realizo una aplazamiento de su inscripción por ello no puede ingresar al sistema");
+                    
                 }
             } else {
                 MessageUtil.enviarMensajeErrorGlobal(

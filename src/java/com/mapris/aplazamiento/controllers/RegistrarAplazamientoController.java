@@ -3,10 +3,13 @@ package com.mapris.aplazamiento.controllers;
 import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.AplazamientoFacadeLocal;
 import com.mapris.modelo.dao.ClienteFacadeLocal;
+import com.mapris.modelo.dao.EstadoFacadeLocal;
 
 import com.mapris.modelo.dao.InscripcionFacadeLocal;
+import com.mapris.modelo.dao.UsuarioFacadeLocal;
 import com.mapris.modelo.entitie.Aplazamiento;
 import com.mapris.modelo.entitie.Inscripcion;
+import com.mapris.modelo.entitie.Usuario;
 import javax.inject.Named;
 
 import com.mapris.util.MessageUtil;
@@ -33,11 +36,17 @@ public class RegistrarAplazamientoController implements Serializable {
     private InscripcionFacadeLocal inscripcionFacadeLocal;
     @EJB
     private AplazamientoFacadeLocal aplazamientoFacadeLocal;
+    @EJB
+    private EstadoFacadeLocal estadoFacadeLocal;
+    @EJB
+    private UsuarioFacadeLocal ufl;
 
     private Inscripcion inscripcionSeleccionado;
    
 
     private Aplazamiento nuevoAplazamiento;
+    
+    private Usuario usuarioAplazado;
 
     public RegistrarAplazamientoController() {
     }
@@ -45,6 +54,10 @@ public class RegistrarAplazamientoController implements Serializable {
     @PostConstruct
     public void init() {
         nuevoAplazamiento = new Aplazamiento();
+        inscripcionSeleccionado = new Inscripcion();
+        usuarioAplazado  = new Usuario();
+        
+                
 
     }
 
@@ -70,7 +83,7 @@ public class RegistrarAplazamientoController implements Serializable {
     
 
     public Boolean existeInscripcionSeleccionado() {
-        if (sessionController.getUsuario().getCliente().getInscripciones() != null ) {
+        if (getInscripcionesCliente() != null ) {
             return true;
         } else {
             return false;
@@ -90,10 +103,15 @@ public class RegistrarAplazamientoController implements Serializable {
             try {
                 
                 inscripcionSeleccionado.setEstado("Aplazado");
+                usuarioAplazado = sessionController.getUsuario();
+                usuarioAplazado.setIdEstados(estadoFacadeLocal.find(4));
                 nuevoAplazamiento.setidUsuario(sessionController.getUsuario().getIdUsuario());
+                ufl.edit(usuarioAplazado);
                 aplazamientoFacadeLocal.create(nuevoAplazamiento);
                 inscripcionFacadeLocal.edit(inscripcionSeleccionado);
                 init();
+               sessionController.setDocumento(null);
+               sessionController.setClave(null);
                 MessageUtil.enviarMensajeInformacion("form-registrarAplazamiento", "Registro satisfactorio", "");
             } catch (Exception e) {
                 e.printStackTrace();
