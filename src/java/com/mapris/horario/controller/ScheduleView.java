@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mapris.horario.controller;
 
 import com.mapris.modelo.dao.CursoFacadeLocal;
@@ -16,7 +11,9 @@ import com.mapris.modelo.entitie.Servicio;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TimeZone;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -54,18 +51,37 @@ public class ScheduleView implements Serializable {
     private ScheduleEvent event = new DefaultScheduleEvent();
     private List<Curso> cursos;
     private List<Horario> horarios;
-    private List<DetalleHorario> dhorarios;
+
     public void recargarCursos() {
-        horarios = hfl.findAll();
-        
+        cursos = cfl.findAll();
     }
 
     @PostConstruct
     public void init() {
         eventModel = new DefaultScheduleModel();
-        Calendar date = Calendar.getInstance();
         recargarCursos();
-     
+        for (Curso curso : cursos) {
+            horarios = curso.getHorarios();
+            Servicio servicio = curso.getIdServicios();
+            for (Horario horario : horarios) {
+                Calendar gc = new GregorianCalendar();
+                gc.setTime(horario.getFechaInicio());
+                Date fechaFin = getDateMediaNoche(horario.getFechaFin());
+                for (DetalleHorario dh : horario.getDetallesHorarios()) {
+                    Date fechaInicio = getNextDay(horario.getFechaInicio(), dh.getHoraInicio(), dh.getDiaSemana());
+                    while (fechaInicio.getTime() <= fechaFin.getTime()) {
+                        Date d = fechaInicio;
+                        System.out.println(d + " - " + horario.getFechaFin());
+                        eventModel.addEvent(new DefaultScheduleEvent(
+                                servicio.getNombre(), d, new Date(d.getTime() + (dh.getDuracion() * 3600000))));
+                        fechaInicio = getNextDay(d);
+                        fechaInicio = getNextDay(fechaInicio, dh.getHoraInicio(), dh.getDiaSemana());
+                    }
+
+                }
+            }
+
+        }
 
         lazyEventModel = new LazyScheduleModel() {
 
@@ -78,6 +94,12 @@ public class ScheduleView implements Serializable {
                 addEvent(new DefaultScheduleEvent("Lazy Event 2", random, random));
             }
         };
+    }
+
+    private void nextLunes(Calendar c) {
+        while (c.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
+            c.add(Calendar.DATE, 1);
+        }
     }
 
     public Date getRandomDate(Date base) {
@@ -220,5 +242,35 @@ public class ScheduleView implements Serializable {
 
     private void addMessage(FacesMessage message) {
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public Date getDateHora(Calendar c, Date hora) {
+        //c.set(Calendar.DATE, t.get(Calendar.DATE) );
+        c.set(Calendar.HOUR, hora.getHours());
+        c.set(Calendar.MINUTE, hora.getMinutes());
+
+        return c.getTime();
+    }
+    
+    public Date getDateMediaNoche(Date fecha) {
+        Calendar c = new GregorianCalendar(fecha.getYear()+1900, fecha.getMonth(), fecha.getDate());
+        c.set(Calendar.HOUR, 23);
+        c.set(Calendar.MINUTE, 59);
+        c.set(Calendar.SECOND, 59);
+        return c.getTime();
+    }
+    
+    public Date getNextDay(Date fecha) {
+        Calendar c = new GregorianCalendar(fecha.getYear()+1900, fecha.getMonth(), fecha.getDate());
+            c.set(Calendar.DATE, c.get(Calendar.DATE) + 1);
+        return c.getTime();
+    }
+
+    public Date getNextDay(Date fecha, Date hora, Integer diaSemana) {
+        Calendar c = new GregorianCalendar(fecha.getYear()+1900, fecha.getMonth(), fecha.getDate());
+        while (c.get(Calendar.DAY_OF_WEEK) != diaSemana) {
+            c.set(Calendar.DATE, c.get(Calendar.DATE) + 1);
+        }
+        return getDateHora(c, hora);
     }
 }
