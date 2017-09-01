@@ -10,7 +10,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
-<ui:define name="titulo">Administrador-Nuevo Calendario</ui:define>
+    <ui:define name="titulo">Administrador-Nuevo Calendario</ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
@@ -37,9 +37,9 @@
                             </div>
                             <div class="card-content">
                                 <b:messages class="animated flipInX" globalOnly="true" showSummary="true" show-detail="true"/>
-                                
+
                                 <b:form id="form-registro" prependId="false">
-                                   <div class="row">
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Hora de inicio</label>
@@ -60,14 +60,14 @@
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Día de la semana</label>
                                                 <b:selectOneMenu value="#{registroDetalleHorarioController.nuevoDetalleHorario.diaSemana}">
-                                                    <f:selectItem value="0" itemLabel="Lunes"/> 
-                                                    <f:selectItem value="1" itemLabel="Martes"/> 
-                                                    <f:selectItem value="2" itemLabel="Miercoles"/> 
-                                                    <f:selectItem value="3" itemLabel="Jueves"/> 
-                                                    <f:selectItem value="4" itemLabel="Viernes"/> 
-                                                    <f:selectItem value="5" itemLabel="Sabado"/> 
-                                                    <f:selectItem value="6" itemLabel="Domingo"/> 
-                                                                                                      
+                                                    <f:selectItem itemValue="0" itemLabel="Lunes"/> 
+                                                    <f:selectItem itemValue="1" itemLabel="Martes"/> 
+                                                    <f:selectItem itemValue="2" itemLabel="Miercoles"/> 
+                                                    <f:selectItem itemValue="3" itemLabel="Jueves"/> 
+                                                    <f:selectItem itemValue="4" itemLabel="Viernes"/> 
+                                                    <f:selectItem itemValue="5" itemLabel="Sabado"/> 
+                                                    <f:selectItem itemValue="6" itemLabel="Domingo"/> 
+
                                                 </b:selectOneMenu>
                                             </div>
                                         </div>
@@ -79,13 +79,13 @@
                                                 <label class="control-label">Fechas del horario</label>
                                                 <b:selectOneMenu value="#{registroDetalleHorarioController.nuevoDetalleHorario.idHorarios}">
                                                     <f:selectItems value="#{listarHorarioController.horarios}" var="h" itemLabel="Fecha inicio: #{h.fechaInicio} Fecha fin: #{h.fechaFin}"/> 
-                                                    
-                                                                                                      
+
+
                                                 </b:selectOneMenu>
                                             </div>
                                         </div>
                                     </div>
-                                
+
                                     <h:link styleClass="btn btn-primary" outcome="/app/administrador/calendario/calendario.xhtml" value="#{mensajeApp.back}"/>
                                     <b:commandButton value="#{mensajeApp.save}" icon="floppy-disk" actionListener="#{registroDetalleHorarioController.registrar()}" class="btn btn-primary pull-right"/>
 
