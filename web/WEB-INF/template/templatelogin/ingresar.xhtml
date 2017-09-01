@@ -41,7 +41,7 @@
 
         <div>
             <b:messages  showSummary="true" showDetail="true"  globalOnly="true"/>
-            
+
         </div>
 
         <h:form class="login-form"  id="login" prependId="false">
@@ -103,56 +103,59 @@
                 <div class="forgot" style="margin: 30px 280px 0px 0; font-size: 20px;">
                     <a href="#usuario" type="button" ><span id="boton2">#{msjLogin.Atras}</span></a>
                 </div>
-                <b:messages showSummary="true" showDetail="true" globalOnly="true"/>
+
 
             </h:form>
         </div>
         <!-- Fin Div Usuario -->
         <!--- Registrar Usuario-->
-            <b:form prependId="false" id="form-4">
-        <div id="registro" class="form-action hide">
+        <b:form prependId="false" id="form-4">
+            <div id="registro" class="form-action hide">
 
-            <div class="form-title">
-                <span class="form-title">#{msjRegister.titleRegistrate}</span><br/><br/>
-                <span class="form-subtitle">#{msjRegister.valueRegisterWelcome}</span>
-            </div>
+                <div class="form-title">
+                    <span class="form-title">#{msjRegister.titleRegistrate}</span><br/><br/>
+                    <span class="form-subtitle">#{msjRegister.valueRegisterWelcome}</span>
+                </div>
 
-                
+
                 <div class=" col-md-12 col-lg-12" style="margin: none;">
-                    <div class="form-group " style="margin: none;">
-                        <b:label v:for="r" text="Número de documento"></b:label>
-                        <b:inputText  v:name="r" id="r" required="true" maxlength="15" tabindex="1" value="#{registroController.nuevoUsuario.cedula}"/>
+                        
+
+                    <div class="form-group">
+                        <h:inputText id="r" v:name="r" required="true" value="#{controllerEmailContrasena.email}" maxlength="15" tabindex="1"></h:inputText> 
+                        <label for="cedula">Numero de documento</label>
                         <div class="bar"></div>
                     </div>
+
                     <div class="form-group " style="margin: none;">
-                        <b:label v:for="e" text="#{msjRegister.labelNombre}"></b:label>
-                        <b:inputText  id="e" v:name="e" required="true" value="#{registroController.nuevoUsuario.nombres}" tabindex="2"></b:inputText> 
+                        <h:inputText  id="e" v:name="e" required="true" value="#{registroController.nuevoUsuario.nombres}" tabindex="2"></h:inputText> 
+                        <label for="e">#{msjRegister.labelNombre}</label>
                         <div class="bar"></div>
                     </div>
 
                     <div class="form-group ">
-                        <b:label v:for="po" text="#{msjRegister.labelApellido}"></b:label>
-                        <b:inputText v:type="text"  v:name="po" id="po" required="true" maxlength="15" tabindex="1" value="#{registroController.nuevoUsuario.apellidos}"/>
+                        <h:inputText v:type="text"  v:name="po" id="po" required="true" maxlength="15" tabindex="3" value="#{registroController.nuevoUsuario.apellidos}"/>
+                        <label v:for="po" >#{msjRegister.labelApellido}</label>
                         <div class="bar"></div>
                     </div>
 
-                    <div class="form-group datepicker ">
-                        <b:label v:for="y" text="#{msjRegister.labelFechaNacimiento}"></b:label>
-                        <b:datepicker  v:name="y" id="y" required="true"  changeYear="true" changeMonth="true" tabindex="1" value="#{registroController.nuevoUsuario.fechaNaci}"/>
+                    <div class="form-group">
+                        <b:datepicker  v:name="y" id="y" required="true"  changeYear="true" changeMonth="true" tabindex="4" value="#{registroController.nuevoUsuario.fechaNaci}"/>
+                        <label v:for="y">#{msjRegister.labelFechaNacimiento}</label>
                         <div class="bar"></div>
                     </div>
 
-                   <div class="form-group ">
-                       <b:label v:for="w" text="#{msjRegister.labelContraseña}"></b:label>
-                       <b:inputSecret  id="w" v:name="w" required="true" value="#{registroController.nuevoUsuario.clave}" tabindex="2"></b:inputSecret> 
+                    <div class="form-group ">
+                        <h:inputSecret  id="w" v:name="w" required="true" value="#{registroController.nuevoUsuario.clave}" tabindex="5"></h:inputSecret> 
+                        <label v:for="w">#{msjRegister.labelContraseña}</label>
                         <div class="bar"></div>
                     </div>
                 </div>
 
 
                 <div class="button-container">
-                    
-                    <b:commandButton type="submit"  v:target="_parent" action="#{registroController.registrar()}" value="Registrar"><span>#{msjRegister.btnRegistrar}</span></b:commandButton>
+
+                    <b:commandButton type="submit"  v:target="_parent" action="#{registroController.registrar()}" ><span>#{msjRegister.btnRegistrar}</span></b:commandButton>
 
                 </div>
                 <div class="forgot" style="margin: 30px 280px 0px 0; font-size: 20px;">
@@ -160,7 +163,7 @@
                 </div>
 
 
-        </div>
+            </div>
         </b:form>
 
 
@@ -170,39 +173,39 @@
 
         <script>
             $(document).ready(function () {
-                $('#login').formValidation({
-                    framework: 'bootstrap',
-                    icon: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
-                    fields: {
-                        username: {
-                            validators: {
-                                notEmpty: {
-                                    message: '#{msjValidacionLogin.nombreUsuarioRequerido}'
-                                },
-                                stringLength: {
-                                    min: '#{msjValidacionLogin.valorMinimo}',
-                                    max: '#{msjValidacionLogin.valorMax}',
-                                    message: '#{msjValidacionLogin.minYMaxCaracteres}'
-                                },
-                                regexp: {
-                                    regexp: /^[a-zA-Z0-9_]+$/,
-                                    message: '#{msjValidacionLogin.soloLetrarNumeros}'
-                                }
-                            }
-                        },
-                        password: {
-                            validators: {
-                                notEmpty: {
-                                    message: '#{msjValidacionLogin.contraseñaRequerida}'
-                                }
-                            }
-                        }
-                    }
-                });
+            $('#login').formValidation({
+            framework: 'bootstrap',
+            icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            username: {
+            validators: {
+            notEmpty: {
+            message: '#{msjValidacionLogin.nombreUsuarioRequerido}'
+            },
+            stringLength: {
+            min: '#{msjValidacionLogin.valorMinimo}',
+            max: '#{msjValidacionLogin.valorMax}',
+            message: '#{msjValidacionLogin.minYMaxCaracteres}'
+            },
+            regexp: {
+            regexp: /^[a-zA-Z0-9_]+$/,
+            message: '#{msjValidacionLogin.soloLetrarNumeros}'
+            }
+            }
+            },
+            password: {
+            validators: {
+            notEmpty: {
+            message: '#{msjValidacionLogin.contraseñaRequerida}'
+            }
+            }
+            }
+            }
+            });
             });
         </script>
 

@@ -10,6 +10,7 @@ import com.mapris.modelo.dao.DetalleHorarioFacadeLocal;
 import com.mapris.modelo.dao.HorarioFacadeLocal;
 import com.mapris.modelo.dao.ServicioFacadeLocal;
 import com.mapris.modelo.entitie.Curso;
+import com.mapris.modelo.entitie.DetalleHorario;
 import com.mapris.modelo.entitie.Horario;
 import com.mapris.modelo.entitie.Servicio;
 import java.io.Serializable;
@@ -53,23 +54,18 @@ public class ScheduleView implements Serializable {
     private ScheduleEvent event = new DefaultScheduleEvent();
     private List<Curso> cursos;
     private List<Horario> horarios;
+    private List<DetalleHorario> dhorarios;
     public void recargarCursos() {
-        cursos = cfl.findAll();
+        horarios = hfl.findAll();
+        
     }
 
     @PostConstruct
     public void init() {
         eventModel = new DefaultScheduleModel();
+        Calendar date = Calendar.getInstance();
         recargarCursos();
-        for (Curso curso : cursos) {
-            horarios = curso.getHorarios();
-            Servicio servicio= curso.getIdServicios();
-            for (Horario horario : horarios) {
-                  eventModel.addEvent(new DefaultScheduleEvent(
-               servicio.getNombre(),horario.getFechaInicio(), horario.getFechaFin()));
-            }
      
-        }
 
         lazyEventModel = new LazyScheduleModel() {
 
