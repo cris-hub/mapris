@@ -53,6 +53,10 @@ public class SessionController implements Serializable {
         
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
+        if (ec == null) {
+            
+            iniciarSesion();
+        }
         Locale idiomaUsuario = ec.getRequestLocale();
         boolean support = false;
         for (Locale l : getSupportLanguages()) {
@@ -119,6 +123,7 @@ public class SessionController implements Serializable {
                 urlDestino = "/app/index.xhtml?faces-redirect=true";
             } else{
                 usuario = null;
+                urlDestino = "/login.xhtml?faces-redirect=true";
             }
         }
         return urlDestino;

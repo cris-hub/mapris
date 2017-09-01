@@ -9,6 +9,7 @@ import com.mapris.modelo.entitie.Cliente;
 import com.mapris.modelo.entitie.Rol;
 import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
+import com.mapris.util.NotifyView;
 import java.util.ArrayList;
 
 import java.util.Calendar;
@@ -16,6 +17,7 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -44,6 +46,9 @@ public class RegistrarClienteController {
     private Cliente nuevoCliente;
     
     private Usuario nuevoUsuario;
+    
+    @EJB
+    private NotifyView notify; 
     
     public RegistrarClienteController() {
     }
@@ -93,10 +98,12 @@ public class RegistrarClienteController {
                 nuevoCliente.setEstado("Habilitado");
                 nuevoCliente.setIdEmpresas(nuevoCliente.getIdEmpresas());
                 
-                
+                notify.setDetail("sajflkasjlfaks");
+                notify.setSummary("asjdlkasjkda");
+                notify.send();
 
-                cfl.create(nuevoCliente);
                 
+                cfl.create(nuevoCliente);
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El cliente se ha creado con exito");
                 init();
                 
