@@ -20,15 +20,7 @@
             </div>
             <div class="collapse navbar-collapse">
 
-                <p:growl id="call" widgetVar="vmsj"  showDetail="true" globalOnly="false" />
-                <p:socket onMessage="handleMessage" channel="/notify">
-
-
-                </p:socket>
-
                 <h:form>
-
-
                     <ul class="nav navbar-nav navbar-right">
                         <!--                    <li>
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -43,29 +35,11 @@
                                 <p class="hidden-lg hidden-md">notificacions</p>
                             </a>
                             <ul class="dropdown-menu">
-                              <p:growl widgetVar="growl" showDetail="true" />
-             
-<h:form>
-    <h:panelGrid columns="2">
-        <p:outputLabel for="summary" value="Summary: " /> 
-        <p:inputText id="summary" value="#{notifyView.summary}" required="true" />
- 
-        <p:outputLabel for="detail" value="Detail: " /> 
-        <p:inputText id="detail" value="#{notifyView.detail}" required="true" />
-    </h:panelGrid>
- 
-    <p:commandButton value="Send" actionListener="#{notifyView.send}" />
-</h:form>
- 
-<p:socket onMessage="handleMessage" channel="/notify" />
- 
-<script type="text/javascript">
-        function handleMessage(facesmessage) {
-            facesmessage.severity = 'info';
- 
-            PF('growl').show([facesmessage]);
-        }
-</script>
+                                <li><a href="#">El resitente Cristian Esta ha 5 dias de vencimiento del parquedero</a></li>
+                                <li><a href="#">El residente Kamus ha realizado el pago</a></li>
+                                <li><a href="#">Migel a realizado una solicitud de parquedero</a></li>
+                                <li><a href="#">El residente marlon no realizo el pago en la fecha adecuada</a></li>
+                                <li><a href="#">...más...</a></li>
                             </ul>
                         </li>
 
@@ -86,26 +60,26 @@
                         </li>
 
                         <li>
+                            
 
+                                <h:commandLink class="btn btn-primary" action="#{sessionController.cerrarSesion()}" >
+                                    <i class="material-icons">exit_to_app</i>
+                                    <p class="hidden-lg hidden-md">salir de la aplicacion</p>
+                                </h:commandLink>
 
-                            <h:commandLink class="btn btn-primary" action="#{sessionController.cerrarSesion()}" >
-                                <i class="material-icons">exit_to_app</i>
-                                <p class="hidden-lg hidden-md">salir de la aplicacion</p>
-                            </h:commandLink>
-
-
+                            
                         </li>
                     </ul>
 
-                    <!--                    <form class="navbar-form navbar-right" role="search">
-                                            <div class="form-group  is-empty">
-                                                <input type="text" class="form-control" placeholder="Buscar"/>
-                                                <span class="material-input"></span>
-                                            </div>
-                                            <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                                <i class="material-icons">search</i><div class="ripple-container"></div>
-                                            </button>
-                                        </form>-->
+<!--                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group  is-empty">
+                            <input type="text" class="form-control" placeholder="Buscar"/>
+                            <span class="material-input"></span>
+                        </div>
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                            <i class="material-icons">search</i><div class="ripple-container"></div>
+                        </button>
+                    </form>-->
 
                 </h:form>
             </div>

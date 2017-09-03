@@ -53,8 +53,14 @@ public class VerDatoClinicoController {
     
     public void ver()
     {
-        
+        if (sc.getUsuario().getCliente().getDatosClinicos().size()>0) {
+//        System.out.println(sc.getUsuario().getCliente().getDatosClinicos().get(0));
+                  
         this.datoClinicoCliente = sc.getUsuario().getCliente().getDatosClinicos().get(0);
+        }else{
+//        System.out.println(sc.getUsuario().getCliente().getDatosClinicos().get(0));
+            MessageUtil.enviarMensajeErrorGlobal("Sin Documentos Clinios", "El usuario no a subido ningun dato clinito");
+        }
     }
     public Datoclinico getDatoclinico() {
         return datoClinico;

@@ -45,7 +45,7 @@
                                 <b:messages globalOnly="true" class="animated flipInX"  showSummary="true" showDetail="true"/>
                                 <h:form id="form-data-table-usuarios" prependId="false">
 
-                                    <b:dataTable id="dtUsuario" value="#{listarInscripcionController.inscripciones}" var="in" >
+                                    <b:dataTable id="dtUsuario" value="#{sessionController.usuario.cliente.inscripciones}" var="in" >
 
 
                                         <b:dataTableColumn label="Id Inscripcion" value="#{in.idInscripcion}"/>

@@ -43,7 +43,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Hora de inicio</label>
-                                                <b:dateTimePicker showTime="true" showDate="false" value="#{registroDetalleHorarioController.nuevoDetalleHorario.horaInicio}" class="form-control"/>
+                                                <b:dateTimePicker showIcon="false" showTime="true" showDate="false" value="#{registroDetalleHorarioController.nuevoDetalleHorario.horaInicio}" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -60,13 +60,13 @@
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Día de la semana</label>
                                                 <b:selectOneMenu value="#{registroDetalleHorarioController.nuevoDetalleHorario.diaSemana}">
-                                                    <f:selectItem itemValue="0" itemLabel="Lunes"/> 
-                                                    <f:selectItem itemValue="1" itemLabel="Martes"/> 
-                                                    <f:selectItem itemValue="2" itemLabel="Miercoles"/> 
-                                                    <f:selectItem itemValue="3" itemLabel="Jueves"/> 
-                                                    <f:selectItem itemValue="4" itemLabel="Viernes"/> 
-                                                    <f:selectItem itemValue="5" itemLabel="Sabado"/> 
-                                                    <f:selectItem itemValue="6" itemLabel="Domingo"/> 
+                                                    <f:selectItem itemValue="0" itemLabel="Lunes"/>
+                                                    <f:selectItem itemValue="1" itemLabel="Martes"/>
+                                                    <f:selectItem itemValue="2" itemLabel="Miercoles"/>
+                                                    <f:selectItem itemValue="3" itemLabel="Jueves"/>
+                                                    <f:selectItem itemValue="4" itemLabel="Viernes"/>
+                                                    <f:selectItem itemValue="5" itemLabel="Sabado"/>
+                                                    <f:selectItem itemValue="6" itemLabel="Domingo"/>
 
                                                 </b:selectOneMenu>
                                             </div>
@@ -78,7 +78,9 @@
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fechas del horario</label>
                                                 <b:selectOneMenu value="#{registroDetalleHorarioController.nuevoDetalleHorario.idHorarios}">
-                                                    <f:selectItems value="#{listarHorarioController.horarios}" var="h" itemLabel="Fecha inicio: #{h.fechaInicio} Fecha fin: #{h.fechaFin}"/> 
+
+                                                    <f:selectItems value="#{listarHorarioController.horarios}" var="h" itemLabel="Fecha inicio: #{h.fechaInicio} Fecha fin: #{h.fechaFin}"/>
+
 
 
                                                 </b:selectOneMenu>

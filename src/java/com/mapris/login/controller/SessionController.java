@@ -53,10 +53,7 @@ public class SessionController implements Serializable {
         
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
-        if (ec == null) {
-            
-            iniciarSesion();
-        }
+     
         Locale idiomaUsuario = ec.getRequestLocale();
         boolean support = false;
         for (Locale l : getSupportLanguages()) {

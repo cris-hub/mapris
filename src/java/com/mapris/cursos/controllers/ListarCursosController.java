@@ -5,11 +5,11 @@
  */
 package com.mapris.cursos.controllers;
 
-
 import com.mapris.modelo.dao.CursoFacadeLocal;
 import com.mapris.modelo.entitie.Curso;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -22,30 +22,31 @@ import javax.inject.Named;
  */
 @Named(value = "listarCursosController")
 @ViewScoped
-public class ListarCursosController implements Serializable
-{
+public class ListarCursosController implements Serializable {
 
-      @EJB
-      private CursoFacadeLocal cfl;
-      
-      private List<Curso> cursos;
-      
-      private Curso   cursoSeleccionado;
-   
+    @EJB
+    private CursoFacadeLocal cfl;
+
+    private List<Curso> cursos;
+
+    private Curso cursoSeleccionado;
+
+    ArrayList<Curso> aux = new ArrayList();
 
     public ListarCursosController() {
     }
 
     @PostConstruct
     public void init() {
-       recargarCursos();
+        ArrayList<Curso> aux = new ArrayList();
+        recargarCursos();
     }
-    
-    private void recargarCursos(){
-     cursos = cfl.findAll();
-    
+
+    private void recargarCursos() {
+        cursos = cfl.findAll();
+
     }
-    
+
     public List<Curso> getCursos() {
         return cursos;
     }
@@ -61,36 +62,39 @@ public class ListarCursosController implements Serializable
     public void setCursoSeleccionado(Curso cursoSeleccionado) {
         this.cursoSeleccionado = cursoSeleccionado;
     }
-    
-    
-    public void eliminarCurso(){
-        
+
+    public List<Curso> getCitas() {
+
+        for (Curso curso : cursos) {
+            if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(4)) {
+                System.out.println(curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(4));
+                aux.add(curso);
+            }
+
+        }
+        return aux;
+    }
+
+    public void eliminarCurso() {
+
         if (cursoSeleccionado.getEstado().equalsIgnoreCase("En proceso")) {
-        
-            
-        MessageUtil.enviarMensajeErrorGlobal("No se puede eliminar un curso en proceso", "Por favor cambie el estado del curso para poder eliminarlo");
 
-        
-        }else{
-        
-        try {
-            cfl.remove(cursoSeleccionado);
-            MessageUtil.enviarMensajeInformacionGlobal("Se ha eliminado satisfactoriamente el curso", "");
-            
-        } catch (Exception e) {
-            e.getStackTrace();
-            MessageUtil.enviarMensajeErrorGlobal("No se ha podido eliminar el curso", "Ha ocurrido un problema");
-            
+            MessageUtil.enviarMensajeErrorGlobal("No se puede eliminar un curso en proceso", "Por favor cambie el estado del curso para poder eliminarlo");
+
+        } else {
+
+            try {
+                cfl.remove(cursoSeleccionado);
+                MessageUtil.enviarMensajeInformacionGlobal("Se ha eliminado satisfactoriamente el curso", "");
+
+            } catch (Exception e) {
+                e.getStackTrace();
+                MessageUtil.enviarMensajeErrorGlobal("No se ha podido eliminar el curso", "Ha ocurrido un problema");
+
+            }
+
         }
-        
-        
-        
-        }
-        
-    }
-   
-    
-    
+
     }
 
-
+}

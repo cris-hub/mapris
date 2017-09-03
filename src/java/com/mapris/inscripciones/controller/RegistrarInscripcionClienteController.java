@@ -58,7 +58,7 @@ public class RegistrarInscripcionClienteController {
 
                 inscripcionFacadeLocal.create(nuevoInscripcion);
 
-                MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El usuario se ha creado con exito");
+                MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "Se realizo la incripcion satisfacoria mente");
                 init();
 
             } catch (Exception e) {

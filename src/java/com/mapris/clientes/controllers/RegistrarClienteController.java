@@ -47,8 +47,7 @@ public class RegistrarClienteController {
     
     private Usuario nuevoUsuario;
     
-    @EJB
-    private NotifyView notify; 
+
     
     public RegistrarClienteController() {
     }
@@ -98,9 +97,7 @@ public class RegistrarClienteController {
                 nuevoCliente.setEstado("Habilitado");
                 nuevoCliente.setIdEmpresas(nuevoCliente.getIdEmpresas());
                 
-                notify.setDetail("sajflkasjlfaks");
-                notify.setSummary("asjdlkasjkda");
-                notify.send();
+        
 
                 
                 cfl.create(nuevoCliente);

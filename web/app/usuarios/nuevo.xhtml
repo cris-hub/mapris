@@ -7,7 +7,7 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:b="http://bootsfaces.net/ui">
 
-  <ui:define name="titulo">Administrador-Registrar Usuario</ui:define>
+    <ui:define name="titulo">Administrador-Registrar Usuario</ui:define>
 
     <ui:define name="contenido">
 
@@ -28,7 +28,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">#{mensajeApp.documento}</label>
-                                                <b:inputText name="document" value="#{registroController.nuevoUsuario.cedula}" class="form-control" a:data-mask="0000000000" required="true"/>
+                                                <b:inputText a:type="number" name="document" value="#{registroController.nuevoUsuario.cedula}" class="form-control" a:data-mask="0000000000" a:pattern="[0-9]" required="true"/>
                                             </div>
                                         </div>
 
@@ -55,7 +55,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">#{mensajeApp.birt}</label>
-                                                <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}" class="form-control" changeYear="true" changeMonth="true" required="true"/>
+                                                <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}" class="form-control" changeYear="true" changeMonth="true" mode="popup" required="true"/>
                                             </div>
                                         </div>
 

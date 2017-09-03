@@ -107,8 +107,10 @@
                                         Programa Actual <br/>
                                         Rutina Actual <br/>
                                     </p>
-                                    <h:inputFile id="fileUpload" class="btn btn-primary btn-round" value="Cambiar foto" />
-                                    <h:commandButton value="Cambiar foto" id="upload" class="btn default " actionListener="#{cargarArchivoController.uploadProfileImage}"/>
+                                    <div class="upload-btn-wrapper" >
+                                        <h:inputFile id="fileUpload" class="btn btn-primary btn-round" style="width: 270px;" value="Cambiar foto" />
+                                        <h:commandButton value="Cambiar foto" id="upload" class="btn default " actionListener="#{cargarArchivoController.uploadProfileImage}"/>
+                                    </div>
                                 </div>
                             </div>
                         </h:form>

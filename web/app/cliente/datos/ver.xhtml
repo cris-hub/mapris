@@ -42,14 +42,14 @@
                                 <p class="category">Aquí puedes ver la información de la empresa registrada en Maternity Club</p>
                             </div>
                             <div class="card-content">
-                                <b:messages showSummary="true" show-detail="true" globalOnly="true"/>
+                           <b:messages showDetail="true" showSummary="true" globalOnly="true"/>
 
                                 <b:form id="form-data-table-datos" prependId="false">
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Numero del curso</label>
+                                                <label class="control-label">Tipo  de sangre</label>
                                                 <h:outputText value="#{verDatoClinicoController.datoClinicoCliente.tipoSangre}" class="form-control"  />
                                             </div>
                                         </div>
@@ -65,7 +65,7 @@
                                                 <h:outputText value="#{verDatoClinicoController.datoClinicoCliente.patologia}" class="form-control"/>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+<!--                                        <div class="col-md-12">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Sesiones</label>
                                                 
@@ -75,12 +75,12 @@
                                                     <a href="#{request.contextPath}/#{verDatoClinicoController.datoClinicoCliente.url}?pfdrid_c=true">click</a> to download pdf instead.
                                                 </object>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
 
 
 
-
+                        
 
 
                                 </b:form>

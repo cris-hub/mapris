@@ -45,72 +45,72 @@
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.cedula}" class="form-control" disabled="true" />
                                             </div>
                                         </div>
-                                   
+
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombres</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.nombres}"  class="form-control"/>
                                             </div>
                                         </div>
-                                        
-                                         <div class="col-md-6">
+
+                                        <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Apellidos</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.apellidos}"  class="form-control"/>
                                             </div>
                                         </div>
-                                        
-                                         <div class="col-md-6">
+
+                                        <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Correo Electronico</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.correoElectronico}"  class="form-control"/>
                                             </div>
                                         </div>
-                                        
-                                         <div class="col-md-6">
+
+                                        <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fecha de nacimiento</label>
-                                                <b:datepicker value="#{editarClienteController.clienteSelecionada.usuario.fechaNaci}"  class="form-control"/>
+                                                <b:datepicker value="#{editarClienteController.clienteSelecionada.usuario.fechaNaci}"  mode="popup" class="form-control"/>
                                             </div>
                                         </div>
-                                        
-                                         <div class="col-md-6">
+
+                                        <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono Celular</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.telefonoCelular}" maxlength="10" class="form-control"/>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono Fijo</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.telefonoFijo}" maxlength="7" class="form-control"/>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Clave</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.clave}"  class="form-control"/>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Cargo</label>
-                                                <b:selectOneMenu value="#{editarClienteController.clienteSelecionada.idEmpresa}" class="form-control">
-                                                
+                                                <b:selectOneMenu value="#{editarClienteController.clienteSelecionada.idEmpresas}" class="form-control">
+
                                                     <f:selectItems value="#{listarEmpresaController.empresa}" var="p" itemLabel="#{p.idEmpresa} - #{p.nombre}"/>
                                                 </b:selectOneMenu>                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Clave</label>
+                                                <label class="control-label">Estado</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.estado}"  class="form-control" disabled="true"/>
                                             </div>
                                         </div>
-                                        </div>
-                                        
+                                    </div>
+
 
 
                                     <h:link styleClass="btn btn-primary" outcome="/app/administrador/clientes/cliente.xhtml" value="Volver"/>
