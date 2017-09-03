@@ -63,13 +63,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Clave</label>
-                                                <h:outputText value="#{verUsuarioControoller.usuario.clave}" class="form-control"/>
-                                            </div>
-                                        </div>
-
+                                        
                                     </div>
 
                                     <div class="row">
@@ -101,7 +95,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fecha Nacimiento</label>
-                                                <h:outputText  value="#{verUsuarioControoller.usuario.fechaNaci}" class="form-control" />
+                                                <h:outputText  value="#{verUsuarioControoller.usuario.fechaNaci}" class="form-control">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </h:outputText>
                                             </div>
                                         </div>
 

@@ -7,7 +7,6 @@ package com.mapris.util;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.primefaces.push.EventBus;
 import org.primefaces.push.EventBusFactory;
 
