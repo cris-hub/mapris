@@ -51,16 +51,16 @@
                                         <b:dataTableColumn label="Nombres" value="#{c.usuario.nombres}"/>
                                         <b:dataTableColumn label="Apellidos" value="#{c.usuario.apellidos}"/>
                                         <b:dataTableColumn id="fecha" a:name="fecha" label="Fecha de nacimiento" >
-                                             <h:outputText value="#{c.usuario.fechaNaci}">
+                                            <h:outputText value="#{c.usuario.fechaNaci}">
                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                             </h:outputText>
-                                           
+
                                         </b:dataTableColumn>
                                         <b:dataTableColumn label="Correo electronico" value="#{c.usuario.correoElectronico}"/>
                                         <b:dataTableColumn label="Teléfono Fijo" value="#{c.usuario.telefonoFijo}"/>
                                         <b:dataTableColumn label="Empresa" value="#{c.idEmpresas.nombre}"/>
                                         <b:dataTableColumn label="Cargo" value="#{c.estado}"/>
-                                      
+
 
                                         <b:dataTableColumn  label="#{mensajeApp.opciones}" >
                                             <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verClienteController.verCliente(c)}"/>
@@ -68,7 +68,8 @@
                                             <b:commandButton size="sm" look="primary" value="" tooltip="Cambiar Estado" iconAwesome="#{registroClienteController.getIconUsuarioBloqueo(c)}" action="#{registroClienteController.cambioDeEstado(c)}"/>
                                             <b:commandButton size="sm"  look="danger" value=""
                                                              iconAwesome="trash" tooltip="Eliminar"
-                                                             onclick="$('.modalPseudoClass').modal();">
+                                                             onclick="$('.modalPseudoClass').modal();
+                                                                     $('.modal-backdrop').remove();">
                                                 <f:ajax event="click" render=":message-modal-confirm"
                                                         listener="#{listarClienteController.setClienteSeleccionado(c)}"/>
                                             </b:commandButton>

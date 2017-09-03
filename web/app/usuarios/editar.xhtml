@@ -7,7 +7,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui">
 
-  <ui:define name="titulo">Administrador-Editar Usuarios</ui:define>
+    <ui:define name="titulo">Administrador-Editar Usuarios</ui:define>
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
@@ -94,7 +94,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fecha Nacimiento</label>
-                                                <b:datepicker  value="#{editarUsuarioController.usuarioSelecionado.fechaNaci}" class="form-control" />
+                                                <b:datepicker mode="popup"  value="#{editarUsuarioController.usuarioSelecionado.fechaNaci}" class="form-control" />
                                             </div>
                                         </div>
 
@@ -118,11 +118,11 @@
                             </div>
 
                             <div class="content">
-                                <h6 class="category text-gray">CEO / Co-Founder</h6>
+                                <h6 class="category text-gray">#{sessionController.rolSeleccionado.nombre}</h6>
                                 <h4 class="card-title">#{editarUsuarioController.usuarioSelecionado.nombres} #{editarUsuarioController.usuarioSelecionado.apellidos}</h4>
-                                <p class="card-content">
-                                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                                </p>
+                                <!--                                <p class="card-content">
+                                                                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                                                                </p>-->
                                 <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
                             </div>
                         </div>

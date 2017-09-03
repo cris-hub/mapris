@@ -52,7 +52,7 @@
                                         <b:dataTableColumn label="Cedula Cliente" value="#{in.idUsuario.usuario.cedula}"/>
                                         <b:dataTableColumn label="Nombre Cliente" value="#{in.idUsuario.usuario.nombres} #{in.idUsuario.usuario.apellidos} "/>
                                         <b:dataTableColumn label="Estado" value="#{in.estado}"/>
-                                     
+
                                         <b:dataTableColumn label="Servicio" value="#{in.fkIdCurso.idServicios.nombre}" />
                                         <b:dataTableColumn label="Valor" value="#{in.fkIdCurso.valor}" />
 
@@ -63,7 +63,8 @@
                                             <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarInscripcionController.preModificar(in)}"/>
                                             <b:commandButton size="sm"  look="danger" value=""
                                                              iconAwesome="trash" tooltip="Eliminar"
-                                                             onclick="$('.modalPseudoClass').modal();">
+                                                             onclick="$('.modalPseudoClass').modal();
+                                                                     $('.modal-backdrop').remove();">
                                                 <f:ajax event="click" render=":message-modal-confirm"
                                                         listener="#{listarInscripcionController.setInscripcionSeleccionado(in)}"/>
                                             </b:commandButton>
