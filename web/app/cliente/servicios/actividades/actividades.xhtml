@@ -31,7 +31,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div data-step="1" data-intro="En Este Espacio podras hacer las Incripciones los Servicios que desees!"  class="card">
                             <div class="card-header" data-background-color="purple">
                                 <h4 class="title">Agendar cita</h4>
                                 <p class="category">Completa los campos para recervar una cita</p>
@@ -39,52 +39,37 @@
                             <div class="card-content">
                                 <b:messages showSummary="true" show-detail="true" class="animated flipInX"  />
                                 <b:form id="form-editar" prependId="false">
-                                    <div class="row">
-
-
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
+                                    <div   class="row">
+                                        <div    class="col-md-6">
+                                            <div  class="form-group label-floating">
                                                 <label class="control-label">Servicio</label>
-
-
-                                                <b:selectOneMenu update="choose"
-                                                                 
-                                                    value="#{registroClienteInscripcionController.curso}"  
-                                                    >
-
+                                                <div data-step="2" data-intro="Selecciona La Actividad Deseada !">
+                                                <b:selectOneMenu    update="choose"
+                                                                    value="#{registroClienteInscripcionController.curso}"  
+                                                                    >
                                                     <f:selectItem itemLabel="Seleccione Algun servicio" itemValue="" />
                                                     <f:selectItems    value="#{listarCursosController.activides}"  var="c"  itemLabel=" Tipo: #{c.idServicios.tiposServicios.tiposServicio}  #{c.idServicios.nombre}"/>
-
-
                                                 </b:selectOneMenu>
-                                                
+                                                </div>
+                                                <div data-step="3" data-intro="Aqui te damos una breve despcrion!">
                                                 <b:panel look="primary" title="Descripcion del servicio" id="choose">
                                                     <b:messages showSummary="false" />
                                                     <b:inputText value="#{registroClienteInscripcionController.curso.idServicios.descripcion}" />
                                                 </b:panel>
-
-
-
-
-
+                                                </div>
                                             </div>
                                         </div>
-
-
-
-
-
                                     </div>
-
                                     <h:link styleClass="btn btn-primary" outcome="/app/cliente/programas/programas.xhtml" value="Volver"/>
-                                                                       <b:commandButton class="btn btn-primary pull-right"
-                                                                                         icon="floppy-disk" 
-                                                                                         tooltip="Inscripbirse"
-                                                                                         onclick="$('.modalPseudoClass').modal();
-                                                                                                 $('.modal-backdrop').remove();">
-                                                                            <f:ajax event="click" render=":message-modal-confirm"
-                                                                                    listener="#{listarCursosController.setCursoSeleccionado(registroClienteInscripcionController.curso)}"/>
-                                                                        </b:commandButton>
+                                    <a class="btn btn-large btn-success" href="javascript:void(0);" onclick="javascript:introJs().setOption('tooltipClass', 'customDefault').start();">Show me how</a>                                   
+                                    <b:commandButton class="btn btn-primary pull-right"
+                                                     icon="floppy-disk" 
+                                                     tooltip="Inscripbirse"
+                                                     onclick="$('.modalPseudoClass').modal();
+                                                             $('.modal-backdrop').remove();">
+                                        <f:ajax event="click" render=":message-modal-confirm"
+                                                listener="#{listarCursosController.setCursoSeleccionado(registroClienteInscripcionController.curso)}"/>
+                                    </b:commandButton>
 
                                     <div class="clearfix"></div>
                                 </b:form>
@@ -95,18 +80,18 @@
             </div>
         </div>
 
-                <b:modal id="amodal" title="Realizar Incripcion" styleClass="modalPseudoClass">
-                    <h:panelGroup id="message-modal-confirm" layout="block">
-                        <p>Realizara la incripcion para este Actividad #{listarCursosController.cursoSeleccionado.idServicios.nombre}  ? </p>
-                    </h:panelGroup>
-                    <f:facet name="footer">
-                        <h:form id="form-eliminar" prependId="false">
-                            <b:button value="#{mensajeApp.modalClose}" dismiss="modal" />
-                            <b:commandButton value="#{mensajeApp.modalOk}" look="primary"
-                                             actionListener="#{registroClienteInscripcionController.registrar()}"/>
-                        </h:form>
-                    </f:facet>
-                </b:modal>
+        <b:modal id="amodal" title="Realizar Incripcion" styleClass="modalPseudoClass">
+            <h:panelGroup id="message-modal-confirm" layout="block">
+                <p>Realizara la incripcion para este Actividad #{listarCursosController.cursoSeleccionado.idServicios.nombre}  ? </p>
+            </h:panelGroup>
+            <f:facet name="footer">
+                <h:form id="form-eliminar" prependId="false">
+                    <b:button value="#{mensajeApp.modalClose}" dismiss="modal" />
+                    <b:commandButton value="#{mensajeApp.modalOk}" look="primary"
+                                     actionListener="#{registroClienteInscripcionController.registrar()}"/>
+                </h:form>
+            </f:facet>
+        </b:modal>
     </ui:define>
 </ui:composition>
 

@@ -30,8 +30,35 @@
     -o-transform: none;
     transform: none;
 }
+.card-container:not(.manual-flip):hover .cardtwo,
+.card-container.hover.manual-flip .cardtwo{
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+
+
+.card-container.static:hover .cardtwo,
+.card-container.static.hover .cardtwo {
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    transform: none;
+}
 /* flip speed goes here */
 .card {
+    -webkit-transition: -webkit-transform .5s;
+    -moz-transition: -moz-transform .5s;
+    -o-transition: -o-transform .5s;
+    transition: transform .5s;
+    
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    
+    position: relative;
+}
+.cardtwo {
     -webkit-transition: -webkit-transform .5s;
     -moz-transition: -moz-transform .5s;
     -o-transition: -o-transform .5s;
@@ -79,6 +106,13 @@
 
 
 .card{
+    
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px;
+    color: #444444;
+}
+
+.cardtwo{
     
     background: none repeat scroll 0 0 #FFFFFF;
     border-radius: 4px;
@@ -199,6 +233,118 @@
 .card .stats p{
     color: #777777;
 }
+
+.cardtwo .cover{
+    height: 105px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+}
+.cardtwo .cover img{
+    width: 100%;
+}
+.cardtwo .user{
+    border-radius: 50%;
+    display: block;
+    height: 120px;
+    margin: -55px auto 0;
+    overflow: hidden;
+    width: 120px;
+}
+.cardtwo .user img{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 4px solid #FFFFFF;
+    width: 100%;
+}
+
+.cardtwo .content{
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    padding: 10px 20px 20px;
+}
+.cardtwo .content .main {
+    min-height: 160px;
+}
+.cardtwo .back .content .main {
+    height: 215px;
+}
+
+.cardtwo .name {
+    font-family: 'Arima Madurai', cursive;
+    font-size: 22px;
+    line-height: 28px;
+    margin: 10px 0 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+.cardtwo h5{
+    margin: 5px 0;
+    font-weight: 400;
+    line-height: 20px;
+}
+.cardtwo .profession{
+    color: #999999;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.cardtwo .footer {
+    border-top: 1px solid #EEEEEE;
+    color: #999999;
+    margin: 30px 0 0;
+    padding: 10px 0 0;
+    text-align: center;
+}
+.cardtwo .footer .social-links{
+    font-size: 18px;
+}
+.cardtwo .footer .social-links a{
+    margin: 0 7px;
+}
+.cardtwo .footer .btn-simple{
+    margin-top: -6px;
+}
+.cardtwo .header {
+    padding: 15px 20px;
+    height: 90px;
+}
+.cardtwo .motto{
+    font-family: 'Arima Madurai', cursive;
+    border-bottom: 1px solid #EEEEEE;
+    color: #999999;
+    font-size: 18px;
+    font-weight: 400;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.cardtwo .stats-container{
+    width: 100%;
+    margin-top: 50px;
+}
+.cardtwo .stats{
+    display: block;
+    float: left;
+    width: 33.333333%;
+    text-align: center;
+}
+
+.cardtwo .stats:first-child{
+    border-right: 1px solid #EEEEEE;
+}
+.cardtwo .stats:last-child{
+    border-left: 1px solid #EEEEEE;
+}
+.cardtwo .stats h4{
+    font-family: 'Arima Madurai', cursive;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+.cardtwo .stats p{
+    color: #777777;
+}
+
+
+
+
 /*      Just for presentation        */
 
 .title small{
