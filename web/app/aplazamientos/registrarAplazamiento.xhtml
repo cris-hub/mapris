@@ -71,7 +71,7 @@
 
 
                                     <b:commandButton value="Guardar" icon="floppy-disk"  class="btn btn-primary pull-right"   onclick="$('.modalPseudoClass').modal(); $('.modal-backdrop').remove();">
-                                        <f:ajax event="click" render=":message-modal-confirm"/>
+                                        <f:ajax event="click" render=":message-modal-confirm" />
                                     </b:commandButton>
 
 
@@ -93,11 +93,11 @@
                 </p>
             </h:panelGroup>
             <f:facet name="footer">
-                <h:form id="form-eliminar" prependId="false">
+                <b:form id="form-eliminar" prependId="false" enctype="multipart/form-data">
                     <b:button value="No estoy segura" dismiss="modal" />
                     <b:commandButton value="Estoy totalmente segura" look="primary"
                                      actionListener="#{registrarAplazamientoController.registrar()}"/>
-                </h:form>
+                </b:form>
             </f:facet>
         </b:modal>
 

@@ -38,31 +38,33 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Aplazamintos</h4>
+                                <h4 class="title">Aplazamientos</h4>
                                 <p class="category">Lista de aplazamientos</p>
                             </div>
                             <div class="card-content table-responsive">
 
-                                <b:message for="form-data-table-aplazamientos" showSummary="true" showDetail="true"/>
+                                <b:messages globalOnly="true" showSummary="true" showDetail="true"/>
                                 <h:form id="form-data-table-aplazamientos" prependId="false">
                                     <b:dataTable id="dtServicio" value="#{listarAplazamientoController.aplazamientos}" var="aplazamiento">
 
 
-                                        <b:dataTableColumn label="Cedula del cliente" value="#{aplazamiento.idUsuario}" />
-                                        <b:dataTableColumn label="Nombre del cliente" value="#{aplazamiento.cliente.usuario.nombres}" >
+                                        <b:dataTableColumn label="Cedula del cliente" value="#{aplazamiento.cliente.usuario.cedula}" />
+                                        <b:dataTableColumn label="Nombre del cliente" value="#{aplazamiento.cliente.usuario.nombres} #{aplazamiento.cliente.usuario.apellidos}"/>
+                                        <b:dataTableColumn label="Estado" value="#{aplazamiento.cliente.usuario.idEstados.nombre}"/>
                                         <b:dataTableColumn label="Motivo" value="#{aplazamiento.motivo}" />
-                                        <b:dataTableColumn label="Fecha Inicio" value="#{aplazamiento.inicio}" />
-                                        <b:dataTableColumn label="Fecha Fin" value="#{aplazamiento.fin}" />
-                                            
+                                        <b:dataTableColumn label="Fecha Inicio"  >
+                                           <h:outputText value="#{aplazamiento.inicio}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:outputText> 
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Fecha Fin"  >
+                                            <h:outputText value="#{aplazamiento.fin}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:outputText> 
                                         </b:dataTableColumn>
                                          <b:dataTableColumn  label="#{mensajeApp.opciones}" >
-                                            <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verClienteController.verCliente(c)}"/>
-                                            <b:commandButton size="sm"  look="danger" value=""
-                                                             iconAwesome="trash" tooltip="Eliminar"
-                                                             onclick="$('.modalPseudoClass').modal();">
-                                                <f:ajax event="click" render=":message-modal-confirm"
-                                                        listener="#{listarAplazamientoController.setAplazamientoSeleccionado(aplazamiento)}"/>
-                                            </b:commandButton>
+                                             <b:commandButton size="sm" look="primary" value="" tooltip="Cambiar Estado" iconAwesome="#{removerEstadoAplazamientoController.getIconoEstado(aplazamiento)}" action="#{removerEstadoAplazamientoController.cambiarEstadoAplazamiento(aplazamiento)}"/>
+                                            
 
                                         </b:dataTableColumn>
 
@@ -72,19 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
-                        <h:panelGroup id="message-modal-confirm" layout="block">
-                            <p>¿Está seguro de eliminar el cliente #{aplazamiento.cliente.usuario.nombres} ?
-                            </p>
-                        </h:panelGroup>
-                        <f:facet name="footer">
-                            <h:form id="form-eliminar" prependId="false">
-                                <b:button value="No estoy segura" dismiss="modal" />
-                                <b:commandButton value="Estoy totalmente segura" look="primary"
-                                                 actionListener="#{listarAplazamientoController.eliminarAplazamiento()}"/>
-                            </h:form>
-                        </f:facet>
-                    </b:modal>
+                   
                 </div>
             </div>
         </div>
