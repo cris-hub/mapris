@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 
 import javax.inject.Named;
 import org.primefaces.model.chart.Axis;
@@ -24,7 +26,7 @@ import org.primefaces.model.chart.ChartSeries;
  */
 
 @Named(value = "usuariosEstadisticas")
-@Stateless
+@RequestScoped
 public class UsuariosEstadisticasController implements Serializable {
     private BarChartModel barModel;
     @EJB
@@ -73,11 +75,14 @@ public class UsuariosEstadisticasController implements Serializable {
         }
         
         ChartSeries usuarios = new ChartSeries();
+       
         usuarios.setLabel("Usuarios");
+        
         usuarios.set("Activos", list1.size());
         usuarios.set("Bloqueado", list2.size());
         usuarios.set("Sin Rol", list3.size());
         usuarios.set("Aplazado", list4.size());
+       
       
  
         
@@ -95,6 +100,7 @@ public class UsuariosEstadisticasController implements Serializable {
         barModel.setAnimate(true);
         barModel.setTitle("Usuarios/Estados");
         barModel.setLegendPosition("ne");
+        barModel.setDatatipFormat("<span style=\"display:none;\">%s</span><span>%s</span>");
          
         Axis xAxis = barModel.getAxis(AxisType.X);
         xAxis.setLabel("Estados");
@@ -102,9 +108,15 @@ public class UsuariosEstadisticasController implements Serializable {
         Axis yAxis = barModel.getAxis(AxisType.Y);
         yAxis.setLabel("Número de usuarios");
         yAxis.setMin(0);
-        yAxis.setMax(40);
+        yAxis.setMax(100);
+        
+
     }
      
+   @PreDestroy
+   public void remove(){
+   usuarios = null;
    
+   }
  
 }

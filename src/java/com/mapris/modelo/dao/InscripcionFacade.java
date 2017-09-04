@@ -6,9 +6,11 @@
 package com.mapris.modelo.dao;
 
 import com.mapris.modelo.entitie.Inscripcion;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,19 @@ public class InscripcionFacade extends AbstractFacade<Inscripcion> implements In
 
     public InscripcionFacade() {
         super(Inscripcion.class);
+    }
+
+    @Override
+    public List<Inscripcion> findCurso() {
+
+        try {
+            getEntityManager().getEntityManagerFactory().getCache().evictAll();
+            Query q = getEntityManager().createNativeQuery("SELECT * FROM inscripciones as i ORDER BY i.fk_id_curso ;", Inscripcion.class);
+            return q.getResultList();
+        } catch (Exception e) {
+            e.getStackTrace();
+            return null;
+        }
     }
     
 }

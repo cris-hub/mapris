@@ -48,11 +48,17 @@
                             </div>
                             <div class="card-content">
 
-                                <h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
-                                    <p:chart type="bar" model="#{usuariosEstadisticas.barModel}" style="width:400px;" />
-                                    <p:chart type="bar" model="#{usuariosEstadisticas.barModel}" style="width:400px;" />
+                                <h:panelGrid columns="2" columnClasses="left,right" style="width:100%; margin: 40px;">
+                                    <p:chart type="bar" model="#{usuariosEstadisticas.barModel}" style="width:400px;"   />
+                                    <p:chart type="bar" model="#{tipoServicioEstadisticas.horizontalBarModel}" style="width:400px;" />
                                    
                                 </h:panelGrid>
+                               <h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
+                                    
+                                   <p:chart type="pie" model="#{usuariosRolEstadisticas.pieModel}" style="width:400px;height:300px" />
+                                   <p:chart type="bar" model="#{inscripcionEstadisticaController.horizontalBarModel}" style="width:400px;height:300px" />
+                                </h:panelGrid>
+
 
 
                             </div>
