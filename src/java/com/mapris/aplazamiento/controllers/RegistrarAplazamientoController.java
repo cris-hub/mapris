@@ -24,11 +24,11 @@ import javax.inject.Inject;
 
 /**
  *
- * @author andres
+ * @author Ruben 
  */
 @Named(value = "registrarAplazamientoController")
-@RequestScoped
-public class RegistrarAplazamientoController{
+@ViewScoped
+public class RegistrarAplazamientoController implements Serializable{
 
     @Inject
     private SessionController sessionController;

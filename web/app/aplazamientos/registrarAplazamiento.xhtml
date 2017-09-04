@@ -5,7 +5,8 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="titulo">
         Registrar Aplazamiento - Cliente
@@ -71,7 +72,7 @@
 
 
                                     <b:commandButton value="Guardar" icon="floppy-disk"  class="btn btn-primary pull-right"   onclick="$('.modalPseudoClass').modal(); $('.modal-backdrop').remove();">
-                                        <f:ajax event="click" render=":message-modal-confirm" />
+                                        <f:ajax event="click" render=":message-modal-confirm" listener="#{registrarAplazamientoController.registrar()}"/>
                                     </b:commandButton>
 
 
@@ -91,9 +92,12 @@
             <h:panelGroup id="message-modal-confirm" layout="block">
                 <p>¿Está seguro que desea realizar el aplazamiento? Recuerde que no podrá ingresar al sistema hasta la fecha en la que deseo aplazar.
                 </p>
+                <h:outputText value="#{registrarAplazamientoController.nuevoAplazamiento.motivo}"/>
+                <h:outputText value="#{registrarAplazamientoController.nuevoAplazamiento.inicio}"/>
+                <h:outputText value="#{registrarAplazamientoController.nuevoAplazamiento.fin}"/>
             </h:panelGroup>
             <f:facet name="footer">
-                <b:form id="form-eliminar" prependId="false" enctype="multipart/form-data">
+                <b:form id="form-eliminar" prependId="false" >
                     <b:button value="No estoy segura" dismiss="modal" />
                     <b:commandButton value="Estoy totalmente segura" look="primary"
                                      actionListener="#{registrarAplazamientoController.registrar()}"/>

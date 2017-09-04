@@ -56,7 +56,13 @@
                                <h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
                                     
                                    <p:chart type="pie" model="#{usuariosRolEstadisticas.pieModel}" style="width:400px;height:300px" />
-                                   <p:chart type="bar" model="#{inscripcionEstadisticaController.horizontalBarModel}" style="width:400px;height:300px" />
+                                   <p:chart type="bar" model="#{aplazamientoEstadisticaController.barModel}" style="width:400px;height:300px" />
+                                </h:panelGrid>
+                                
+                                 <h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
+                                    
+                                     <p:chart type="donut" model="#{cursosEstadisticaController.donutModel}" style="width:400px;height:300px" />
+                                     <p:chart type="bar" model="#{serviciosEstadisticaController.barModel}" style="width:400px;height:300px" />
                                 </h:panelGrid>
 
 

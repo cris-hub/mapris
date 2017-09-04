@@ -43,7 +43,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Cedula</label>
-                                                <b:inputText value="#{registroClienteController.nuevoUsuario.cedula}" class="form-control"  />
+                                                <b:inputText id="cedula" value="#{registroClienteController.nuevoUsuario.cedula}" class="form-control" required="true" requiredMessage="Este campo es requerido" 
+                                                             maxlength="15"  validatorMessage="Este campo es exclusivo de números" >
+                                                
+                                                    <f:validateLength for="cedula" minimum="6" maximum="15"/>
+                
+                                                </b:inputText>
+                                                <b:message for="cedula"/>
                                             </div>
                                         </div>
 
