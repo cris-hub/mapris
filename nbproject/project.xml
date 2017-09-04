@@ -107,11 +107,15 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.atmosphere-runtime-libs-2.4.9-distribution__1_.classpath}</file>
+                    <file>${file.reference.atmosphere-runtime-2.4.9.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.atmosphere-runtime-2.4.9.jar}</file>
+                    <file>${file.reference.Documents-NetBeansProjects}</file>
+                    <path-in-war>WEB-INF/classes</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.atmosphere-runtime-libs-2.4.9-distribution__1_.zip}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">

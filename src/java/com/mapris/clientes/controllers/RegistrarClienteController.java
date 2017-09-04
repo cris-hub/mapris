@@ -126,15 +126,19 @@ public class RegistrarClienteController {
             }
             
             cfl.edit(c);
-            MessageUtil.enviarMensajeInformacion("form-data-table-usuarios", "Actualización", "Se ha cambiado el estado del usuario.");
+            MessageUtil.enviarMensajeInformacion("form-data-table-sesiones", "Actualización", "Se ha cambiado el estado del usuario.");
         } catch (Exception e) {
             e.printStackTrace();
-            MessageUtil.enviarMensajeErrorGlobal("Errcambiar el estado del usuario", e.getStackTrace().toString());
+            MessageUtil.enviarMensajeErrorGlobal("Error al cambiar el estado del usuario", e.getStackTrace().toString());
+            System.out.println("KoLacho estuvo aqui");
+            
+            
         }
         
     }
     
     public String getIconUsuarioBloqueo(Cliente c) {
-        return (c.getUsuario().getIdEstados().getIdEstados() == 2 && c.getEstado().equalsIgnoreCase("Deshablitado")) ? "lock" : "unlock";
+        
+        return (c.getUsuario().getIdEstados().getIdEstados() == 2 && c.getEstado().equalsIgnoreCase("Deshabilitado")) ? "lock" : "unlock";
     }
 }

@@ -86,6 +86,6 @@ public class EditarUsuarioController implements Serializable {
 
     public String getIconUsuarioBloqueo(Usuario u) {
         return (u.getIdEstados().getIdEstados() == 2) ? "lock" : "unlock";
-    }
+    }   
 
 }

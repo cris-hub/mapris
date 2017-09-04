@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header" data-background-color="pink">
+                            <div class="card-header" data-background-color="purple">
                                 <h4 class="title">Personal Medico</h4>
                                 <p class="category">Lista de Personal Medico</p>
                             </div>
@@ -64,9 +64,9 @@
 
 
                                         <b:dataTableColumn  label="#{mensajeApp.opciones}" >
-                                            <b:commandButton size="sm" look="success" value="" tooltip="Ver" iconAwesome="eye" action="#{verPersonalMedicoController.verPersonalmedico(p)}"/>
+                                            <b:commandButton size="sm" look="primary" value="" tooltip="Ver" iconAwesome="eye" action="#{verPersonalMedicoController.verPersonalmedico(p)}"/>
                                             <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarPersonalMedicoController.preModificar(p, p.usuario)}"/>
-                                            <b:commandButton size="sm"  look="danger" value=""
+                                            <b:commandButton size="sm"  look="primary" value=""
                                                              iconAwesome="trash" tooltip="Eliminar"
                                                              onclick="$('.modalPseudoClass').modal();
                                                                      $('.modal-backdrop').remove();">

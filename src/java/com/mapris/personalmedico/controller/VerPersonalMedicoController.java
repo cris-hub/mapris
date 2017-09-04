@@ -6,7 +6,6 @@
 package com.mapris.personalmedico.controller;
 
 import com.mapris.modelo.entitie.Personalmedico;
-import com.mapris.modelo.entitie.Usuario;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;

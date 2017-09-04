@@ -80,7 +80,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fecha de Nacimiento</label>
-                                                <h:inputText  value="#{sessionController.usuario.fechaNaci}" class="form-control" />
+                                                <h:inputText  value="#{sessionController.usuario.fechaNaci}" class="form-control">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </h:inputText>
                                             </div>
                                         </div>
                                     </div>
