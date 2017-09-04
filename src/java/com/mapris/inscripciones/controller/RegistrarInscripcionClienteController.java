@@ -7,11 +7,14 @@ package com.mapris.inscripciones.controller;
 
 import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.InscripcionFacadeLocal;
+import com.mapris.modelo.entitie.Curso;
 import com.mapris.modelo.entitie.Inscripcion;
 import com.mapris.util.MessageUtil;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,22 +23,25 @@ import javax.inject.Named;
  * @author Kolchito
  */
 @Named(value = "registroClienteInscripcionController")
-@RequestScoped
-public class RegistrarInscripcionClienteController {
+@SessionScoped
+public class RegistrarInscripcionClienteController implements Serializable {
 
     @Inject
     private SessionController sessionCliente;
-   
+
     @EJB
     private InscripcionFacadeLocal inscripcionFacadeLocal;
 
     private Inscripcion nuevoInscripcion;
+
+    private Curso curso;
 
     public RegistrarInscripcionClienteController() {
     }
 
     @PostConstruct
     public void init() {
+        curso = new Curso();
         nuevoInscripcion = new Inscripcion();
 
     }
@@ -55,6 +61,12 @@ public class RegistrarInscripcionClienteController {
                 nuevoInscripcion.setEstado("Activa");
                 nuevoInscripcion.setIdUsuario(sessionCliente.getUsuario().getCliente());
 
+                if (getCurso() != null) {
+                    nuevoInscripcion.setFkIdCurso(getCurso());
+
+                } else {
+                    MessageUtil.enviarMensajeInformacionGlobal("Error al registrar el usuario", "No se pudo registrar el usuario");
+                }
 
                 inscripcionFacadeLocal.create(nuevoInscripcion);
 
@@ -69,5 +81,32 @@ public class RegistrarInscripcionClienteController {
         }
     }
 
-}
+    public Curso getCurso() {
+        return curso;
+    }
 
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+//    public void registrar() {
+//        if (nuevoInscripcion != null) {
+//            try {
+//
+//                nuevoInscripcion.setEstado("Activa");
+//                nuevoInscripcion.setIdUsuario(sessionCliente.getUsuario().getCliente());
+//
+//
+//                inscripcionFacadeLocal.create(nuevoInscripcion);
+//
+//                MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "Se realizo la incripcion satisfacoria mente");
+//                init();
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            MessageUtil.enviarMensajeInformacionGlobal("Error al registrar el usuario", "No se pudo registrar el usuario");
+//        }
+//    }
+}

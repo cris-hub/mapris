@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="titulo">Administrador - Ver Cursos</ui:define>
+
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="/app/index.xhtml">Administrador</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <a href="/app/administrador/cursos/cursos.xhtml">Cursos</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Ver datos</span>
+            </li>
+        </ul>
+
+    </ui:define>
+
+
+    <ui:define name="contenido">
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="blue">
+                                <i class="material-icons">info_outline</i>
+                                <h4 class="title">Ver Curso</h4>
+                                <p class="category">Aquí puedes ver la información del curso que haz seleccionado</p>
+                            </div>
+                            <div class="card-content">
+                                <b:messages showSummary="true" show-detail="true"/>
+                                <b:message for="form-editar" showSummary="true" show-detail="true"/>
+                                <h:form id="form-editar" prependId="false">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Estado</label>
+                                                <h:outputText value="#{verCursoController.curso.estado}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <c:set var = "cansesi" scope = "view" value = "#{verCursoController.curso.idServicios.sesiones}"/>
+                                        <c:if test = "${cansesi > 0}">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Cantidad Sesiones</label>
+                                                    <h:outputText value="#{verCursoController.curso.sesiones}" class="form-control"/>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Valor Curso</label>
+                                                <h:outputText value="$ #{verCursoController.curso.valor}" class="form-control"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Servicio al que pertenece</label>
+                                                <h:outputText value="#{verCursoController.curso.idServicios.nombre}" class="form-control"/>
+
+                                            </div>
+                                        </div>
+
+                                        
+                                    </div>
+                                    <div class="row">
+
+                                            <div class="col-md-5">
+
+                                                <div class="card-content">
+                                                    
+                                                        
+                                                            
+
+                                                            
+
+                                                    <p:schedule id="schedule" centerHeaderTemplate="false"   value="#{scheduleView.eventModel}" ignoreTimezone="true">
+
+
+                                                                </p:schedule>
+
+
+                                                            
+
+
+                                                        
+                                                    
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <c:set var = "tamaño" scope = "view" value = "#{verCursoController.curso.idServicios.servicios.size()}"/>
+                                                <c:if test = "${tamaño > 0}">
+
+
+                                                    <b:dataTable  value="#{verCursoController.curso.idServicios.servicios}"
+                                                                  var="servicio">
+                                                        <b:dataTableColumn value="#{servicio.nombre}" />
+                                                        <b:dataTableColumn value="#{servicio.descripcion}" />
+                                                        <b:dataTableColumn value="#{servicio.sesiones}" />
+
+                                                    </b:dataTable>
+                                                </c:if>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                    <b:commandButton class="btn btn-primary pull-right"
+                                                     icon="floppy-disk" 
+                                                     tooltip="Inscripbirse"
+                                                     onclick="$('.modalPseudoClass').modal();
+                                                             $('.modal-backdrop').remove();">
+                                        <f:ajax event="click" render=":message-modal-confirm"
+                                                listener="#{listarCursosController.setCursoSeleccionado(verCursoController.curso)}"/>
+                                    </b:commandButton>
+
+                                    <h:link styleClass="btn btn-primary" outcome="/app/cliente/programas/programas.xhtml" value="Volver"/>
+
+                                </h:form>
+
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">local_offer</i> Maternity Club
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <b:modal id="amodal" title="Realizar Incripcion" styleClass="modalPseudoClass">
+            <h:panelGroup id="message-modal-confirm" layout="block">
+                <p>Realizara la incripcion para este programa #{listarCursosController.cursoSeleccionado.idServicios.nombre}  ? </p>
+            </h:panelGroup>
+            <f:facet name="footer">
+                <h:form id="form-eliminar" prependId="false">
+                    <b:button value="#{mensajeApp.modalClose}" dismiss="modal" />
+                    <b:commandButton value="#{mensajeApp.modalOk}" look="primary"
+                                     actionListener="#{registroClienteInscripcionController.registrar(verCursoController.curso)}"/>
+                </h:form>
+            </f:facet>
+        </b:modal>
+    </ui:define>
+</ui:composition>
+
