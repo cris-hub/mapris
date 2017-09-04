@@ -46,7 +46,7 @@
                                                 <label class="control-label">Servicio</label>
                                                 <b:selectOneMenu value="#{registroClienteInscripcionController.nuevoInscripcion.fkIdCurso}" class="form-control">
                                                 
-                                                    <f:selectItems value="#{listarCursosController.cursos}" var="c" itemLabel=" Tipo: #{c.idServicios.tiposServicios.tiposServicio}  #{c.idServicios.nombre}"/>
+                                                    <f:selectItems value="#{listarCursosController.programas}" var="c" itemLabel=" Tipo: #{c.idServicios.tiposServicios.tiposServicio}  #{c.idServicios.nombre}"/>
                                                 </b:selectOneMenu>
                                             </div>
                                         </div>

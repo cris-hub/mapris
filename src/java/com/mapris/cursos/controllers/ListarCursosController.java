@@ -67,7 +67,43 @@ public class ListarCursosController implements Serializable {
 
         for (Curso curso : cursos) {
             if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(4)) {
-                System.out.println(curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(4));
+
+                aux.add(curso);
+            }
+
+        }
+        return aux;
+    }
+
+    public List<Curso> getActivides() {
+
+        for (Curso curso : cursos) {
+            if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(3)) {
+
+                aux.add(curso);
+            }
+
+        }
+        return aux;
+    }
+
+    public List<Curso> getProgramas() {
+
+        for (Curso curso : cursos) {
+            if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(1)) {
+
+                aux.add(curso);
+            }
+
+        }
+        return aux;
+    }
+
+    public List<Curso> getServicio() {
+
+        for (Curso curso : cursos) {
+            if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(2)) {
+
                 aux.add(curso);
             }
 

@@ -39,14 +39,18 @@
                                 <b:messages class="animated flipInX" globalOnly="true" showSummary="true" show-detail="true"/>
 
                                 <b:form id="form-registro" prependId="false">
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Hora de inicio</label>
-                                                <b:dateTimePicker showIcon="false" showTime="true" showDate="false" value="#{registroDetalleHorarioController.nuevoDetalleHorario.horaInicio}" class="form-control"/>
+                                                <p:calendar id="time" pattern="MM/dd/yyyy HH:mm:ss"  class="form-control" >
+
+                                                </p:calendar>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
@@ -73,20 +77,40 @@
                                         </div>
                                     </div>
 
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Fechas del horario</label>
-                                                <b:selectOneMenu value="#{registroDetalleHorarioController.nuevoDetalleHorario.idHorarios}">
+                                                <label class="control-label">Fecha inicio</label>
+                                                <b:datepicker mode="popup" value="#{registroController.nuevoUsuario.fechaNaci}" changeYear="true" changeMonth="true"  required="true">
 
-                                                    <f:selectItems value="#{listarHorarioController.horarios}" var="h" itemLabel="Fecha inicio: #{h.fechaInicio} Fecha fin: #{h.fechaFin}"/>
+                                                </b:datepicker>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Fecha fin</label>
+                                                <b:datepicker mode="popup" value="#{registroController.nuevoUsuario.fechaNaci}" changeYear="true" changeMonth="true"  required="true">
 
-
-
-                                                </b:selectOneMenu>
+                                                </b:datepicker>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!--                                    <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group label-floating">
+                                                                                    <label class="control-label">Fechas del horario</label>
+                                                                                    <b:selectOneMenu value="#{registroDetalleHorarioController.nuevoDetalleHorario.idHorarios}">
+
+                                                                                        <f:selectItems value="#{listarHorarioController.horarios}" var="h" itemLabel="Fecha inicio: #{h.fechaInicio} Fecha fin: #{h.fechaFin}"/>
+
+
+
+                                                                                    </b:selectOneMenu>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>-->
 
                                     <h:link styleClass="btn btn-primary" outcome="/app/administrador/calendario/calendario.xhtml" value="#{mensajeApp.back}"/>
                                     <b:commandButton value="#{mensajeApp.save}" icon="floppy-disk" actionListener="#{registroDetalleHorarioController.registrar()}" class="btn btn-primary pull-right"/>
