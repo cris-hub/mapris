@@ -93,7 +93,7 @@ public class SalonesEstadisticasController implements Serializable {
         barModel.setStacked(true);
         
         Axis xAxis = barModel.getAxis(AxisType.X);
-       xAxis.setLabel("Servicios");
+       xAxis.setLabel("Salones");
         
          
         Axis yAxis = barModel.getAxis(AxisType.Y);
