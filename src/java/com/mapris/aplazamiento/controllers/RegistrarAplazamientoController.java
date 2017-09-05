@@ -24,11 +24,11 @@ import javax.inject.Inject;
 
 /**
  *
- * @author andres
+ * @author Ruben 
  */
 @Named(value = "registrarAplazamientoController")
-@SessionScoped
-public class RegistrarAplazamientoController implements Serializable {
+@ViewScoped
+public class RegistrarAplazamientoController implements Serializable{
 
     @Inject
     private SessionController sessionController;
@@ -54,7 +54,7 @@ public class RegistrarAplazamientoController implements Serializable {
     @PostConstruct
     public void init() {
         nuevoAplazamiento = new Aplazamiento();
-        inscripcionSeleccionado = new Inscripcion();
+        inscripcionSeleccionado =  sessionController.getUsuario().getCliente().getInscripciones().get(0);
         usuarioAplazado  = new Usuario();
         
                 
@@ -94,7 +94,7 @@ public class RegistrarAplazamientoController implements Serializable {
         return sessionController.getUsuario().getCliente().getInscripciones();
     }
 
-    public void registrar() {
+    public String registrar() {
 
         if (existeInscripcionSeleccionado() == true) {
             
@@ -106,26 +106,31 @@ public class RegistrarAplazamientoController implements Serializable {
                 usuarioAplazado = sessionController.getUsuario();
                 usuarioAplazado.setIdEstados(estadoFacadeLocal.find(4));
                 nuevoAplazamiento.setidUsuario(sessionController.getUsuario().getIdUsuario());
-                ufl.edit(usuarioAplazado);
+                nuevoAplazamiento.setMotivo(nuevoAplazamiento.getMotivo());
+                nuevoAplazamiento.setInicio(nuevoAplazamiento.getInicio());
+                nuevoAplazamiento.setFin(nuevoAplazamiento.getFin());
                 aplazamientoFacadeLocal.create(nuevoAplazamiento);
+                ufl.edit(usuarioAplazado);
                 inscripcionFacadeLocal.edit(inscripcionSeleccionado);
                 init();
-               sessionController.setDocumento(null);
-               sessionController.setClave(null);
                 MessageUtil.enviarMensajeInformacion("form-registrarAplazamiento", "Registro satisfactorio", "");
+                 return sessionController.cerrarSesion();
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Error aplazamiento registro");
                 MessageUtil.enviarMensajeError("form-registrarAplazamiento", "Error al registrar el aplazamiento en la Base de Datos ", "");
+                return null;
+                
             }
         } else {
             System.out.println("NULO aplazamiento registro");
             MessageUtil.enviarMensajeError("form-registrarAplazamiento", "no se han diligenciado los campos ", "");
+            return null;
         }
     } else {
         
       MessageUtil.enviarMensajeError("form-registrarAplazamiento", "No se puede completar el aplazamiento ", " Debido a que no esta inscrito a ningun servicio");
-
+        return null;
         
         
         }

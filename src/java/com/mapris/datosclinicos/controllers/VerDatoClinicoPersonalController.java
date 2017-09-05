@@ -15,6 +15,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,12 +24,10 @@ import javax.inject.Named;
  *
  * @author Ruben
  */
-@Named(value="verDatoClinicoController")
-@RequestScoped
-public class VerDatoClinicoController {
+@Named(value="verDatoClinicoPersonalController")
+@ViewScoped
+public class VerDatoClinicoPersonalController implements Serializable{
     
-    @Inject
-    private SessionController sc;
     
     
     @EJB
@@ -36,50 +35,31 @@ public class VerDatoClinicoController {
     
     private Datoclinico datoClinico;
     
-    private Datoclinico datoClinicoCliente;
+  
     
    
 
-    public VerDatoClinicoController() {
+    public VerDatoClinicoPersonalController() {
             
     }
     
     @PostConstruct
     public void init(){
-      
-       ver();
+
+       
         
     }
-    
-    public void ver()
-    {
-        if (sc.getUsuario().getCliente().getDatosClinicos().size()>0) {
-//        System.out.println(sc.getUsuario().getCliente().getDatosClinicos().get(0));
-                  
-        this.datoClinicoCliente = sc.getUsuario().getCliente().getDatosClinicos().get(0);
-        }else{
-//        System.out.println(sc.getUsuario().getCliente().getDatosClinicos().get(0));
-            MessageUtil.enviarMensajeErrorGlobal("Sin Documentos Clinios", "El usuario no a subido ningun dato clinito");
-        }
-    }
-    public Datoclinico getDatoclinico() {
+
+    public Datoclinico getDatoClinico() {
         return datoClinico;
     }
 
-    public void setDatoclinico(Datoclinico datoClinico) {
+    public void setDatoClinico(Datoclinico datoClinico) {
         this.datoClinico = datoClinico;
     }
+  
+    
 
-    public Datoclinico getDatoClinicoCliente() {
-       
-       
-        return datoClinicoCliente;
-    }
-
-    public void setDatoClinicoCliente(Datoclinico datoClinicoCliente) {
-         
-         this.datoClinicoCliente = datoClinicoCliente;
-    }
 
     
     
@@ -89,6 +69,8 @@ public class VerDatoClinicoController {
     
     public String verDatoclinico(Datoclinico i){
     this.datoClinico = i;
+    
+    System.out.println(this.datoClinico.getAlergias());
    
     return "/app/personal/datos/ver.xhtml?faces-redirect=true";
     }

@@ -52,11 +52,13 @@ public class SessionRule {
                     
                 }
             } else {
+                u=null;
                 MessageUtil.enviarMensajeErrorGlobal(
                         "Datos incorrectos",
                         "Documento y/o clave invalidos");
             }
         } else {
+            u=null;
             MessageUtil.enviarMensajeErrorGlobal(
                     "Datos obligatorios",
                     "Documento y/o clave son necesarios para iniciar sesión");

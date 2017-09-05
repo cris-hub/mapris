@@ -39,74 +39,74 @@
                             <div class="card-content">
                                 <b:messages showSummary="true" class="animated flipInX"  show-detail="true" />
                                 <b:form id="form-editar" prependId="false">
-                                    
+
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Cedula</label>
-                                                <b:inputText value="#{registroPersonalMedicoController.nuevoUsuario.cedula}" class="form-control"  />
+                                                <b:inputText  name="document" maxlength="12" value="#{registroPersonalMedicoController.nuevoUsuario.cedula}" class="form-control"  />
                                             </div>
                                         </div>
-                                   
+
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombres</label>
-                                                <b:inputText value="#{registroPersonalMedicoController.nuevoUsuario.nombres}"  class="form-control"/>
+                                                <b:inputText name="nombre" maxlength="15" value="#{registroPersonalMedicoController.nuevoUsuario.nombres}"  class="form-control"/>
                                             </div>
                                         </div>
-                                        
-                                         <div class="col-md-4">
+
+                                        <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Apellidos</label>
-                                                <b:inputText value="#{registroPersonalMedicoController.nuevoUsuario.apellidos}"  class="form-control"/>
+                                                <b:inputText name="apellido" maxlength="15" value="#{registroPersonalMedicoController.nuevoUsuario.apellidos}"  class="form-control"/>
                                             </div>
                                         </div>
-                                        
-                                         <div class="col-md-4">
+
+                                        <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Correo Electronico</label>
-                                                <b:inputText a:type="email" value="#{registroPersonalMedicoController.nuevoUsuario.correoElectronico}"  class="form-control"/>
+                                                <b:inputText a:type="email" name="correo" value="#{registroPersonalMedicoController.nuevoUsuario.correoElectronico}"  class="form-control"/>
                                             </div>
                                         </div>
-                                         
-                                         <div class="col-md-4">
+
+                                        <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono Celular</label>
-                                                <b:inputText maxlength="10" value="#{registroPersonalMedicoController.nuevoUsuario.telefonoCelular}"  class="form-control"/>
+                                                <b:inputText maxlength="10"  name="cel" value="#{registroPersonalMedicoController.nuevoUsuario.telefonoCelular}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono Fijo</label>
-                                                <b:inputText maxlength="7" value="#{registroPersonalMedicoController.nuevoUsuario.telefonoFijo}"  class="form-control"/>
+                                                <b:inputText maxlength="7" name="tel" value="#{registroPersonalMedicoController.nuevoUsuario.telefonoFijo}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Clave</label>
-                                                <b:inputText maxlength="7" value="#{registroPersonalMedicoController.nuevoUsuario.clave}"  class="form-control"/>
+                                                <b:inputText  name="pass" value="#{registroPersonalMedicoController.nuevoUsuario.clave}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fecha De Nacimiento</label>
-                                                <b:datepicker   value="#{registroPersonalMedicoController.nuevoUsuario.fechaNaci}"  class="form-control"/>
+                                                <b:datepicker  mode="popup" value="#{registroPersonalMedicoController.nuevoUsuario.fechaNaci}"  />
                                             </div>
                                         </div>
-                                         <div class="col-md-6">
+                                        <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Cargo</label>
-                                                <b:inputText   value="#{registroPersonalMedicoController.nuevoPersonalmedico.cargo}"  class="form-control"/>
+                                                <b:inputText   name="cargo" value="#{registroPersonalMedicoController.nuevoPersonalmedico.cargo}"  class="form-control"/>
                                             </div>
-                                         </div>
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Perfil Profesional</label>
-                                                <b:inputText   value="#{registroPersonalMedicoController.nuevoPersonalmedico.perfilProfesional}"  class="form-control"/>
+                                                <b:inputText  name="perfil"  value="#{registroPersonalMedicoController.nuevoPersonalmedico.perfilProfesional}"  class="form-control"/>
                                             </div>
                                         </div>
-                                        
-                                        
+
+
                                     </div>
 
 
@@ -121,7 +121,150 @@
                 </div>
             </div>
         </div>
+        <style type="text/css">
+            #form-registro .has-error .control-label,
+            #form-registro .has-error .help-block,
+            #form-registro .has-error .form-control-feedback {
+                color: #B031AA;
+            }
 
+            #form-registro .has-success .control-label,
+            #form-registro .has-success .help-block,
+            #form-registro .has-success .form-control-feedback {
+                color: #18bc9c;
+            }
+        </style>
+        <script>
+
+
+            $(document).ready(function() {
+                $('#form-editar').formValidation({
+                    framework: 'bootstrap',
+                    icon: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        document: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Numero de documento requerido'
+                                },
+                                stringLength: {
+                                    min: 10,
+                                    max: 11,
+                                    message: 'Debe tener más de 10 y menos de 11 caracteres'
+                                },
+                                numeric: {
+
+                                    message: '#{msjValidacionLogin.soloLetrarNumeros}'
+                                }
+                            }
+                        },
+                        nombre: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Nombre es requerido'
+                                },
+                                stringLength: {
+                                    max: 15,
+                                    message: 'Nombre es demasiado largo'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z]+$/,
+                                    message: 'El nombre sólo puede consistir en alfabético'
+                                }
+                            }
+                        },
+                        apellido: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Apellido es requerido'
+                                },
+                                stringLength: {
+                                    max: 15,
+                                    message: 'Apellido es demasiado largo'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z]+$/,
+                                    message: 'El apellido sólo puede consistir en alfabético'
+                                }
+                            }
+                        },
+
+                        cargo: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Cargo es requerido'
+                                },
+                                stringLength: {
+                                    max: 15,
+                                    message: 'Cargo es demasiado largo'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z]+$/,
+                                    message: 'El cargo sólo puede consistir en alfabético'
+                                }
+                            }
+                        },
+
+                        perfil: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Perfil es requerido'
+                                },
+                                stringLength: {
+                                    max: 15,
+                                    message: 'Perfil es demasiado largo'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z]+$/,
+                                    message: 'El perfil sólo puede consistir en alfabético'
+                                }
+                            }
+                        },
+
+                        correo: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'El correo es requerido'
+                                },
+                                emailAddress: {
+                                    message: 'Correo electronico no valido'
+                                }
+                            }
+                        },
+
+                        cel: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Telefono celular es requerido'
+                                }
+                            }
+                        },
+
+                        tel: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Telefono fijo es requerido'
+                                }
+                            }
+                        },
+
+                        pass: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Clave es requerida'
+                                }
+
+                            }
+                        }
+
+                    }
+                });
+            });
+        </script>
 
     </ui:define>
 </ui:composition>

@@ -6,9 +6,11 @@
 package com.mapris.modelo.dao;
 
 import com.mapris.modelo.entitie.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 
@@ -140,6 +142,21 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 //        }
 //    }
 //        
+
+    @Override
+    public List<Usuario> findAdministrador() {
+        try {
+            getEntityManager().getEntityManagerFactory().getCache().evictAll();
+            Query u = getEntityManager().createNativeQuery("SELECT * FROM usuarios as u inner join rolesusuarios as ru on u.id_usuario=ru.fk_id_usuario inner join roles as r on ru.fk_id_roles = r.idRoles WHERE r.idRoles = 1;", Usuario.class);
+            return u.getResultList();
+        } catch (Exception e) {
+            e.getStackTrace();
+            return null;
+            
+            
+        }
+
+    }
     
 
 }

@@ -27,6 +27,8 @@ public interface ServicioFacadeLocal {
     List<Servicio> findAll();
 
     List<Servicio> findRange(int[] range);
+    
+    List<Servicio> findSalones(Integer salon);
 
     int count();
     

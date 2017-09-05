@@ -27,8 +27,13 @@ public interface UsuarioFacadeLocal {
     List<Usuario> findAll();
 
     List<Usuario> findRange(int[] range);
+    
+    List<Usuario> findAdministrador();
+    
+   
 
     int count();
+    
     
     
     public Usuario loginProcedure(String documento, String clave);

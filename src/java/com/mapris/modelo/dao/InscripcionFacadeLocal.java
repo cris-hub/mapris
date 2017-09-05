@@ -27,6 +27,8 @@ public interface InscripcionFacadeLocal {
     List<Inscripcion> findAll();
 
     List<Inscripcion> findRange(int[] range);
+    
+    List<Inscripcion> findCurso();
 
     int count();
     
