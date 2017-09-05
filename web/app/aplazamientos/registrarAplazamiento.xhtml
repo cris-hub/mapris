@@ -71,41 +71,49 @@
                                     </div>
 
 
-                                    <b:commandButton value="Guardar" icon="floppy-disk"  class="btn btn-primary pull-right"   onclick="$('.modalPseudoClass').modal(); $('.modal-backdrop').remove();">
-                                        <f:ajax event="click" render=":message-modal-confirm" listener="#{registrarAplazamientoController.registrar()}"/>
-                                    </b:commandButton>
+                                    <b:commandButton value="Guardar" icon="floppy-disk"  class="btn btn-primary pull-right"  action="#{registrarAplazamientoController.registrar()}"/>
 
 
                                     <div class="clearfix"></div>
                                 </b:form>
-                          
 
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
 
 
         <b:modal id="amodal" title="Confirma Aplazamiento" styleClass="modalPseudoClass">
-            <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>¿Está seguro que desea realizar el aplazamiento? Recuerde que no podrá ingresar al sistema hasta la fecha en la que deseo aplazar.
+            <h:panelGroup id="message-modal-confirm" layout="block" >
+                <h2 style="background: #932aad; color: white;" align="center"><b>¿Estas segura de realizar un aplazamiento?</b></h2>
+                <p> Recuerda que no podrá ingresar al sistema hasta la fecha en la que deseaste aplazar.
+                    Tu inscripción al programa, curso o servicio pasará a estado <b>APLAZADO</b> al igual que tu estado en el sistema.
+                    <span>En el momento que rellenes el formulario y hagas click en guardar, el sistema automaticamente te redireccionará al formulario de ingreso y tu estado será aplazado</span>
+
                 </p>
-                <h:outputText value="#{registrarAplazamientoController.nuevoAplazamiento.motivo}"/>
-                <h:outputText value="#{registrarAplazamientoController.nuevoAplazamiento.inicio}"/>
-                <h:outputText value="#{registrarAplazamientoController.nuevoAplazamiento.fin}"/>
+
             </h:panelGroup>
             <f:facet name="footer">
                 <b:form id="form-eliminar" prependId="false" >
-                    <b:button value="No estoy segura" dismiss="modal" />
-                    <b:commandButton value="Estoy totalmente segura" look="primary"
-                                     actionListener="#{registrarAplazamientoController.registrar()}"/>
+                    <p align="center"><a class="btn btn-primary" href="#{request.contextPath}/app/index.xhtml">No estoy segura</a>
+                        <b:button value="Estoy completamente segura" dismiss="modal" /></p>
+
                 </b:form>
             </f:facet>
         </b:modal>
 
+        <script>
+            $(document).ready(function ()
+            {
+                $("#amodal").modal("show");
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
 
+        </script>
 
     </ui:define>
 
