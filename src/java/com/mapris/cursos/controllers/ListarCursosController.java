@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -21,11 +22,16 @@ import javax.inject.Named;
  * @author Ruben
  */
 @Named(value = "listarCursosController")
-@ViewScoped
+@RequestScoped
 public class ListarCursosController implements Serializable {
+
+    public CursoFacadeLocal getCfl() {
+        return cfl;
+    }
 
     @EJB
     private CursoFacadeLocal cfl;
+    
 
     private List<Curso> cursos;
 
@@ -38,6 +44,8 @@ public class ListarCursosController implements Serializable {
 
     @PostConstruct
     public void init() {
+        cursos = new ArrayList();
+        cursoSeleccionado = new Curso();
         ArrayList<Curso> aux = new ArrayList();
         recargarCursos();
     }
@@ -67,8 +75,9 @@ public class ListarCursosController implements Serializable {
 
         for (Curso curso : cursos) {
             if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(4)) {
-
+                if (curso.getEstado().equals("En proceso")) {                    
                 aux.add(curso);
+                }
             }
 
         }

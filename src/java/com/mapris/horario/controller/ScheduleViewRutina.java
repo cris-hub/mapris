@@ -8,6 +8,7 @@ import com.mapris.modelo.entitie.Curso;
 import com.mapris.modelo.entitie.DetalleHorario;
 import com.mapris.modelo.entitie.Horario;
 import com.mapris.modelo.entitie.Servicio;
+import com.mapris.util.MessageUtil;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,7 +34,7 @@ import org.primefaces.model.ScheduleModel;
 
 @ManagedBean
 @ViewScoped
-public class ScheduleView implements Serializable {
+public class ScheduleViewRutina implements Serializable {
 
     @EJB
     private HorarioFacadeLocal hfl;
@@ -59,100 +60,92 @@ public class ScheduleView implements Serializable {
         cursos = cfl.findAll();
     }
 
-    public void carga() {
-
-        recargarCursos(getX());
-    }
-
-    public void recargarCursos(String opc) {
-
-        switch (opc) {
-            case "1":
-                //programa
-                cursos = cfl.findAll();
-                for (Curso curso : cursos) {
-                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("1")) {
-                        aux.add(curso);
-                    }
-                }
-                break;
-            case "2":
-                //Rutina
-                cursos = cfl.findAll();
-                for (Curso curso : cursos) {
-                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("2")) {
-                        aux.add(curso);
-                    }
-                }
-                break;
-            case "3":
-                //Servicio
-                cursos = cfl.findAll();
-                for (Curso curso : cursos) {
-                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("3")) {
-                        aux.add(curso);
-                    }
-                }
-                break;
-            case "4":
-                //Cita medica
-                cursos = cfl.findAll();
-                for (Curso curso : cursos) {
-                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("4")) {
-                        aux.add(curso);
-                    }
-                }
-                break;
-            case "5":
-                //Todos
-                cursos = cfl.findAll();
-                aux = cursos;
-
-                break;
-            default:
-                throw new AssertionError();
-        }
-
-    }
-
+//    public void recargarCursos(String opc) {
+//
+//        switch (opc) {
+//            case "1":
+//                //programa
+//                cursos = cfl.findAll();
+//                for (Curso curso : cursos) {
+//                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("1")) {
+//                        aux.add(curso);
+//                    }
+//                }
+//                break;
+//            case "2":
+//                //Rutina
+//                cursos = cfl.findAll();
+//                for (Curso curso : cursos) {
+//                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("2")) {
+//                        aux.add(curso);
+//                    }
+//                }
+//                break;
+//            case "3":
+//                //Servicio
+//                cursos = cfl.findAll();
+//                for (Curso curso : cursos) {
+//                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("3")) {
+//                        aux.add(curso);
+//                    }
+//                }
+//                break;
+//            case "4":
+//                //Cita medica
+//                cursos = cfl.findAll();
+//                for (Curso curso : cursos) {
+//                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("4")) {
+//                        aux.add(curso);
+//                    }
+//                }
+//                break;
+//            case "5":
+//                //Todos
+//                cursos = cfl.findAll();
+//                aux = cursos;
+//
+//                break;
+//            default:
+//                throw new AssertionError();
+//        }
+//
+//    }
     @PostConstruct
     public void init() {
-        eventModel = new DefaultScheduleModel();
-        recargarCursos();
-        for (Curso curso : cursos) {
-            horarios = curso.getHorarios();
-            Servicio servicio = curso.getIdServicios();
-            for (Horario horario : horarios) {
-                Calendar gc = new GregorianCalendar();
-                gc.setTime(horario.getFechaInicio());
-                Date fechaFin = getDateMediaNoche(horario.getFechaFin());
-                for (DetalleHorario dh : horario.getDetallesHorarios()) {
-                    Date fechaInicio = getNextDay(horario.getFechaInicio(), dh.getHoraInicio(), dh.getDiaSemana());
-                    while (fechaInicio.getTime() <= fechaFin.getTime()) {
-                        Date d = fechaInicio;
-                        System.out.println(d + " - " + horario.getFechaFin());
-                        eventModel.addEvent(new DefaultScheduleEvent(
-                                servicio.getNombre(), d, new Date(d.getTime() + (dh.getDuracion() * 3600000))));
-                        fechaInicio = getNextDay(d);
-                        fechaInicio = getNextDay(fechaInicio, dh.getHoraInicio(), dh.getDiaSemana());
+        try {
+
+            eventModel = new DefaultScheduleModel();
+            recargarCursos();
+            for (Curso curso : cursos) {
+                if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(2)) {
+
+                    horarios = curso.getHorarios();
+
+                    Servicio servicio = curso.getIdServicios();
+                    for (Horario horario : horarios) {
+                        Calendar gc = new GregorianCalendar();
+                        gc.setTime(horario.getFechaInicio());
+                        Date fechaFin = getDateMediaNoche(horario.getFechaFin());
+                        for (DetalleHorario dh : horario.getDetallesHorarios()) {
+                            Date fechaInicio = getNextDay(horario.getFechaInicio(), dh.getHoraInicio(), dh.getDiaSemana());
+                            while (fechaInicio.getTime() <= fechaFin.getTime()) {
+                                Date d = fechaInicio;
+                                System.out.println(d + " - " + horario.getFechaFin());
+                                eventModel.addEvent(new DefaultScheduleEvent(
+                                        servicio.getNombre(), d, new Date(d.getTime() + (dh.getDuracion() * 3600000))));
+                                fechaInicio = getNextDay(d);
+                                fechaInicio = getNextDay(fechaInicio, dh.getHoraInicio(), dh.getDiaSemana());
+                            }
+
+                        }
                     }
-
                 }
+
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        lazyEventModel = new LazyScheduleModel() {
-
-            @Override
-            public void loadEvents(Date start, Date end) {
-                Date random = getRandomDate(start);
-                addEvent(new DefaultScheduleEvent("Lazy Event 1", random, random));
-
-                random = getRandomDate(start);
-                addEvent(new DefaultScheduleEvent("Lazy Event 2", random, random));
-            }
-        };
     }
 
     public Integer calendarizar(int opc) {

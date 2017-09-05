@@ -10,7 +10,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
-<ui:define name="titulo">Administrador-Nuevo Horario</ui:define>
+    <ui:define name="titulo">Administrador-Nuevo Horario</ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
@@ -37,41 +37,69 @@
                             </div>
                             <div class="card-content">
                                 <b:messages class="animated flipInX" globalOnly="true" showSummary="true" show-detail="true"/>
-                                
+
                                 <b:form id="form-registro" prependId="false">
-                                   <div class="row">
-                                       
+                                    <div class="row">
+
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Servicios disponibles</label>
-                                                <b:selectOneMenu value="#{registrarCursoController.cursoNuevo.idServicios}">
-                                                    <f:selectItems value="#{listarServicioController.servicios}" var="s" itemLabel="Nombre: #{s.nombre} Descripción: #{s.descripcion}"/> 
-                                                    
-                                                                                                      
-                                                </b:selectOneMenu>
+
+
+
+                                                <div data-step="2" data-intro="Selecciona La Actividad Deseada !">
+                                                    <b:selectOneMenu    update="choose"
+                                                                        value="#{registrarCursoController.cursoNuevo.idServicios}"  
+                                                                        >
+                                                        <f:selectItem itemLabel="Seleccione Algun servicio" itemValue="" />
+                                                        <f:selectItems    value="#{listarServicioController.servicios}"  var="s"  itemLabel="  #{s.nombre} "/>
+                                                    </b:selectOneMenu>
+                                                </div>
+                                                <div data-step="3" data-intro="Aqui te damos una breve despcrion!">
+                                                    <b:panel look="primary" title="Descripcion del servicio" id="choose">
+                                                        <b:messages showSummary="false" />
+                                                        <b:inputText value="#{registrarCursoController.cursoNuevo.idServicios.descripcion}" />
+                                                    </b:panel>
+                                                </div>
+
                                             </div>
                                         </div>
-                                       
+
+
+
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Sesiones</label>
                                                 <b:inputText  value="#{registrarCursoController.cursoNuevo.sesiones}" class="form-control"/>
                                             </div>
                                         </div>
-                                    
+
+
+
+
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Valor</label>
                                                 <b:inputText  value="#{registrarCursoController.cursoNuevo.valor}" class="form-control"/>
                                             </div>
                                         </div>
-                                       
-                                      
-                                    </div>
-                                   
 
-                                   
-                                
+
+
+
+
+
+
+
+
+
+
+
+                                    </div>
+
+
+
+
                                     <h:link styleClass="btn btn-primary" outcome="/app/administrador/cursos/cursos.xhtml" value="#{mensajeApp.back}"/>
                                     <b:commandButton value="#{mensajeApp.save}" icon="floppy-disk" actionListener="#{registrarCursoController.registrar()}" class="btn btn-primary pull-right"/>
 

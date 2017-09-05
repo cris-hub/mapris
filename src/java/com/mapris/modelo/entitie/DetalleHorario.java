@@ -8,8 +8,11 @@ package com.mapris.modelo.entitie;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,7 +42,7 @@ public class DetalleHorario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "iddetalle_horario")
     private Integer iddetalleHorario;
     @Column(name = "hora_inicio")
@@ -50,7 +53,7 @@ public class DetalleHorario implements Serializable {
     @Column(name = "dia_semana")
     private Integer diaSemana;
     @JoinColumn(name = "horarios_id_horario", referencedColumnName = "id_horario")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,cascade = CascadeType.PERSIST)
     private Horario idHorarios;
 
     public DetalleHorario() {
@@ -58,6 +61,13 @@ public class DetalleHorario implements Serializable {
 
     public DetalleHorario(Integer iddetalleHorario) {
         this.iddetalleHorario = iddetalleHorario;
+    }
+
+    public DetalleHorario(Date horaInicio, Integer duracion, Integer diaSemana, Horario idHorarios) {
+        this.horaInicio = horaInicio;
+        this.duracion = duracion;
+        this.diaSemana = diaSemana;
+        this.idHorarios = idHorarios;
     }
 
     public Integer getIddetalleHorario() {

@@ -4,9 +4,9 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:v="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 
@@ -44,24 +44,47 @@
                                             <div  class="form-group label-floating">
                                                 <label class="control-label">Servicio</label>
                                                 <div data-step="2" data-intro="Selecciona La Actividad Deseada !">
-                                                <b:selectOneMenu    update="choose"
-                                                                    value="#{registroClienteInscripcionController.curso}"  
-                                                                    >
-                                                    <f:selectItem itemLabel="Seleccione Algun servicio" itemValue="" />
-                                                    <f:selectItems    value="#{listarCursosController.citas}"  var="c"  itemLabel=" Tipo: #{c.idServicios.tiposServicios.tiposServicio}  #{c.idServicios.nombre}"/>
-                                                </b:selectOneMenu>
+                                                    <b:selectOneMenu    update="choose"
+                                                                        value="#{registroClienteInscripcionController.curso}"  
+                                                                        >
+                                                        <f:selectItem itemLabel="Seleccione Algun servicio" itemValue="" />
+                                                        <f:selectItems    value="#{listarCursosController.citas}"  var="c"  itemLabel=" #{c.idServicios.tiposServicios.tiposServicio}  #{c.idServicios.nombre}"/>
+                                                    </b:selectOneMenu>
                                                 </div>
                                                 <div data-step="3" data-intro="Aqui te damos una breve despcrion!">
-                                                <b:panel look="primary" title="Descripcion del servicio" id="choose">
-                                                    <b:messages showSummary="false" />
-                                                    <b:inputText value="#{registroClienteInscripcionController.curso.idServicios.descripcion}" />
-                                                </b:panel>
+                                                    <b:panel look="primary" title="Descripcion del servicio" id="choose">
+                                                        <b:messages showSummary="false" />
+                                                        <c:forEach items="#{registroClienteInscripcionController.curso.horarios}" var="h">
+                                                            <h:outputText value="#{h.fechaInicio}"/>
+                                                            <br/>
+                                                            
+                                                            <h:outputText value="#{h.fechaFin}"/>
+                                                            <br/>
+                                                            <c:forEach items="#{h.detallesHorarios}" var="d">
+                                                                <h:outputText value="#{d.duracion}"/>
+                                                                <br/>
+                                                                <h:outputText value=" dia  #{d.diaSemana}"/>
+
+                                                            </c:forEach>
+                                                        </c:forEach>
+                                                        <h:outputText value="#{registroClienteInscripcionController.curso.idServicios.descripcion}" />
+                                                    </b:panel>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <h:link styleClass="btn btn-primary" outcome="/app/cliente/programas/programas.xhtml" value="Volver"/>
-                                    <a class="btn btn-large btn-success" href="javascript:void(0);" onclick="javascript:introJs().setOption('tooltipClass', 'customDefault').start();">Show me how</a>                                   
+
+
+                                    <b:panel collapsed="true" look="primary" title="Descripcion del citas medicas" id="cita">
+                                        <b:messages showSummary="false" />
+                                        <p:growl id="messagescita" showDetail="true" />
+                                        <h:panelGrid columnClasses="value">
+                                            <p:schedule id="schedulecita"   value="#{ScheduleViewCitaMedicasDisponobles.eventModel}" ignoreTimezone="true">
+                                            </p:schedule>
+                                        </h:panelGrid>
+                                    </b:panel>
+
+                                    <a class="btn btn-large btn-success" href="javascript:void(0);" onclick="javascript:introJs().setOption('tooltipClass', 'customDefault').start();">Muestreme como hacerlo</a>                                   
                                     <b:commandButton class="btn btn-primary pull-right"
                                                      icon="floppy-disk" 
                                                      tooltip="Inscripbirse"
@@ -70,7 +93,7 @@
                                         <f:ajax event="click" render=":message-modal-confirm"
                                                 listener="#{listarCursosController.setCursoSeleccionado(registroClienteInscripcionController.curso)}"/>
                                     </b:commandButton>
-
+                                    <h:link styleClass="btn btn-primary" outcome="/app/cliente/programas/programas.xhtml" value="Volver"/>
                                     <div class="clearfix"></div>
                                 </b:form>
                             </div>

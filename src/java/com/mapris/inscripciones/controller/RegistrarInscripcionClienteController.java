@@ -6,15 +6,17 @@
 package com.mapris.inscripciones.controller;
 
 import com.mapris.login.controller.SessionController;
+import com.mapris.modelo.dao.CursoFacadeLocal;
 import com.mapris.modelo.dao.InscripcionFacadeLocal;
+import com.mapris.modelo.dao.ServicioFacadeLocal;
 import com.mapris.modelo.entitie.Curso;
 import com.mapris.modelo.entitie.Inscripcion;
+import com.mapris.modelo.entitie.Servicio;
 import com.mapris.util.MessageUtil;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -31,6 +33,11 @@ public class RegistrarInscripcionClienteController implements Serializable {
 
     @EJB
     private InscripcionFacadeLocal inscripcionFacadeLocal;
+    @EJB
+    private ServicioFacadeLocal sfl;
+      @EJB
+    private CursoFacadeLocal cfl;
+
 
     private Inscripcion nuevoInscripcion;
 
@@ -59,10 +66,16 @@ public class RegistrarInscripcionClienteController implements Serializable {
             try {
 
                 nuevoInscripcion.setEstado("Activa");
+
                 nuevoInscripcion.setIdUsuario(sessionCliente.getUsuario().getCliente());
 
                 if (getCurso() != null) {
                     nuevoInscripcion.setFkIdCurso(getCurso());
+//                    Servicio s = sfl.find(nuevoInscripcion.getFkIdCurso().getIdServicios().getIdServicio());
+                    if (nuevoInscripcion.getFkIdCurso().getIdServicios().getTiposServicios().equals(4)) {
+                        nuevoInscripcion.getFkIdCurso().setEstado("Finalizado");
+                        cfl.edit(nuevoInscripcion.getFkIdCurso());
+                    }
 
                 } else {
                     MessageUtil.enviarMensajeInformacionGlobal("Error al registrar el usuario", "No se pudo registrar el usuario");

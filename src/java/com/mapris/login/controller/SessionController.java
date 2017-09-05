@@ -10,7 +10,6 @@ import com.mapris.modelo.entitie.Permiso;
 import com.mapris.modelo.entitie.Rol;
 import com.mapris.modelo.entitie.Usuario;
 
-
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -32,45 +31,44 @@ import javax.servlet.http.HttpSession;
 @Named(value = "sessionController")
 @SessionScoped
 public class SessionController implements Serializable {
-  
+
     @EJB
     private SessionRule sr;
-    
+
     private String clave;
     private String documento;
     private Rol rolSeleccionado;
     private Usuario usuario;
     private Locale seleccionarLenguaje = new Locale("es");
+
     /**
      * Creates a new instance of SessionController
      */
     public SessionController() {
     }
-    
+
     @PostConstruct
-    public void init(){
-        
-        
+    public void init() {
+     
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
-     
+
         Locale idiomaUsuario = ec.getRequestLocale();
         boolean support = false;
         for (Locale l : getSupportLanguages()) {
-            if(l.getLanguage().equals(idiomaUsuario.getLanguage())){
-                support = true; 
+            if (l.getLanguage().equals(idiomaUsuario.getLanguage())) {
+                support = true;
                 break;
             }
         }
-        seleccionarLenguaje = (support) ? idiomaUsuario: new Locale("es");
+        seleccionarLenguaje = (support) ? idiomaUsuario : new Locale("es");
     }
-    
-    
-    
+
     public void setClave(String clave) {
         this.clave = clave;
     }
-     public String getClave() {
+
+    public String getClave() {
         return clave;
     }
 
@@ -101,71 +99,67 @@ public class SessionController implements Serializable {
     public void setSeleccionarLenguaje(Locale seleccionarLenguaje) {
         this.seleccionarLenguaje = seleccionarLenguaje;
     }
-    
-      public List<Locale> getSupportLanguages(){
+
+    public List<Locale> getSupportLanguages() {
         List<Locale> idiomas = new ArrayList<>();
         Iterator<Locale> it = FacesContext.getCurrentInstance().getApplication().getSupportedLocales();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             idiomas.add(it.next());
         }
         return idiomas;
     }
-    
-    public String iniciarSesion(){
+
+    public String iniciarSesion() {
         String urlDestino = "";
         usuario = sr.iniciar(documento, clave);
-        if(usuario != null){
+        if (usuario != null) {
             rolSeleccionado = sr.validarRol(usuario);
-            if(rolSeleccionado != null){
+            if (rolSeleccionado != null) {
                 urlDestino = "/app/index.xhtml?faces-redirect=true";
-            } else{
+            } else {
                 usuario = null;
-                urlDestino = "/login.xhtml?faces-redirect=true";
+               
             }
         }
         return urlDestino;
     }
 
-    public String cerrarSesion(){
-        
+    public String cerrarSesion() {
+         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         usuario = null;
         clave = null;
         documento = null;
         rolSeleccionado = null;
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        session.invalidate();
         return "/login.xhtml?faces-redirect=true";
     }
-   
-      public Boolean inicioSesion(){
+
+    public Boolean inicioSesion() {
         return (usuario != null);
     }
-     
-    public String cambiarIdioma(Locale idioma){
-        if(idioma != null){
+
+    public String cambiarIdioma(Locale idioma) {
+        if (idioma != null) {
             this.seleccionarLenguaje = idioma;
             FacesContext.getCurrentInstance().getViewRoot().setLocale(seleccionarLenguaje);
         }
         return "";
     }
-     
-     public Boolean tienePermiso(String urlRecurso){
-        if(urlRecurso.endsWith("app/index.xhtml")){
+
+    public Boolean tienePermiso(String urlRecurso) {
+        if (urlRecurso.endsWith("app/index.xhtml")) {
             return true;
         }
         for (Permiso p : rolSeleccionado.getPermisos()) {
-            if(p.getUrl() != null && urlRecurso.endsWith(p.getUrl())){
+            if (p.getUrl() != null && urlRecurso.endsWith(p.getUrl())) {
                 return true;
             }
         }
         return false;
-     }
-    
+    }
+
     @PreDestroy
-    public void perDestroy(){
+    public void perDestroy() {
         cerrarSesion();
     }
-    
-    
-    
+
 }

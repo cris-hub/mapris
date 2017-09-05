@@ -6,8 +6,8 @@
 package com.mapris.controller.converter;
 
 
-import com.mapris.modelo.dao.RolFacadeLocal;
-import com.mapris.modelo.entitie.Rol;
+import com.mapris.modelo.dao.DetalleHorarioFacadeLocal;
+import com.mapris.modelo.entitie.DetalleHorario;
 import javax.enterprise.inject.spi.CDI;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -18,13 +18,13 @@ import javax.faces.convert.FacesConverter;
  *
  * @author Smegs
  */
-@FacesConverter(forClass = Rol.class, value = "rolConverter")
-public class RolConverter implements Converter{
+@FacesConverter(forClass = DetalleHorario.class, value = "detalleHorarioConverter")
+public class DetalleHorarioConverter implements Converter{
     
-    private RolFacadeLocal tdfl;
+    private DetalleHorarioFacadeLocal tdfl;
 
-    public RolConverter() {
-        tdfl = CDI.current().select(RolFacadeLocal.class).get();
+    public DetalleHorarioConverter() {
+        tdfl = CDI.current().select(DetalleHorarioFacadeLocal.class).get();
     }
     
     @Override
@@ -37,9 +37,9 @@ public class RolConverter implements Converter{
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        if(value != null && value instanceof Rol){
-            Rol td = (Rol) value;
-            return td.getIdRoles().toString();
+        if(value != null && value instanceof DetalleHorario){
+            DetalleHorario td = (DetalleHorario) value;
+            return td.getIddetalleHorario().toString();
         }
         return null;
     }

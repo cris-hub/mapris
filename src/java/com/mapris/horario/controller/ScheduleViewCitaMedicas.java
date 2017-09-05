@@ -33,8 +33,9 @@ import org.primefaces.model.ScheduleModel;
 
 @ManagedBean
 @ViewScoped
-public class ScheduleView implements Serializable {
+public class ScheduleViewCitaMedicas implements Serializable {
 
+   
     @EJB
     private HorarioFacadeLocal hfl;
     @EJB
@@ -59,68 +60,71 @@ public class ScheduleView implements Serializable {
         cursos = cfl.findAll();
     }
 
-    public void carga() {
 
-        recargarCursos(getX());
-    }
 
-    public void recargarCursos(String opc) {
-
-        switch (opc) {
-            case "1":
-                //programa
-                cursos = cfl.findAll();
-                for (Curso curso : cursos) {
-                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("1")) {
-                        aux.add(curso);
-                    }
-                }
-                break;
-            case "2":
-                //Rutina
-                cursos = cfl.findAll();
-                for (Curso curso : cursos) {
-                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("2")) {
-                        aux.add(curso);
-                    }
-                }
-                break;
-            case "3":
-                //Servicio
-                cursos = cfl.findAll();
-                for (Curso curso : cursos) {
-                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("3")) {
-                        aux.add(curso);
-                    }
-                }
-                break;
-            case "4":
-                //Cita medica
-                cursos = cfl.findAll();
-                for (Curso curso : cursos) {
-                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("4")) {
-                        aux.add(curso);
-                    }
-                }
-                break;
-            case "5":
-                //Todos
-                cursos = cfl.findAll();
-                aux = cursos;
-
-                break;
-            default:
-                throw new AssertionError();
-        }
-
-    }
+//    public void recargarCursos(String opc) {
+//
+//        switch (opc) {
+//            case "1":
+//                //programa
+//                cursos = cfl.findAll();
+//                for (Curso curso : cursos) {
+//                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("1")) {
+//                        aux.add(curso);
+//                    }
+//                }
+//                break;
+//            case "2":
+//                //Rutina
+//                cursos = cfl.findAll();
+//                for (Curso curso : cursos) {
+//                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("2")) {
+//                        aux.add(curso);
+//                    }
+//                }
+//                break;
+//            case "3":
+//                //Servicio
+//                cursos = cfl.findAll();
+//                for (Curso curso : cursos) {
+//                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("3")) {
+//                        aux.add(curso);
+//                    }
+//                }
+//                break;
+//            case "4":
+//                //Cita medica
+//                cursos = cfl.findAll();
+//                for (Curso curso : cursos) {
+//                    if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals("4")) {
+//                        aux.add(curso);
+//                    }
+//                }
+//                break;
+//            case "5":
+//                //Todos
+//                cursos = cfl.findAll();
+//                aux = cursos;
+//
+//                break;
+//            default:
+//                throw new AssertionError();
+//        }
+//
+//    }
 
     @PostConstruct
     public void init() {
+        try {
+            
+        
         eventModel = new DefaultScheduleModel();
         recargarCursos();
         for (Curso curso : cursos) {
+            if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(4)) {
+                
             horarios = curso.getHorarios();
+       
             Servicio servicio = curso.getIdServicios();
             for (Horario horario : horarios) {
                 Calendar gc = new GregorianCalendar();
@@ -139,20 +143,14 @@ public class ScheduleView implements Serializable {
 
                 }
             }
+                 }
 
         }
 
-        lazyEventModel = new LazyScheduleModel() {
-
-            @Override
-            public void loadEvents(Date start, Date end) {
-                Date random = getRandomDate(start);
-                addEvent(new DefaultScheduleEvent("Lazy Event 1", random, random));
-
-                random = getRandomDate(start);
-                addEvent(new DefaultScheduleEvent("Lazy Event 2", random, random));
-            }
-        };
+       
+        }catch(Exception e){
+        e.printStackTrace();
+        }
     }
 
     public Integer calendarizar(int opc) {

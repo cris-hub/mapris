@@ -92,7 +92,7 @@ public class EditarCursosController implements Serializable {
     }
 
     public String getIconUsuarioBloqueo(Curso c) {
-        return (c.getEstado().equalsIgnoreCase("En proceso")) ? "repeat" : "remove";
+        return (c.getEstado().equals("En proceso")) ? "repeat" : "remove";
     }
       
     

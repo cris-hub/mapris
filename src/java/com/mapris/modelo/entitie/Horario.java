@@ -52,7 +52,7 @@ public class Horario implements Serializable {
     @Column(name = "fechaFin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHorarios")
+    @OneToMany( mappedBy = "idHorarios")
     private List<DetalleHorario> detallesHorarios;
     @JoinColumn(name = "fk_id_curso", referencedColumnName = "id_curso")
     @ManyToOne(optional = false)

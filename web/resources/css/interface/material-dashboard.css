@@ -413,7 +413,7 @@ h2.title {
 .wrapper {
     position: relative;
     top: 0;
-    height: 100vh;
+    
     overflow-y: hidden;
 }
 
@@ -3578,6 +3578,8 @@ footer .btn {
     color: #999999;
 }
 .card .card-content {
+    
+    height: auto;
     padding: 15px 20px;
 }
 .card .card-content .category {
