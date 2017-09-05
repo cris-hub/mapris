@@ -413,7 +413,9 @@ h2.title {
 .wrapper {
     position: relative;
     top: 0;
-    
+    height: auto;
+    max-height: 2000px;
+    min-height: 900px;
     overflow-y: hidden;
 }
 
