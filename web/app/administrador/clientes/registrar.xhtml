@@ -43,53 +43,49 @@
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Cedula</label>
-                                                <b:inputText id="cedula" value="#{registroClienteController.nuevoUsuario.cedula}" class="form-control" required="true" requiredMessage="Este campo es requerido" 
-                                                             maxlength="15"  validatorMessage="Este campo es exclusivo de números" >
-                                                
-                                                    <f:validateLength for="cedula" minimum="6" maximum="15"/>
-                
-                                                </b:inputText>
-                                                <b:message for="cedula"/>
+                                                <b:inputText id="cedula" name="document" value="#{registroClienteController.nuevoUsuario.cedula}" class="form-control" required="true"
+                                                             maxlength="15">  </b:inputText>
+
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombres</label>
-                                                <b:inputText value="#{registroClienteController.nuevoUsuario.nombres}"  class="form-control"/>
+                                                <b:inputText name="nombre" value="#{registroClienteController.nuevoUsuario.nombres}"  class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Apellidos</label>
-                                                <b:inputText value="#{registroClienteController.nuevoUsuario.apellidos}"  class="form-control"/>
+                                                <b:inputText name="apellido" value="#{registroClienteController.nuevoUsuario.apellidos}"  class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Correo Electronico</label>
-                                                <b:inputText a:type="email" value="#{registroClienteController.nuevoUsuario.correoElectronico}"  class="form-control"/>
+                                                <b:inputText a:type="email" name="correo" value="#{registroClienteController.nuevoUsuario.correoElectronico}"  class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono Celular</label>
-                                                <b:inputText maxlength="10" value="#{registroClienteController.nuevoUsuario.telefonoCelular}"  class="form-control"/>
+                                                <b:inputText maxlength="10" name="cel" value="#{registroClienteController.nuevoUsuario.telefonoCelular}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono Fijo</label>
-                                                <b:inputText maxlength="7" value="#{registroClienteController.nuevoUsuario.telefonoFijo}"  class="form-control"/>
+                                                <b:inputText maxlength="7" name="tel" value="#{registroClienteController.nuevoUsuario.telefonoFijo}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Clave</label>
-                                                <b:inputText value="#{registroClienteController.nuevoUsuario.clave}"  class="form-control"/>
+                                                <b:inputText name="pass" value="#{registroClienteController.nuevoUsuario.clave}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -101,7 +97,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Empresa</label>
-                                                <b:selectOneMenu value="#{registroClienteController.nuevoCliente.idEmpresas}" class="form-control">
+                                                <b:selectOneMenu  value="#{registroClienteController.nuevoCliente.idEmpresas}" class="form-control">
 
                                                     <f:selectItems value="#{listarEmpresaController.empresa}" var="p" itemLabel=" #{p.idEmpresa}-#{p.nombre}"/>
                                                 </b:selectOneMenu>
@@ -125,6 +121,117 @@
             </div>
         </div>
 
+        <style type="text/css">
+            #form-registro .has-error .control-label,
+            #form-registro .has-error .help-block,
+            #form-registro .has-error .form-control-feedback {
+                color: #B031AA;
+            }
+
+            #form-registro .has-success .control-label,
+            #form-registro .has-success .help-block,
+            #form-registro .has-success .form-control-feedback {
+                color: #18bc9c;
+            }
+        </style>
+        <script>
+
+
+            $(document).ready(function() {
+                $('#form-editar').formValidation({
+                    framework: 'bootstrap',
+                    icon: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        document: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Numero de documento requerido'
+                                },
+                                stringLength: {
+                                    min: 10,
+                                    max: 11,
+                                    message: 'Debe tener más de 10 y menos de 11 caracteres'
+                                },
+                                numeric: {
+
+                                    message: '#{msjValidacionLogin.soloLetrarNumeros}'
+                                }
+                            }
+                        },
+                        nombre: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Nombre es requerido'
+                                },
+                                stringLength: {
+                                    max: 15,
+                                    message: 'Nombre es demasiado largo'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z]+$/,
+                                    message: 'El nombre sólo puede consistir en alfabético'
+                                }
+                            }
+                        },
+                        apellido: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Apellido es requerido'
+                                },
+                                stringLength: {
+                                    max: 15,
+                                    message: 'Apellido es demasiado largo'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z]+$/,
+                                    message: 'El apellido sólo puede consistir en alfabético'
+                                }
+                            }
+                        },
+                        correo: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'El correo es requerido'
+                                },
+                                emailAddress: {
+                                    message: 'Correo electronico no valido'
+                                }
+                            }
+                        },
+
+                        cel: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Telefono celular es requerido'
+                                }
+                            }
+                        },
+
+                        tel: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Telefono fijo es requerido'
+                                }
+                            }
+                        },
+
+                        pass: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Clave es requerida'
+                                }
+
+                            }
+                        }
+
+                    }
+                });
+            });
+        </script>
 
     </ui:define>
 </ui:composition>

@@ -8,8 +8,8 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui">
 
-    
-<ui:define name="titulo">Administrador-Editar Empresa</ui:define>
+
+    <ui:define name="titulo">Administrador-Editar Empresa</ui:define>
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
@@ -24,7 +24,7 @@
                 <span class="active">Registrar Empresa</span>
             </li>
         </ul>
-        
+
 
     </ui:define>
     <ui:define name="contenido">
@@ -45,44 +45,44 @@
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nit de la empresa</label>
-                                                <b:inputText value="#{registrarEmpresasController.nuevoEmpresa.nit}" class="form-control"  />
+                                                <b:inputText name="nit" maxlength="15" value="#{registrarEmpresasController.nuevoEmpresa.nit}" class="form-control"  />
                                             </div>
                                         </div>
-                                   
+
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombre de la empresa</label>
-                                                <b:inputText  value="#{registrarEmpresasController.nuevoEmpresa.nombre}"  class="form-control"/>
+                                                <b:inputText  name="nombre" value="#{registrarEmpresasController.nuevoEmpresa.nombre}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Dirección Principal(Sede Principal)</label>
-                                                <b:inputText  value="#{registrarEmpresasController.nuevoEmpresa.direccionP}"  class="form-control"/>
+                                                <b:inputText  name="dir" value="#{registrarEmpresasController.nuevoEmpresa.direccionP}"  class="form-control"/>
 
                                             </div>
                                         </div>
-                                    
+
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Dirección Alterna (Sede Alterna)</label>
-                                                <b:inputText  value="#{registrarEmpresasController.nuevoEmpresa.direccionO}"  class="form-control"/>
+                                                <b:inputText  name="dirAlter" value="#{registrarEmpresasController.nuevoEmpresa.direccionO}"  class="form-control"/>
 
                                             </div>
                                         </div>
-                                   
+
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono Celular</label>
-                                                <b:inputText maxlength="20"  value="#{registrarEmpresasController.nuevoEmpresa.telefonoC}"  class="form-control"/>
+                                                <b:inputText  name="cel" maxlength="20"  value="#{registrarEmpresasController.nuevoEmpresa.telefonoC}"  class="form-control"/>
 
                                             </div>
                                         </div>
-                                   
+
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Teléfono Fijo</label>
-                                                <b:inputText maxlength="20" value="#{registrarEmpresasController.nuevoEmpresa.telefonoF}"  class="form-control"/>
+                                                <b:inputText name="tel" maxlength="7" value="#{registrarEmpresasController.nuevoEmpresa.telefonoF}"  class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +99,115 @@
             </div>
         </div>
 
+        <style type="text/css">
+            #form-registro .has-error .control-label,
+            #form-registro .has-error .help-block,
+            #form-registro .has-error .form-control-feedback {
+                color: #B031AA;
+            }
 
+            #form-registro .has-success .control-label,
+            #form-registro .has-success .help-block,
+            #form-registro .has-success .form-control-feedback {
+                color: #18bc9c;
+            }
+        </style>
+        <script>
+
+
+            $(document).ready(function() {
+                $('#form-editar').formValidation({
+                    framework: 'bootstrap',
+                    icon: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        nit: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Nit es requerido'
+                                },
+                                stringLength: {
+                                    max: 15,
+                                    message: 'Nit es demasiado largo'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z0-9]+$/,
+                                    message: 'El Nit sólo puede consistir en alfabético y numeros'
+                                }
+                            }
+                        },
+                        nombre: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Nombre es requerido'
+                                },
+                                stringLength: {
+                                    max: 15,
+                                    message: 'Nombre es demasiado largo'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z]+$/,
+                                    message: 'El nombre sólo puede consistir en alfabético'
+                                }
+                            }
+                        },
+                        dir: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Dirreción es requerida'
+                                },
+
+                                regexp: {
+                                    regexp: /^[a-zA-Z0-9]+$/,
+                                    message: 'La dirreción sólo puede consistir en alfabético y numeros'
+                                }
+                            }
+                        },
+
+                        dirAlter: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Dirreción es requerida'
+                                },
+
+                                regexp: {
+                                    regexp: /^[a-zA-Z0-9]+$/,
+                                    message: 'la dirreción sólo puede consistir en alfabético y numeros'
+                                }
+                            }
+                        },
+
+                        cel: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Telefono celular es requerido'
+                                },
+                                numeric: {
+
+                                    message: 'El telefono solo puede contener numeros'
+                                }
+                            }
+                        },
+
+                        tel: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Telefono fijo es requerido'
+                                },
+                                numeric: {
+
+                                    message: 'El telefono solo puede contener numeros'
+                                }
+                            }
+                        }
+
+                    }
+                });
+            });
+        </script>
     </ui:define>
 </ui:composition>
 

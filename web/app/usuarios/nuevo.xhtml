@@ -28,7 +28,8 @@
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">#{mensajeApp.documento}</label>
-                                                <b:inputText a:type="number" name="document" value="#{registroController.nuevoUsuario.cedula}" class="form-control" a:data-mask="0000000000" a:pattern="[0-9]" required="true"/>
+                                                <b:inputText  name="document" id="documento"  value="#{registroController.nuevoUsuario.cedula}" class="form-control" required="true"/>
+
                                             </div>
                                         </div>
 
@@ -38,13 +39,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">#{mensajeApp.firtsName}</label>
-                                                <b:inputText value="#{registroController.nuevoUsuario.nombres}" class="form-control" required="true"/>
+                                                <b:inputText name="nombre" value="#{registroController.nuevoUsuario.nombres}" class="form-control" required="true"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">#{mensajeApp.firtsLastName}</label>
-                                                <b:inputText value="#{registroController.nuevoUsuario.apellidos}" class="form-control" required="true"/>
+                                                <b:inputText name="apellido" value="#{registroController.nuevoUsuario.apellidos}" class="form-control" required="true"/>
 
                                             </div>
                                         </div>
@@ -55,7 +56,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">#{mensajeApp.birt}</label>
-                                                <b:datepicker value="#{registroController.nuevoUsuario.fechaNaci}" class="form-control" changeYear="true" changeMonth="true" mode="popup" required="true"/>
+                                                <b:datepicker  a:name="fecha" value="#{registroController.nuevoUsuario.fechaNaci}" class="form-control" changeYear="true" changeMonth="true" mode="popup" required="true"/>
                                             </div>
                                         </div>
 
@@ -65,7 +66,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">#{mensajeApp.password}</label>
-                                                <b:inputSecret value="#{registroController.nuevoUsuario.clave}" class="form-control" required="true"/>
+                                                <b:inputSecret name="pass" value="#{registroController.nuevoUsuario.clave}" class="form-control" required="true"/>
                                             </div>
                                         </div>
                                     </div>
@@ -82,7 +83,90 @@
                 </div>
             </div>
         </div>
+        <style type="text/css">
+            #form-registro .has-error .control-label,
+            #form-registro .has-error .help-block,
+            #form-registro .has-error .form-control-feedback {
+                color: #B031AA;
+            }
 
+            #form-registro .has-success .control-label,
+            #form-registro .has-success .help-block,
+            #form-registro .has-success .form-control-feedback {
+                color: #18bc9c;
+            }
+        </style>
+        <script>
+
+
+            $(document).ready(function() {
+                $('#form-registro').formValidation({
+                    framework: 'bootstrap',
+                    icon: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        document: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Numero de documento requerido'
+                                },
+                                stringLength: {
+                                    min: 10,
+                                    max: 11,
+                                    message: 'Debe tener más de 10 y menos de 11 caracteres'
+                                },
+                                numeric: {
+
+                                    message: '#{msjValidacionLogin.soloLetrarNumeros}'
+                                }
+                            }
+                        },
+                        nombre: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Nombre es requerido'
+                                },
+                                stringLength: {
+                                    max: 15,
+                                    message: 'Nombre es demasiado largo'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z]+$/,
+                                    message: 'El nombre sólo puede consistir en alfabético'
+                                }
+                            }
+                        },
+                        apellido: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Apellido es requerido'
+                                },
+                                stringLength: {
+                                    max: 15,
+                                    message: 'Apellido es demasiado largo'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z]+$/,
+                                    message: 'El apellido sólo puede consistir en alfabético'
+                                }
+                            }
+                        },
+                        pass: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Clave es requerida'
+                                },
+
+                            }
+                        }
+
+                    }
+                });
+            });
+        </script>
     </ui:define>
 </ui:composition>
 
