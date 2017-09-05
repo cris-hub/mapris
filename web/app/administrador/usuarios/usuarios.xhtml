@@ -49,7 +49,9 @@
                                 <p class="category">Estos son los residentes por apartamento y pago del parquedero</p>
                             </div>
                             <div class="card-content table-responsive">
-
+                                <div>
+                                    <b:commandButton class="btn btn-primary" value="Reporte PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
+                                </div>
                                 <b:message for="form-data-table-usuarios" showSummary="true" showDetail="true"/>
                                 <h:form id="form-data-table-usuarios" prependId="false">
                                     <b:dataTable id="dtUsuario" value="#{listarUsuaariosController.usuarios}" var="user">

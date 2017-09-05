@@ -27,9 +27,11 @@
                                 <p class="category">Aquí estan todos los usuarios registrador en el sistema de información</p>
                             </div>
                             <div class="card-content table-responsive">
-
                                 <b:message for="form-data-table-usuarios" showSummary="true" showDetail="true"/>
                                 <h:form id="form-data-table-usuarios" prependId="false">
+                                <div>
+                                    <b:commandButton class="btn btn-primary" value="Reporte PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
+                                </div>
                                     <b:dataTable id="dtUsuario" value="#{listarUsuaariosController.usuarios}" var="user">
 
 
