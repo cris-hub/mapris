@@ -5,6 +5,9 @@ import com.mapris.modelo.entitie.Usuario;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,8 +51,10 @@ public class ReporteUsuariosController {
     }
 
     private void prepararExport() throws JRException {
+        
+        Calendar h = new GregorianCalendar();
         Map<String, Object> params = new HashMap<>();
-//        params.put("UsuarioDelReporte", "Ismael Suárez");
+        params.put("Hora", h.getTime());
         JRBeanCollectionDataSource bcds = new JRBeanCollectionDataSource(usuarios);
         String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/") + "/WEB-INF/reportes/usuarios/ReportesUsuarios.jasper";
         jp = JasperFillManager.fillReport(reportPath, params, bcds);
