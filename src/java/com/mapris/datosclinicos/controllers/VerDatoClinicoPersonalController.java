@@ -15,6 +15,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;
 
 import javax.inject.Inject;
@@ -25,7 +26,7 @@ import javax.inject.Named;
  * @author Ruben
  */
 @Named(value="verDatoClinicoPersonalController")
-@ViewScoped
+@SessionScoped
 public class VerDatoClinicoPersonalController implements Serializable{
     
     
