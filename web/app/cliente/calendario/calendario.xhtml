@@ -36,8 +36,15 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">MI CALENDARIO</h4>
-                                <p class="category">Puedo ver mis proximas citas</p>
+                               <div class="row"> 
+                                    <div class="col-md-6"> 
+                                        <h4 class="title"> Horario</h4>
+                                    </div>
+                                    <div class="col-md-6"> 
+                                        <a class="btn btn-success pull-right" href="javascript:void(0);" onclick="javascript:introJs().start();">como hacerlo</a>
+                                    </div>
+                                </div>
+                                <p class="category">Puedes agregar un horario que estará disponible para los programas del gimnasio</p>
                             </div>
                             <div class="card-content">
                                     <a class="btn btn-large btn-success pull-right" href="javascript:void(0);" onclick="javascript:introJs().setOption('tooltipClass', 'customDefault').start();">Muestreme como hacerlo</a>                                   
@@ -59,7 +66,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div data-step="2" data-intro="Podras observas nuestros horarios de rutinas!">
-                                                    <b:panel collapsed="true" look="primary" title="Descripcion del rutinas" id="rutinas">
+                                                    <b:panel  look="primary" title="Descripcion del rutinas" id="rutinas">
                                                         <b:messages showSummary="false" />
                                                         <p:growl id="messagesrutinas" showDetail="true" />
                                                         <h:panelGrid columnClasses="value">
@@ -73,7 +80,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                             <div data-step="3"  data-intro="horarios de servicios!">
-                                                <b:panel collapsed="true" look="primary" title="Descripcion del servicio" id="servicio">
+                                                <b:panel  look="primary" title="Descripcion del servicio" id="servicio">
                                                     <b:messages showSummary="false" />
                                                     <p:growl id="messagesservicio" showDetail="true" />
                                                     <h:panelGrid columnClasses="value">
@@ -85,7 +92,7 @@
                                                 </div>
                                             <div class="col-md-6">
                                             <div data-step="4" data-intro=" y por ultimo pero no menos importante horarios de Citas medicas">
-                                                <b:panel collapsed="true" look="primary" title="Descripcion del citas medicas" id="cita">
+                                                <b:panel  look="primary" title="Descripcion del citas medicas" id="cita">
                                                     <b:messages showSummary="false" />
                                                     <p:growl id="messagescita" showDetail="true" />
                                                     <h:panelGrid columnClasses="value">

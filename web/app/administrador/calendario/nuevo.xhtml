@@ -4,10 +4,10 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:b="http://bootsfaces.net/ui"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 
     <ui:define name="titulo">Administrador-Nuevo Horario</ui:define>
@@ -30,74 +30,98 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div data-step="1" data-intro="Aqui te damos una breve despcrion de como crear un horario para un curso!" class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Nuevo Horario</h4>
+                                <div class="row"> 
+                                    <div class="col-md-6"> 
+                                        <h4 class="title">Nuevo Horario</h4>
+                                    </div>
+                                    <div class="col-md-6"> 
+                                        <a class="btn btn-success pull-right" href="javascript:void(0);" onclick="javascript:introJs().start();">como hacerlo</a>
+                                    </div>
+                                </div>
                                 <p class="category">Puedes agregar un horario que estará disponible para los programas del gimnasio</p>
                             </div>
                             <div class="card-content">
                                 <b:messages class="animated flipInX" globalOnly="true" showSummary="true" show-detail="true"/>
 
                                 <b:form id="form-registro" prependId="false">
-                                    <div class="row">
+                                    <div class="form-group ">
+                                        <div class="form-group ">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div  data-step="2" data-intro="Selecciona La Actividad Deseada !">
+                                                        <b:selectOneMenu    update="choose"
 
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="">Servicios disponibles</label>
+                                                                            value="#{registrarHorarioController.curso}"  
+                                                                            >
+                                                            <f:selectItem itemLabel="Seleccione Algun servicio" itemValue="" />
+                                                            <f:selectItems    value="#{listarCursosController.cursos}"  var="s"  itemLabel="#{s.idServicios.nombre}  "/>
+                                                        </b:selectOneMenu>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div data-step="3" data-intro="Aqui te damos una breve despcrion!">
+                                                        <br/>
+                                                        <b:panel    title="Descripcion del servicio" id="choose">
 
-
-
-                                                <div data-step="2" data-intro="Selecciona La Actividad Deseada !">
-                                                    <b:selectOneMenu    update="choose"
-
-                                                                        value="#{registrarHorarioController.curso}"  
-                                                                        >
-                                                        <f:selectItem itemLabel="Seleccione Algun servicio" itemValue="" />
-                                                        <f:selectItems    value="#{listarCursosController.cursos}"  var="s"  itemLabel="  #{s.idCurso} "/>
+                                                            <h:outputText value="#{registrarHorarioController.curso.idServicios.descripcion}" />
+                                                        </b:panel>
+                                                    </div>
+                                                </div>
+                                                <div data-step="9" data-intro=" dias de la semana que se vera este servico"  class="col-md-4">
+                                                    <b:selectOneMenu value="#{registrarHorarioController.dethorario.diaSemana}">
+                                                        <f:selectItem itemValue="" itemLabel="Día de la semana"/>
+                                                        <f:selectItem itemValue="1" itemLabel="Lunes"/>
+                                                        <f:selectItem itemValue="2" itemLabel="Martes"/>
+                                                        <f:selectItem itemValue="3" itemLabel="Miercoles"/>
+                                                        <f:selectItem itemValue="4" itemLabel="Jueves"/>
+                                                        <f:selectItem itemValue="5" itemLabel="Viernes"/>
+                                                        <f:selectItem itemValue="6" itemLabel="Sabado"/>
+                                                        <f:selectItem itemValue="0" itemLabel="Domingo"/>
                                                     </b:selectOneMenu>
                                                 </div>
-                                                <div data-step="3" data-intro="Aqui te damos una breve despcrion!">
-                                                    <b:panel look="primary" title="Descripcion del servicio" id="choose">
-                                                        <b:messages showSummary="false" />
-                                                        <h:outputText value="#{registrarHorarioController.curso.idServicios.descripcion}" />
-                                                    </b:panel>
-                                                    <b:datepicker showButtonPanel="true"  value="#{registrarHorarioController.horario.fechaInicio}" />
-                                                    <b:datepicker showButtonPanel="true" value="#{registrarHorarioController.horario.fechaInicio}"/>
-                                                    <b:dateTimePicker allow-input-toggle="true" showDate="false" value="#{registrarHorarioController.dethorario.horaInicio}"/>
-                                                    <b:inputText value="#{registrarHorarioController.dethorario.duracion}" />
-                                                    <div class="col-md-6">
-                                                        
-                                                            <label class="">Día de la semana</label>
-                                                            <b:selectOneMenu value="#{registrarHorarioController.dethorario.diaSemana}">
-                                                                <f:selectItem itemValue="0" itemLabel="Lunes"/>
-                                                                <f:selectItem itemValue="1" itemLabel="Martes"/>
-                                                                <f:selectItem itemValue="2" itemLabel="Miercoles"/>
-                                                                <f:selectItem itemValue="3" itemLabel="Jueves"/>
-                                                                <f:selectItem itemValue="4" itemLabel="Viernes"/>
-                                                                <f:selectItem itemValue="5" itemLabel="Sabado"/>
-                                                                <f:selectItem itemValue="6" itemLabel="Domingo"/>
-                                                            </b:selectOneMenu>
-                                                        
+                                            </div>
+                                            <div class="form-group ">
+                                                <div  data-step="4"  data-intro="Le damos un rango de fechas"  class="row">
+                                                    <div data-step="5" data-intro=" fecha inico"  class="col-md-3">
+                                                        <label class="">Fecha De iniciaciòn</label>
+                                                        <b:datepicker pt:placeholder="2/09/17" showButtonPanel="true"  value="#{registrarHorarioController.horario.fechaInicio}" />
+                                                    </div>
+                                                    <div data-step="6" data-intro=" fecha fin"  class="col-md-3">
+                                                        <label class="">Fecha De finalizaciòn</label>
+                                                        <b:datepicker  pt:placeholder="2/09/17" showButtonPanel="true" value="#{registrarHorarioController.horario.fechaFin}"/>
+                                                    </div>
+                                                    <div data-step="7" data-intro=" hora de inico" class="col-md-3">
+                                                        <label   class="">Hora de inico</label>
+                                                        <b:inputText pt:placeholder="10:05 am" pt:type="time" value="#{registrarHorarioController.dethorario.horaInicio}">
+                                                            <f:convertDateTime type="time" timeStyle="short"/>
+                                                        </b:inputText>
+                                                    </div>
+                                                    <div data-step="8" data-intro=" Una horacion, por defecto manejamos un rango de horas para servicos"  class="col-md-3">
+                                                        <label class="">horas de duraciòn del servicio</label>
+                                                        <b:inputText pt:placeholder="5" pt:type="number" value="#{registrarHorarioController.dethorario.duracion}" />            
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
-
-
-
-
-
-
-
-
                                     </div>
 
 
 
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/cursos/cursos.xhtml" value="#{mensajeApp.back}"/>
-                                    <b:commandButton value="#{mensajeApp.save}" icon="floppy-disk" actionListener="#{registrarHorarioController.registrar()}" class="btn btn-primary pull-right"/>
+                                    <div class="row">
+                                        <div class="col-md-6" >
+                                            <h:link styleClass="btn btn-primary" outcome="/app/administrador/cursos/cursos.xhtml" value="#{mensajeApp.back}"/>
+                                        </div>
+                                        <div data-step="10" data-intro=" Confirmamos su creacion"  class="col-md-6" >
 
+                                            <b:commandButton  value="#{mensajeApp.save}" icon="floppy-disk" actionListener="#{registrarHorarioController.registrar()}" class="btn btn-primary pull-right"/>
+
+                                        </div>
+
+                                    </div>
 
                                     <div class="clearfix"></div>
                                 </b:form>

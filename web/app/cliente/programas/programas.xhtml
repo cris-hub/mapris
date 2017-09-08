@@ -52,19 +52,19 @@
                                     <div class="cardtwo">
                                         <div class="front">
                                             <div class="cover">
-                                                <b:image value="/resources/img/imghome/prenatal/prenatal.jpg" ></b:image>
+                                                <!--<b:image value="/resources/img/imghome/prenatal/prenatal.jpg" ></b:image>-->
 
                                             </div>
                                             <a href="posnatal/programapos.xhtml"></a>
                                             <div class="content">
                                                 <div class="main">
-                                                    <h3 class="name">Programa Prenatal</h3>
-                                                    <p class="profession">Primero tu salud</p>
-                                                    <p class="text-center">Prepárate, Cuídate y ponte en forma para recibir a tu bebé.</p>
+                                                    <h3 class="name">#{p.idServicios.nombre}</h3>
+
+                                                    <p class="text-center">#{p.idServicios.descripcion}</p>
                                                 </div>
                                                 <div class="footer">
-                                                    <i class="fa fa-mail-forward"></i> Programas
-
+                                                    <i class="fa fa-mail-forward"></i> 
+                                                    #{p.idServicios.tiposServicios.tiposServicio}
                                                 </div>
 
 
@@ -78,14 +78,11 @@
                                                 <!--<h:form>-->
                                                 <div class="main">
                                                     <h4 class="text-center">Descripción</h4>
-                                                    <p class="text-center">A partir de la semana 14 de gestación y con autorización escrita del médico tratante.</p>
-                                                    <p class="profession">Servicios de:<br/>
-                                                        <ul>
-                                                            <li>Programas de promoción y prevención</li>
-                                                            <li> Acondicionamiento Físico</li>
-                                                            <li> Curso Psicoprofiláctico</li>
-                                                            <li>Spa y Relajación</li>
-                                                        </ul>
+                                                    <p class="text-center">#{p.idServicios.tiposServicios.descripcion}</p>
+                                                    
+                                                    <p class="profession">objetivo:<br/>
+                                                        <p class="text-center">#{p.idServicios.objetivo}
+                                                        </p>
                                                     </p>
                                                     <h:form  prependId="false">
                                                         <center><h:commandButton value="Inscribirme"  action="#{verCursoController.verCurso(p)}" class="btn btn-primary"/></center>

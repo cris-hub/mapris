@@ -55,34 +55,47 @@
                                                     <b:panel look="primary" title="Descripcion del servicio" id="choose">
                                                         <b:messages showSummary="false" />
                                                         <c:forEach items="#{registroClienteInscripcionController.curso.horarios}" var="h">
-                                                            <h:outputText value="#{h.fechaInicio}"/>
+
+
+                                                            fecha inico :<h:outputText value="#{h.fechaInicio}">
+                                                                <f:convertDateTime type="date" timeStyle="short"/>
+                                                            </h:outputText>
                                                             <br/>
-                                                            
-                                                            <h:outputText value="#{h.fechaFin}"/>
+
+                                                            fecha Fin:<h:outputText value="#{h.fechaFin}">
+                                                                <f:convertDateTime type="date" timeStyle="short"/>
+                                                            </h:outputText>
                                                             <br/>
                                                             <c:forEach items="#{h.detallesHorarios}" var="d">
-                                                                <h:outputText  value="#{d.duracion}"/>
+                                                                <h:outputText  value="duracion :#{d.duracion}">
+
+                                                                </h:outputText>
                                                                 <br/>
-                                                                <h:outputText value=" dia  #{d.diaSemana}"/>
+                                                                <h:outputText value=" dias :  #{registroClienteInscripcionController.dia(d.diaSemana)}"/>
 
                                                             </c:forEach>
                                                         </c:forEach>
                                                         <h:outputText value="#{registroClienteInscripcionController.curso.idServicios.descripcion}" />
                                                     </b:panel>
+
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div data-step="3"  data-intro="horarios de servicios!">
+                                                        
+                                                            <b:messages showSummary="false" />
+                                                            <p:growl id="messagesservicio" showDetail="true" />
+                                                            <h:panelGrid columnClasses="value">
+                                                                <p:schedule id="scheduleservicio"   value="#{scheduleViewCitaMedicasDisponobles.eventModel}" ignoreTimezone="true">
+                                                                </p:schedule>
+                                                            </h:panelGrid>
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
 
-                                    <b:panel collapsed="true" look="primary" title="Descripcion del citas medicas" id="cita">
-                                        <b:messages showSummary="false" />
-                                        <p:growl id="messagescita" showDetail="true" />
-                                        <h:panelGrid columnClasses="value">
-                                            <p:schedule id="schedulecita"   value="#{ScheduleViewCitaMedicasDisponobles.eventModel}" ignoreTimezone="true">
-                                            </p:schedule>
-                                        </h:panelGrid>
-                                    </b:panel>
 
                                     <a class="btn btn-large btn-success" href="javascript:void(0);" onclick="javascript:introJs().setOption('tooltipClass', 'customDefault').start();">Muestreme como hacerlo</a>                                   
                                     <b:commandButton class="btn btn-primary pull-right"
@@ -113,8 +126,15 @@
                     <b:commandButton value="#{mensajeApp.modalOk}" look="primary"
                                      actionListener="#{registroClienteInscripcionController.registrar()}"/>
                 </h:form>
+
             </f:facet>
         </b:modal>
+        <style type="text/css">
+            .value {
+                width: 600px;
+                text-align: center;
+            }
+        </style>
     </ui:define>
 </ui:composition>
 

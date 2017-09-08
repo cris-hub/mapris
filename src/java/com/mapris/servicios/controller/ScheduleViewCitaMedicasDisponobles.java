@@ -1,6 +1,5 @@
 package com.mapris.servicios.controller;
 
-import com.mapris.horario.controller.*;
 import com.mapris.modelo.dao.CursoFacadeLocal;
 import com.mapris.modelo.dao.DetalleHorarioFacadeLocal;
 import com.mapris.modelo.dao.HorarioFacadeLocal;
@@ -10,11 +9,11 @@ import com.mapris.modelo.entitie.DetalleHorario;
 import com.mapris.modelo.entitie.Horario;
 import com.mapris.modelo.entitie.Servicio;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.TimeZone;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -28,7 +27,6 @@ import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
-import org.primefaces.model.LazyScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
@@ -36,7 +34,6 @@ import org.primefaces.model.ScheduleModel;
 @ViewScoped
 public class ScheduleViewCitaMedicasDisponobles implements Serializable {
 
-   
     @EJB
     private HorarioFacadeLocal hfl;
     @EJB
@@ -60,8 +57,6 @@ public class ScheduleViewCitaMedicasDisponobles implements Serializable {
     public void recargarCursos() {
         cursos = cfl.findAll();
     }
-
-
 
 //    public void recargarCursos(String opc) {
 //
@@ -113,49 +108,45 @@ public class ScheduleViewCitaMedicasDisponobles implements Serializable {
 //        }
 //
 //    }
-
     @PostConstruct
     public void init() {
         try {
-            
-        
-        eventModel = new DefaultScheduleModel();
-        recargarCursos();
-        Date hoy = new Date();
-        for (Curso curso : cursos) {
-            if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(4)
-            && curso.getEstado().equals("En Proceso")) {
-                
-            horarios = curso.getHorarios();
-       
-            Servicio servicio = curso.getIdServicios();
-            for (Horario horario : horarios) {
-                Calendar gc = new GregorianCalendar();
-                gc.setTime(horario.getFechaInicio());
-                Date fechaFin = getDateMediaNoche(horario.getFechaFin());
-                for (DetalleHorario dh : horario.getDetallesHorarios()) {
-                    Date fechaInicio = getNextDay(horario.getFechaInicio(), dh.getHoraInicio(), dh.getDiaSemana());
-                        
-                    if (fechaInicio.getTime() > hoy.getTime()) {
-                    while (fechaInicio.getTime() <= fechaFin.getTime()) {
-                        Date d = fechaInicio;
-                        System.out.println(d + " - " + horario.getFechaFin());
-                        eventModel.addEvent(new DefaultScheduleEvent(
-                                servicio.getNombre(), d, new Date(d.getTime() + (dh.getDuracion() * 3600000))));
-                        fechaInicio = getNextDay(d);
-                        fechaInicio = getNextDay(fechaInicio, dh.getHoraInicio(), dh.getDiaSemana());
-                    }
-                    }
 
+            eventModel = new DefaultScheduleModel();
+            recargarCursos();
+            Date hoy = new Date();
+            for (Curso curso : cursos) {
+                if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(4) && curso.getEstado().equals("En proceso")) {
+
+                    horarios = curso.getHorarios();
+
+                    Servicio servicio = curso.getIdServicios();
+                    for (Horario horario : horarios) {
+                        Calendar gc = new GregorianCalendar();
+                        gc.setTime(horario.getFechaInicio());
+                        Date fechaFin = getDateMediaNoche(horario.getFechaFin());
+                        for (DetalleHorario dh : horario.getDetallesHorarios()) {
+                            Date fechaInicio = getNextDay(horario.getFechaInicio(), dh.getHoraInicio(), dh.getDiaSemana());
+
+                            while (fechaInicio.getTime() <= fechaFin.getTime()) {
+                                Date d = fechaInicio;
+                                if (hoy.getTime() > d.getTime()) {
+                                    System.out.println(d + " - " + horario.getFechaFin());
+                                    eventModel.addEvent(new DefaultScheduleEvent(
+                                            servicio.getNombre(), d, new Date(d.getTime() + (dh.getDuracion() * 3600000))));
+                                    fechaInicio = getNextDay(d);
+                                    fechaInicio = getNextDay(fechaInicio, dh.getHoraInicio(), dh.getDiaSemana());
+                                }
+
+                            }
+                        }
+                    }
                 }
+
             }
-                 }
 
-        }
-
-       
-        }catch(Exception e){
-        e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
