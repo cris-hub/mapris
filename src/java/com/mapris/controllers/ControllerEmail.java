@@ -5,14 +5,13 @@
  */
 package com.mapris.controllers;
 
-
 import com.mapris.util.EnviarMail;
+import com.mapris.util.MessageUtil;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
-
 
 /**
  *
@@ -20,20 +19,19 @@ import javax.inject.Named;
  */
 @Named(value = "controllerEmail")
 @RequestScoped
-public class ControllerEmail{
-    
+public class ControllerEmail {
+
     private String nombresyAp;
     private String telefono;
     private String email;
     private String asunto;
     private String mensaje;
- 
+
     /**
      * Creates a new instance of ControllerEmail
      */
     public ControllerEmail() {
     }
-    
 
     public String getNombresyAp() {
         return nombresyAp;
@@ -74,16 +72,18 @@ public class ControllerEmail{
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
-    
-    public void enviarMensaje(){
-    
-      EnviarMail enviarEmail = new EnviarMail("helpmaternityclub@gmail.com", "mapris12345678", "aplicationmaternitymapris@gmail.com", nombresyAp, telefono, email, asunto, mensaje);
-      enviarEmail.enviarBasic();
-      enviarEmail.enviarAnswer();
-        
-    
-    
-    
-    
+
+    public void enviarMensaje() {
+        try {
+            EnviarMail enviarEmail = new EnviarMail("helpmaternityclub@gmail.com", "mapris12345678", "aplicationmaternitymapris@gmail.com", nombresyAp, telefono, email, asunto, mensaje);
+            enviarEmail.enviarBasic();
+            enviarEmail.enviarAnswer();
+            MessageUtil.enviarMensajeInformacionGlobal("Mensaje Enviado", "Su mensaje Fue enviado y muy pronto sera respondido");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageUtil.enviarMensajeInformacionGlobal("Mensaje no enviado", "Su mensaje  no fue enviado ");
+        }
+
     }
 }
