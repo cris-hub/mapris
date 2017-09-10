@@ -48,6 +48,8 @@ public class RegistrarPersonalMedicoController {
     private Personalmedico nuevoPersonalMedico;
     
     private Usuario nuevoUsuario;
+    
+     private Calendar hoy;
    
 
     public RegistrarPersonalMedicoController() {
@@ -57,6 +59,7 @@ public class RegistrarPersonalMedicoController {
     public void init() {
         nuevoPersonalMedico = new Personalmedico();
         nuevoUsuario = new Usuario();
+        this.hoy = Calendar.getInstance();
 
     }
 
@@ -82,6 +85,25 @@ public class RegistrarPersonalMedicoController {
         
         
         try{
+                 Calendar cal = Calendar.getInstance();
+                 cal.setTime(nuevoUsuario.getFechaNaci());
+                 
+                
+                if (cal.get(Calendar.YEAR) >= this.hoy.get(Calendar.YEAR) ) {
+                    
+                    nuevoUsuario=null;
+                    System.out.println("No paso 1");
+                    MessageUtil.enviarMensajeErrorGlobal("No se puede registrar", "La fecha introducida es igual o supera el año actual.");
+                    
+                }else if(cal.get(Calendar.YEAR) > (this.hoy.get(Calendar.YEAR)-18)   ){
+                    
+                    System.out.println("" + (this.hoy.get(Calendar.YEAR)-18) );
+                    nuevoUsuario=null;
+                   System.out.println("No paso 2");
+                    MessageUtil.enviarMensajeErrorGlobal("No se puede registrar", "Tu fecha de nacimiento indica que eres menor de edad");
+                    
+                
+                } else{
                 
                 
                
@@ -102,7 +124,7 @@ public class RegistrarPersonalMedicoController {
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El personal medico se ha creado con exito");
                 init();
                 
-                
+                }
                 
             } catch (Exception e) {
                 e.printStackTrace();

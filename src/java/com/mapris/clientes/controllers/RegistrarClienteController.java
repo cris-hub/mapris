@@ -55,6 +55,7 @@ public class RegistrarClienteController {
     
     private Inscripcion inscripcionCliente;
 
+     private Calendar hoy;
     
     public RegistrarClienteController() {
     }
@@ -64,6 +65,7 @@ public class RegistrarClienteController {
         nuevoCliente = new Cliente();
         nuevoUsuario = new Usuario();
         inscripcionCliente = new Inscripcion();
+        this.hoy = Calendar.getInstance();
         
     }
     
@@ -100,6 +102,27 @@ public class RegistrarClienteController {
             
             try {
                 
+                Calendar cal = Calendar.getInstance();
+                 cal.setTime(nuevoUsuario.getFechaNaci());
+                 
+                
+                if (cal.get(Calendar.YEAR) >= this.hoy.get(Calendar.YEAR) ) {
+                    
+                    nuevoUsuario=null;
+                    System.out.println("No paso 1");
+                    MessageUtil.enviarMensajeErrorGlobal("No se puede registrar", "La fecha introducida es igual o supera el año actual.");
+                    
+                }else if(cal.get(Calendar.YEAR) > (this.hoy.get(Calendar.YEAR)-18)   ){
+                    
+                    System.out.println("" + (this.hoy.get(Calendar.YEAR)-18) );
+                    nuevoUsuario=null;
+                   System.out.println("No paso 2");
+                    MessageUtil.enviarMensajeErrorGlobal("No se puede registrar", "Tu fecha de nacimiento indica que eres menor de edad");
+                    
+                
+                } else{
+                
+                
                 
                 nuevoCliente.setIdUsuario(null);
                 nuevoUsuario.setFechaRegistro(hoy);
@@ -123,7 +146,7 @@ public class RegistrarClienteController {
                 ifl.create(inscripcionCliente);
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El cliente se ha creado con exito");
                 init();
-                
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Empresa: " + nuevoCliente.getIdEmpresas().getIdEmpresa());

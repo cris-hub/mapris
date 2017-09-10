@@ -80,8 +80,8 @@ public class RegistrarUsuarioController {
                 } else{
                 
                 nuevoUsuario.setRoles(new ArrayList<Rol>());
-                nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
-                nuevoUsuario.setIdEstados(estadoFacadeLocal.find(2));
+                nuevoUsuario.getRoles().add(rolFacedaLocal.find(1));
+                nuevoUsuario.setIdEstados(estadoFacadeLocal.find(1));
                 
                 
                 usuarioFacadeLocal.create(nuevoUsuario);
