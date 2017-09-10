@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/templateInterface.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="titulo">#{sessionController.usuario.nombres}</ui:define>
+    <ui:define name="pagetitle">
+        <div class="page-head">
+            <div class="page-title">
+                <h1> Usuarios
+                    <small>Lista de usuarios</small>
+                </h1>
+            </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="breadcrumb">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Listar</span>
+            </li>
+        </ul>
+
+    </ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="content">
+            <div class="container-fluid">
+                <b:row>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="orange">
+                                <i class="material-icons">content_copy</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Used Space</p>
+                                <h3 class="title">49/50<small>GB</small></h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons text-danger">warning</i> <a href="#pablo">Get More Space...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-10 col-md-6 col-sm-6">
+
+                    </div>
+
+                </b:row>
+
+                <b:row>
+
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card card-nav-tabs">
+                            <div class="card-header" data-background-color="purple">
+                                <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper">
+                                        <span class="nav-tabs-title">Tasks:</span>
+                                        <ul class="nav nav-tabs" data-tabs="tabs">
+                                            <li class="active">
+                                                <a href="#profile" data-toggle="tab">
+                                                    <i class="material-icons">bug_report</i>
+                                                    Bugs
+                                                    <div class="ripple-container"></div></a>
+                                            </li>
+                                            <li class="">
+                                                <a href="#messages" data-toggle="tab">
+                                                    <i class="material-icons">code</i>
+                                                    Website
+                                                    <div class="ripple-container"></div></a>
+                                            </li>
+                                            <li class="">
+                                                <a href="#settings" data-toggle="tab">
+                                                    <i class="material-icons">cloud</i>
+                                                    Server
+                                                    <div class="ripple-container"></div></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <div class="tab-content">
+
+                                    <b:form id="form-calculadora" prependId="false">
+
+                                        <b:row>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Altura:</label>
+                                                    <b:inputText  class="form-control"></b:inputText>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Peso antes del embarazo:</label>
+                                                    <b:inputText  class="form-control"></b:inputText>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Peso actual:</label>
+                                                    <b:inputText  class="form-control"></b:inputText>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Peso actual:</label>
+                                                    <div class="checkbox">Espero gemelos:</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Semana:</label>
+                                                    <b:selectOneMenu value="">
+                                                        <f:selectItems value="" var="s" itemLabel=""/>
+                                                    </b:selectOneMenu>
+                                                </div>
+                                            </div>
+
+                                        </b:row>
+                                        <b:commandButton value="#{mensajeApp.save}" icon="floppy-disk" actionListener="#{registrarCursoController.registrar()}" class="btn btn-primary pull-right"/>
+                                        <div class="clearfix"></div>
+
+                                    </b:form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </b:row>
+            </div>
+        </div>
+
+
+
+    </ui:define>
+</ui:composition>
+
