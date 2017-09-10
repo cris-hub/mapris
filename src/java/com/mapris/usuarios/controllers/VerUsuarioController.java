@@ -38,7 +38,7 @@ public class VerUsuarioController implements Serializable{
     
     public String verUsuario(Usuario u){
     this.usuario = u;
-    return "/app/usuarios/ver.xhtml?faces-redirect=true";
+    return "/app/administrador/usuarios/ver.xhtml?faces-redirect=true";
     }
     
     

@@ -10,12 +10,10 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">Administrador-Usuarios</ui:define>
+    <ui:define name="titulo">Administrador-Administradores</ui:define>
 
     <ui:define name="contenido">
-        <div class="col-sm-12">
-            <b:messages showDetail="true" showSummary="true" globalOnly="true"/>
-        </div>
+      
 
         <div class="content">
             <div class="container-fluid">
@@ -23,15 +21,15 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Usuarios</h4>
-                                <p class="category">Aquí estan todos los usuarios registrador en el sistema de información</p>
+                                <h4 class="title">Administradores</h4>
+                                <p class="category">Aquí estan todos los administradores registrados en el sistema de información</p>
                             </div>
                             <div class="card-content table-responsive">
-                                <b:message for="form-data-table-usuarios" showSummary="true" showDetail="true"/>
                                 <h:form id="form-data-table-usuarios" prependId="false">
-                                <div>
-                                    <b:commandButton class="btn btn-primary" value="Reporte PDF" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
-                                </div>
+                                    <b:messages globalOnly="true" showSummary="true" showDetail="true"/>
+                                    <div>
+                                        <b:commandButton class="btn btn-primary" value="Reporte PDF De los usuarios activos del sistema" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
+                                    </div>
                                     <b:dataTable id="dtUsuario" value="#{listarUsuaariosController.usuarios}" var="user">
 
 
@@ -45,13 +43,15 @@
                                                 <h:outputText value="#{r2.nombre}"/><br/>
                                             </ui:repeat>
                                         </b:dataTableColumn>
+                                        <b:dataTableColumn label="Correo electronico" value="#{user.correoElectronico}"/>
+                                        <b:dataTableColumn label="Telefono Fijo" value="#{user.telefonoFijo}"/>
+                                        <b:dataTableColumn label="Telefono Celular" value="#{user.telefonoCelular}"/>
                                         <b:dataTableColumn  label="#{mensajeApp.opciones}">
                                             <b:commandButton look="primary" value="" iconAwesome="eye" tooltip="Ver" action="#{verUsuarioControoller.verUsuario(user)}"/>
                                             <b:commandButton look="primary" value="" iconAwesome="pencil" tooltip="Editar" action="#{editarUsuarioController.preModificar(user)}"/>
-                                            <b:commandButton look="primary"
+                                            <b:commandButton look="danger" value=""
                                                              iconAwesome="trash" tooltip="Eliminar"
-                                                             onclick="$('.modalPseudoClass').modal();
-                                                                     $('.modal-backdrop').remove();">
+                                                             onclick="$('.modalPseudoClass').modal(); $('.modal-backdrop').remove();">
                                                 <f:ajax event="click" render=":message-modal-confirm"
                                                         listener="#{listarUsuaariosController.setUsuarioSeleccionado(user)}"/>
                                             </b:commandButton>
@@ -68,15 +68,18 @@
                 </div>
             </div>
         </div>
-
-        <b:modal id="amodal" title="#{mensajeApp.modalDeleteUsersTitle}" styleClass="modalPseudoClass">
+          <b:modal id="amodal" title="ELIMINAR ADMINISTRADOR" styleClass="modalPseudoClass">
             <h:panelGroup id="message-modal-confirm" layout="block">
-                <p>#{mensajeApp.modalSure} #{listarUsuaariosController.usuarioSeleccionado.nombres} #{listarUsuaariosController.usuarioSeleccionado.apellidos} ? </p>
+                
+                <h2>
+                    ¿Estas segura de eliminar al administrador? 
+                </h2>
+                <p>Recuerda que eliminaras completamente del sistema a este usuario, para evitar eliminarlo completamente cambiale el estado</p>
             </h:panelGroup>
             <f:facet name="footer">
                 <h:form id="form-eliminar" prependId="false">
-                    <b:button value="#{mensajeApp.modalClose}" dismiss="modal" />
-                    <b:commandButton value="#{mensajeApp.modalOk}" look="primary"
+                <b:button value="Close" dismiss="modal" />
+                    <b:commandButton value="Ok" look="primary"
                                      actionListener="#{listarUsuaariosController.eliminarUsuario()}"/>
                 </h:form>
             </f:facet>

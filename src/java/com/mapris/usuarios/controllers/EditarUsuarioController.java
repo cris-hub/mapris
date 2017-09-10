@@ -5,6 +5,7 @@
  */
 package com.mapris.usuarios.controllers;
 
+import com.mapris.login.controller.SessionController;
 import com.mapris.modelo.dao.EstadoFacadeLocal;
 import com.mapris.modelo.dao.UsuarioFacadeLocal;
 import com.mapris.modelo.entitie.Usuario;
@@ -13,6 +14,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -23,6 +25,9 @@ import javax.inject.Named;
 @SessionScoped
 public class EditarUsuarioController implements Serializable {
 
+    @Inject
+    private SessionController sc;
+    
     @EJB
     
     private EstadoFacadeLocal efl;
@@ -64,11 +69,13 @@ public class EditarUsuarioController implements Serializable {
 
     public String preModificar(Usuario u) {
         setUsuarioSelecionado(u);
-        return "/app/usuarios/editar.xhtml?faces-redirect=true";
+        return "/app/administrador/usuarios/editar.xhtml?faces-redirect=true";
     }
 
     public void cambioDeEstado(Usuario u) {
-        try {
+    
+        if (sc.getUsuario().getIdUsuario() != u.getIdUsuario()) {
+           try {
             if (u.getIdEstados().getIdEstados() == 1) {
                 u.setIdEstados(efl.find(2));
 
@@ -80,7 +87,13 @@ public class EditarUsuarioController implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
             MessageUtil.enviarMensajeErrorGlobal("Errcambiar el estado del usuario", e.getStackTrace().toString());
+        } 
+        }else{
+           
+            MessageUtil.enviarMensajeErrorGlobal("No se puede modificar estado", "El usuario que inicio sesión no puede modificar su propio estado");
+
         }
+        
 
     }
 

@@ -55,7 +55,7 @@
                     <h:outputText value="Clave"/>
                     <b:inputSecret value="#{registroController.nuevoUsuario.clave}" required="true"/>
                 </b:panelGrid>
-                <h:link styleClass="btn btn-primary" outcome="/app/usuarios/listar.xhtml" value="Volver"/>
+                <h:link styleClass="btn btn-primary" outcome="/app/index.html" value="Volver"/>
                 <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{registroController.registrar()}"/>
             </b:form>
         </div>

@@ -29,7 +29,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
                                 <h4 class="title">Editar Cliente </h4>
@@ -118,6 +118,22 @@
 
                                     <div class="clearfix"></div>
                                 </b:form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-profile">
+                            <div class="card-avatar">
+                                <a href="#pablo">
+                                    <img class="img" src="#{editarClienteController.clienteSelecionada.usuario.imagenPerfil}" />
+                                </a>
+                            </div>
+
+                            <div class="content">
+                                <h6 class="category text-gray">#{editarClienteController.clienteSelecionada.usuario.nombres} #{editarClienteController.clienteSelecionada.usuario.apellidos}</h6>
+                             
+                               
+
                             </div>
                         </div>
                     </div>

@@ -56,19 +56,19 @@ public class ListarUsuariosController implements Serializable {
     }
 
     private void recargarUsuarios() {
-        usuarios = usuarioFacadeLocal.findAll();
+        usuarios = usuarioFacadeLocal.findAdministrador();
     }
 
     public void eliminarUsuario() {
         Usuario uS = sc.getUsuario();
-        System.out.println("El usuario que inicio sesión es: " + uS.getNombres());
-        System.out.println("Voy a eliminar el usuario: " + usuarioSeleccionado.getApellidos());
-        if (uS.getCedula() != usuarioSeleccionado.getCedula()) {
+     
+        if (uS.getIdUsuario() != usuarioSeleccionado.getIdUsuario()) {
             usuarioFacadeLocal.remove(usuarioSeleccionado);
             recargarUsuarios();
+            
         } else {
 
-            MessageUtil.enviarMensajeError(null, leerArchivo().getProperty("errorElimnarSumary"), leerArchivo().getProperty("errorElimnarDetail"));
+            MessageUtil.enviarMensajeErrorGlobal("Error al eliminar el administrador","El administrador al que intentas eliminar es el usuario en sesión y no se puede eliminar");
         }
     }
 
