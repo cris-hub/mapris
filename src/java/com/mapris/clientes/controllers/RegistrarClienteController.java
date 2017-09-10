@@ -2,10 +2,12 @@ package com.mapris.clientes.controllers;
 
 import com.mapris.modelo.dao.EstadoFacadeLocal;
 import com.mapris.modelo.dao.ClienteFacadeLocal;
+import com.mapris.modelo.dao.InscripcionFacadeLocal;
 import com.mapris.modelo.dao.RolFacadeLocal;
 import com.mapris.modelo.dao.UsuarioFacadeLocal;
 
 import com.mapris.modelo.entitie.Cliente;
+import com.mapris.modelo.entitie.Inscripcion;
 import com.mapris.modelo.entitie.Rol;
 import com.mapris.modelo.entitie.Usuario;
 import com.mapris.util.MessageUtil;
@@ -42,11 +44,16 @@ public class RegistrarClienteController {
     private RolFacadeLocal rolFacedaLocal;
     @EJB
     private EstadoFacadeLocal estadoFacadeLocal;
+    @EJB
+    private InscripcionFacadeLocal ifl;
+    
+    
     
     private Cliente nuevoCliente;
     
     private Usuario nuevoUsuario;
     
+    private Inscripcion inscripcionCliente;
 
     
     public RegistrarClienteController() {
@@ -56,6 +63,7 @@ public class RegistrarClienteController {
     public void init() {
         nuevoCliente = new Cliente();
         nuevoUsuario = new Usuario();
+        inscripcionCliente = new Inscripcion();
         
     }
     
@@ -74,6 +82,16 @@ public class RegistrarClienteController {
     public void setNuevoUsuario(Usuario nuevoUsuario) {
         this.nuevoUsuario = nuevoUsuario;
     }
+
+    public Inscripcion getInscripcionCliente() {
+        return inscripcionCliente;
+    }
+
+    public void setInscripcionCliente(Inscripcion inscripcionCliente) {
+        this.inscripcionCliente = inscripcionCliente;
+    }
+    
+    
     
     public void registrar() {
         Date hoy = new Date();
@@ -97,10 +115,12 @@ public class RegistrarClienteController {
                 nuevoCliente.setEstado("Habilitado");
                 nuevoCliente.setIdEmpresas(nuevoCliente.getIdEmpresas());
                 
-        
+                inscripcionCliente.setIdUsuario(nuevoCliente);
+                inscripcionCliente.setEstado("Activa");
 
                 
                 cfl.create(nuevoCliente);
+                ifl.create(inscripcionCliente);
                 MessageUtil.enviarMensajeInformacionGlobal("Registro satisfactorio", "El cliente se ha creado con exito");
                 init();
                 
