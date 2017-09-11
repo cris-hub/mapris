@@ -59,7 +59,7 @@ public class VerDatoClinicoController {
         this.datoClinicoCliente = sc.getUsuario().getCliente().getDatosClinicos().get(0);
         }else{
 //        System.out.println(sc.getUsuario().getCliente().getDatosClinicos().get(0));
-            MessageUtil.enviarMensajeErrorGlobal("Sin Documentos Clinios", "El usuario no a subido ningun dato clinito");
+            MessageUtil.enviarMensajeErrorGlobal("Sin Documentos Clinicos", "El usuario no a subido ningun dato clinito");
         }
     }
     public Datoclinico getDatoclinico() {
@@ -100,9 +100,9 @@ public class VerDatoClinicoController {
     
     
     public void eliminarDatoclinico(){
-        if (datoClinico != null) {
+        if (datoClinicoCliente != null) {
             
-            dcfl.remove(datoClinico);
+            dcfl.remove(datoClinicoCliente);
             MessageUtil.enviarMensajeInformacionGlobal("Se elimino satisfactoriamente", "Se elimino satisfactoriamente el dato clinico");
             
         }else{

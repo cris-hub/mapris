@@ -84,13 +84,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Clave</label>
-                                                <b:inputText  name="pass" value="#{registroPersonalMedicoController.nuevoUsuario.clave}"  class="form-control"/>
+                                                <b:inputSecret  name="pass" value="#{registroPersonalMedicoController.nuevoUsuario.clave}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fecha De Nacimiento</label>
-                                                <b:datepicker  mode="popup" value="#{registroPersonalMedicoController.nuevoUsuario.fechaNaci}"  />
+                                                <b:datepicker   changeMonth="true" changeYear="true" mode="popup" value="#{registroPersonalMedicoController.nuevoUsuario.fechaNaci}"  />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -172,7 +172,7 @@
                                     message: 'Nombre es demasiado largo'
                                 },
                                 regexp: {
-                                    regexp: /^[a-zA-Z]+$/,
+                                    regexp: /^[a-zA-Z ñ]+$/,
                                     message: 'El nombre sólo puede consistir en alfabético'
                                 }
                             }
@@ -187,7 +187,7 @@
                                     message: 'Apellido es demasiado largo'
                                 },
                                 regexp: {
-                                    regexp: /^[a-zA-Z]+$/,
+                                    regexp: /^[a-zA-Z ñ]+$/,
                                     message: 'El apellido sólo puede consistir en alfabético'
                                 }
                             }
@@ -199,11 +199,11 @@
                                     message: 'Cargo es requerido'
                                 },
                                 stringLength: {
-                                    max: 15,
+                                    max: 25,
                                     message: 'Cargo es demasiado largo'
                                 },
                                 regexp: {
-                                    regexp: /^[a-zA-Z]+$/,
+                                    regexp: /^[a-zA-Z ñ]+$/,
                                     message: 'El cargo sólo puede consistir en alfabético'
                                 }
                             }
@@ -215,11 +215,11 @@
                                     message: 'Perfil es requerido'
                                 },
                                 stringLength: {
-                                    max: 15,
+                                    max: 25,
                                     message: 'Perfil es demasiado largo'
                                 },
                                 regexp: {
-                                    regexp: /^[a-zA-Z]+$/,
+                                    regexp: /^[a-zA-Z ñ]+$/,
                                     message: 'El perfil sólo puede consistir en alfabético'
                                 }
                             }

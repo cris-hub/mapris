@@ -18,8 +18,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">#{mensajeApp.newUser}</h4>
-                                <p class="category">Registrar Usuario</p>
+                                <h4 class="title">Registrar Administrador</h4>
+                                <p class="category">Aquí puedes registrar un nuevo administrador que ayudaria a controlar el sistema</p>
                             </div>
                             <div class="card-content">
                                 <b:messages globalOnly="true" showSummary="true" show-detail="true"/>
@@ -28,24 +28,22 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">#{mensajeApp.documento}</label>
-                                                <b:inputText  name="document" id="documento"  value="#{registroController.nuevoUsuario.cedula}" class="form-control" required="true"/>
+                                                <label class="control-label">Documento</label>
+                                                <b:inputText maxlength="12" name="document" id="documento"  value="#{registroController.nuevoUsuario.cedula}" class="form-control" required="true"/>
 
                                             </div>
                                         </div>
 
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                 
+                                        <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">#{mensajeApp.firtsName}</label>
+                                                <label class="control-label">Nombres</label>
                                                 <b:inputText name="nombre" value="#{registroController.nuevoUsuario.nombres}" class="form-control" required="true"/>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">#{mensajeApp.firtsLastName}</label>
+                                                <label class="control-label">Apellidos</label>
                                                 <b:inputText name="apellido" value="#{registroController.nuevoUsuario.apellidos}" class="form-control" required="true"/>
 
                                             </div>
@@ -54,19 +52,36 @@
 
 
                                     <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Correo Electronico</label>
+                                                <b:inputText a:type="email" name="correo" value="#{registroController.nuevoUsuario.correoElectronico}"  class="form-control"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Teléfono Celular</label>
+                                                <b:inputText maxlength="10"  name="cel" value="#{registroController.nuevoUsuario.telefonoCelular}"  class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Teléfono Fijo</label>
+                                                <b:inputText maxlength="7" name="tel" value="#{registroController.nuevoUsuario.telefonoFijo}"  class="form-control"/>
+                                            </div>
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">#{mensajeApp.birt}</label>
+                                                <label class="control-label">Fecha De Nacimiento</label>
                                                 <b:datepicker  a:name="fecha" value="#{registroController.nuevoUsuario.fechaNaci}" class="form-control" changeYear="true" changeMonth="true" mode="popup" required="true"/>
                                             </div>
                                         </div>
 
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
+                                   
+                                        <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">#{mensajeApp.password}</label>
+                                                <label class="control-label">Clave  </label>
                                                 <b:inputSecret name="pass" value="#{registroController.nuevoUsuario.clave}" class="form-control" required="true"/>
                                             </div>
                                         </div>
@@ -165,7 +180,7 @@
                                     message: 'Nombre es demasiado largo'
                                 },
                                 regexp: {
-                                    regexp: /^[a-zA-Z]+$/,
+                                    regexp: /^[a-zA-Z ñ]+$/,
                                     message: 'El nombre sólo puede consistir en alfabético'
                                 }
                             }
@@ -180,16 +195,45 @@
                                     message: 'Apellido es demasiado largo'
                                 },
                                 regexp: {
-                                    regexp: /^[a-zA-Z]+$/,
+                                    regexp: /^[a-zA-Z ñ]+$/,
                                     message: 'El apellido sólo puede consistir en alfabético'
                                 }
                             }
                         },
+
+
+                        correo: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'El correo es requerido'
+                                },
+                                emailAddress: {
+                                    message: 'Correo electronico no valido'
+                                }
+                            }
+                        },
+
+                        cel: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Telefono celular es requerido'
+                                }
+                            }
+                        },
+
+                        tel: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Telefono fijo es requerido'
+                                }
+                            }
+                        },
+
                         pass: {
                             validators: {
                                 notEmpty: {
                                     message: 'Clave es requerida'
-                                },
+                                }
 
                             }
                         }
