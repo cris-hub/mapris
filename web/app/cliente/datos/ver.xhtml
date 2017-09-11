@@ -46,7 +46,12 @@
                                 <b:messages showDetail="true" showSummary="true" globalOnly="true"/>
 
                                 <b:form id="form-data-table-datos" prependId="false">
-
+                                                         <b:commandButton look="danger" value=""
+                                                     iconAwesome="trash" tooltip="Eliminar"
+                                                     onclick="$('.modalPseudoClass').modal(); $('.modal-backdrop').remove();">
+                                        <f:ajax event="click" render=":message-modal-confirm" listener="#{verDatoClinicoController.eliminarDatoclinico()}"
+                                                />
+                                    </b:commandButton>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
@@ -82,12 +87,7 @@
 
                                     <h:link styleClass="btn btn-primary" outcome="/app/index.xhtml" value="Volver"/>
 
-                                    <b:commandButton look="danger" value=""
-                                                     iconAwesome="trash" tooltip="Eliminar"
-                                                     onclick="$('.modalPseudoClass').modal(); $('.modal-backdrop').remove();">
-                                        <f:ajax event="click" render=":message-modal-confirm"
-                                                />
-                                    </b:commandButton>
+                                
 
 
 
@@ -107,7 +107,7 @@
         <b:modal id="amodal" title="ELIMINAR DATOS CLINICOS" styleClass="modalPseudoClass">
             <h:panelGroup id="message-modal-confirm" layout="block">
 
-                <h2>
+                <h2 style="background: #932aad; color: white;" align="center">
                     ¿Estas segura de eliminar tu Dato Clinico? 
                 </h2>
                 <p>Recuerda que eliminaras completamente los datos que has suministrado a Maternity Club</p>
@@ -115,8 +115,8 @@
             </h:panelGroup>
             <f:facet name="footer">
                 <h:form id="form-eliminar" prependId="false">
-                    <b:button value="Close" dismiss="modal" />
-                    <b:commandButton value="Ok" look="primary"
+                    <b:button value="No estoy segura" dismiss="modal" />
+                    <b:commandButton value="Deseo Eliminarlo" look="primary"
                                      actionListener="#{verDatoClinicoController.eliminarDatoclinico()}"/>
                 </h:form>
             </f:facet>

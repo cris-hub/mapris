@@ -15,6 +15,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,7 +26,7 @@ import javax.inject.Named;
  */
 @Named(value="verDatoClinicoController")
 @RequestScoped
-public class VerDatoClinicoController {
+public class VerDatoClinicoController{
     
     @Inject
     private SessionController sc;
@@ -53,14 +54,19 @@ public class VerDatoClinicoController {
     
     public void ver()
     {
-        if (sc.getUsuario().getCliente().getDatosClinicos().size()>0) {
-//        System.out.println(sc.getUsuario().getCliente().getDatosClinicos().get(0));
-                  
-        this.datoClinicoCliente = sc.getUsuario().getCliente().getDatosClinicos().get(0);
-        }else{
-//        System.out.println(sc.getUsuario().getCliente().getDatosClinicos().get(0));
-            MessageUtil.enviarMensajeErrorGlobal("Sin Documentos Clinicos", "El usuario no a subido ningun dato clinito");
+        try {
+            if (sc.getUsuario().getCliente().getDatosClinicos().size() > 0) {
+                System.out.println(sc.getUsuario().getCliente().getDatosClinicos().get(0));
+                
+                this.datoClinicoCliente = sc.getUsuario().getCliente().getDatosClinicos().get(0);
+            } else {
+                System.out.println(sc.getUsuario().getCliente().getDatosClinicos().get(0));
+                MessageUtil.enviarMensajeErrorGlobal("Sin Documentos Clinicos", "El usuario no a subido ningun dato clinito");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        
     }
     public Datoclinico getDatoclinico() {
         return datoClinico;
