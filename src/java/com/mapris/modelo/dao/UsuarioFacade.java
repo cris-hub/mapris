@@ -33,7 +33,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         super(Usuario.class);
     }
      @Override
-    public Usuario login(Long documento, String clave) {
+    public Usuario login(String documento, String clave) {
         try {
             getEntityManager().getEntityManagerFactory().getCache().evictAll();
             TypedQuery<Usuario> q = getEntityManager().createNamedQuery("Usuario.findLogin", Usuario.class);

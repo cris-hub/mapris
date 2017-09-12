@@ -118,7 +118,7 @@ public class RegistrarAplazamientoController implements Serializable{
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Error aplazamiento registro");
-                MessageUtil.enviarMensajeError("form-registrarAplazamiento", "Error al registrar el aplazamiento en la Base de Datos ", "");
+                MessageUtil.enviarMensajeError("form-registrarAplazamiento", "Error ya realizaste un aplazamiento ", "");
                 return null;
                 
             }

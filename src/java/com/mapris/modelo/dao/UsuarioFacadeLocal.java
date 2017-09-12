@@ -38,7 +38,7 @@ public interface UsuarioFacadeLocal {
     
     public Usuario loginProcedure(String documento, String clave);
     
-    Usuario login(Long documento,String clave);
+    Usuario login(String documento,String clave);
     
     Usuario buscarIdUsuario(String cedula);
     
