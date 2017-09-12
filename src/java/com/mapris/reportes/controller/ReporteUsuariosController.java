@@ -57,7 +57,10 @@ public class ReporteUsuariosController {
         params.put("Hora", h.getTime());
         for (int i = 0; i < usuarios.size(); i++) {
             params.put("Estados", usuarios.get(i).getIdEstados().getNombre());
+            params.put("Rol", usuarios.get(i).getRoles().get(0).getNombre());
         }
+        
+         
         JRBeanCollectionDataSource bcds = new JRBeanCollectionDataSource(usuarios);
         String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/") + "/WEB-INF/reportes/usuarios/ReportesUsuarios.jasper";
         jp = JasperFillManager.fillReport(reportPath, params, bcds);

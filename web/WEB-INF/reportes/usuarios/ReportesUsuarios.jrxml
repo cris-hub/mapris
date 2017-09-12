@@ -5,6 +5,7 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="Hora" class="java.util.Date"/>
 	<parameter name="Estados" class="java.lang.String"/>
+	<parameter name="Rol" class="java.lang.String"/>
 	<field name="cedula" class="java.lang.String"/>
 	<field name="nombres" class="java.lang.String"/>
 	<field name="apellidos" class="java.lang.String"/>
@@ -75,7 +76,7 @@
 			</staticText>
 			<staticText>
 				<reportElement x="315" y="51" width="100" height="20" uuid="e5b17fee-1bfa-433c-89b5-ae669c9987c0"/>
-				<text><![CDATA[Telefono Fijo]]></text>
+				<text><![CDATA[Rol]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="435" y="51" width="95" height="20" uuid="cf400314-4cfe-405a-8adc-63ebee85d315"/>
@@ -101,12 +102,12 @@
 				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="323" y="0" width="92" height="20" uuid="d15093d4-0a14-4e6a-8b6c-1faf645e5634"/>
-				<textFieldExpression><![CDATA[$F{telefonoFijo}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="436" y="0" width="100" height="20" uuid="7b269737-4747-4d3c-bbec-11cf8b5d1d09"/>
 				<textFieldExpression><![CDATA[$P{Estados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="0" width="100" height="20" uuid="8435c5c1-ac34-47a6-a9b7-01760e24ce96"/>
+				<textFieldExpression><![CDATA[$P{Rol}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
