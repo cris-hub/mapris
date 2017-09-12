@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportesUsuarios" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" uuid="5ef37454-d5e8-4486-a21c-82e964b9df09">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="54"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Hora" class="java.util.Date"/>
+	<parameter name="Estados" class="java.lang.String"/>
 	<field name="cedula" class="java.lang.String"/>
 	<field name="nombres" class="java.lang.String"/>
 	<field name="apellidos" class="java.lang.String"/>
@@ -42,12 +43,12 @@
 	<pageHeader>
 		<band height="90" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="19" y="7" width="190" height="27" forecolor="#000000" backcolor="#FFFFFF" uuid="44ab9d01-acce-45a7-824a-0687a481491f"/>
+				<reportElement mode="Opaque" x="7" y="5" width="299" height="27" forecolor="#000000" backcolor="#FFFFFF" uuid="44ab9d01-acce-45a7-824a-0687a481491f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
 					<font fontName="SansSerif" size="18" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Reportes de Usuarios]]></text>
+				<text><![CDATA[Reportes de Usuarios ACTIVOS]]></text>
 			</staticText>
 			<rectangle radius="10">
 				<reportElement x="10" y="37" width="545" height="41" uuid="b39de0e7-5f53-444e-9219-6c39440673e1"/>
@@ -78,7 +79,7 @@
 			</staticText>
 			<staticText>
 				<reportElement x="435" y="51" width="95" height="20" uuid="cf400314-4cfe-405a-8adc-63ebee85d315"/>
-				<text><![CDATA[Correo Electronico]]></text>
+				<text><![CDATA[Estado]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -104,8 +105,8 @@
 				<textFieldExpression><![CDATA[$F{telefonoFijo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="435" y="0" width="92" height="20" uuid="5c488955-4b53-4e0d-81de-25a60cfce376"/>
-				<textFieldExpression><![CDATA[$F{correoElectronico}]]></textFieldExpression>
+				<reportElement x="436" y="0" width="100" height="20" uuid="7b269737-4747-4d3c-bbec-11cf8b5d1d09"/>
+				<textFieldExpression><![CDATA[$P{Estados}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
