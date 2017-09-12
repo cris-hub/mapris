@@ -39,6 +39,8 @@ public class VerDatoClinicoController{
     
     private Datoclinico datoClinicoCliente;
     
+    private List<Datoclinico> datosCliente;
+    
    
 
     public VerDatoClinicoController() {
@@ -47,7 +49,7 @@ public class VerDatoClinicoController{
     
     @PostConstruct
     public void init(){
-      
+       datosCliente = dcfl.buscarDato(sc.getUsuario().getCliente());
        ver();
         
     }
@@ -55,12 +57,12 @@ public class VerDatoClinicoController{
     public void ver()
     {
         try {
-            if (sc.getUsuario().getCliente().getDatosClinicos().size() > 0) {
+            if (datosCliente.size() > 0) {
                 System.out.println(sc.getUsuario().getCliente().getDatosClinicos().get(0));
                 
-                this.datoClinicoCliente = sc.getUsuario().getCliente().getDatosClinicos().get(0);
+                this.datoClinicoCliente = datosCliente.get(0);
             } else {
-                System.out.println(sc.getUsuario().getCliente().getDatosClinicos().get(0));
+                System.out.println(datosCliente.get(0));
                 MessageUtil.enviarMensajeErrorGlobal("Sin Documentos Clinicos", "El usuario no a subido ningun dato clinito");
             }
         } catch (Exception e) {

@@ -56,7 +56,7 @@
                                             <b:commandButton size="sm" look="primary" value="" tooltip="Modificar" iconAwesome="pencil" action="#{editarSalonesController.preModificar(sa)}"/>
                                             <b:commandButton size="sm"  look="danger" value=""
                                                              iconAwesome="trash" tooltip="Eliminar"
-                                                             onclick="$('.modalPseudoClass').modal();">
+                                                             onclick="$('.modalPseudoClass').modal(); $('.modal-backdrop').remove();">
                                                 <f:ajax event="click" render=":message-modal-confirm"
                                                         listener="#{listarSalonesController.setSalonSeleccionado(sa)}"/>
                                             </b:commandButton>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
 
-                    <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
+                    <b:modal id="amodal" title="Eliminar Salón" styleClass="modalPseudoClass">
                         <h:panelGroup id="message-modal-confirm" layout="block">
                             <p>¿Está seguro de eliminar las salones?
                             </p>

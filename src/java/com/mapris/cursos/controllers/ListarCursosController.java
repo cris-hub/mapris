@@ -74,7 +74,7 @@ public class ListarCursosController implements Serializable {
     public List<Curso> getCitas() {
 
         for (Curso curso : cursos) {
-            if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(4)) {
+            if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(3)) {
                 if (curso.getEstado().equals("En proceso")) {                    
                 aux.add(curso);
                 }

@@ -80,14 +80,14 @@ public class CargarArchivosController implements Serializable {
                     setExtension(filesBean.getExtension()); 
                     deleteFile(CargarArchivosController.getExternalContext(), "perfil." + extension);
                     savePartProfileClinicalData(CargarArchivosController.getExternalContext(), filesBean);
-                 MessageUtil.enviarMensajeInformacion(null, "Formato correcto", "La imagen ha sido cargada satisfactoriamente");
+                 MessageUtil.enviarMensajeInformacion(null, "Formato correcto", "Tu pdf se ha subido al servidor correctamente");
                 }
                 else{
-                 MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg' ");
+                 MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir archivos .pdf");
                 }
             }
         } catch (IOException e) {
-        MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg'");
+        MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir archivos .pdf");
             e.printStackTrace();
         } catch (ServletException ex) {
             ex.printStackTrace();

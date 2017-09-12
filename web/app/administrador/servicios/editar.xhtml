@@ -88,8 +88,8 @@
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Plan o Programa al que pertenece </label>
                                                 <b:selectOneMenu value="#{editarServicioController.servicioSelecionada.subServicios}" class="form-control">
-                                                    <f:selectItem value="" itemLabel="Ninguno"/>
-                                                    <f:selectItems value="#{listarTipoServicioController.servicios}" var="s" itemLabel="#{s.nombre}"/>
+                                                    <f:selectItem itemValue="" itemLabel="Ninguno" noSelectionOption="true"/>
+                                                    <f:selectItems value="#{listarServicioController.servicios}" var="s" itemLabel="#{s.nombre}"/>
                                                 </b:selectOneMenu>  
                                             </div>
                                         </div>
@@ -97,7 +97,7 @@
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Tipo de servicio</label>
                                                 <b:selectOneMenu value="#{editarServicioController.servicioSelecionada.tiposServicios}" class="form-control">
-                                                    <f:selectItem value="" itemLabel="Ninguno"/>
+                                                  
                                                     <f:selectItems value="#{listarTipoServicioController.tipoServicio}" var="tp" itemLabel="Tipo de servicio: #{tp.tiposServicio} - Descripción #{tp.descripcion}"/>
                                                 </b:selectOneMenu>  
                                             </div>
