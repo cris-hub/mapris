@@ -20,7 +20,7 @@
                 <h:form>
 
                     <div class="btn-group">
-                        
+
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                             #{msjApp.idioma} <span class="caret"></span>
                         </button>
@@ -28,7 +28,7 @@
                         <ul class="dropdown-menu dropdown-menu-left">
                             <c:forEach items="#{sessionController.supportLanguages}" var="l" >
                                 <li>
-                                    
+
                                     <h:commandLink  value="#{msjApp[l.displayLanguage]}" action="#{sessionController.cambiarIdioma(l)}">
                                         <img src="#{request.contextPath}/resources/img/languages/#{l.language}.png" width="25px" alt="#{msjApp[l.displayLanguage]}"/>
                                     </h:commandLink>
@@ -125,7 +125,7 @@
 
                     <div class="form-group">
                         <h:inputText id="r" v:name="r" required="true" value="#{controllerEmailContrasena.email}" maxlength="15" tabindex="1"></h:inputText>
-                        <label for="cedula">Numero de documento</label>
+                        <label for="cedula">#{msjRegister.labelDocumentoIdentidad}</label>
                         <div class="bar"></div>
                     </div>
 

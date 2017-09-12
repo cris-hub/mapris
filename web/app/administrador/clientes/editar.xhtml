@@ -32,8 +32,8 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Editar Cliente </h4>
-                                <p class="category">Aquí puedes modificar la información del cliente habilitado en el Maternity Club</p>
+                                <h4 class="title">#{msjCrud.clientes} </h4>
+                                <p class="category">#{msjCrud.editarClienteMensaje} </p>
                             </div>
                             <div class="card-content">
                                 <b:messages showSummary="true"  class="animated flipInX" show-detail="true" />
@@ -41,63 +41,63 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Id Personal Medico</label>
+                                                <label class="control-label">#{msjInput.cedula}</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.cedula}" class="form-control" disabled="true" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Nombres</label>
+                                                <label class="control-label">#{msjInput.nombres}</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.nombres}"  class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Apellidos</label>
+                                                <label class="control-label">#{msjInput.apellidos}</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.apellidos}"  class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Correo Electronico</label>
+                                                <label class="control-label">#{msjInput.correo}</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.correoElectronico}"  class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Fecha de nacimiento</label>
+                                                <label class="control-label">#{msjInput.fechaNaci}</label>
                                                 <b:datepicker value="#{editarClienteController.clienteSelecionada.usuario.fechaNaci}"  mode="popup" class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Teléfono Celular</label>
+                                                <label class="control-label">#{msjInput.celular}</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.telefonoCelular}" maxlength="10" class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Teléfono Fijo</label>
+                                                <label class="control-label">#{msjInput.telFijo}</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.telefonoFijo}" maxlength="7" class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Clave</label>
+                                                <label class="control-label">#{msjInput.clave}</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.usuario.clave}"  class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Cargo</label>
+                                                <label class="control-label">#{msjInput.cargo}</label>
                                                 <b:selectOneMenu value="#{editarClienteController.clienteSelecionada.idEmpresas}" class="form-control">
 
                                                     <f:selectItems value="#{listarEmpresaController.empresa}" var="p" itemLabel="#{p.idEmpresa} - #{p.nombre}"/>
@@ -105,7 +105,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Estado</label>
+                                                <label class="control-label">#{msjInput.estado}</label>
                                                 <b:inputText value="#{editarClienteController.clienteSelecionada.estado}"  class="form-control" disabled="true"/>
                                             </div>
                                         </div>
@@ -113,8 +113,8 @@
 
 
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/clientes/cliente.xhtml" value="Volver"/>
-                                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarClienteController.actualizarDatos()}" class="btn btn-primary pull-right"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/clientes/cliente.xhtml" value="#{msjGlobal.volver}"/>
+                                    <b:commandButton value="#{msjGlobal.guardar}" icon="floppy-disk" actionListener="#{editarClienteController.actualizarDatos()}" class="btn btn-primary pull-right"/>
 
                                     <div class="clearfix"></div>
                                 </b:form>
@@ -131,8 +131,8 @@
 
                             <div class="content">
                                 <h6 class="category text-gray">#{editarClienteController.clienteSelecionada.usuario.nombres} #{editarClienteController.clienteSelecionada.usuario.apellidos}</h6>
-                             
-                               
+
+
 
                             </div>
                         </div>

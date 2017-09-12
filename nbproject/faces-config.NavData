@@ -7,8 +7,8 @@
         <Node id="app/administrador/empresa/editar.xhtml" x="150" y="1500" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/index.html" x="650" y="1800" zoom="true"/>
         <Node id="app/administrador/tipos/servicios.xhtml" x="3650" y="900" zoom="true"/>
-        <Node id="app/perfil/miperfil.xhtml" x="1150" y="2250" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/tab.html" x="1150" y="1050" zoom="true"/>
+        <Node id="app/perfil/miperfil.xhtml" x="1150" y="2250" zoom="true"/>
         <Node id="app/administrador/personal/medico.xhtml" x="400" y="3300" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/ignored.html" x="4400" y="450" zoom="true"/>
         <Node id="app/cliente/cursos/cursos.xhtml" x="4400" y="1050" zoom="true"/>
@@ -25,27 +25,27 @@
         <Node id="resources/frameworks/highcharts/examples/error-bar/index.htm" x="150" y="600" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/html5.html" x="2150" y="1800" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/bar-basic/index.htm" x="900" y="300" zoom="true"/>
-        <Node id="app/aplazamientos/registrarAplazamiento.xhtml" x="4650" y="600" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/bar-negative-stack/index.htm" x="150" y="450" zoom="true"/>
+        <Node id="app/aplazamientos/registrarAplazamiento.xhtml" x="4650" y="600" zoom="true"/>
         <Node id="app/administrador/usuarios/nuevo.xhtml" x="900" y="1800" zoom="true"/>
-        <Node id="resources/frameworks/formvalidation-master/demo/attribute.html" x="400" y="2400" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/book.html" x="2150" y="1650" zoom="true"/>
+        <Node id="resources/frameworks/formvalidation-master/demo/attribute.html" x="400" y="2400" zoom="true"/>
         <Node id="login.xhtml" x="900" y="150" zoom="true"/>
-        <Node id="resources/frameworks/intro.js/docs/_site/getting-started/start.html" x="650" y="2550" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/semantic/horizontalForm.html" x="2900" y="450" zoom="true"/>
+        <Node id="resources/frameworks/intro.js/docs/_site/getting-started/start.html" x="650" y="2550" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/container3.html" x="1150" y="450" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/hints/options/index.html" x="900" y="2700" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/column-negative/index.htm" x="650" y="300" zoom="true"/>
-        <Node id="resources/frameworks/intro.js/docs/_site/themes/install.html" x="650" y="2400" zoom="true"/>
         <Node id="resources/frameworks/intro.js/example/multi-page/second.html" x="1650" y="750" zoom="true"/>
+        <Node id="resources/frameworks/intro.js/docs/_site/themes/install.html" x="650" y="2400" zoom="true"/>
         <Node id="app/cliente/inscripciones/inscripciones.xhtml" x="150" y="300" zoom="true"/>
         <Node id="app/administrador/reportes/reportes.xhtml" x="400" y="600" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/pie-drilldown/index.htm" x="1400" y="900" zoom="true"/>
         <Node id="app/cliente/inscripciones/registrar.xhtml" x="2400" y="2100" zoom="true"/>
-        <Node id="app/administrador/sesiones/registrar.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/pie-drilldown/index.htm" x="1400" y="900" zoom="true"/>
         <Node id="resources/frameworks/intro.js/example/hello-world/withProgress.html" x="1900" y="150" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/pie-semi-circle/index.htm" x="900" y="2400" zoom="true"/>
+        <Node id="app/administrador/sesiones/registrar.xhtml" x="650" y="750" zoom="true"/>
         <Node id="resources/frameworks/intro.js/example/programmatic/hint.html" x="4400" y="750" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/pie-semi-circle/index.htm" x="900" y="2400" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/sparkline/index.htm" x="2400" y="1050" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/date.html" x="2150" y="1500" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/spline-symbols/index.htm" x="3150" y="150" zoom="true"/>
@@ -65,38 +65,35 @@
         <Node id="resources/frameworks/formvalidation-master/demo/row.html" x="1150" y="1200" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/3d-scatter-draggable/index.htm" x="1150" y="1650" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/collapse.html" x="1150" y="300" zoom="true"/>
-        <Node id="resources/frameworks/intro.js/docs/_layouts/doc.html" x="3400" y="300" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/dynamic4.html" x="150" y="1200" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/bar-stacked/index.htm" x="4400" y="300" zoom="true"/>
+        <Node id="resources/frameworks/intro.js/docs/_layouts/doc.html" x="3400" y="300" zoom="true"/>
         <Node id="app/administrador/clientes/ver.xhtml" x="3400" y="1500" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/bar-stacked/index.htm" x="4400" y="300" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/enable2.html" x="1650" y="1950" zoom="true"/>
-        <Node id="resources/frameworks/intro.js/example/auto-position/index.html" x="400" y="1950" zoom="true"/>
         <Node id="resources/frameworks/intro.js/example/bootstrap/v3/index.html" x="400" y="1500" zoom="true"/>
+        <Node id="resources/frameworks/intro.js/example/auto-position/index.html" x="400" y="1950" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/column-stacked-percent/index.htm" x="1900" y="750" zoom="true"/>
-        <Node id="app/usuarios/editar.xhtml" x="1650" y="1200" zoom="true"/>
-        <Node id="resources/frameworks/intro.js/docs/_site/wrappers/gwt.html" x="3400" y="1050" zoom="true"/>
         <Node id="app/administrador/grafico/ver.xhtml" x="2400" y="1950" zoom="true"/>
+        <Node id="resources/frameworks/intro.js/docs/_site/wrappers/gwt.html" x="3400" y="1050" zoom="true"/>
         <Node id="app/cliente/aplazamientos/registrarAplazamiento.xhtml" x="150" y="3600" zoom="true"/>
-        <Node id="resources/frameworks/intro.js/docs/_site/intro/options/index.html" x="3400" y="900" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/hints/attributes/index.html" x="4650" y="450" zoom="true"/>
+        <Node id="resources/frameworks/intro.js/docs/_site/intro/options/index.html" x="3400" y="900" zoom="true"/>
         <Node id="app/cliente/programas/prenatal/rutinas/rutinaspre-spa.xhtml" x="3900" y="1200" zoom="true"/>
-        <Node id="app/administrador/sesiones/sesiones.xhtml" x="3900" y="1350" zoom="true"/>
         <Node id="app/administrador/cursos/cursos.xhtml" x="1150" y="3000" zoom="true"/>
+        <Node id="app/administrador/sesiones/sesiones.xhtml" x="3900" y="1350" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/dynamic2.html" x="400" y="1050" zoom="true"/>
         <Node id="app/cliente/servicios/citamedica/citamedica.xhtml" x="150" y="2850" zoom="true"/>
         <Node id="app/administrador/cursos/nuevo.xhtml" x="900" y="3150" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/enable.html" x="900" y="1500" zoom="true"/>
-        <Node id="app/usuarios/nuevo.xhtml" x="150" y="2700" zoom="true"/>
-        <Node id="resources/frameworks/formvalidation-master/demo/dynamic3.html" x="4400" y="150" zoom="true"/>
-        <Node id="app/administrador/usuarios/usuarios.xhtml" x="650" y="1950" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/3d-column-stacking-grouping/index.htm" x="2900" y="600" zoom="true"/>
+        <Node id="resources/frameworks/formvalidation-master/demo/dynamic3.html" x="4400" y="150" zoom="true"/>
         <Node id="resources/frameworks/video.js/docs/examples/elephantsdream/index.html" x="1650" y="300" zoom="true"/>
         <Node id="app/cliente/programas/prenatal/rutinas/rutinaspre-promocion.xhtml" x="900" y="2850" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/combo-meteogram/index.htm" x="2150" y="300" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/dynamic-master-detail/index.htm" x="1650" y="450" zoom="true"/>
+        <Node id="resources/frameworks/formvalidation-master/demo/invisible.html" x="2900" y="750" zoom="true"/>
         <Node id="app/administrador/horario/horario.xhtml" x="900" y="1350" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/spline-inverted/index.htm" x="3650" y="150" zoom="true"/>
-        <Node id="resources/frameworks/formvalidation-master/demo/invisible.html" x="2900" y="750" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/wrappers/rails.html" x="1650" y="1800" zoom="true"/>
         <Node id="app/administrador/personal/registrar.xhtml" x="1900" y="2250" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/3d-column-null-values/index.htm" x="150" y="2400" zoom="true"/>
@@ -107,11 +104,11 @@
         <Node id="app/administrador/programas/editar.xhtml" x="3150" y="1800" zoom="true"/>
         <Node id="app/cliente/calendario/calendario.xhtml" x="5900" y="150" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/pie-monochrome/index.htm" x="1150" y="750" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/gauge-vu-meter/index.htm" x="2650" y="1200" zoom="true"/>
         <Node id="app/administrador/usuarios/editar.xhtml" x="150" y="1350" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/wrappers/dart.html" x="1400" y="150" zoom="true"/>
-        <Node id="resources/frameworks/intro.js/docs/_site/wrappers/wordpress.html" x="4150" y="750" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/gauge-vu-meter/index.htm" x="2650" y="1200" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/spline-irregular-time/index.htm" x="1150" y="2400" zoom="true"/>
+        <Node id="resources/frameworks/intro.js/docs/_site/wrappers/wordpress.html" x="4150" y="750" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/pie-legend/index.htm" x="1900" y="1350" zoom="true"/>
         <Node id="resources/frameworks/intro.js/example/hello-world/index.html" x="2400" y="1500" zoom="true"/>
         <Node id="app/administrador/clientes/editar.xhtml" x="3150" y="450" zoom="true"/>
@@ -123,30 +120,30 @@
         <Node id="app/administrador/servicios/ver.xhtml" x="1650" y="900" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/wrappers/angularjs.html" x="1400" y="1050" zoom="true"/>
         <Node id="app/administrador/cursos/editar.xhtml" x="4400" y="900" zoom="true"/>
-        <Node id="resources/frameworks/intro.js/docs/_layouts/landing.html" x="1650" y="150" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/bubble-3d/index.htm" x="4650" y="150" zoom="true"/>
+        <Node id="resources/frameworks/intro.js/docs/_layouts/landing.html" x="1650" y="150" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/polar-spider/index.htm" x="2650" y="1650" zoom="true"/>
         <Node id="app/administrador/servicios/editar.xhtml" x="2150" y="1050" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/combo-timeline/index.htm" x="2400" y="300" zoom="true"/>
         <Node id="app/citas/listarrutinas.xhtml" x="4900" y="450" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/combo-dual-axes/index.htm" x="1650" y="2250" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/wrappers/ember.html" x="1400" y="2100" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/combo-dual-axes/index.htm" x="1650" y="2250" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/gauge-speedometer/index.htm" x="1150" y="1800" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/event2.html" x="1650" y="1350" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/line-labels/index.htm" x="900" y="450" zoom="true"/>
-        <Node id="app/administrador/personal/ver.xhtml" x="1900" y="900" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/responsive/index.htm" x="3150" y="900" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/arearange-line/index.htm" x="1900" y="1500" zoom="true"/>
         <Node id="app/cliente/programas/programas.xhtml" x="5150" y="600" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/responsive/index.htm" x="3150" y="900" zoom="true"/>
+        <Node id="app/administrador/personal/ver.xhtml" x="1900" y="900" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/choice.html" x="3900" y="750" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/column-stacked/index.htm" x="2900" y="300" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/column-basic/index.htm" x="150" y="3150" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/submitHandler.html" x="150" y="2550" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/column-basic/index.htm" x="150" y="3150" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/column-stacked/index.htm" x="2900" y="300" zoom="true"/>
         <Node id="app/perfil/cambiardatos.xhtml" x="2650" y="300" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/support.html" x="150" y="3000" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_includes/utils.html" x="2400" y="1200" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/3d-pie/index.htm" x="900" y="1200" zoom="true"/>
         <Node id="app/cliente/servicios/servicios.xhtml" x="2650" y="1950" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/3d-pie/index.htm" x="900" y="1200" zoom="true"/>
         <Node id="app/personal/datos/ver.xhtml" x="4650" y="900" zoom="true"/>
         <Node id="app/administrador/servicios/servicios.xhtml" x="400" y="1200" zoom="true"/>
         <Node id="app/cliente/programas/posnatal/rutinas/rutinaspos-acondi.xhtml" x="1900" y="2550" zoom="true"/>
@@ -155,9 +152,9 @@
         <Node id="resources/frameworks/highcharts/examples/area-negative/index.htm" x="2150" y="1950" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/defaultMessage.html" x="2650" y="1350" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/polar/index.htm" x="5150" y="300" zoom="true"/>
-        <Node id="app/administrador/programas/ver.xhtml" x="4650" y="750" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/column-drilldown/index.htm" x="4400" y="600" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/validators.html" x="900" y="900" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/column-drilldown/index.htm" x="4400" y="600" zoom="true"/>
+        <Node id="app/administrador/programas/ver.xhtml" x="4650" y="750" zoom="true"/>
         <Node id="app/administrador/servicios/registrar.xhtml" x="2900" y="1650" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/pyramid/index.htm" x="5150" y="150" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_includes/sidebar.html" x="2400" y="450" zoom="true"/>
@@ -165,7 +162,6 @@
         <Node id="resources/frameworks/formvalidation-master/demo/mailgun.html" x="400" y="450" zoom="true"/>
         <Node id="app/administrador/salones-servicios/editar.xhtml" x="400" y="3450" zoom="true"/>
         <Node id="resources/frameworks/intro.js/example/RTL/index.html" x="2150" y="150" zoom="true"/>
-        <Node id="app/usuarios/listar.xhtml" x="1400" y="1950" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/selector2.html" x="3900" y="1050" zoom="true"/>
         <Node id="resources/frameworks/sweetalert-master/index.html" x="3650" y="1200" zoom="true"/>
         <Node id="app/administrador/salones/registrar.xhtml" x="1900" y="2400" zoom="true"/>
@@ -189,13 +185,13 @@
         <Node id="resources/frameworks/intro.js/example/hello-world/withoutButtons.html" x="650" y="150" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/typehead.html" x="900" y="2250" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/line-log-axis/index.htm" x="2400" y="750" zoom="true"/>
+        <Node id="app/administrador/usuarios/ver.xhtml" x="900" y="600" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_layouts/default.html" x="2400" y="150" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/treemap-large-dataset/index.htm" x="2400" y="1800" zoom="true"/>
-        <Node id="app/administrador/usuarios/ver.xhtml" x="900" y="600" zoom="true"/>
         <Node id="app/administrador/programas/programas.xhtml" x="2150" y="2400" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/gauge-clock/index.htm" x="900" y="2100" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/specialName.html" x="4900" y="150" zoom="true"/>
         <Node id="resources/frameworks/intro.js/example/index.html" x="1150" y="1950" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/gauge-clock/index.htm" x="900" y="2100" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/container.html" x="650" y="450" zoom="true"/>
         <Node id="app/administrador/horario/editar.xhtml" x="150" y="3450" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/event.html" x="3650" y="300" zoom="true"/>
@@ -205,18 +201,18 @@
         <Node id="app/administrador/empresa/ver.xhtml" x="1150" y="2550" zoom="true"/>
         <Node id="app/cliente/programas/registrarP.xhtml" x="4900" y="600" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/pie-donut/index.htm" x="2400" y="1650" zoom="true"/>
-        <Node id="app/newjsf.xhtml" x="900" y="1650" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/3d-pie-donut/index.htm" x="2150" y="1350" zoom="true"/>
+        <Node id="app/newjsf.xhtml" x="900" y="1650" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/i18n.html" x="400" y="750" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/arearange/index.htm" x="400" y="900" zoom="true"/>
         <Node id="app/usuarios/ver.xhtml" x="4150" y="450" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/semantic/stackedFormTooltip.html" x="2900" y="1500" zoom="true"/>
-        <Node id="resources/frameworks/sweetalert-master/test/index.html" x="3400" y="750" zoom="true"/>
         <Node id="app/administrador/inscripciones/registrar.xhtml" x="5650" y="300" zoom="true"/>
+        <Node id="resources/frameworks/sweetalert-master/test/index.html" x="3400" y="750" zoom="true"/>
         <Node id="app/administrador/calendario/nuevo.xhtml" x="4150" y="1200" zoom="true"/>
-        <Node id="resources/frameworks/formvalidation-master/demo/semantic/horizontalFormTooltip.html" x="3150" y="1050" zoom="true"/>
-        <Node id="app/administrador/horario/nuevo.xhtml" x="150" y="3300" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/selector.html" x="3900" y="900" zoom="true"/>
+        <Node id="app/administrador/horario/nuevo.xhtml" x="150" y="3300" zoom="true"/>
+        <Node id="resources/frameworks/formvalidation-master/demo/semantic/horizontalFormTooltip.html" x="3150" y="1050" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/areaspline/index.htm" x="400" y="2100" zoom="true"/>
         <Node id="app/aplazamientos/verCliente.xhtml" x="1400" y="2550" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/column-placement/index.htm" x="2650" y="1050" zoom="true"/>
@@ -231,14 +227,14 @@
         <Node id="resources/frameworks/highcharts/examples/scatter/index.htm" x="3150" y="1350" zoom="true"/>
         <Node id="app/cliente/programas/clubbebe/rutinas/rutinasbebe-rumba.xhtml" x="1150" y="2700" zoom="true"/>
         <Node id="app/aplazamientos/lista.xhtml" x="2900" y="1350" zoom="true"/>
-        <Node id="resources/frameworks/formvalidation-master/demo/pure/horizontalForm.html" x="400" y="300" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_includes/head.html" x="3650" y="600" zoom="true"/>
+        <Node id="resources/frameworks/formvalidation-master/demo/pure/horizontalForm.html" x="400" y="300" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/line-basic/index.htm" x="2650" y="900" zoom="true"/>
         <Node id="app/administrador/inscripciones/inscripciones.xhtml" x="2400" y="900" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/hints/api/index.html" x="2650" y="600" zoom="true"/>
         <Node id="app/cliente/inscripciones/ver.xhtml" x="2650" y="1800" zoom="true"/>
-        <Node id="resources/frameworks/intro.js/example/programmatic/index.html" x="3650" y="750" zoom="true"/>
         <Node id="app/administrador/salones-servicios/nuevo.xhtml" x="3900" y="450" zoom="true"/>
+        <Node id="resources/frameworks/intro.js/example/programmatic/index.html" x="3650" y="750" zoom="true"/>
         <Node id="resources/frameworks/intro.js/example/html-tooltip/index.html" x="3900" y="300" zoom="true"/>
         <Node id="app/administrador/clientes/registrar.xhtml" x="1650" y="2550" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/wrappers/yii.html" x="150" y="2250" zoom="true"/>
@@ -248,8 +244,8 @@
         <Node id="resources/frameworks/highcharts/examples/column-rotated-labels/index.htm" x="400" y="1350" zoom="true"/>
         <Node id="app/administrador/tipos/nuevo.xhtml" x="1650" y="2700" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/chart-update/index.htm" x="3900" y="600" zoom="true"/>
-        <Node id="resources/frameworks/highcharts/examples/synchronized-charts/index.htm" x="650" y="1050" zoom="true"/>
         <Node id="app/cliente/cursos/ver.xhtml" x="2400" y="2250" zoom="true"/>
+        <Node id="resources/frameworks/highcharts/examples/synchronized-charts/index.htm" x="650" y="1050" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/ajaxSubmit.html" x="150" y="1950" zoom="true"/>
         <Node id="app/cliente/inscripciones/editar.xhtml" x="3650" y="1500" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/docs/index.html" x="1400" y="450" zoom="true"/>
@@ -268,22 +264,22 @@
         <Node id="app/administrador/salones/salones.xhtml" x="3400" y="1350" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/multipleAsOne.html" x="1400" y="2400" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/wrappers/drupal.html" x="1900" y="1650" zoom="true"/>
-        <Node id="resources/frameworks/formvalidation-master/demo/dynamic.html" x="650" y="2100" zoom="true"/>
         <Node id="app/cliente/programas/clubbebe/rutinas/rutinasbebe-shantala.xhtml" x="1400" y="2700" zoom="true"/>
-        <Node id="resources/frameworks/formvalidation-master/demo/remote.html" x="150" y="2100" zoom="true"/>
+        <Node id="resources/frameworks/formvalidation-master/demo/dynamic.html" x="650" y="2100" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/dynamic-update/index.htm" x="2150" y="750" zoom="true"/>
+        <Node id="resources/frameworks/formvalidation-master/demo/remote.html" x="150" y="2100" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/combo-multi-axes/index.htm" x="2150" y="900" zoom="true"/>
         <Node id="app/aplazamientos/ver.xhtml" x="2150" y="2100" zoom="true"/>
+        <Node id="resources/frameworks/formvalidation-master/demo/message.html" x="400" y="2550" zoom="true"/>
         <Node id="resources/frameworks/formvalidation-master/demo/index.html" x="1150" y="1350" zoom="true"/>
         <Node id="resources/frameworks/intro.js/example/hello-world/withoutBullets.html" x="400" y="2700" zoom="true"/>
-        <Node id="resources/frameworks/formvalidation-master/demo/message.html" x="400" y="2550" zoom="true"/>
-        <Node id="resources/frameworks/formvalidation-master/demo/file.html" x="900" y="1050" zoom="true"/>
         <Node id="resources/frameworks/intro.js/docs/_site/wrappers/R.html" x="1400" y="300" zoom="true"/>
+        <Node id="resources/frameworks/formvalidation-master/demo/file.html" x="900" y="1050" zoom="true"/>
         <Node id="app/cliente/datos/ver.xhtml" x="6150" y="150" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/area-stacked-percent/index.htm" x="400" y="2850" zoom="true"/>
         <Node id="app/administrador/salones/editar.xhtml" x="5150" y="450" zoom="true"/>
-        <Node id="app/cliente/servicios/actividades/actividades.xhtml" x="5650" y="150" zoom="true"/>
         <Node id="resources/frameworks/highcharts/examples/area-stacked/index.htm" x="1900" y="450" zoom="true"/>
+        <Node id="app/cliente/servicios/actividades/actividades.xhtml" x="5650" y="150" zoom="true"/>
         <Node id="app/cliente/programas/prenatal/rutinas/rutinaspre-acondi.xhtml" x="1400" y="2850" zoom="true"/>
         <Node id="resources/frameworks/intro.js/example/hint/index.html" x="650" y="1500" zoom="true"/>
         <Node id="app/administrador/calendario/editar.xhtml" x="2150" y="450" zoom="true"/>

@@ -414,8 +414,8 @@ h2.title {
     position: relative;
     top: 0;
     height: auto;
-    max-height: 2000px;
-    min-height: 900px;
+    /*    max-height: 2000px;
+        min-height: 900px;*/
     overflow-y: hidden;
 }
 
@@ -432,7 +432,7 @@ h2.title {
 .off-canvas-sidebar .sidebar-wrapper {
     position: relative;
     height: calc(100vh - 75px);
-    overflow: auto;
+    /*    overflow: auto;*/
     width: 260px;
     z-index: 4;
 }
@@ -3580,7 +3580,7 @@ footer .btn {
     color: #999999;
 }
 .card .card-content {
-    
+
     height: auto;
     padding: 15px 20px;
 }

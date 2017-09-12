@@ -41,16 +41,16 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Editar Perfil</h4>
+                                <h4 class="title">#{msjPerfil.butoneditarperfil}</h4>
                                 <p class="category">Completa tu perfil</p>
                             </div>
                             <div class="card-content">
                                 <b:messages globalOnly="true" showSummary="true" showDetail="true"/>
-                                    <h:form role="form" prependId="false">
+                                <h:form role="form" prependId="false">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Documento de Identidad</label>
+                                                <label class="control-label">#{msjInput.cedula}</label>
                                                 <b:inputText  value="#{sessionController.usuario.cedula}" class="form-control" disabled="true" />
                                             </div>
                                         </div>
@@ -58,13 +58,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Nombres</label>
+                                                <label class="control-label">#{msjInput.nombres}</label>
                                                 <b:inputText  value="#{sessionController.usuario.nombres}" class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Apellidos</label>
+                                                <label class="control-label">#{msjInput.apellidos}</label>
                                                 <b:inputText  value="#{sessionController.usuario.apellidos}" class="form-control" />
                                             </div>
                                         </div>
@@ -73,18 +73,18 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Correo</label>
+                                                <label class="control-label">#{msjInput.correo}</label>
                                                 <b:inputText  value="#{sessionController.usuario.correoElectronico}" class="form-control" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Fecha de Nacimiento</label>
+                                                <label class="control-label">#{msjInput.fechaNaci}</label>
                                                 <b:datepicker  changeYear="true" changeMonth="true" value="#{sessionController.usuario.fechaNaci}" class="form-control" />
                                             </div>
                                         </div>
                                     </div>
-                                    <h:commandButton actionListener="#{modificarPerfilController.actualizarPerfil()}" value="Modificar Datos" class="btn btn-primary pull-right"/>
+                                    <h:commandButton actionListener="#{modificarPerfilController.actualizarPerfil()}" value="#{msjPerfil.butonmodi}" class="btn btn-primary pull-right"/>
                                     <div class="clearfix"></div>
                                 </h:form>
                             </div>
@@ -108,8 +108,8 @@
                                         Rutina Actual <br/>
                                     </p>
                                     <div class="upload-btn-wrapper" >
-                                        <h:inputFile id="fileUpload" class="btn btn-primary btn-round" style="width: 270px;" value="Cambiar foto" />
-                                        <h:commandButton value="Cambiar foto" id="upload" class="btn default " actionListener="#{cargarArchivoController.uploadProfileImage}"/>
+                                        <h:inputFile id="fileUpload" class="btn btn-primary btn-round" style="width: 270px;" value="#{msjPerfil.butoncambiarfoto}" />
+                                        <h:commandButton value="#{msjPerfil.butoncambiarfoto}" id="upload" class="btn default " actionListener="#{cargarArchivoController.uploadProfileImage}"/>
                                     </div>
                                 </div>
                             </div>

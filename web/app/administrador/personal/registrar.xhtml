@@ -33,8 +33,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Registrar Personal Medico</h4>
-                                <p class="category">Aquí puedes registrar el personal medico que hac parte de Maternity Club</p>
+                                <h4 class="title">#{msjCrud.registrarPersonalMedico}</h4>
+                                <p class="category">#{msjCrud.registrarPersonalMensaje}</p>
                             </div>
                             <div class="card-content">
                                 <b:messages showSummary="true" class="animated flipInX"  show-detail="true" />
@@ -43,65 +43,65 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Cedula</label>
+                                                <label class="control-label">#{msjInput.cedula}</label>
                                                 <b:inputText  name="document" maxlength="12" value="#{registroPersonalMedicoController.nuevoUsuario.cedula}" class="form-control"  />
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Nombres</label>
+                                                <label class="control-label">#{msjInput.nombres}</label>
                                                 <b:inputText name="nombre" maxlength="15" value="#{registroPersonalMedicoController.nuevoUsuario.nombres}"  class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Apellidos</label>
+                                                <label class="control-label">#{msjInput.apellidos}</label>
                                                 <b:inputText name="apellido" maxlength="15" value="#{registroPersonalMedicoController.nuevoUsuario.apellidos}"  class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Correo Electronico</label>
+                                                <label class="control-label">#{msjInput.correo}</label>
                                                 <b:inputText a:type="email" name="correo" value="#{registroPersonalMedicoController.nuevoUsuario.correoElectronico}"  class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Teléfono Celular</label>
+                                                <label class="control-label">#{msjInput.celular}</label>
                                                 <b:inputText maxlength="10"  name="cel" value="#{registroPersonalMedicoController.nuevoUsuario.telefonoCelular}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Teléfono Fijo</label>
+                                                <label class="control-label">#{msjInput.telFijo}</label>
                                                 <b:inputText maxlength="7" name="tel" value="#{registroPersonalMedicoController.nuevoUsuario.telefonoFijo}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Clave</label>
+                                                <label class="control-label">#{msjInput.clave}</label>
                                                 <b:inputSecret  name="pass" value="#{registroPersonalMedicoController.nuevoUsuario.clave}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Fecha De Nacimiento</label>
+                                                <label class="control-label">#{msjInput.fechaNaci}</label>
                                                 <b:datepicker   changeMonth="true" changeYear="true" mode="popup" value="#{registroPersonalMedicoController.nuevoUsuario.fechaNaci}"  />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Cargo</label>
+                                                <label class="control-label">#{msjInput.cargo}</label>
                                                 <b:inputText   name="cargo" value="#{registroPersonalMedicoController.nuevoPersonalmedico.cargo}"  class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Perfil Profesional</label>
+                                                <label class="control-label">#{msjInput.perfilProfesional}</label>
                                                 <b:inputText  name="perfil"  value="#{registroPersonalMedicoController.nuevoPersonalmedico.perfilProfesional}"  class="form-control"/>
                                             </div>
                                         </div>
@@ -110,8 +110,8 @@
                                     </div>
 
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/personal/medico.xhtml" value="Volver"/>
-                                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{registroPersonalMedicoController.registrar()}" class="btn btn-primary pull-right"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/personal/medico.xhtml" value="#{msjGlobal.volver}"/>
+                                    <b:commandButton value="#{msjGlobal.guardar}" icon="floppy-disk" actionListener="#{registroPersonalMedicoController.registrar()}" class="btn btn-primary pull-right"/>
 
                                     <div class="clearfix"></div>
                                 </b:form>

@@ -36,7 +36,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Personal Medico</h4>
+                                <h4 class="title">#{mensajeApp.personalMedico}</h4>
                                 <p class="category">Lista de Personal Medico</p>
                             </div>
                             <div class="card-content table-responsive">
@@ -47,20 +47,20 @@
                                     <b:dataTable id="dtUsuario"  value="#{listarPersonalMedicoController.personalmedicoes}" var="p" >
 
 
-                                        <b:dataTableColumn label="Cedula" value="#{p.usuario.cedula}"/>
-                                        <b:dataTableColumn label="Nombres" value="#{p.usuario.nombres}"/>
-                                        <b:dataTableColumn label="Apellidos" value="#{p.usuario.apellidos}"/>
-                                        <b:dataTableColumn id="fecha" a:name="fecha" label="Fecha de nacimiento" >
+                                        <b:dataTableColumn label="#{msjInput.cedula}" value="#{p.usuario.cedula}"/>
+                                        <b:dataTableColumn label="#{msjInput.nombres}" value="#{p.usuario.nombres}"/>
+                                        <b:dataTableColumn label="#{msjInput.apellidos}" value="#{p.usuario.apellidos}"/>
+                                        <b:dataTableColumn id="fecha" a:name="fecha" label="#{msjInput.fechaNaci}" >
                                             <h:outputText value="#{p.usuario.fechaNaci}">
                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                             </h:outputText>
 
                                         </b:dataTableColumn>
-                                        <b:dataTableColumn label="Correo electronico" value="#{p.usuario.correoElectronico}"/>
-                                        <b:dataTableColumn label="Teléfono Fijo" value="#{p.usuario.telefonoFijo}"/>
-                                        <b:dataTableColumn label="Teléfono Celular" value="#{p.usuario.telefonoCelular}"/>
-                                        <b:dataTableColumn label="Pefil profesional" value="#{p.perfilProfesional}"/>
-                                        <b:dataTableColumn label="Cargo" value="#{p.cargo}"/>
+                                        <b:dataTableColumn label="#{msjInput.correo}" value="#{p.usuario.correoElectronico}"/>
+                                        <b:dataTableColumn label="#{msjInput.telFijo}" value="#{p.usuario.telefonoFijo}"/>
+                                        <b:dataTableColumn label="#{msjInput.celular}" value="#{p.usuario.telefonoCelular}"/>
+                                        <b:dataTableColumn label="#{msjInput.perfilProfesional}" value="#{p.perfilProfesional}"/>
+                                        <b:dataTableColumn label="#{msjInput.cargo}" value="#{p.cargo}"/>
 
 
                                         <b:dataTableColumn  label="#{mensajeApp.opciones}" >
