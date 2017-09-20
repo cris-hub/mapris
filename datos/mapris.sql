@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `mapris` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `mapris`;
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mapris
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.25-MariaDB
+-- Server version	5.7.17-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -321,7 +321,7 @@ CREATE TABLE `permisosroles` (
 
 LOCK TABLES `permisosroles` WRITE;
 /*!40000 ALTER TABLE `permisosroles` DISABLE KEYS */;
-INSERT INTO `permisosroles` VALUES (10,1),(10,2),(10,3),(10,4),(10,5),(11,1),(11,2),(11,3),(11,4),(11,5),(12,1),(12,2),(12,3),(12,4),(12,5),(20,1),(21,1),(22,1),(30,1),(30,2),(30,3),(30,4),(30,5),(31,2),(31,3),(31,4),(32,5),(33,2),(33,3),(33,4),(34,1),(40,1),(40,2),(40,3),(40,4),(40,5),(41,1),(41,5),(42,1),(42,5),(43,2),(43,3),(43,4),(50,2),(50,3),(50,4),(51,2),(51,3),(51,4),(60,1),(61,1),(62,1),(63,1),(70,1),(71,1),(72,1),(73,1),(90,5),(91,5),(92,5),(93,5),(120,1),(121,1),(122,1),(130,5),(131,5),(132,5),(140,5),(141,5),(142,5),(143,5),(150,1),(151,1),(152,1),(153,1),(160,2),(160,3),(160,4),(161,2),(161,3),(161,4),(162,2),(162,3),(162,4),(170,5),(171,5),(172,5),(180,1),(181,1),(190,2),(191,2),(200,3),(201,3),(210,4),(211,4);
+INSERT INTO `permisosroles` VALUES (10,1),(11,1),(12,1),(20,1),(21,1),(22,1),(30,1),(34,1),(40,1),(41,1),(42,1),(60,1),(61,1),(62,1),(63,1),(70,1),(71,1),(72,1),(73,1),(120,1),(121,1),(122,1),(150,1),(151,1),(152,1),(153,1),(180,1),(181,1),(10,2),(11,2),(12,2),(30,2),(31,2),(33,2),(40,2),(43,2),(50,2),(51,2),(160,2),(161,2),(162,2),(190,2),(191,2),(10,3),(11,3),(12,3),(30,3),(31,3),(33,3),(40,3),(43,3),(50,3),(51,3),(160,3),(161,3),(162,3),(200,3),(201,3),(10,4),(11,4),(12,4),(30,4),(31,4),(33,4),(40,4),(43,4),(50,4),(51,4),(160,4),(161,4),(162,4),(210,4),(211,4),(10,5),(11,5),(12,5),(30,5),(32,5),(40,5),(41,5),(42,5),(90,5),(91,5),(92,5),(93,5),(130,5),(131,5),(132,5),(140,5),(141,5),(142,5),(143,5),(170,5),(171,5),(172,5);
 /*!40000 ALTER TABLE `permisosroles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -396,7 +396,7 @@ CREATE TABLE `rolesusuarios` (
 
 LOCK TABLES `rolesusuarios` WRITE;
 /*!40000 ALTER TABLE `rolesusuarios` DISABLE KEYS */;
-INSERT INTO `rolesusuarios` VALUES (2,3),(5,4),(1,5),(2,6),(3,7),(3,8),(4,9),(4,10),(5,11),(2,12),(3,13),(4,14);
+INSERT INTO `rolesusuarios` VALUES (1,5),(2,3),(2,6),(2,12),(3,7),(3,8),(3,13),(4,9),(4,10),(4,14),(5,4),(5,11);
 /*!40000 ALTER TABLE `rolesusuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -481,7 +481,7 @@ CREATE TABLE `servicios` (
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
-INSERT INTO `servicios` VALUES (1,'Yoga','Clase de relajación orientada a las artes orientales del Yoga',100000,'Relajación',4,NULL,3),(2,'Pilates','Clase de acondicionamiento fisico',90000,'Acondicionamiento fisico',3,NULL,3),(3,'Prenatal','Programa completo prenata',800000,'Mentalidad sana para recibir el nuevo bebe',10,NULL,1),(4,'Posnatal','Programa completo posnata',700000,'Recuperar la figura',10,NULL,1),(5,'Club bebe','Programa completo club bebe',500000,'Interactuar en familia',8,NULL,1),(6,'Programas de promoción y preve','Valoracion fisica',NULL,NULL,0,3,2),(7,'Acondicionamiento Físico','Clases que mejoran el estado fisico',NULL,NULL,0,3,2),(8,'Curso Psicoprofiláctico','Preparación para el parto y la maternidad.',NULL,NULL,0,3,2),(9,'Spa y Relajación','Relajacion y descanso',NULL,NULL,0,3,2),(12,'Programa de promoción y prevencion','Valoracion fisica',NULL,'',0,4,2),(13,'Acondicionamiento Físico','Clases que mejoran el estado fisico',NULL,NULL,0,4,2),(14,'Área Especializada','Area medica',NULL,NULL,0,4,2),(15,'Reducción de peso y medidas','Ponte en forma',NULL,NULL,0,4,2),(16,'Taller de Shantala','técnica Hindu de estimulación a través del masaje',NULL,NULL,0,5,2),(17,'Baby Rumba','Ritmo y movimiento generan en el bebé la estimulación sensorial',NULL,NULL,0,5,2),(18,'Yoga Baby','Los movimientos suaves, armónicos ',NULL,NULL,0,5,2),(19,'Taller de Primeros Auxilios','Seguridad del bebé',NULL,NULL,0,5,2),(42,'Programas de promoción y preve',NULL,70000,NULL,0,NULL,3),(43,'Acondicionamiento Físico',NULL,80000,NULL,0,NULL,3),(44,'Curso Psicoprofiláctico',NULL,100000,NULL,0,NULL,3),(45,'Spa y Relajación',NULL,120000,NULL,0,NULL,3),(46,'Programa de promoción y preven',NULL,130000,NULL,0,NULL,3),(47,'Área Especializada',NULL,150000,NULL,0,NULL,3),(48,'Reducción de peso y medidas',NULL,160000,NULL,0,NULL,3),(49,'Taller de Shantala',NULL,100000,NULL,0,NULL,3),(50,'Yoga Baby',NULL,90000,NULL,0,NULL,3),(51,'Baby Rumba',NULL,120000,NULL,0,NULL,3),(52,'Taller de Primeros Auxilios',NULL,60000,NULL,0,NULL,3),(53,'Ginecologa',NULL,70000,NULL,0,NULL,4),(54,'Nutricionista',NULL,80000,NULL,0,NULL,4),(55,'Terapeuta',NULL,90000,NULL,0,NULL,4);
+INSERT INTO `servicios` VALUES (1,'Yoga','Clase de relajación orientada a las artes orientales del Yoga',100000,'Relajación',4,NULL,3),(2,'Pilates','Clase de acondicionamiento fisico',90000,'Acondicionamiento fisico',3,NULL,3),(3,'Programa Prenatal','Programa completo prenata',800000,'Mentalidad sana para recibir el nuevo bebe',10,NULL,1),(4,'Programa Posnatal','Programa completo posnata',700000,'Recuperar la figura',10,NULL,1),(5,'Club bebe','Programa completo club bebe',500000,'Interactuar en familia',8,NULL,1),(6,'Programas de promoción y preve','Valoracion fisica',NULL,NULL,0,3,2),(7,'Acondicionamiento Físico','Clases que mejoran el estado fisico',NULL,NULL,0,3,2),(8,'Curso Psicoprofiláctico','Preparación para el parto y la maternidad.',NULL,NULL,0,3,2),(9,'Spa y Relajación','Relajacion y descanso',NULL,NULL,0,3,2),(12,'Programa de promoción y prevencion','Valoracion fisica',NULL,'',0,4,2),(13,'Acondicionamiento Físico','Clases que mejoran el estado fisico',NULL,NULL,0,4,2),(14,'Área Especializada','Area medica',NULL,NULL,0,4,2),(15,'Reducción de peso y medidas','Ponte en forma',NULL,NULL,0,4,2),(16,'Taller de Shantala','técnica Hindu de estimulación a través del masaje',NULL,NULL,0,5,2),(17,'Baby Rumba','Ritmo y movimiento generan en el bebé la estimulación sensorial',NULL,NULL,0,5,2),(18,'Yoga Baby','Los movimientos suaves, armónicos ',NULL,NULL,0,5,2),(19,'Taller de Primeros Auxilios','Seguridad del bebé',NULL,NULL,0,5,2),(42,'Programas de promoción y preve',NULL,70000,NULL,0,NULL,3),(43,'Acondicionamiento Físico',NULL,80000,NULL,0,NULL,3),(44,'Curso Psicoprofiláctico',NULL,100000,NULL,0,NULL,3),(45,'Spa y Relajación',NULL,120000,NULL,0,NULL,3),(46,'Programa de promoción y preven',NULL,130000,NULL,0,NULL,3),(47,'Área Especializada',NULL,150000,NULL,0,NULL,3),(48,'Reducción de peso y medidas',NULL,160000,NULL,0,NULL,3),(49,'Taller de Shantala',NULL,100000,NULL,0,NULL,3),(50,'Yoga Baby',NULL,90000,NULL,0,NULL,3),(51,'Baby Rumba',NULL,120000,NULL,0,NULL,3),(52,'Taller de Primeros Auxilios',NULL,60000,NULL,0,NULL,3),(53,'Ginecologa',NULL,70000,NULL,0,NULL,4),(54,'Nutricionista',NULL,80000,NULL,0,NULL,4),(55,'Terapeuta',NULL,90000,NULL,0,NULL,4);
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -623,4 +623,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-18 21:42:41
+-- Dump completed on 2017-09-20 17:54:54

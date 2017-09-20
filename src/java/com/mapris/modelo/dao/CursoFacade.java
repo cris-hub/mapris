@@ -6,9 +6,11 @@
 package com.mapris.modelo.dao;
 
 import com.mapris.modelo.entitie.Curso;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,7 @@ public class CursoFacade extends AbstractFacade<Curso> implements CursoFacadeLoc
     public CursoFacade() {
         super(Curso.class);
     }
+
+  
     
 }

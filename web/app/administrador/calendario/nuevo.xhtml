@@ -10,7 +10,7 @@
                 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 
-    <ui:define name="titulo">Administrador-Nuevo Horario</ui:define>
+    <ui:define name="titulo">#{msjSistema.nuevoCalendario}</ui:define>
 
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
@@ -34,13 +34,13 @@
                             <div class="card-header" data-background-color="purple">
                                 <div class="row"> 
                                     <div class="col-md-6"> 
-                                        <h4 class="title">Nuevo Horario</h4>
+                                        <h4 class="title">#{msjSistema.nuevoTitleCalendario}</h4>
                                     </div>
                                     <div class="col-md-6"> 
-                                        <a class="btn btn-success pull-right" href="javascript:void(0);" onclick="javascript:introJs().start();">como hacerlo</a>
+                                        <a class="btn btn-success pull-right" href="javascript:void(0);" onclick="javascript:introJs().start();">#{msjSistema.introTitle}</a>
                                     </div>
                                 </div>
-                                <p class="category">Puedes agregar un horario que estará disponible para los programas del gimnasio</p>
+                                <p class="category">#{msjSistema.nuevoContentCalendario}</p>
                             </div>
                             <div class="card-content">
                                 <b:messages class="animated flipInX" globalOnly="true" showSummary="true" show-detail="true"/>
@@ -50,12 +50,12 @@
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <div  data-step="2" data-intro="Selecciona La Actividad Deseada !">
+                                                    <div  data-step="2" data-intro="#{msjSistema.introActividadCalendario}">
                                                         <b:selectOneMenu    update="choose"
 
                                                                             value="#{registrarHorarioController.curso}"  
                                                                             >
-                                                            <f:selectItem itemLabel="Seleccione Algun servicio" itemValue="" />
+                                                            <f:selectItem itemLabel="#{msjSistema.introServicioCalendario}" itemValue="" />
                                                             <f:selectItems    value="#{listarCursosController.cursos}"  var="s"  itemLabel="#{s.idServicios.nombre}  "/>
                                                         </b:selectOneMenu>
                                                     </div>

@@ -108,7 +108,7 @@
                                                 <label class="control-label">Programa o Curso</label>
                                                 <b:selectOneMenu  value="#{registroClienteController.inscripcionCliente.fkIdCurso}" class="form-control">
 
-                                                    <f:selectItems value="#{listarCursosController.cursos}" var="c" itemLabel=" #{c.idServicios.nombre}-#{c.idServicios.objetivo}"/>
+                                                    <f:selectItems value="#{listarCursosController.programasC}" var="c" itemLabel=" #{c.idServicios.nombre}-#{c.idServicios.objetivo}"/>
                                                 </b:selectOneMenu>
                                             </div>
                                         </div>

@@ -127,8 +127,22 @@ public class RegistrarClienteController {
                 nuevoCliente.setIdUsuario(null);
                 nuevoUsuario.setFechaRegistro(hoy);
                 nuevoUsuario.setRoles(new ArrayList<Rol>());
-                nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
-                nuevoUsuario.setIdEstados(estadoFacadeLocal.find(2));
+                
+                    if (inscripcionCliente.getFkIdCurso().getIdServicios().getTiposServicios().getTiposServicio().equalsIgnoreCase("Programa Prenatal")) {
+                        nuevoUsuario.getRoles().add(rolFacedaLocal.find(2));
+                        nuevoUsuario.setIdEstados(estadoFacadeLocal.find(2));
+                    } else if(inscripcionCliente.getFkIdCurso().getIdServicios().getTiposServicios().getTiposServicio().equalsIgnoreCase("Programa Posnatal")){
+                     
+                        nuevoUsuario.getRoles().add(rolFacedaLocal.find(3));
+                        nuevoUsuario.setIdEstados(estadoFacadeLocal.find(3));
+                    
+                    }else if(inscripcionCliente.getFkIdCurso().getIdServicios().getTiposServicios().getTiposServicio().equalsIgnoreCase("Club bebe")){
+                    
+                     
+                        nuevoUsuario.getRoles().add(rolFacedaLocal.find(4));
+                        nuevoUsuario.setIdEstados(estadoFacadeLocal.find(4));
+                    
+                    }
                 usuarioFacadeLocal.create(nuevoUsuario);
                 
                 

@@ -7,7 +7,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://bootsfaces.net/ui">
 
-<ui:define name="titulo">Administrador-Editar Calendario</ui:define>
+    <ui:define name="titulo">#{msjSistema.editarCalendario}</ui:define>
     <ui:define name="breadcrumb">
         <ul class="page-breadcrumb breadcrumb">
             <li>
@@ -32,8 +32,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Editar Calendario</h4>
-                                <p class="category">Edita las horas, la duración y el día de la semana de los servicios de Maternity Club</p>
+                                <h4 class="title">#{msjSistema.editarTitleCalendario}</h4>
+                                <p class="category">#{msjSistema.editarContentCalendario}</p>
                             </div>
                             <div class="card-content">
                                 <b:messages class="animated flipInX"  showSummary="true" show-detail="true"/>
@@ -41,7 +41,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Hora de inicio</label>
+                                                <label class="control-label">#{msjSistema.horasCalendario}</label>
                                                 <b:dateTimePicker showTime="true" showDate="false" value="#{editarDetalleHorarioController.detalleHorarioSeleccionado.horaInicio}" class="form-control"/>
                                             </div>
                                         </div>
@@ -49,7 +49,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Duración</label>
+                                                <label class="control-label">#{msjSistema.duracionCalendario}</label>
                                                 <b:inputText value="#{editarDetalleHorarioController.detalleHorarioSeleccionado.duracion}" class="form-control"/>
                                             </div>
                                         </div>
@@ -57,7 +57,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Día de la semana</label>
+                                                <label class="control-label">#{msjSistema.diaCalendario}</label>
                                                 <b:selectOneMenu value="#{editarDetalleHorarioController.detalleHorarioSeleccionado.diaSemana}">
                                                     <f:selectItem value="0" itemLabel="Lunes"/> 
                                                     <f:selectItem value="1" itemLabel="Martes"/> 
@@ -75,7 +75,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Fechas del horario</label>
+                                                <label class="control-label">#{msjSistema.fechasHorario}</label>
                                                 <b:selectOneMenu value="#{editarDetalleHorarioController.detalleHorarioSeleccionado.idHorarios}">
                                                     <f:selectItems value="#{listarHorarioController.horarios}" var="h" itemLabel="Fecha inicio: #{h.fechaInicio} Fecha fin: #{h.fechaFin}"/> 
                                                     
@@ -90,8 +90,8 @@
 
 
 
-                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/calendario/calendario.xhtml" value="Volver"/>
-                                    <b:commandButton value="Guardar" icon="floppy-disk" actionListener="#{editarDetalleHorarioController.actualizarDatos()}" class="btn btn-primary pull-right"/>
+                                    <h:link styleClass="btn btn-primary" outcome="/app/administrador/calendario/calendario.xhtml" value="#{msjSistema.volver}"/>
+                                    <b:commandButton value="#{msjSistema.guardar}" icon="floppy-disk" actionListener="#{editarDetalleHorarioController.actualizarDatos()}" class="btn btn-primary pull-right"/>
 
                                     <div class="clearfix"></div>
                                 </b:form>

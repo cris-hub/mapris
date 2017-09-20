@@ -38,6 +38,8 @@ public class ListarCursosController implements Serializable {
     private Curso cursoSeleccionado;
 
     ArrayList<Curso> aux = new ArrayList();
+    
+    private List<Curso> programas;
 
     public ListarCursosController() {
     }
@@ -48,10 +50,20 @@ public class ListarCursosController implements Serializable {
         cursoSeleccionado = new Curso();
         ArrayList<Curso> aux = new ArrayList();
         recargarCursos();
+        
+        
     }
 
     private void recargarCursos() {
         cursos = cfl.findAll();
+        
+        for (Curso curso : cursos) {
+            if (curso.getIdServicios().getTiposServicios().getIdTipoServicio().equals(1)) {
+
+                programas.add(curso);
+            }
+
+        }
 
     }
 
@@ -71,6 +83,15 @@ public class ListarCursosController implements Serializable {
         this.cursoSeleccionado = cursoSeleccionado;
     }
 
+     public List<Curso> getProgramasC() {
+        return programas;
+    }
+
+    public void setProgramasC(List<Curso> programas) {
+        this.programas = programas;
+    }
+    
+    
     public List<Curso> getCitas() {
 
         for (Curso curso : cursos) {
