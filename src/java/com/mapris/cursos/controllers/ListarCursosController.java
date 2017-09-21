@@ -49,6 +49,7 @@ public class ListarCursosController implements Serializable {
         cursos = new ArrayList();
         cursoSeleccionado = new Curso();
         ArrayList<Curso> aux = new ArrayList();
+        programas = new ArrayList();
         recargarCursos();
         
         
