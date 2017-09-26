@@ -111,10 +111,8 @@ public class CargarArchivosController implements Serializable {
                 }
             }
 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             MessageUtil.enviarMensajeError(null, "Formato Incorrecto", "Solo puedes subir imagenes te tipo 'png' o 'jpg'");
-            ex.printStackTrace();
-        } catch (ServletException ex) {
             ex.printStackTrace();
         }
     }

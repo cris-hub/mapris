@@ -57,7 +57,11 @@ public class ReporteUsuariosController {
         params.put("Hora", h.getTime());
         for (int i = 0; i < usuarios.size(); i++) {
             params.put("Estados", usuarios.get(i).getIdEstados().getNombre());
+        }
+        for (int i = 0; i < usuarios.size(); i++) {
+           
             params.put("Rol", usuarios.get(i).getRoles().get(0).getNombre());
+            System.out.println("Rol" + usuarios.get(i).getRoles().get(0).getNombre());
         }
         
          

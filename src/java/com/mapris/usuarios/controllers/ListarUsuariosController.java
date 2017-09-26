@@ -50,7 +50,7 @@ public class ListarUsuariosController implements Serializable {
 
     @PostConstruct
     public void init() {
-        leerArchivo();
+//        leerArchivo();
         recargarUsuarios();
          
     }

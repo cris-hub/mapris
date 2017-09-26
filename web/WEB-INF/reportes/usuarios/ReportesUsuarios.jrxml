@@ -23,7 +23,7 @@
 			<staticText>
 				<reportElement mode="Transparent" x="120" y="11" width="330" height="40" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="d36f8c77-3722-47ec-af19-da5f0ba1fae1"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Lithos Pro Regular" size="28" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Unicode MS" size="28" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[MATERNITY CLUB]]></text>

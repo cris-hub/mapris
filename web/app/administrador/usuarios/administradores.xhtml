@@ -25,7 +25,7 @@
                                 <p class="category">Aquí estan todos los administradores registrados en el sistema de información</p>
                             </div>
                             <div class="card-content table-responsive">
-                                <h:form id="form-data-table-usuarios" prependId="false">
+                                <h:form id="form-data-table-usuarios" enctype="multipart/form-data" prependId="false">
                                     <b:messages globalOnly="true" showSummary="true" showDetail="true"/>
                                     <div>
                                         <b:commandButton class="btn btn-primary" value="Reporte PDF De los usuarios activos del sistema" actionListener="#{reporteUsuariosController.exportarPDF()}"/>
